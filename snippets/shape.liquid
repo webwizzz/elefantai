@@ -1,0 +1,55 @@
+{{ 'component-shape.css' | asset_url | stylesheet_tag }}
+
+{%- if position != 'bottom' -%}
+  <div class="shape shape-top">
+    {% case type %}
+      {% when 'curve' %}
+        <svg style="--shape-width:{{ width }}%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100">
+          <path style="--shape-color: {{ color }};" d="M 1440 100 C 877.646 -22.8296 592.706 -37.0938 0 100 V 0 C 1426.456 0.282 1279.409 -0.271 1440.013 -1.082 V 46.168 Z"></path>
+        </svg>
+
+      {% when 'curve-wide' %}
+				<svg style="--shape-width:{{ width }}%" viewBox="0 0 1440 204" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M1440 201.074V3H0.00012207L0 200.341C170.069 80.4151 429.213 3.81693 719.505 3.81693C1010.36 3.81693 1269.95 80.7125 1440 201.039V201.074Z" style="--shape-color: {{ color }}"/>
+					<path d="M1440 0H0V4H1440V0Z" style="--shape-color: {{ color }}"/>
+				</svg>
+					
+      {% when 'curve-invert' %}
+        <svg style="--shape-width:{{ width }}%" viewBox="0 0 1440 96" xmlns="http://www.w3.org/2000/svg">
+          <path style="--shape-color: {{ color }};" transform="rotate(-180 720 48)" d="M 1440 96.0394 C 877.646 -26.8296 592.706 -37.0938 0 96.0394 V 96.348 Z"/>
+        </svg>
+
+      {% when 'waves' %}
+        <svg style="--shape-width:{{ width }}%" viewBox="0 0 1440 96" xmlns="http://www.w3.org/2000/svg">
+          <path style="--shape-color: {{ color }};"  d="M 839.677 20.485 C 706.918 13.4774 202.046 5.4938 0 20.485 V 0 H 1440 V 10 C 1350.85 27.9749 1038.33 30.9709 839.677 20.485 Z"/>
+        </svg>
+    {% endcase %}
+  </div>
+{%- endif -%}
+
+{%- if position != 'top' -%}
+  <div class="shape shape-bottom">
+    {% case type %}
+      {% when 'curve' %}
+        <svg style="--shape-width:{{ width }}%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100">
+          <path style="--shape-color: {{ color }};" d="M 1440 100 C 877.646 -22.8296 592.706 -37.0938 0 100 V 0 C 1426.456 0.282 1279.409 -0.271 1440.013 -1.082 V 46.168 Z"></path>
+        </svg>
+
+      {% when 'curve-wide' %}
+				<svg style="--shape-width:{{ width }}%" viewBox="0 0 1440 204" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M1440 201.074V3H0.00012207L0 200.341C170.069 80.4151 429.213 3.81693 719.505 3.81693C1010.36 3.81693 1269.95 80.7125 1440 201.039V201.074Z" style="--shape-color: {{ color }}"/>
+					<path d="M1440 0H0V4H1440V0Z" style="--shape-color: {{ color }}"/>
+				</svg>
+
+      {% when 'curve-invert' %}
+        <svg style="--shape-width:{{ width }}%" viewBox="0 0 1440 96" xmlns="http://www.w3.org/2000/svg">
+          <path style="--shape-color: {{ color }};" transform="rotate(-180 720 48)" d="M 1440 96.0394 C 877.646 -26.8296 592.706 -37.0938 0 96.0394 V 96.348 Z"/>
+        </svg>
+
+      {% when 'waves' %}
+        <svg style="--shape-width:{{ width }}%" viewBox="0 0 1440 21.52" xmlns="http://www.w3.org/2000/svg">
+          <path style="--shape-color: {{ color }};" d="M 839.677 20.485 C 706.918 13.4774 202.046 5.4938 0 20.485 V 0 H 1440 V 10 C 1350.85 27.9749 1038.33 30.9709 839.677 20.485 Z"/>
+        </svg>
+    {% endcase %}
+  </div>
+{%- endif -%}

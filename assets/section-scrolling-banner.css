@@ -1,0 +1,79 @@
+.scrolling-banner {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.scrolling-banner > .scrolling-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-shrink: 0;
+}
+
+.scrolling-item {
+  padding: 0 var(--item-padding, 3rem);
+  width: fit-content;
+  height: 100%;
+}
+
+.scrolling-item,
+.scrolling-item strong {
+  line-height: 1.2;
+}
+
+.scrolling-item a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.scrolling-item.scrolling-item {
+  -webkit-text-stroke-width: .1rem;
+  -webkit-text-stroke-color: transparent;
+  transition: all .3s ease;
+}
+.scrolling-item:hover.scrolling-item {
+  color: transparent!important;
+}
+
+.scrolling-item img,
+.scrolling-item svg {
+  height: 100%;
+	  width: -moz-fit-content; /* For older Firefox */
+  width: -webkit-fit-content; 
+  width: fit-content;
+}
+
+.scrolling-item .placeholder-svg {
+  width: auto;
+}
+
+.scrolling-item.inline-richetxt {
+	letter-spacing: var(--letter-spacing), 0;
+}
+
+@media screen and (max-width: 749px) {
+	.scrolling-item.inline-richetxt {
+		letter-spacing: calc(var(--letter-spacing, 0) / 2);
+	}
+}
+
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%); 
+  }
+  100% {
+    transform: translateX(-100%); 
+  } 
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-100%); 
+  }
+  100% {
+    transform: translateX(0%); 
+  } 
+}

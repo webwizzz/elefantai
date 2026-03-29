@@ -1,0 +1,90 @@
+
+
+<div id="coundownBar-{{ section.id }}" class="countdown-bar countdown-bar-js style-{{ style }} {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" data-date="{{ block.settings.coundown_date }}" data-complited="{{ block.settings.coundown_end }}" {% if settings.animations_reveal_on_scroll %} data-cascade style="--animation-order: {{ forloop.index }};"{% endif %} {{ block.shopify_attributes }}>
+
+  {{ 'component-countdown-bar.css' | asset_url | stylesheet_tag }}
+
+  {% style %}
+    #coundownBar-{{ section.id }} {
+      --letter-spacing: {{ block.settings.coundown_number_letter_spacing }}px;
+			--number-color: {{ block.settings.coundown_number_color }};
+			--number-size: {{ block.settings.coundown_number_size | divided_by: 10.0 }}rem;
+			--number-size-mb:  {{ block.settings.coundown_number_size_mb | divided_by: 10.0 }}rem;
+    }
+
+    #coundownBar-{{ section.id }} .countdown-bar__title {
+      color: {{ block.settings.coundown_title_color }} ;
+    }
+
+    @media screen and (max-width: 749px) {
+      #coundownBar-{{ section.id }} .countdown-bar__title {
+        font-size: {{ block.settings.coundown_title_size | divided_by: 12.0 }}rem;
+      }
+    }
+    
+		@media screen and (min-width: 750px) {
+      #coundownBar-{{ section.id }} .countdown-bar__title {
+        font-size: {{ block.settings.coundown_title_size | divided_by: 10.0 }}rem;
+      }
+    }
+  {% endstyle %}
+
+  {%- if block.settings.contdown_label != blank -%}
+    <div class="contdown-bar__label">
+      <span class="inline-richtext {{ block.settings.contdown_label_size }} text-weight-{{ block.settings.contdown_label_weight }} text-color-{{ block.settings.contdown_label_text_color }}">
+        {{ block.settings.contdown_label }}
+      </span>
+      {%- if block.settings.countdown_icon != blank -%}
+        {{
+          block.settings.countdown_icon
+          | image_url: width: 100
+          | image_tag: loading: 'lazy', sizes: '100px', widths: '100'
+        }}
+      {%- endif -%}
+    </div>
+    
+    {%- if settings.mood_type == 'kawai' -%}
+      <div class="br"> </div>
+    {%- endif -%}
+  {%- endif -%}
+
+  <div class="countdown-bar__item countdown-bar__days {{ block.settings.days_background_color }}">
+    <span class="countdown-bar__number text-weight-{{ block.settings.coundown_number_weight }}">00</span>
+    <span class="countdown-bar__title text-weight-{{ block.settings.coundown_title_weight }}">
+      {{- block.settings.days_label -}}
+    </span>
+  </div>
+
+  <div class="countdown-bar__item countdown-bar__hours {{ block.settings.hours_background_color }}">
+		{%- if style == 'colon' -%}
+			<span class="countdown-bar__colon">:</span>
+		{%- endif -%}
+    <span class="countdown-bar__number text-weight-{{ block.settings.coundown_number_weight }}">00</span>
+    <span class="countdown-bar__title text-weight-{{ block.settings.coundown_title_weight }}">
+      {{- block.settings.hours_label -}}
+    </span>
+  </div>
+
+  <div class="countdown-bar__item countdown-bar__min {{ block.settings.mins_background_color }}">
+		{%- if style == 'colon' -%}
+			<span class="countdown-bar__colon">:</span>
+		{%- endif -%}
+    <span class="countdown-bar__number text-weight-{{ block.settings.coundown_number_weight }}">00</span>
+    <span class="countdown-bar__title text-weight-{{ block.settings.coundown_title_weight }}">
+      {{- block.settings.mins_label -}}
+    </span>
+  </div>
+
+  <div class="countdown-bar__item countdown-bar__sec {{ block.settings.secs_background_color }}">
+		{%- if style == 'colon' -%}
+			<span class="countdown-bar__colon">:</span>
+		{%- endif -%}
+    <span class="countdown-bar__number text-weight-{{ block.settings.coundown_number_weight }}">00</span>
+    <span class="countdown-bar__title text-weight-{{ block.settings.coundown_title_weight }}">
+      {{- block.settings.secs_label -}}
+    </span>
+  </div>
+
+  <script src="{{ 'countdown.js' | asset_url }}" defer="defer"></script>
+  
+</div>

@@ -1,0 +1,241 @@
+.trending-collections {
+  display: block;
+}
+
+.trending-collections__wrapper {
+  grid-column: 1/4;
+  display: flex;
+  flex-direction: column;
+}
+
+.trending-collections__info {
+  padding-bottom: 4rem;
+}
+
+.trending-collections__title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 600;
+  line-height: 1.16em;
+  letter-spacing: -0.96px;
+}
+
+.trending-collections__description {
+  color: currentColor;
+}
+
+.trending-collections__description p {
+  margin: 0;
+}
+
+.trending-collections__description a {
+	color: inherit;
+}
+
+.trending-collections__slider {
+  height: 100%;
+  max-width: 100%;
+	min-width: 0;
+}
+
+.trending-collections__slider-wrp {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.trending-collections .card__text .card__title {
+	margin-top: 2rem;
+  margin-bottom: 0;
+}
+
+.trending-collections .navigation {
+  justify-content: flex-start;
+  margin-top: 3rem;
+}
+
+.trending-collections .media--portrait {
+  padding-bottom: 131%;
+}
+
+.trending-collections .trending-collections__info .navigation {
+	position: static;
+  margin: 10rem 0 0;
+}
+
+@media screen and (max-width: 989px) {
+  .trending-collections .trending-collections__info .navigation {
+    margin: 4rem 0 0;
+  }
+}
+
+.trending-collections__info .trending-collections__link {
+	display: inline-block;
+	margin-top: 2.5rem;
+}
+
+* + .trending-collections__description {
+	margin-top: 1rem;
+}
+
+.trending-collections__item.center {
+  justify-content: center;
+}
+
+.trending-collections__item.right {
+  justify-content: right;
+}
+
+.collection-list-card:hover .card__heading svg {
+  transform: rotate(-45deg);
+}
+
+.trending-collections__item .card__heading svg {
+  width: 1.05rem;
+  transition: all .3s ease;
+}
+
+.trending-collections__item .card__heading a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.trending-collections__link.underlined-link .link-icon {
+	top: calc(50% - .15rem);
+}
+
+.collection-list-card-link {
+  display: none;
+}
+
+.card__content .card__information {
+  padding-bottom: 0;
+}
+
+.navigation {
+  display: flex;
+  gap: 1rem;
+}
+
+.navigation .slider-arrow {
+  margin: 0;
+}
+
+.navigation .nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+  cursor: pointer;
+  padding: .2rem;
+  transition: all var(--duration-default);
+}
+
+.navigation .prev {
+  transform: rotate(-180deg);
+}
+
+@media screen and (max-width: 749px) {
+  .trending-collections__info.mobile-center-heading{
+    text-align: center;
+    align-items: center;
+    align-content: center;
+  }
+
+  .trending-collections__info.mobile-right-heading {
+    text-align: right;
+    align-items: flex-end;
+    align-content: flex-end;
+  }
+
+  .trending-collections__info.mobile-center-heading .trending-collections__link{
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .trending-collections__info.mobile-right-heading .trending-collections__link{
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+	.navigation.mobile-center-navigation {
+		justify-content: center;
+	}
+
+	.navigation.mobile-flex-end {
+		justify-content: right;
+	}
+}
+
+@media screen and (min-width:750px) {
+ 
+  .trending-collections__wrapper {
+    position: relative;
+    flex-direction: row;
+    padding: 0;
+    max-width: 100%;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .trending-collections__info {
+		width: 100%;
+    max-width: 44.5rem;
+    margin-right: 3rem;
+    padding-left: 5rem;
+  }
+
+	.trending-collections__info:has(.navigation ) {
+    padding-bottom: 0;
+	}
+
+  .trending-collections__slider {
+    width: 100%;
+    max-width: calc(100% - 44.5rem);
+    margin: 0;
+  }
+
+  .trending-collections__title {
+    margin-bottom: 0;
+  }
+
+  .trending-collections__description {
+    margin-bottom: 3rem;
+  }
+
+  .trending-collections__description p {
+    max-width: 33.1rem;
+    font-weight: 400;
+    line-height: 1.5em;
+    letter-spacing: -0.32px;
+  }
+
+  .trending-collections .navigation {
+    position: absolute;
+    left: 0;
+    bottom: 1rem;
+    margin-top: 0;
+  }
+
+  .trending-collections .media--portrait {
+    padding-bottom: 131%;
+  }
+
+	.trending-collections__description {
+		margin-bottom: 0;
+	}
+}
+
+@media screen and (min-width: 1200px) {
+  .trending-collections {
+		display: grid;
+		grid-template-columns: 1fr min(100%,var(--page-width)) 1fr;
+  }
+
+	.trending-collections__wrapper {
+		grid-column: 2/4;
+	}
+}

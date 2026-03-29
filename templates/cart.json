@@ -1,0 +1,292 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+ {
+  "sections": {
+    "cart-items": {
+      "type": "main-cart-items",
+      "blocks": {
+        "4bf39bf4-bd09-45bd-a2c8-486d59836588": {
+          "type": "subtotal",
+          "settings": {}
+        },
+        "2616d419-ac87-4424-99f2-f4bd41a7ab13": {
+          "type": "icon_with_text",
+          "settings": {
+            "text": "<p><strong>Delivery Time: 5 - 8 days</strong></p>"
+          }
+        },
+        "67eb83f5-e259-489f-a1a5-bc743c94d132": {
+          "type": "icon_with_text",
+          "settings": {
+            "text": "<p><strong>90 Days Return Policy</strong></p>"
+          }
+        },
+        "c8684996-6c05-4bce-b970-576c916ea190": {
+          "type": "icon_with_text",
+          "settings": {
+            "text": "<p><strong>Free Shipping On All Orders Above $50</strong></p>"
+          }
+        },
+        "ec4ab5b0-9690-4e22-90f9-7b1305fc9cc1": {
+          "type": "buttons",
+          "settings": {}
+        },
+        "c5e81605-abec-4f0c-8259-ed28d1d82142": {
+          "type": "trust_badges",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "4bf39bf4-bd09-45bd-a2c8-486d59836588",
+        "2616d419-ac87-4424-99f2-f4bd41a7ab13",
+        "67eb83f5-e259-489f-a1a5-bc743c94d132",
+        "c8684996-6c05-4bce-b970-576c916ea190",
+        "ec4ab5b0-9690-4e22-90f9-7b1305fc9cc1",
+        "c5e81605-abec-4f0c-8259-ed28d1d82142"
+      ],
+      "settings": {
+        "show_timer": false,
+        "banner_text": "",
+        "banner_text_color": "secondary",
+        "coundown_date": "Apr 31, 2025",
+        "coundown_end": "show_zeroes",
+        "coundown_style": "defaut",
+        "days_label": "Days",
+        "days_background_color": "color-main-bg",
+        "hours_label": "Hours",
+        "hours_background_color": "color-main-bg",
+        "mins_label": "Minutes",
+        "mins_background_color": "color-main-bg",
+        "secs_label": "Seconds",
+        "secs_background_color": "color-main-bg",
+        "coundown_number_color": "#da3c24",
+        "coundown_number_size": 36,
+        "coundown_number_size_mb": 36,
+        "coundown_number_weight": "700",
+        "coundown_number_letter_spacing": 0,
+        "coundown_title_color": "#222222",
+        "coundown_title_size": 14,
+        "coundown_title_weight": "400",
+        "heading_size": "h1",
+        "heading_weight_banner": "700",
+        "text_color": "secondary",
+        "show_continue": false,
+        "custom_link": "",
+        "banner_background_color": "#da3c24",
+        "full_width": true,
+        "shape_position": "top",
+        "shape_type": "none",
+        "shape_color": "#fef7e6",
+        "shape_width": 100,
+        "banner_padding_top": 180,
+        "banner_padding_bottom": 80,
+        "show_breadcrumbs": false,
+        "breadcrumb_color": "main",
+        "breadcrumb_color_hover": "heading",
+        "empty_style": "",
+        "empty_heading_size": "h2",
+        "empty_heading_weight": "700",
+        "empty_title_size": "h5",
+        "empty_title_weight": "400",
+        "empty_title_color": "#101010",
+        "empty_background_color": "#ffffff",
+        "enable_border_radius": false,
+        "border_radius": 300,
+        "cart_type": "columns",
+        "items_background_color": "#ffffff",
+        "items_border": false,
+        "checkout_background_color": "#ffffff",
+        "checkout_border": false,
+        "promoted_background_color": "#ffffff",
+        "promoted_image_ratio": "square",
+        "promoted_border": false,
+        "cart_collection": "",
+        "cart_collection_title": "Pair It With",
+        "shape_content_position": "top",
+        "shape_content_type": "curve",
+        "shape_content_color": "#da3c24",
+        "shape_content_width": 100,
+        "background_color": "--colors-background-main",
+        "colors_background_section_gradient": "",
+        "padding_top": 160,
+        "padding_bottom": 80
+      }
+    },
+    "featured-collection": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "",
+        "title": "<strong>You May also Like</strong>",
+        "heading_size": "h2",
+        "heading_color": "heading",
+        "description": "",
+        "text_body_size": "text-body--large",
+        "text_color": "main",
+        "heading_align": "left",
+        "heading_alignment_mb": "center",
+        "text_bottom_space": "",
+        "show_header_button": false,
+        "button_type": "inline",
+        "header_button_label": "SHOP ALL PRODUCTS",
+        "header_button_url": "",
+        "show_collection_image": false,
+        "image_position": "top",
+        "image_overlay_opacity": 0,
+        "enable_border_radius": false,
+        "border_radius": 100,
+        "banner_text": "",
+        "banner_text_color": "secondary",
+        "coundown_date": "Apr 31, 2024",
+        "coundown_end": "show_zeroes",
+        "coundown_style": "defaut",
+        "days_label": "Days",
+        "days_background_color": "color-main-bg",
+        "hours_label": "Hours",
+        "hours_background_color": "color-main-bg",
+        "mins_label": "Minutes",
+        "mins_background_color": "color-main-bg",
+        "secs_label": "Seconds",
+        "secs_background_color": "color-main-bg",
+        "coundown_number_color": "#da3c24",
+        "coundown_number_size": 36,
+        "coundown_number_size_mb": 36,
+        "coundown_number_weight": "700",
+        "coundown_number_letter_spacing": 0,
+        "coundown_title_color": "#222222",
+        "coundown_title_size": 14,
+        "coundown_title_weight": "400",
+        "full_width": false,
+        "show_view_all": false,
+        "products_to_show": 4,
+        "columns_desktop_grid": 4,
+        "columns_mobile_grid": "1",
+        "enable_slider": false,
+        "center_slide": true,
+        "columns_desktop": 4,
+        "columns_mobile": 2,
+        "arrows_btn_color": "#101010",
+        "arrows_btn_color_hover": "#101010",
+        "arrows_btn_bg_color": "#ffd265",
+        "arrows_btn_bg_color_hover": "#ffd265",
+        "arrows_outline": false,
+        "arrows_on_top": false,
+        "image_ratio": "portrait",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "image_overlay_width": 10,
+        "image_overlay_vertical": 20,
+        "image_overlay_horizontal": 20,
+        "image_overlay_width_mobile": 10,
+        "image_overlay_vertical_mobile": 20,
+        "image_overlay_horizontal_mobile": 20,
+        "image_overlay_animation": "none",
+        "image_overlay_width_2": 10,
+        "image_overlay_vertical_2": 20,
+        "image_overlay_horizontal_2": 20,
+        "image_overlay_width_2_mobile": 10,
+        "image_overlay_vertical_2_mobile": 20,
+        "image_overlay_horizontal_2_mobile": 20,
+        "image_overlay_animation_2": "none",
+        "image_overlay_width_3": 10,
+        "image_overlay_vertical_3": 20,
+        "image_overlay_horizontal_3": 20,
+        "image_overlay_width_3_mobile": 10,
+        "image_overlay_vertical_3_mobile": 20,
+        "image_overlay_horizontal_3_mobile": 20,
+        "image_overlay_animation_3": "none",
+        "shape_position": "top",
+        "shape_type": "none",
+        "shape_color": "#ffffff",
+        "shape_width": 100,
+        "background_color": "color-main-bg",
+        "colors_background_section_gradient": "",
+        "padding_top": 74,
+        "padding_bottom": 146
+      }
+    },
+    "collection-newsletter": {
+      "type": "newsletter",
+      "blocks": {
+        "template--18867160121647__newsletter-16830990270b07a601-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Sign Up to the Newsletter</strong>",
+            "heading_size": "h2",
+            "heading_weight": "700",
+            "heading_color": "main"
+          }
+        },
+        "template--18867160121647__newsletter-16830990270b07a601-1": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Add descriptive text to invite your users to sign up for your newsletter.</p>",
+            "text_style": "body",
+            "text_size": "large",
+            "text_color": "main"
+          }
+        },
+        "template--18867160121647__newsletter-16830990270b07a601-2": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "template--18867160121647__newsletter-16830990270b07a601-0",
+        "template--18867160121647__newsletter-16830990270b07a601-1",
+        "template--18867160121647__newsletter-16830990270b07a601-2"
+      ],
+      "settings": {
+        "show_image": false,
+        "hide_image_mb": false,
+        "column_width": 40,
+        "image_position": "left",
+        "content_alignment": "center",
+        "background_color": "none",
+        "colors_background_section_gradient": "",
+        "full_width": true,
+        "image_overlay_width": 10,
+        "image_overlay_vertical": 5,
+        "image_overlay_horizontal": 20,
+        "image_overlay_width_mobile": 13,
+        "image_overlay_vertical_mobile": 3,
+        "image_overlay_horizontal_mobile": 10,
+        "image_overlay_animation": "ambient",
+        "image_overlay_width_2": 15,
+        "image_overlay_vertical_2": 60,
+        "image_overlay_horizontal_2": 7,
+        "image_overlay_width_2_mobile": 17,
+        "image_overlay_vertical_2_mobile": 87,
+        "image_overlay_horizontal_2_mobile": 9,
+        "image_overlay_animation_2": "ambient",
+        "image_overlay_width_3": 10,
+        "image_overlay_vertical_3": 44,
+        "image_overlay_horizontal_3": 95,
+        "image_overlay_width_3_mobile": 12,
+        "image_overlay_vertical_3_mobile": 20,
+        "image_overlay_horizontal_3_mobile": 94,
+        "image_overlay_animation_3": "ambient",
+        "shape_position": "top",
+        "shape_type": "waves",
+        "shape_color": "#fef7e6",
+        "shape_width": 100,
+        "background_color_main": "color-bg-3",
+        "color_background_main": "",
+        "padding_top": 50,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "cart-items",
+    "featured-collection",
+    "collection-newsletter"
+  ]
+}

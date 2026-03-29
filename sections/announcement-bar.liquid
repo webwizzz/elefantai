@@ -1,0 +1,322 @@
+{{ 'section-announsment-bar.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  #shopify-section-{{ section.id }} .swiper-slide img,
+  #shopify-section-{{ section.id }} .swiper-slide svg {
+    height: calc({{ section.settings.icon_height | divided_by: 10.0 }}rem);
+  }
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .announcement-bar__message {
+      font-size: calc({{ section.settings.text_size | divided_by: 11.6 }}rem);
+      color: {{ section.settings.text_color }};
+    }
+  }
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .announcement-bar__message {
+      font-size: calc({{ section.settings.text_size | divided_by: 10.0 }}rem);
+      color: {{ section.settings.text_color }};
+    }
+  }
+
+	{% if section.settings.colors_background_section_gradient != blank %}
+    #shopify-section-{{ section.id }} .announcement-bar {
+      background: {{ section.settings.colors_background_section_gradient }};
+    }
+	{% else %}
+    #shopify-section-{{ section.id }} .announcement-bar  {
+      background: {{ section.settings.background_color }};
+    }
+  {% endif %}
+{% endstyle %}
+
+<div class="announcement-bar section-{{ section.id }}-padding">
+  <div class="swiper announcement-slider-{{ section.id }} announcement-slider" data-section-id="{{ section.id }}" data-speed="{{ section.settings.scroll_speed | times: 1000 }}" data-change-speed="{{ section.settings.change_slides_speed | times: 1000 }}" data-rotate="{{ section.settings.auto_rotate }}" data-slides-per-view="{{ section.settings.slides_to_show }}">
+    <div class="swiper-wrapper">
+      {%- for block in section.blocks -%}
+        {% case block.type %}
+          {%- when 'announcement' -%}
+            <div class="swiper-slide slide-{{ forloop.index }}{% if block.settings.image_before != blank or block.settings.image_after != blank %} with-icon{% endif -%}" {{ block.shopify_attributes }}>
+              {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}" class="link link--text focus-inset">{%- endif -%}
+                {%- if block.settings.image_before != blank -%}
+                  {{
+                    block.settings.image_before
+                    | image_url: width: 100
+                    | image_tag: loading: 'lazy', sizes: '100px', widths: '100', alt: block.settings.image_before.alt
+                  }}
+                {%- endif -%}
+                <p class="announcement-bar__message">
+                  {{ block.settings.text | escape }}
+                </p>
+                {%- if block.settings.image_after != blank -%}
+                  {{
+                    block.settings.image_after
+                    | image_url: width: 100
+                    | image_tag: loading: 'lazy', sizes: '100px', widths: '100', alt: block.settings.image_after.alt
+                  }}
+                {%- endif -%}
+              {%- if block.settings.link != blank -%}</a>{%- endif -%}
+            </div>
+
+          {%- when 'freeshipping' -%}
+            <div class="swiper-slide slide-{{ forloop.index }}{% if block.settings.image_before != blank or block.settings.image_after != blank %} with-icon{% endif -%}" {{ block.shopify_attributes }}>
+              {%- if block.settings.image_before != blank -%}
+                {{
+                  block.settings.image_before
+                  | image_url: width: 100
+                  | image_tag: loading: 'lazy', sizes: '100px', widths: '100', alt: block.settings.image_before.alt
+                }}
+              {%- endif -%}
+              {% assign amount = block.settings.amount | times: 100 %}
+              <p class="announcement-bar__message announcement-bar-amount" data-amount="{{ amount }}">
+                {% assign amountdisparity = amount | minus: cart.original_total_price | divided_by: 100 %}
+                {% capture amountdisparity_tag %}<span class="amountdisparity">{{ amountdisparity }}</span>{% endcapture %}
+                {% if amount > cart.original_total_price %}
+                  <span class="preunlock active">
+                    {{ block.settings.preunlock | replace: "[[ amount ]]", amountdisparity_tag }}
+                  </span>
+                  <span class="postnlock">
+                    {{ block.settings.postunlock | escape }}
+                  </span>
+                {% else %}
+                  <span class="preunlock">
+                    {{ block.settings.preunlock | replace: "[[ amount ]]", amountdisparity_tag }}
+                  </span>
+                  <span class="postnlock active">
+                    {{ block.settings.postunlock | escape }}
+                  </span>
+                {% endif %}
+              </p>
+                {%- if block.settings.image_after != blank -%}
+                  {{
+                    block.settings.image_after
+                    | image_url: width: 100
+                    | image_tag: loading: 'lazy', sizes: '100px', widths: '100', alt: block.settings.image_after.alt
+                  }}
+                {%- endif -%}
+            </div>
+
+          {%- when 'icon' -%}
+            <div class="swiper-slide slide-icon slide-{{ forloop.index }}" {{ block.shopify_attributes }}>
+              {% if block.settings.image != blank %}
+                {{
+                  block.settings.image
+                  | image_url: width: 100
+                  | image_tag: loading: 'lazy', sizes: '100px', widths: '100', alt: block.settings.image.alt
+                }}
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+              {%- endif -%}
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<script src="{{ 'slider-announcement-bar.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "t:sections.announcement-bar.name",
+  "class": "announcement-bar-section",
+  "disabled_on": {
+    "groups": [
+      "custom.additions"
+    ]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "auto_rotate",
+      "label": "t:sections.announcement-bar.settings.auto_rotate.label",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "slides_to_show",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "label": "t:sections.announcement-bar.settings.slides_to_show.label",
+      "info": "t:sections.announcement-bar.settings.slides_to_show.info",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "change_slides_speed",
+      "min": 1,
+      "max": 9,
+      "step": 1,
+      "unit": "s",
+      "label": "t:sections.announcement-bar.settings.change_slides_speed.label",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "min": 0.3,
+      "max": 4.5,
+      "step": 0.1,
+      "unit": "s",
+      "label": "t:sections.announcement-bar.settings.scroll_speed.label",
+      "default": 1.7
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "t:text.text_size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:text.text_color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "icon_height",
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.announcement-bar.settings.icon_height.label",
+      "default": 17
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:sections.all.padding.background_color",
+      "default": "#DA3C24"
+    },
+    {
+      "id": "colors_background_section_gradient",
+      "type": "color_background",
+      "label": "t:settings_schema.colors.settings.colors_background_section_gradient.label"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 7
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 7
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "t:sections.announcement-bar.blocks.announcement.name",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "default": "Welcome to our store",
+          "label": "t:sections.announcement-bar.blocks.announcement.settings.text.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_before",
+          "label": "t:sections.announcement-bar.blocks.announcement.settings.image_before.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_after",
+          "label": "t:sections.announcement-bar.blocks.announcement.settings.image_after.label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:sections.announcement-bar.blocks.announcement.settings.link.label"
+        }
+      ]
+    },
+    {
+      "type": "freeshipping",
+      "name": "Free shipping",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "number",
+          "id": "amount",
+          "default": 70,
+          "label": "t:sections.announcement-bar.blocks.announcement.settings.amount.label"
+        },
+        {
+          "type": "text",
+          "id": "preunlock",
+          "default": "Spend $[[ amount ]] more and receive free shipping!",
+          "label": "t:sections.announcement-bar.blocks.announcement.settings.preunlock.label",
+          "info": "t:sections.announcement-bar.blocks.announcement.settings.preunlock.info"
+        },
+        {
+          "type": "text",
+          "id": "postunlock",
+          "default": "Free shipping available!",
+          "label": "t:sections.announcement-bar.blocks.announcement.settings.postunlock.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_before",
+          "label": "t:sections.announcement-bar.blocks.announcement.settings.image_before.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_after",
+          "label": "t:sections.announcement-bar.blocks.announcement.settings.image_after.label"
+        }
+      ]
+    },
+    {
+      "type": "icon",
+      "name": "Icon",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.multicolumn.blocks.column.settings.image.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.announcement-bar.name",
+      "blocks": [
+        {
+          "type": "announcement"
+        },
+        {
+          "type": "freeshipping"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

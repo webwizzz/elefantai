@@ -1,0 +1,126 @@
+{%- style -%}
+  @media screen and (max-width: 1024px) {
+    {% if section.settings.image_overlay != blank %}
+      #Banner-{{ section.id }}-wrapp .section-image-overlay,
+      #shopify-section-{{ section.id }}.section-overlay .section-image-overlay,
+      #shopify-section-{{ section.id }} .section-overlay .section-image-overlay {
+        width: {{ section.settings.image_overlay_width_mobile }}%;
+        top: {{ section.settings.image_overlay_vertical_mobile }}%;
+        left: {{ section.settings.image_overlay_horizontal_mobile }}%;
+      }
+    {% endif %}
+    {% if section.settings.image_overlay_2 != blank %}
+      #Banner-{{ section.id }}-wrapp .section-image-overlay.overlay-2,
+      #shopify-section-{{ section.id }}.section-overlay .section-image-overlay.overlay-2,
+      #shopify-section-{{ section.id }} .section-overlay .section-image-overlay.overlay-2 {
+        width: {{ section.settings.image_overlay_width_2_mobile }}%;
+        top: {{ section.settings.image_overlay_vertical_2_mobile }}%;
+        left: {{ section.settings.image_overlay_horizontal_2_mobile }}%;
+      }
+    {% endif %}
+    {% if section.settings.image_overlay_3 != blank %}
+      #Banner-{{ section.id }}-wrapp .section-image-overlay.overlay-3,
+      #shopify-section-{{ section.id }}.section-overlay .section-image-overlay.overlay-3,
+      #shopify-section-{{ section.id }} .section-overlay .section-image-overlay.overlay-3 {
+        width: {{ section.settings.image_overlay_width_3_mobile }}%;
+        top: {{ section.settings.image_overlay_vertical_3_mobile }}%;
+        left: {{ section.settings.image_overlay_horizontal_3_mobile }}%;
+      }
+    {% endif %}
+  }
+
+  @media screen and (min-width: 1025px) {
+    {% if section.settings.image_overlay != blank %}
+      #Banner-{{ section.id }}-wrapp .section-image-overlay,
+      #shopify-section-{{ section.id }}.section-overlay .section-image-overlay,
+      #shopify-section-{{ section.id }} .section-overlay .section-image-overlay {
+        width: {{ section.settings.image_overlay_width }}%;
+        top: {{ section.settings.image_overlay_vertical }}%;
+        left: {{ section.settings.image_overlay_horizontal }}%;
+      }
+    {% endif %}
+    {% if section.settings.image_overlay_2 != blank %}
+      #Banner-{{ section.id }}-wrapp .section-image-overlay.overlay-2,
+      #shopify-section-{{ section.id }}.section-overlay .section-image-overlay.overlay-2,
+      #shopify-section-{{ section.id }} .section-overlay .section-image-overlay.overlay-2 {
+        width: {{ section.settings.image_overlay_width_2 }}%;
+        top: {{ section.settings.image_overlay_vertical_2 }}%;
+        left: {{ section.settings.image_overlay_horizontal_2 }}%;
+      }
+    {% endif %}
+    {% if section.settings.image_overlay_3 != blank %}
+      #Banner-{{ section.id }}-wrapp .section-image-overlay.overlay-3,
+      #shopify-section-{{ section.id }}.section-overlay .section-image-overlay.overlay-3,
+      #shopify-section-{{ section.id }} .section-overlay .section-image-overlay.overlay-3 {
+        width: {{ section.settings.image_overlay_width_3 }}%;
+        top: {{ section.settings.image_overlay_vertical_3 }}%;
+        left: {{ section.settings.image_overlay_horizontal_3 }}%;
+      }
+    {% endif %}
+  }
+{%- endstyle -%}
+
+{%- assign widths = '198, 230, 320, 432, 550, 642, 700, 900, 1284, 1440, 1600, 1800' -%}
+
+{%- capture sizes -%}
+  (min-width: {{ settings.page_width }}px) 100vw,
+  (min-width: 750px) calc(100vw - 130px), calc(100vw - 50px)
+{%- endcapture -%}
+
+
+{% if section.settings.image_overlay != blank %}
+  {% liquid
+    assign classes = 'section-image-overlay'
+    if section.settings.image_overlay_animation == 'ambient'
+      assign classes = 'section-image-overlay ambient'
+    endif
+  %}
+
+  {{
+    section.settings.image_overlay
+    | image_url: width: section.settings.image_overlay.width
+    | image_tag: loading: 'lazy', 
+    sizes: sizes, 
+    widths: widths, 
+    class: classes, 
+    alt: 'background shape'
+  }}
+{% endif %}
+
+{% if section.settings.image_overlay_2 != blank %}
+  {% liquid
+    assign classes = 'section-image-overlay  overlay-2'
+    if section.settings.image_overlay_animation_2 == 'ambient'
+      assign classes = 'section-image-overlay overlay-2 ambient'
+    endif
+  %}
+
+  {{
+    section.settings.image_overlay_2
+    | image_url: width: section.settings.image_overlay_2.width
+    | image_tag: loading: 'lazy', 
+    sizes: sizes, 
+    widths: widths, 
+    class: classes, 
+    alt: 'background shape'
+  }}
+{% endif %}
+
+{% if section.settings.image_overlay_3 != blank %}
+  {% liquid
+    assign classes = 'section-image-overlay  overlay-3'
+    if section.settings.image_overlay_animation_3 == 'ambient'
+      assign classes = 'section-image-overlay overlay-3 ambient'
+    endif
+  %}
+
+  {{
+    section.settings.image_overlay_3
+    | image_url: width: section.settings.image_overlay_3.width
+    | image_tag: loading: 'lazy', 
+    sizes: sizes, 
+    widths: widths, 
+    class: classes, 
+    alt: 'background shape'
+  }}
+{% endif %}

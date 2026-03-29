@@ -1,0 +1,430 @@
+{{ 'component-notification.css' | asset_url | stylesheet_tag }}
+
+<style>
+	{% if request.design_mode and section.settings.enable_in_customizer == true %}
+		#shopify-section-{{ section.id }} .notification {
+			transform: translate(0);
+      z-index: 9999!important;
+    }
+  {% endif %}
+
+  {% if request.design_mode and section.settings.enable_in_customizer == true and section.settings.enable_popup == true %}
+    #shopify-section-{{ section.id }} .subscribe-popup-wrap .promo-popup-content,
+    #shopify-section-{{ section.id }} .subscribe-popup-wrap .promo-popup-subscribe {
+      visibility: visible!important;
+      opacity: 1!important;
+      z-index: 999!important;
+    }
+    #shopify-section-{{ section.id }} .image-shape-sub.promo-popup-wrap .promo-popup-container:after {
+      z-index: 999!important;
+    }
+    #shopify-section-{{ section.id }} .subscribe-popup-wrap .promo-popup-subscribe {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+	{% endif %}
+
+	.notification__wrapper {
+		background: {{ section.settings.background_color }};
+	}
+</style>
+
+{%- liquid
+	assign times = section.settings.times
+	if section.settings.times == 0
+		assign times = 999999
+	endif
+%}
+
+{% if section.settings.subscribe_popup_shape == true %}
+	{{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
+  {% endif %}
+
+<div class="notification" data-timeout="{{ section.settings.timeout }}" data-times="{{ times }}">
+	<div class="notification__wrapper rte inline-richtext text-alignment-{{ section.settings.text_alignment }} text-color-{{ section.settings.text_color }}"{% if section.settings.enable_popup %}tabindex="0" role="button" aria-label="Open subscribe popyp"{% endif %}>
+		{%- if section.settings.heading != blank -%}
+			<h2 class="title inline-richtext text-color-main {{ section.settings.heading_size }} text-weight-{{ section.settings.heading_weight }} {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-rotate-in{% endif %}">
+				{{ section.settings.heading }}
+			</h2>
+		{%- endif -%}
+		
+		{%- if section.settings.text != blank -%}
+			{% if section.settings.text_2 != blank %}
+				{% liquid
+					assign word_list = section.settings.text_2 | split: ', '
+					assign text_to_replace =  section.settings.text 
+				%}
+				{% for word in word_list %}
+					{% liquid
+						assign replace_text = '<span style=color:' | append: section.settings.text_color_2 | append: '>' | append: word | append: '</span>'
+						assign text_to_replace = text_to_replace | replace: word, replace_text
+					%}
+				{% endfor %}
+				{{ text_to_replace }}
+			{% else %}
+			{{ section.settings.text }}
+			{% endif %}
+		{%- endif -%}
+	</div>
+  
+  <button class="notification__btn button" aria-label="Close notification popup">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M20.0003 1.05253L1.05334 19.9999L0.000732422 18.9473L18.9477 -0.000103459L20.0003 1.05253Z" fill="currentColor"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M-3.72506e-06 1.0527L18.9471 19.9999L19.9998 18.9473L1.05262 7.70168e-05L-3.72506e-06 1.0527Z" fill="currentColor"/>
+    </svg>
+  </button>
+</div>
+
+{% if section.settings.enable_popup %}
+  <div class="promo-popup-wrap subscribe-popup-wrap{% if section.settings.subscribe_popup_shape == true %} image-shape-sub{% endif %}">
+    {% form 'customer', id: 'promo-popup-form', class: 'promo-popup-form' %}
+      <div class="promo-popup promo-popup-subscribe" style="visibility: hidden;">
+        <div class="promo-popup-container">
+
+          <div class="promo-popup-content" style="background-color: {{ section.settings.popup_background_color }};">
+
+            <span class="promo-popup-close promo-popup-close-subscribe" tabindex="0" role="button" aria-label="Close subscribe popyp"> </span>
+
+            <div class="promo-popup-title rte text-alignment-{{ section.settings.popup_text_alignment }} text-color-{{ section.settings.popup_heading_color }}">
+              {{- section.settings.popup_heading -}}
+            </div>
+
+            <div class="promo-popup-description rte text-alignment-{{ section.settings.popup_text_alignment }} text-color-{{ section.settings.popup_text_color }}">
+              {{- section.settings.popup_description -}}
+            </div>
+
+            <div class="form-wrapp">
+              <input type="hidden" name="contact[tags]" value="{{ section.settings.popup_tag }}">
+              <div class="promo-popup-form__field-wrapper">
+
+                {% if section.settings.subscribe_popup_shape != true %}
+                  <div class="field">
+                    <input class="field__input" autocomplete="first_name" type="text" id="PromoForm--firstname" name="contact[first_name]" value="" placeholder="First Name*" required>
+                    <label class="field__label" for="PromoForm--firstname">
+                      {{ 'newsletter.label_name' | t }} *
+                    </label>
+                  </div>
+                {% endif %}
+
+                <div class="field">
+                  <input id="NewsletterForm--{{ section.id }}" type="email" name="contact[email]" class="field__input" value="{{ form.email }}" aria-required="true" autocorrect="off" autocapitalize="off" autocomplete="email"
+                    {% if form.errors %}
+                      autofocus aria-invalid="true" aria-describedby="Newsletter-error--{{ section.id }}"
+                    {% elsif form.posted_successfully? %}
+                      aria-describedby="Newsletter-success--{{ section.id }}"
+                    {% endif %}
+                    placeholder="{{ 'newsletter.label' | t }}" required >
+
+                  <label class="field__label" for="NewsletterForm--{{ section.id }}">
+                    {{ 'newsletter.label' | t }} *
+                  </label>
+                </div>
+
+                <div class="field field-submit">
+                  <button type="submit" class="button promo-popup-form-submit" name="commit" id="Subscribe-{{ section.id }}" aria-label="{{ 'newsletter.button_label' | t }}">
+                    {{ 'newsletter.button_label' | t }}
+                    {% if settings.mood_type != 'mood6' %} 
+                      <span class='link-icon'>
+                        {% render 'icon-arrow-link' %}
+                      </span>
+                    {% endif %}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="overlay"></div>
+      </div>
+    {% endform %}
+  </div>
+{% endif %}
+
+<script src="{{ 'notification.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Notification",
+  "tag": "section",
+  "class": "section",
+  "limit": 1,
+  "enabled_on": {
+    "groups": [
+      "custom.additions"
+    ]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_in_customizer",
+      "default": false,
+      "label": "Enable test mode",
+      "info": "Shows a popup example in the theme editor only."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading"
+    },
+		{
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h6",
+          "label": "Extra small"
+        },
+        {
+          "value": "h5",
+          "label": "Small"
+        },
+        {
+          "value": "h4",
+          "label": "Medium"
+        },
+        {
+          "value": "h3",
+          "label": "Large"
+        }
+      ],
+      "default": "h4",
+      "label": "t:sections.all.heading_size.label"
+    },
+		{
+			"type": "select",
+			"id": "heading_weight",
+			"options": [
+				{
+					"value": "300",
+					"label": "t:sections.all.heading_weight.options__1.label"
+				},
+				{
+					"value": "400",
+					"label": "t:sections.all.heading_weight.options__2.label"
+				},
+				{
+					"value": "500",
+					"label": "t:sections.all.heading_weight.options__3.label"
+				},
+				{
+					"value": "600",
+					"label": "t:sections.all.heading_weight.options__4.label"
+				},
+				{
+					"value": "700",
+					"label": "t:sections.all.heading_weight.options__5.label"
+				},
+				{
+					"value": "800",
+					"label": "t:sections.all.heading_weight.options__6.label"
+				}
+			],
+			"default": "600",
+			"label": "Heading weight"
+		},
+    {
+      "type": "richtext",
+      "id": "text",
+      "default": "<p>Notification</p>",
+      "label": "Notification"
+    },
+    {
+      "type": "select",
+      "id": "text_color",
+      "options": [
+        {
+          "value": "main",
+          "label": "t:settings_schema.colors.settings.colors_text.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_text.label"
+        },
+        {
+          "value": "heading",
+          "label": "t:settings_schema.colors.settings.colors_heading.label"
+        },
+        {
+          "value": "heading-secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_heading.label"
+        }
+      ],
+      "default": "heading-secondary",
+      "label": "Notification color",
+      "info": "t:sections.all.colors.has_cards_info"
+    },
+    {
+      "type": "color",
+      "id": "text_color_2",
+      "info": "Your text may appear in a different color.",
+      "label": "Secondary color"
+    },
+    {
+      "type": "text",
+      "id": "text_2",
+      "label": "Text for secondary color",
+      "info": "Case-sensitive. To change the colors of words that are not next to each other, use a comma. For example 'shipping, shop'"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center",
+      "label": "Notification alignment"
+    },
+    {
+      "type": "range",
+      "id": "timeout",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "unit": "s",
+      "label": "Timeout",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "times",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "label": "Show dismissed popup times",
+      "info": "If 0 is selected, the message will be displayed continuously",
+      "default": 3
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#F9F5F0"
+    },
+    {
+      "type": "header",
+      "content": "Subscribe popup"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_popup",
+      "default": true,
+      "label": "Enable subscribe popup"
+    },
+    {
+      "type": "richtext",
+      "id": "popup_heading",
+      "default": "<h3><strong>Add campaign or promotional text here.</strong></h3>",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "popup_heading_color",
+      "options": [
+        {
+          "value": "main",
+          "label": "t:settings_schema.colors.settings.colors_text.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_text.label"
+        },
+        {
+          "value": "heading",
+          "label": "t:settings_schema.colors.settings.colors_heading.label"
+        },
+        {
+          "value": "heading-secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_heading.label"
+        }
+      ],
+      "default": "main",
+      "label": "t:sections.all.colors.label_heading",
+      "info": "t:sections.all.colors.has_cards_info"
+    },
+    {
+      "type": "richtext",
+      "id": "popup_description",
+      "default": "<h4>Add descriptive text to invite your users to sign up for your newsletter.</h4>",
+      "label": "Description"
+    },
+    {
+      "type": "select",
+      "id": "popup_text_color",
+      "options": [
+        {
+          "value": "main",
+          "label": "t:settings_schema.colors.settings.colors_text.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_text.label"
+        },
+        {
+          "value": "heading",
+          "label": "t:settings_schema.colors.settings.colors_heading.label"
+        },
+        {
+          "value": "heading-secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_heading.label"
+        }
+      ],
+      "default": "heading",
+      "label": "t:sections.all.colors.label_text",
+      "info": "t:sections.all.colors.has_cards_info"
+    },
+    {
+      "type": "select",
+      "id": "popup_text_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center",
+      "label": "Content alignment"
+    },
+    {
+      "type": "text",
+      "id": "popup_tag",
+      "default": "Discount code.",
+      "label": "Customer tag"
+    },
+    {
+      "type": "color",
+      "id": "popup_background_color",
+      "label": "Background color",
+      "default": "#FFD265"
+    },
+    {
+      "type": "checkbox",
+      "id": "subscribe_popup_shape",
+      "default": true,
+      "label": "Add popup shape"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Notification"
+    }
+  ]
+}
+{% endschema %}

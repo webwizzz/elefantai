@@ -1,0 +1,217 @@
+@media screen and (max-width: 749px) {
+  .featured-blog .collage-blog-grid .article-card:not(.card--text) .ratio::before {
+    height: 20rem;
+  }
+}
+@media screen and (max-width: 949px) {
+  .collage-blog-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .featured-blog .collage-blog-grid .article-card:not(.card--text) .ratio::before {
+    height: 35rem;
+  }
+}
+
+.collage-blog-grid + .blog__view-all {
+  margin-top: 4rem;
+}
+
+.collage-blog .blog-placeholder {
+	width: 100%;
+	border-radius: 1rem;
+}
+
+.collage-blog .blog-placeholder__content {
+	padding-left: 3rem;
+	padding-right: 3rem;
+}
+
+@media screen and (min-width: 950px) {
+  .collage-blog-grid {
+    display: grid;
+    gap: 3rem;
+  }
+  
+  .collage-blog-grid .card__information {
+    padding-bottom: 0;
+  }
+  
+  .featured-blog .collage-blog-1 .article-card:not(.card--text) .ratio::before {
+    height: auto;
+    min-height: 25rem;
+    padding-bottom: var(--ratio-percent);
+  }
+  
+  .collage-blog-grid.collage-blog-2 {
+    grid-template-columns: 1.5fr 1fr;
+  }
+  
+  .collage-blog-grid.collage-blog-3 {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(auto, 1fr);
+  }
+  .collage-blog-3 .post-1 { 
+    grid-area: 1 / 1 / 3 / 2; 
+  }
+  .collage-blog-3 .post-2 { 
+    grid-area: 1 / 2 / 2 / 3; 
+  }
+  .collage-blog-3 .post-3 { 
+    grid-area: 2 / 2 / 3 / 3; 
+  }
+  
+  .featured-blog .collage-blog-3 .collage-post:not(:first-child) .article-card:not(.card--text) .ratio::before {
+    min-height: 23rem;
+    height: auto;
+  }
+  .featured-blog .collage-blog-3 .collage-post:not(:first-child) .article-card {
+    flex-direction: row;
+  }
+
+  .collage-blog-3 .post-1 .card__heading {
+    font-size: calc(var(--font-heading-4-size) + .4rem);
+  }
+  
+  .collage-blog-grid.collage-blog-4,
+  .collage-blog-grid.collage-blog-5,
+  .collage-blog-grid.collage-blog-6 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .collage-blog-4 .post-1 { 
+    grid-area: 1 / 1 / 3 / 2;; 
+  }
+  .collage-blog-4 .post-2 { 
+    grid-area: 1 / 2 / 2 / 3;
+  }
+  .collage-blog-4 .post-3 { 
+    grid-area: 2 / 2 / 3 / 3;
+  }
+  .collage-blog-4 .post-4 { 
+    grid-area: 3 / 1 / 5 / 3;
+  }
+  
+  .featured-blog .collage-blog-4 .collage-post:not(:first-child) .article-card:not(.card--text) .ratio::before {
+    min-height: 23rem;
+    height: auto;
+  }
+  
+  .featured-blog .collage-blog-4 .collage-post:last-child .article-card:not(.card--text) .ratio::before {
+    min-height: 28rem;
+    height: auto;
+  }
+  
+  .featured-blog .collage-blog-4 .collage-post:not(:first-child) .article-card {
+    flex-direction: row;
+  }
+  
+  .collage-blog-5 .post-1 { 
+    grid-area: 1 / 1 / 3 / 2;; 
+  }
+  .collage-blog-5 .post-2 { 
+    grid-area: 1 / 2 / 2 / 3;
+  }
+  .collage-blog-5 .post-3 { 
+    grid-area: 2 / 2 / 3 / 3;
+  }
+  .collage-blog-5 .post-4 { 
+    grid-area: 3 / 1 / 4 / 2;
+  }
+  .collage-blog-5 .post-5 { 
+    grid-area: 3 / 2 / 4 / 3;
+  }
+  
+  .featured-blog .collage-blog-5 .collage-post:not(:first-child) .article-card:not(.card--text) .ratio::before {
+    min-height: 23rem;
+    height: auto;
+  }
+  
+  .featured-blog .collage-blog-5 .collage-post.post-4 .article-card:not(.card--text) .ratio::before {
+    min-height: 28rem;
+    height: auto;
+  }
+  
+  .featured-blog .collage-blog-5 .collage-post:not(:first-child) .article-card {
+    flex-direction: row;
+  }
+  
+  .featured-blog .collage-blog-5 .collage-post.post-5 .article-card {
+    min-height: 28rem;
+    height: auto;
+    flex-direction: row-reverse;
+  }
+  
+  
+  .collage-blog-6 .post-1 { 
+    grid-area: 1 / 1 / 3 / 2; 
+  }
+  .collage-blog-6 .post-2 { 
+    grid-area: 1 / 2 / 2 / 3; 
+  }
+  .collage-blog-6 .post-3 { 
+    grid-area: 2 / 2 / 3 / 3; 
+  }
+  .collage-blog-6 .post-4 { 
+    grid-area: 3 / 1 / 4 / 2; 
+  }
+  .collage-blog-6 .post-5 { 
+    grid-area: 4 / 1 / 5 / 2; 
+  }
+  .collage-blog-6 .post-6 { 
+    grid-area: 3 / 2 / 5 / 3; 
+  }
+  
+  .featured-blog .collage-blog-6 .collage-post.post-2 .article-card,
+  .featured-blog .collage-blog-6 .collage-post.post-3 .article-card,
+  .featured-blog .collage-blog-6 .collage-post.post-4 .article-card,
+  .featured-blog .collage-blog-6 .collage-post.post-5 .article-card {
+    flex-direction: row;
+  }
+  
+  .featured-blog .collage-blog-6 .collage-post.post-2 .article-card:not(.card--text) .ratio::before,
+  .featured-blog .collage-blog-6 .collage-post.post-3 .article-card:not(.card--text) .ratio::before,
+  .featured-blog .collage-blog-6 .collage-post.post-4 .article-card:not(.card--text) .ratio::before,
+  .featured-blog .collage-blog-6 .collage-post.post-5 .article-card:not(.card--text) .ratio::before {
+    min-height: 23rem;
+    height: auto;
+  }
+
+
+  .featured-blog .collage-blog-3 .collage-post:not(:first-child) .article-card .card__inner,
+  .featured-blog .collage-blog-4 .collage-post:not(:first-child) .article-card .card__inner,
+  .featured-blog .collage-blog-5 .collage-post:not(:first-child) .article-card .card__inner,
+  .featured-blog .collage-blog-6 .collage-post.post-2 .article-card .card__inner,
+  .featured-blog .collage-blog-6 .collage-post.post-3 .article-card .card__inner,
+  .featured-blog .collage-blog-6 .collage-post.post-4 .article-card .card__inner,
+  .featured-blog .collage-blog-6 .collage-post.post-5 .article-card .card__inner,
+  .featured-blog .collage-blog-5 .collage-post.post-5 .article-card .card__inner {
+    width: 45%;
+  } 
+
+  .featured-blog .collage-blog-3 .collage-post:not(:first-child) .article-card > .card__content,
+  .featured-blog .collage-blog-4 .collage-post:not(:first-child) .article-card > .card__content,
+  .featured-blog .collage-blog-5 .collage-post:not(:first-child) .article-card > .card__content,
+  .featured-blog .collage-blog-6 .collage-post.post-2 .article-card > .card__content,
+  .featured-blog .collage-blog-6 .collage-post.post-3 .article-card > .card__content,
+  .featured-blog .collage-blog-6 .collage-post.post-4 .article-card > .card__content,
+  .featured-blog .collage-blog-6 .collage-post.post-5 .article-card > .card__content,
+  .featured-blog .collage-blog-5 .collage-post.post-5 .article-card > .card__content {
+    width: 55%;
+  }
+
+  .collage-post:not(:first-child) .card--standard > .card__content {
+    padding-left: 2rem;
+    padding-bottom: 1rem;
+  }
+  .collage-blog-5 .post-5 .card--standard > .card__content {
+    padding-left: 0;
+    padding-right: 2rem;
+    padding-bottom: 1rem;
+  }
+
+  .collage-blog-6 .post-6 .card--standard > .card__content {
+    padding-left: 0;
+  }
+}

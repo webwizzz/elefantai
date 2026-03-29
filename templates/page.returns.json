@@ -1,0 +1,277 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "heading_size": "h1",
+        "text_color": "secondary",
+        "overlay_image": "",
+        "overlay_image_right": "",
+        "full_width": true,
+        "shape_position": "bottom",
+        "shape_type": "none",
+        "shape_color": "#fef7e6",
+        "shape_width": 100,
+        "background_color": "color-bg-4",
+        "colors_background_section_gradient": "",
+        "padding_top": 180,
+        "padding_bottom": 90,
+        "shape_content_position": "top",
+        "shape_content_type": "curve",
+        "shape_content_color": "#DA3C24",
+        "shape_content_width": 100,
+        "content_background_color": "color-main-bg",
+        "content_colors_background_section_gradient": "",
+        "content_padding_top": 100,
+        "content_padding_bottom": 100
+      }
+    },
+    "returns-faq": {
+      "type": "faq",
+      "blocks": {
+        "template--19412773142831__31d9d8b4-2431-46af-8ed5-7cfec27889a8-1686215539b2ea1459-0": {
+          "type": "heading",
+          "settings": {
+            "section_title": "Returns"
+          }
+        },
+        "template--19412773142831__31d9d8b4-2431-46af-8ed5-7cfec27889a8-1686215539b2ea1459-1": {
+          "type": "item",
+          "settings": {
+            "item_heading": "What Items Cannot Be Returned?",
+            "text": "<p>We do not accept returns on any made-to-order items.</p>"
+          }
+        },
+        "b87b3baf-6dd0-402e-ac90-5ec892012b92": {
+          "type": "item",
+          "settings": {
+            "item_heading": "How Do I Return an Item?",
+            "text": "<p>If you wish to return an item for a refund, send us an email so we can accept your package. The item must be in the original packaging and condition, otherwise we can not refund your purchase. We will notify you within 24 hours of receiving your returned item of your refund status.</p>"
+          }
+        },
+        "464e816d-323f-4c9a-8975-d645b9ec323d": {
+          "type": "item",
+          "settings": {
+            "item_heading": "The Item Arrived Was Damaged. What Do I Do?",
+            "text": "<p>We take the utmost care in our packaging and delivery and rarely items may be damaged in transit. If your item does arrive damaged, let us know by sending us a message via our contact page.</p>"
+          }
+        },
+        "adb3fd5e-ffae-4568-95f1-639a52a442bc": {
+          "type": "item",
+          "settings": {
+            "item_heading": "What Is Your Return Period?",
+            "text": "<p>We accept returns and offer refunds for up to 14 days after a product is delivered. After 14 days we cannot accept any refunds or returns.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--19412773142831__31d9d8b4-2431-46af-8ed5-7cfec27889a8-1686215539b2ea1459-0",
+        "template--19412773142831__31d9d8b4-2431-46af-8ed5-7cfec27889a8-1686215539b2ea1459-1",
+        "b87b3baf-6dd0-402e-ac90-5ec892012b92",
+        "464e816d-323f-4c9a-8975-d645b9ec323d",
+        "adb3fd5e-ffae-4568-95f1-639a52a442bc"
+      ],
+      "settings": {
+        "heading_size": "h4",
+        "heading_item_color": "heading",
+        "heading_align": "",
+        "heading_color": "main",
+        "content_color": "main",
+        "show_first_item": true,
+        "show_all_items": false,
+        "item_background_color": "color-bg-2",
+        "image_overlay_width": 10,
+        "image_overlay_vertical": 20,
+        "image_overlay_horizontal": 20,
+        "image_overlay_width_mobile": 10,
+        "image_overlay_vertical_mobile": 20,
+        "image_overlay_horizontal_mobile": 20,
+        "image_overlay_animation": "none",
+        "image_overlay_width_2": 10,
+        "image_overlay_vertical_2": 20,
+        "image_overlay_horizontal_2": 20,
+        "image_overlay_width_2_mobile": 10,
+        "image_overlay_vertical_2_mobile": 20,
+        "image_overlay_horizontal_2_mobile": 20,
+        "image_overlay_animation_2": "none",
+        "image_overlay_width_3": 10,
+        "image_overlay_vertical_3": 20,
+        "image_overlay_horizontal_3": 20,
+        "image_overlay_width_3_mobile": 10,
+        "image_overlay_vertical_3_mobile": 20,
+        "image_overlay_horizontal_3_mobile": 20,
+        "image_overlay_animation_3": "none",
+        "shape_position": "top",
+        "shape_type": "curve",
+        "shape_color": "#DA3C24",
+        "shape_width": 100,
+        "background_color": "color-main-bg",
+        "colors_background_section_gradient": "",
+        "padding_top": 154,
+        "padding_bottom": 160
+      }
+    },
+    "returns-showcase": {
+      "type": "showcase",
+      "blocks": {
+        "template--18867160121647__showcase-1683710468ee8b3279-0": {
+          "type": "column",
+          "settings": {
+            "image": "",
+            "link": ""
+          }
+        },
+        "template--18867160121647__showcase-1683710468ee8b3279-1": {
+          "type": "column",
+          "settings": {
+            "image": "",
+            "link": ""
+          }
+        },
+        "template--18867160121647__showcase-1683710468ee8b3279-2": {
+          "type": "column",
+          "settings": {
+            "image": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--18867160121647__showcase-1683710468ee8b3279-0",
+        "template--18867160121647__showcase-1683710468ee8b3279-1",
+        "template--18867160121647__showcase-1683710468ee8b3279-2"
+      ],
+      "settings": {
+        "title": "<strong>Loved by Our Community</strong>",
+        "heading_size": "h2",
+        "text_color": "heading",
+        "text": "",
+        "text_body_size": "text-body--large",
+        "description_color": "main",
+        "heading_align": "center",
+        "show_social": true,
+        "social_label": "Follow Us",
+        "social_label_color": "main",
+        "social_color": "main",
+        "social_color_hover": "heading",
+        "under_section": true,
+        "image_overlay": "",
+        "image_overlay_width": 10,
+        "image_overlay_vertical": 83,
+        "image_overlay_horizontal": 5,
+        "image_overlay_width_mobile": 10,
+        "image_overlay_vertical_mobile": 83,
+        "image_overlay_horizontal_mobile": 5,
+        "image_overlay_animation": "ambient",
+        "image_overlay_2": "",
+        "image_overlay_width_2": 10,
+        "image_overlay_vertical_2": 18,
+        "image_overlay_horizontal_2": 95,
+        "image_overlay_width_2_mobile": 10,
+        "image_overlay_vertical_2_mobile": 18,
+        "image_overlay_horizontal_2_mobile": 95,
+        "image_overlay_animation_2": "ambient",
+        "image_overlay_width_3": 10,
+        "image_overlay_vertical_3": 20,
+        "image_overlay_horizontal_3": 20,
+        "image_overlay_width_3_mobile": 10,
+        "image_overlay_vertical_3_mobile": 20,
+        "image_overlay_horizontal_3_mobile": 20,
+        "image_overlay_animation_3": "none",
+        "shape_position": "top",
+        "shape_type": "none",
+        "shape_color": "#fff",
+        "shape_width": 100,
+        "full_width": false,
+        "background_color": "color-bg-2",
+        "colors_background_section_gradient": "",
+        "padding_top": 154,
+        "padding_bottom": 140
+      }
+    },
+    "returns-newsletter": {
+      "type": "newsletter",
+      "blocks": {
+        "template--18867160121647__newsletter-16830990270b07a601-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Sign Up to the Newsletter</strong>",
+            "heading_size": "h2",
+            "heading_color": "main"
+          }
+        },
+        "template--18867160121647__newsletter-16830990270b07a601-1": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Be the first to get notified about New Arrivals, Discounts, and Bargain Deals!</p>",
+            "text_style": "body",
+            "text_color": "main"
+          }
+        },
+        "template--18867160121647__newsletter-16830990270b07a601-2": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "template--18867160121647__newsletter-16830990270b07a601-0",
+        "template--18867160121647__newsletter-16830990270b07a601-1",
+        "template--18867160121647__newsletter-16830990270b07a601-2"
+      ],
+      "settings": {
+        "show_image": false,
+        "column_width": 40,
+        "background_color": "none",
+        "colors_background_section_gradient": "",
+        "full_width": true,
+        "image_overlay": "",
+        "image_overlay_width": 10,
+        "image_overlay_vertical": 5,
+        "image_overlay_horizontal": 20,
+        "image_overlay_width_mobile": 13,
+        "image_overlay_vertical_mobile": 3,
+        "image_overlay_horizontal_mobile": 10,
+        "image_overlay_animation": "ambient",
+        "image_overlay_2": "",
+        "image_overlay_width_2": 15,
+        "image_overlay_vertical_2": 60,
+        "image_overlay_horizontal_2": 7,
+        "image_overlay_width_2_mobile": 17,
+        "image_overlay_vertical_2_mobile": 87,
+        "image_overlay_horizontal_2_mobile": 9,
+        "image_overlay_animation_2": "ambient",
+        "image_overlay_3": "",
+        "image_overlay_width_3": 10,
+        "image_overlay_vertical_3": 44,
+        "image_overlay_horizontal_3": 95,
+        "image_overlay_width_3_mobile": 12,
+        "image_overlay_vertical_3_mobile": 20,
+        "image_overlay_horizontal_3_mobile": 94,
+        "image_overlay_animation_3": "ambient",
+        "shape_position": "top",
+        "shape_type": "waves",
+        "shape_color": "#f6ecd3",
+        "shape_width": 100,
+        "background_color_main": "color-bg-3",
+        "color_background_main": "",
+        "padding_top": 50,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "returns-faq",
+    "returns-showcase",
+    "returns-newsletter"
+  ]
+}

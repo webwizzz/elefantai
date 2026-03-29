@@ -1,0 +1,122 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "Features group",
+  "type": "custom.additions",
+  "sections": {
+    "mobile-sticky-bar": {
+      "type": "mobile-sticky-bar",
+      "blocks": {
+        "sections--20090014564668__d3dea401-80c9-44de-addb-313328330e25-home-1": {
+          "type": "home",
+          "settings": {}
+        },
+        "sections--20090014564668__d3dea401-80c9-44de-addb-313328330e25-collection-1": {
+          "type": "collection",
+          "settings": {}
+        },
+        "sections--20090014564668__d3dea401-80c9-44de-addb-313328330e25-cart-1": {
+          "type": "cart",
+          "settings": {}
+        },
+        "sections--20090014564668__d3dea401-80c9-44de-addb-313328330e25-search-1": {
+          "type": "search",
+          "settings": {}
+        },
+        "sections--20090014564668__d3dea401-80c9-44de-addb-313328330e25-account-1": {
+          "type": "account",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "sections--20090014564668__d3dea401-80c9-44de-addb-313328330e25-home-1",
+        "sections--20090014564668__d3dea401-80c9-44de-addb-313328330e25-collection-1",
+        "sections--20090014564668__d3dea401-80c9-44de-addb-313328330e25-cart-1",
+        "sections--20090014564668__d3dea401-80c9-44de-addb-313328330e25-search-1",
+        "sections--20090014564668__d3dea401-80c9-44de-addb-313328330e25-account-1"
+      ],
+      "settings": {
+        "enable_in_customizer": false,
+        "text_color": "heading",
+        "background_color": "color-bg-2"
+      }
+    },
+    "scroll-to-top": {
+      "type": "scroll-to-top",
+      "settings": {
+        "hide_button": false,
+        "arrow_style": "arrow",
+        "arrows_btn_color": "#ffffff",
+        "arrows_btn_color_hover": "#ffffff",
+        "arrows_btn_bg_color": "#da3c24",
+        "arrows_btn_bg_color_hover": "#da3c24"
+      }
+    },
+    "promo-popup": {
+      "type": "promo-popup",
+      "settings": {
+        "enable_promo_popup": true,
+        "enable_in_customizer": false,
+        "popup_type": "popup_subscribe",
+        "popup_heading": "<h2><strong>Welcome to EleFant!</strong></h2><p>Be the first to see New Arrivals, Exclusive Deals & much more.</p>",
+        "text_color": "main",
+        "popup_description": "<h4><strong>Get 10% Off on Your First Purchase</strong></h4>",
+        "description_color": "main",
+        "text_alignment": "left",
+        "popup_tag": "Discount code.",
+        "popup_timeout": 12,
+        "popup_times": 5,
+        "background_color": "#fef7e6",
+        "discount_popup_heading": "<h3><strong>Congratulations! You’ve Successfully Joined Our List</strong></h3>",
+        "promo_text_color": "main",
+        "discount_popup_description": "<h4><strong>Stay Tuned for Further Updates</strong></h4>",
+        "promo_description_color": "heading",
+        "promo_text_alignment": "center",
+        "discount_promocode": "Take 10%",
+        "discount_background": "#b76e79",
+        "discount_button_label": "Copy code",
+        "discount_background_color": "#fef7e6",
+        "subscripbe_popup_shape": true
+      }
+    },
+    "ba4608f0-b06f-48dc-a2dd-8c478b0da7bb": {
+      "type": "notification",
+      "settings": {
+        "enable_in_customizer": false,
+        "heading": "",
+        "heading_size": "h4",
+        "heading_weight": "600",
+        "text": "<p>Welcome Discount</p><h3><strong>Get 10% Off</strong></h3>",
+        "text_color": "main",
+        "text_color_2": "#da3c24",
+        "text_2": "Get 10% Off",
+        "text_alignment": "center",
+        "timeout": 5,
+        "times": 0,
+        "background_color": "#ffffff",
+        "enable_popup": true,
+        "popup_heading": "<h3><strong>Get 10% Off Your First Order!</strong></h3>",
+        "popup_heading_color": "main",
+        "popup_description": "<h4><strong>Sign Up And Get 10% Off Your First Order</strong></h4>",
+        "popup_text_color": "heading",
+        "popup_text_alignment": "center",
+        "popup_tag": "Discount code.",
+        "popup_background_color": "#ffd265",
+        "subscribe_popup_shape": true
+      }
+    }
+  },
+  "order": [
+    "mobile-sticky-bar",
+    "scroll-to-top",
+    "promo-popup",
+    "ba4608f0-b06f-48dc-a2dd-8c478b0da7bb"
+  ]
+}

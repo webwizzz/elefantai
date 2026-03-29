@@ -1,0 +1,375 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "show_breadcrumbs": false,
+        "breadcrumb_color": "main",
+        "breadcrumb_color_hover": "heading",
+        "hide_banner": false,
+        "heading_size": "h1",
+        "heading_weight": "700",
+        "text_color": "secondary",
+        "overlay_image": "",
+        "overlay_image_right": "",
+        "full_width": true,
+        "shape_position": "bottom",
+        "shape_type": "none",
+        "shape_color": "#fef7e6",
+        "shape_width": 100,
+        "background_color": "color-bg-4",
+        "colors_background_section_gradient": "",
+        "padding_top": 180,
+        "padding_bottom": 90,
+        "shape_content_position": "top",
+        "shape_content_type": "none",
+        "shape_content_color": "#da3c24",
+        "shape_content_width": 100,
+        "content_background_color": "color-main-bg",
+        "content_colors_background_section_gradient": "",
+        "content_padding_top": 100,
+        "content_padding_bottom": 100
+      }
+    },
+    "faq-faq": {
+      "type": "faq",
+      "blocks": {
+        "template--19412741194031__9219817a-0b4a-43c6-b3f4-be40ab2b1bf2-1686215539b2ea1459-0": {
+          "type": "heading",
+          "settings": {
+            "section_title": "Ordering",
+            "headin_space": "mb-lg-4"
+          }
+        },
+        "template--19412741194031__9219817a-0b4a-43c6-b3f4-be40ab2b1bf2-1686215539b2ea1459-1": {
+          "type": "item",
+          "settings": {
+            "item_heading": "When Will My Order Ship?",
+            "text": "<p>Our team needs 1-2 business days to pack and ship your full order. For larger items, we ask that you allow 3-4 business days. Orders placed after 1:00 pm EST on Friday — or over the weekend — will ship on the next business day.</p>"
+          }
+        },
+        "69788240-769a-49d1-8bfe-19c9284bac08": {
+          "type": "item",
+          "settings": {
+            "item_heading": "Where Do You Ship To?",
+            "text": "<p>We ship our products to numerous countries, ensuring that little ones everywhere can experience the love and joy that our products bring. Rest assured, wherever you are, Toyo is ready to deliver happiness to your doorstep!</p>"
+          }
+        },
+        "7ce35cba-4cc3-4de2-8e45-53b2e65f83e7": {
+          "type": "item",
+          "settings": {
+            "item_heading": "I Have a Question about My Order, Who Can I Talk To?",
+            "text": "<p>At Toyo, we value your satisfaction, and we are here to assist you with any inquiries about your order. Our customer support team is available around the clock to address your questions and concerns. Feel free to reach out to us via email or give us a call. We're more than happy to help you with anything you need!</p>"
+          }
+        },
+        "b63d9910-af3d-4278-904b-4a6c1aff1233": {
+          "type": "heading",
+          "settings": {
+            "section_title": "Product",
+            "headin_space": "mb-lg-4"
+          }
+        },
+        "74d3bb51-c5b0-442f-9e35-1d2a241e1f13": {
+          "type": "item",
+          "settings": {
+            "item_heading": "How Are the Product Materials Sourced?",
+            "text": "<p>At Toyo prioritise organic and eco-friendly materials, working closely with trusted suppliers who share our commitment to sustainability. Our team conducts thorough assessments to ensure the materials meet the highest safety and quality standards, providing your little ones with the best and safest products possible.</p>"
+          }
+        },
+        "0a6e6042-4b00-40f3-904b-ce938ad30ed2": {
+          "type": "item",
+          "settings": {
+            "item_heading": "How Accurate Are the Colors Shown in Your Photos?",
+            "text": "<p>At Toyo, we make every effort to accurately represent the colours of our products in our photos. However, please note that colours may vary slightly due to different display settings and lighting conditions. We recommend referring to the product descriptions and details for additional information about the colour and material of the items. If you have any specific colour-related queries, our customer support team is always available to assist you. Your satisfaction is our priority, and we strive to provide you with the best shopping experience possible.</p>"
+          }
+        },
+        "255d71f4-a837-475b-a9c5-6d582b4cf58e": {
+          "type": "heading",
+          "settings": {
+            "section_title": "Returns",
+            "headin_space": "mb-lg-4"
+          }
+        },
+        "f7b1b07d-f2c2-4fbc-b7b5-fbfc8279435e": {
+          "type": "item",
+          "settings": {
+            "item_heading": "What Is Your Return Policy?",
+            "text": "<p>At Toyo, we want you to be completely satisfied with your purchase. If for any reason you are not happy with your order, we offer a hassle-free return policy. Please refer to our 'Returns & Exchanges' page to know more!</p>"
+          }
+        },
+        "1b9e2e36-ef45-4266-87f0-c8af3525b63b": {
+          "type": "item",
+          "settings": {
+            "item_heading": "My Item Arrived Damaged. What Should I Do?",
+            "text": "<p>We apologize for any inconvenience caused. If your item arrived damaged, please contact our customer support team immediately or call our toll-free helpline. Our dedicated representatives will guide you through the process of filing a damage claim and assist you in obtaining a replacement or refund as quickly as possible. To expedite the process, please provide photos of the damaged item and the packaging. Rest assured, we will do our best to resolve the issue and ensure your satisfaction with our products and services. Your feedback is invaluable in helping us improve our processes and maintain the highest standards of quality. </p>"
+          }
+        },
+        "dcf4313c-ab14-4064-bce1-598c00aee110": {
+          "type": "heading",
+          "settings": {
+            "section_title": "Payment",
+            "headin_space": "mb-lg-4"
+          }
+        },
+        "dee602f7-8c63-4ccb-bfb8-801d519d7056": {
+          "type": "item",
+          "settings": {
+            "item_heading": "Do You Offer Cash on Delivery?",
+            "text": "<p>At Toyo, we currently do not offer Cash on Delivery (COD) as a payment option. However, we provide a secure and convenient online payment system that includes various payment methods, such as credit/debit cards, PayPal, and other digital payment options, ensuring a seamless shopping experience for our valued customers. Our priority is to offer efficient and reliable services, and we continuously strive to enhance your satisfaction with every aspect of your shopping journey. </p>"
+          }
+        },
+        "daf61c64-1525-4c4e-9331-e9b2b6369c60": {
+          "type": "item",
+          "settings": {
+            "item_heading": "Can I Use Afterpay for Products That Will Ship to California?",
+            "text": "<p>Absolutely! At Toyo, we proudly offer Afterpay as a payment option for customers in California and various other regions. With Afterpay, you can shop now and pay for your purchase in four interest-free installments, making your shopping experience even more convenient and flexible. Simply select Afterpay at checkout, and you'll be able to enjoy your desired products while spreading the payments over time. </p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--19412741194031__9219817a-0b4a-43c6-b3f4-be40ab2b1bf2-1686215539b2ea1459-0",
+        "template--19412741194031__9219817a-0b4a-43c6-b3f4-be40ab2b1bf2-1686215539b2ea1459-1",
+        "69788240-769a-49d1-8bfe-19c9284bac08",
+        "7ce35cba-4cc3-4de2-8e45-53b2e65f83e7",
+        "b63d9910-af3d-4278-904b-4a6c1aff1233",
+        "74d3bb51-c5b0-442f-9e35-1d2a241e1f13",
+        "0a6e6042-4b00-40f3-904b-ce938ad30ed2",
+        "255d71f4-a837-475b-a9c5-6d582b4cf58e",
+        "f7b1b07d-f2c2-4fbc-b7b5-fbfc8279435e",
+        "1b9e2e36-ef45-4266-87f0-c8af3525b63b",
+        "dcf4313c-ab14-4064-bce1-598c00aee110",
+        "dee602f7-8c63-4ccb-bfb8-801d519d7056",
+        "daf61c64-1525-4c4e-9331-e9b2b6369c60"
+      ],
+      "settings": {
+        "two_columns": false,
+        "heading_size": "h4",
+        "heading_item_color": "heading",
+        "heading_align": "",
+        "heading_weight": "400",
+        "heading_color": "main",
+        "heading_color_accent": "--color-secondary-heading",
+        "content_color": "main",
+        "show_first_item": true,
+        "show_all_items": false,
+        "item_background_color": "color-bg-2",
+        "btn_bg": "#da3c24",
+        "btn_color": "#ffffff",
+        "image_overlay_width": 10,
+        "image_overlay_vertical": 20,
+        "image_overlay_horizontal": 20,
+        "image_overlay_width_mobile": 10,
+        "image_overlay_vertical_mobile": 20,
+        "image_overlay_horizontal_mobile": 20,
+        "image_overlay_animation": "none",
+        "image_overlay_width_2": 10,
+        "image_overlay_vertical_2": 20,
+        "image_overlay_horizontal_2": 20,
+        "image_overlay_width_2_mobile": 10,
+        "image_overlay_vertical_2_mobile": 20,
+        "image_overlay_horizontal_2_mobile": 20,
+        "image_overlay_animation_2": "none",
+        "image_overlay_width_3": 10,
+        "image_overlay_vertical_3": 20,
+        "image_overlay_horizontal_3": 20,
+        "image_overlay_width_3_mobile": 10,
+        "image_overlay_vertical_3_mobile": 20,
+        "image_overlay_horizontal_3_mobile": 20,
+        "image_overlay_animation_3": "none",
+        "shape_position": "top",
+        "shape_type": "curve",
+        "shape_color": "#da3c24",
+        "shape_width": 100,
+        "background_color": "color-main-bg",
+        "colors_background_section_gradient": "",
+        "padding_top": 154,
+        "padding_bottom": 160
+      }
+    },
+    "faq-showcase": {
+      "type": "showcase",
+      "blocks": {
+        "template--18867160121647__showcase-1683710468ee8b3279-0": {
+          "type": "column",
+          "settings": {
+            "image": "",
+            "column_width": "medium",
+            "link": "",
+            "enable_border_radius": false,
+            "border_radius": 100
+          }
+        },
+        "template--18867160121647__showcase-1683710468ee8b3279-1": {
+          "type": "column",
+          "settings": {
+            "image": "",
+            "column_width": "medium",
+            "link": "",
+            "enable_border_radius": false,
+            "border_radius": 100
+          }
+        },
+        "template--18867160121647__showcase-1683710468ee8b3279-2": {
+          "type": "column",
+          "settings": {
+            "image": "",
+            "column_width": "medium",
+            "link": "",
+            "enable_border_radius": false,
+            "border_radius": 100
+          }
+        }
+      },
+      "block_order": [
+        "template--18867160121647__showcase-1683710468ee8b3279-0",
+        "template--18867160121647__showcase-1683710468ee8b3279-1",
+        "template--18867160121647__showcase-1683710468ee8b3279-2"
+      ],
+      "settings": {
+        "layout": "default",
+        "title": "<strong>Loved by Our Community</strong>",
+        "heading_size": "h2",
+        "text_color": "heading",
+        "text_heading": "",
+        "text_color_2": "",
+        "text": "",
+        "text_body_size": "text-body--large",
+        "description_color": "main",
+        "heading_align": "center",
+        "text_bottom_space": "",
+        "show_social": true,
+        "social_label": "Follow Us",
+        "social_label_size": "h4",
+        "social_label_color": "main",
+        "social_label_weight": "600",
+        "social_color": "main",
+        "social_color_hover": "heading",
+        "social_top_space": "",
+        "under_section": true,
+        "icon_on_title": false,
+        "image_overlay": "",
+        "image_overlay_width": 10,
+        "image_overlay_vertical": 83,
+        "image_overlay_horizontal": 5,
+        "image_overlay_width_mobile": 10,
+        "image_overlay_vertical_mobile": 83,
+        "image_overlay_horizontal_mobile": 5,
+        "image_overlay_animation": "ambient",
+        "image_overlay_2": "",
+        "image_overlay_width_2": 10,
+        "image_overlay_vertical_2": 18,
+        "image_overlay_horizontal_2": 95,
+        "image_overlay_width_2_mobile": 10,
+        "image_overlay_vertical_2_mobile": 18,
+        "image_overlay_horizontal_2_mobile": 95,
+        "image_overlay_animation_2": "ambient",
+        "image_overlay_width_3": 10,
+        "image_overlay_vertical_3": 20,
+        "image_overlay_horizontal_3": 20,
+        "image_overlay_width_3_mobile": 10,
+        "image_overlay_vertical_3_mobile": 20,
+        "image_overlay_horizontal_3_mobile": 20,
+        "image_overlay_animation_3": "none",
+        "shape_position": "top",
+        "shape_type": "none",
+        "shape_color": "#ffffff",
+        "shape_width": 100,
+        "full_width": false,
+        "background_color": "color-bg-2",
+        "colors_background_section_gradient": "",
+        "padding_top": 154,
+        "padding_bottom": 140,
+        "margin_bottom": 0
+      }
+    },
+    "faq-newsletter": {
+      "type": "newsletter",
+      "blocks": {
+        "template--18867160121647__newsletter-16830990270b07a601-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Sign Up to the Newsletter</strong>",
+            "heading_size": "h2",
+            "heading_weight": "700",
+            "heading_color": "main"
+          }
+        },
+        "template--18867160121647__newsletter-16830990270b07a601-1": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Be the first to get notified about New Arrivals, Discounts, and Bargain Deals!</p>",
+            "text_style": "body",
+            "text_size": "large",
+            "text_color": "main"
+          }
+        },
+        "template--18867160121647__newsletter-16830990270b07a601-2": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "template--18867160121647__newsletter-16830990270b07a601-0",
+        "template--18867160121647__newsletter-16830990270b07a601-1",
+        "template--18867160121647__newsletter-16830990270b07a601-2"
+      ],
+      "settings": {
+        "show_image": false,
+        "hide_image_mb": false,
+        "column_width": 40,
+        "image_position": "left",
+        "content_alignment": "center",
+        "background_color": "none",
+        "colors_background_section_gradient": "",
+        "full_width": true,
+        "image_overlay": "",
+        "image_overlay_width": 10,
+        "image_overlay_vertical": 5,
+        "image_overlay_horizontal": 20,
+        "image_overlay_width_mobile": 13,
+        "image_overlay_vertical_mobile": 3,
+        "image_overlay_horizontal_mobile": 10,
+        "image_overlay_animation": "ambient",
+        "image_overlay_2": "",
+        "image_overlay_width_2": 15,
+        "image_overlay_vertical_2": 60,
+        "image_overlay_horizontal_2": 7,
+        "image_overlay_width_2_mobile": 17,
+        "image_overlay_vertical_2_mobile": 87,
+        "image_overlay_horizontal_2_mobile": 9,
+        "image_overlay_animation_2": "ambient",
+        "image_overlay_3": "",
+        "image_overlay_width_3": 10,
+        "image_overlay_vertical_3": 44,
+        "image_overlay_horizontal_3": 95,
+        "image_overlay_width_3_mobile": 12,
+        "image_overlay_vertical_3_mobile": 20,
+        "image_overlay_horizontal_3_mobile": 94,
+        "image_overlay_animation_3": "ambient",
+        "shape_position": "top",
+        "shape_type": "waves",
+        "shape_color": "#f6ecd3",
+        "shape_width": 100,
+        "background_color_main": "color-bg-3",
+        "color_background_main": "",
+        "padding_top": 50,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "faq-faq",
+    "faq-showcase",
+    "faq-newsletter"
+  ]
+}

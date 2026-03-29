@@ -1,0 +1,38 @@
+.shape {
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  line-height: 0;
+  z-index: 1;
+	pointer-events: none;
+}
+
+.image-hotspot ~ .shape, 
+.image-hotspot .shape {
+  z-index: 2;
+}
+
+.shape-top {
+	top: -1px;
+}
+
+.shape-bottom {
+	bottom: -1px;
+	transform: rotate(180deg);
+}
+
+.shape svg {
+	--_shape-width: var(--shape-width, 100%);
+	
+	display: block;
+  width: calc(var(--_shape-width) + 1.3px);
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.shape rect,
+.shape path {
+	--_shape-color: var(--shape-color, #fff);
+	fill: var(--_shape-color);
+}

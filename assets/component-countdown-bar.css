@@ -1,0 +1,204 @@
+.countdown-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.3rem;
+  max-width: 62rem;
+}
+
+@media screen and (max-width: 749px) {
+  .countdown-bar {
+    column-gap: 1rem;
+  }
+}
+
+.contdown-bar__label {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+	align-items: center;
+}
+
+.countdown-bar__colon,
+.countdown-bar__number {
+	color: var(--number-color);
+}
+
+.banner--content-align-mobile-left .contdown-bar__label,
+.banner--content-align-mobile-left .countdown-bar.style-colon,
+.image-with-text__content--mobile-left .contdown-bar__label {
+  justify-content: flex-start;
+}
+.banner--content-align-mobile-center .contdown-bar__label,
+.banner--content-align-mobile-center .countdown-bar.style-colon,
+.image-with-text__content--mobile-center .contdown-bar__label {
+  justify-content: center;
+}
+.banner--content-align-mobile-right .contdown-bar__label,
+.banner--content-align-mobile-right  .countdown-bar.style-colon,
+.image-with-text__content--mobile-right .contdown-bar__label {
+  justify-content: flex-end;
+}
+
+@media screen and (min-width: 750px) {
+  .image-with-text__content--desktop-left .contdown-bar__label,
+  .banner--content-align-left .countdown-bar.style-colon,
+  .banner--content-align-left .contdown-bar__label {
+    justify-content: flex-start;
+  }
+  .image-with-text__content--desktop-right .contdown-bar__label,
+	.banner--content-align-right .countdown-bar.style-colon,
+  .banner--content-align-right .contdown-bar__label {
+    justify-content: flex-end;
+  }
+  .image-with-text__content--desktop-center .contdown-bar__label,
+	.banner--content-align-center .countdown-bar.style-colon,
+  .banner--content-align-center .contdown-bar__label {
+    justify-content: center;
+  }
+
+	.countdown-bar__colon,
+	.countdown-bar__number {
+		letter-spacing: var(--letter-spacing, 0);
+		font-size: var(--number-size);
+	}
+}
+
+.contdown-bar__label h3 {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.contdown-bar__label img {
+  width: auto;
+  height: auto;
+  max-width: 6rem;
+  margin-left: 1rem;
+}
+
+.contdown-bar__label .h3 img {
+  height: 3.6rem;
+}
+.contdown-bar__label .h4 img {
+  height: 3rem;
+}
+.contdown-bar__label .h5 img {
+  height: 2.6rem;
+}
+
+.countdown-bar__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+	text-align: center;
+  flex-grow: 1;
+  padding: 1rem;
+  border-radius: .5rem;
+}
+
+.countdown-bar__number {
+  line-height: 1.2;
+}
+
+/* style 2 */
+
+.countdown-bar__number {
+	grid-area: number;
+}
+
+.countdown-bar__colon {
+	grid-area: colon;
+}
+
+.countdown-bar__title {
+	grid-area: title;
+}
+
+.featured-collection--image:has(.style-colon ) {
+	display: flex;
+	align-items: center;
+}
+.featured-collection--image:has(.style-colon )::before {
+	content: '';
+	width: .1rem;
+	margin-right: -.1rem;
+  padding-bottom: var(--ratio-percent);
+}
+
+.featured-collection--image:has(.style-colon ) .banner-content {
+	position: relative;
+}
+
+.featured-collection--image:has(.style-colon ) .media {
+	position: absolute;
+	padding-bottom: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.style-colon.countdown-bar {
+	margin-top: 1rem;
+	column-gap: 0;
+	max-width: 76rem;
+}
+
+.featured-collection--image .style-colon .countdown-bar__item {
+	padding: .5rem;
+  /* max-width: unset; */
+}
+
+.style-colon .countdown-bar__colon,
+.style-colon .countdown-bar__number {
+	line-height: 1;
+}
+
+
+.style-colon .countdown-bar__item {
+	display: grid;
+	grid-template-columns: auto max-content;
+	grid-template-areas: 'colon number'
+											'...... title';
+}
+
+@media screen and (min-width: 950px) {
+  .countdown-bar__item {
+    padding: 2rem;
+  }
+
+  .product--large .countdown-bar__item {
+    padding: 1rem;
+  }
+
+  .product--large .style-colon .countdown-bar__item {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 989px) {
+	.countdown-bar__colon,
+	.countdown-bar__number {
+		letter-spacing: calc(var(--letter-spacing, 0) / 2);
+		font-size: var(--number-size-mb);
+	}
+}
+
+@media screen and (max-width: 749px) {
+  .contdown-bar__label .h3 img {
+    height: 3rem;
+  }
+  .contdown-bar__label .h4 img {
+    height: 2.4rem;
+  }
+  .contdown-bar__label .h5 img {
+    height: 2rem;
+  }
+
+	.featured-collection .banner-content:has(.style-colon) {
+		padding-top: 12rem;
+		padding-bottom: 12rem;
+	}
+
+	.featured-collection--image:has(.style-colon) .media {
+		min-height: 0;
+	}
+}

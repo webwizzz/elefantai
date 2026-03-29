@@ -1,0 +1,897 @@
+{{ 'section-promo-banner.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .promo-banner {
+      padding-top: {{ section.settings.padding_top | times: 0.70 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.70 | round: 0 }}px;
+    }
+  }
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .promo-banner {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .promo-banner {
+    background-color: {{ section.settings.background_color }};
+  }
+
+	{% if section.settings.colors_background_section_gradient != blank %}
+    #shopify-section-{{ section.id }} .promo-banner {
+      background: {{ section.settings.colors_background_section_gradient }};
+    }
+  {% endif %}
+{%- endstyle -%}
+
+{%- liquid
+  if section.settings.image_overlay != blank or section.settings.image_overlay_2 != blank or section.settings.image_overlay_3 != blank or section.settings.shape_type != 'none'
+    assign section_overlay = true
+  endif
+-%}
+
+<div class="promo-banner{% if section_overlay == true %} section-overlay{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"{% if settings.animations_reveal_on_scroll %} data-cascade{% endif %}>
+
+  {%- if section.settings.image_overlay != blank or section.settings.image_overlay_2 != blank or section.settings.image_overlay_3 != blank -%}
+    {% render 'section-overlay' %}
+  {%- endif -%}
+
+  {%- if section.settings.shape_type != 'none' -%}
+    {% render 'shape',
+      position: section.settings.shape_position, 
+      type: section.settings.shape_type, 
+      color: section.settings.shape_color,
+      width: section.settings.shape_width
+    %}
+  {%- endif -%}
+
+  <div class="promo-banner__container columns-{{ section.blocks.size }} page-width">
+    {%- for block in section.blocks -%}
+      {% case block.type %}
+
+        {%- when 'icon' -%}
+          <div class="promo-banner__item icon-item" style="width: {{ block.settings.image_size }}px;">
+            {% if block.settings.image != blank %}
+              {%- assign widths = '165, 360, 535' -%}
+              {{
+                block.settings.image
+                | image_url: width: 200
+                | image_tag: loading: 'lazy', sizes: '200px', widths: widths
+              }}
+            {%- else -%}
+              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+            {%- endif -%}
+          </div>
+
+        {%- when 'text' -%}
+          <div class="promo-banner__item text-item text-color-{{ block.settings.text_color }}">
+            {{ block.settings.text }}
+          </div>
+
+        {%- when 'button' -%}
+          <div class="promo-banner__item button-item">
+            <a {% if block.settings.button_link == blank %} role="link" aria-disabled="true" {% else %} href="{{ block.settings.button_link }}" {% endif %} class="button {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" {{ block.shopify_attributes }}>
+              {{- block.settings.button_label | escape -}}
+            </a>
+          </div>
+
+        {%- when 'countdown' -%}
+          <div class="promo-banner__item countdown-item">
+            {%- render 'countdown-bar',
+              block: block,
+              forloop: forloop,
+              section_id: section.id
+            -%}
+          </div>
+
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "Promo banner",
+  "class": "section",
+  "tag": "section",
+  "disabled_on": {
+    "groups": [
+      "header"
+    ]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section overlay"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_overlay",
+      "label": "Image overlay"
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_width",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image width",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_vertical",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image vertical position",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_horizontal",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image horizontal position",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_width_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image width mobile",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_vertical_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image vertical position mobile",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_horizontal_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image horizontal position mobile",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "image_overlay_animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "ambient",
+          "label": "Ambient"
+        }
+      ],
+      "default": "none",
+      "label": "Animation"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_overlay_2",
+      "label": "Image overlay"
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_width_2",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image width",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_vertical_2",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image vertical position",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_horizontal_2",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image horizontal position",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_width_2_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image width mobile",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_vertical_2_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image vertical position mobile",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_horizontal_2_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image horizontal position mobile",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "image_overlay_animation_2",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "ambient",
+          "label": "Ambient"
+        }
+      ],
+      "default": "none",
+      "label": "Animation"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_overlay_3",
+      "label": "Image overlay"
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_width_3",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image width",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_vertical_3",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image vertical position",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_horizontal_3",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image horizontal position",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_width_3_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image width mobile",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_vertical_3_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image vertical position mobile",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_horizontal_3_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image horizontal position mobile",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "image_overlay_animation_3",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "ambient",
+          "label": "Ambient"
+        }
+      ],
+      "default": "none",
+      "label": "Animation"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.shape_divider.name"
+    },
+    {
+      "type": "select",
+      "id": "shape_position",
+      "options": [
+        {
+          "value": "top",
+          "label": "t:sections.all.shape_divider.settings.position_options.option_1"
+        },
+        {
+          "value": "bottom",
+          "label": "t:sections.all.shape_divider.settings.position_options.option_2"
+        },
+        {
+          "value": "both",
+          "label": "t:sections.all.shape_divider.settings.position_options.option_3"
+        }
+      ],
+      "default": "top",
+      "label": "t:sections.all.shape_divider.settings.position"
+    },
+    {
+      "type": "select",
+      "id": "shape_type",
+      "options": [
+				{
+          "value": "none",
+          "label": "t:sections.all.shape_divider.settings.type_options.option_1"
+        },
+        {
+          "value": "curve",
+          "label": "t:sections.all.shape_divider.settings.type_options.option_2"
+        },
+        {
+          "value": "curve-wide",
+          "label": "Curve wide"
+        },
+        {
+          "value": "curve-invert",
+          "label": "t:sections.all.shape_divider.settings.type_options.option_3"
+        },
+        {
+          "value": "waves",
+          "label": "t:sections.all.shape_divider.settings.type_options.option_4"
+        }
+      ],
+      "default": "none",
+      "label": "t:sections.all.shape_divider.settings.type"
+    },
+    {
+      "type": "color",
+      "id": "shape_color",
+      "default": "#fff",
+      "label": "t:sections.all.shape_divider.settings.color"
+    },
+    {
+      "type": "range",
+      "id": "shape_width",
+      "min": 100,
+      "max": 200,
+      "step": 1,
+      "unit": "%",
+      "label": "t:sections.all.shape_divider.settings.width",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#FEF7E6"
+    },
+    {
+      "id": "colors_background_section_gradient",
+      "type": "color_background",
+      "label": "t:settings_schema.colors.settings.colors_background_section_gradient.label"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 180,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 180,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 40
+    }
+  ],
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<h3><strong>Promo banner</strong></h3> <p>Add campaign or promotional text here</p>",
+          "label": "Text item"
+        },
+        {
+          "type": "select",
+          "id": "text_color",
+          "options": [
+            {
+              "value": "main",
+              "label": "t:settings_schema.colors.settings.colors_text.label"
+            },
+            {
+              "value": "secondary",
+              "label": "t:settings_schema.colors.settings.colors_secondary_text.label"
+            },
+            {
+              "value": "heading",
+              "label": "t:settings_schema.colors.settings.colors_heading.label"
+            },
+            {
+              "value": "heading-secondary",
+              "label": "t:settings_schema.colors.settings.colors_secondary_heading.label"
+            }
+          ],
+          "default": "heading",
+          "label": "t:sections.all.colors.label_text",
+          "info": "t:sections.all.colors.has_cards_info"
+        }
+      ]
+    },
+    {
+      "type": "icon",
+      "name": "Icon",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "image_size",
+          "min": 40,
+          "max": 200,
+          "step": 2,
+          "unit": "px",
+          "label": "Image width",
+          "default": 100
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_label",
+          "default": "Button Label",
+          "label": "t:sections.image-with-text.blocks.button.settings.button_label.label",
+          "info": "t:sections.image-with-text.blocks.button.settings.button_label.info"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "t:sections.image-with-text.blocks.button.settings.button_link.label"
+        }
+      ]
+    },
+    {
+      "type": "countdown",
+      "name": "Countdown",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "coundown_date",
+          "default": "Apr 31, 2024",
+          "label": "End date",
+          "info": "Example: Dec 31, 2024 or Dec 31, 2024 20:00"
+        },
+        {
+          "type": "select",
+          "id": "coundown_end",
+          "options": [
+            {
+              "value": "show_zeroes",
+              "label": "Show zeroes"
+            },
+            {
+              "value": "hide_coundown",
+              "label": "Hide countdown"
+            }
+          ],
+          "default": "show_zeroes",
+          "label": "When date has passed"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "contdown_label",
+          "label": "Heading"
+        },
+        {
+          "type": "select",
+          "id": "contdown_label_size",
+          "options": [
+            {
+              "value": "h5",
+              "label": "t:sections.all.heading_size.options__1.label"
+            },
+            {
+              "value": "h4",
+              "label": "t:sections.all.heading_size.options__2.label"
+            },
+            {
+              "value": "h3",
+              "label": "t:sections.all.heading_size.options__3.label"
+            }
+          ],
+          "default": "h4",
+          "label": "t:sections.all.heading_size.label_countdown_label"
+        },
+        {
+          "type": "select",
+          "id": "contdown_label_text_color",
+          "options": [
+            {
+              "value": "main",
+              "label": "t:settings_schema.colors.settings.colors_text.label"
+            },
+            {
+              "value": "secondary",
+              "label": "t:settings_schema.colors.settings.colors_secondary_text.label"
+            },
+            {
+              "value": "heading",
+              "label": "t:settings_schema.colors.settings.colors_heading.label"
+            },
+            {
+              "value": "heading-secondary",
+              "label": "t:settings_schema.colors.settings.colors_secondary_heading.label"
+            }
+          ],
+          "default": "heading-secondary",
+          "label": "t:sections.all.colors.label_contdown_label",
+          "info": "t:sections.all.colors.has_cards_info"
+        },
+        {
+          "type": "image_picker",
+          "id": "countdown_icon",
+          "label": "Heading icon"
+        },
+        {
+          "type": "text",
+          "id": "days_label",
+          "default": "Days",
+          "label": "Days label"
+        },
+        {
+          "type": "select",
+          "id": "days_background_color",
+          "options": [
+            {
+              "value": "color-main-bg",
+              "label": "t:settings_schema.colors.settings.colors_background_main.label"
+            },
+            {
+              "value": "color-bg-1",
+              "label": "t:settings_schema.colors.settings.colors_background_section_1.label"
+            },
+            {
+              "value": "color-bg-2",
+              "label": "t:settings_schema.colors.settings.colors_background_section_2.label"
+            },
+            {
+              "value": "color-bg-3",
+              "label": "t:settings_schema.colors.settings.colors_background_section_3.label"
+            },
+            {
+              "value": "color-bg-4",
+              "label": "t:settings_schema.colors.settings.colors_background_section_4.label"
+            },
+            {
+              "value": "color-bg-5",
+              "label": "t:settings_schema.colors.settings.colors_background_section_5.label"
+            }
+          ],
+          "default": "color-bg-2",
+          "label": "t:settings_schema.colors.settings.background_colors.content",
+          "info": "t:sections.all.colors.has_cards_info"
+        },
+        {
+          "type": "text",
+          "id": "hours_label",
+          "default": "Hours",
+          "label": "Hours label"
+        },
+        {
+          "type": "select",
+          "id": "hours_background_color",
+          "options": [
+            {
+              "value": "color-main-bg",
+              "label": "t:settings_schema.colors.settings.colors_background_main.label"
+            },
+            {
+              "value": "color-bg-1",
+              "label": "t:settings_schema.colors.settings.colors_background_section_1.label"
+            },
+            {
+              "value": "color-bg-2",
+              "label": "t:settings_schema.colors.settings.colors_background_section_2.label"
+            },
+            {
+              "value": "color-bg-3",
+              "label": "t:settings_schema.colors.settings.colors_background_section_3.label"
+            },
+            {
+              "value": "color-bg-4",
+              "label": "t:settings_schema.colors.settings.colors_background_section_4.label"
+            },
+            {
+              "value": "color-bg-5",
+              "label": "t:settings_schema.colors.settings.colors_background_section_5.label"
+            }
+          ],
+          "default": "color-bg-1",
+          "label": "t:settings_schema.colors.settings.background_colors.content",
+          "info": "t:sections.all.colors.has_cards_info"
+        },
+        {
+          "type": "text",
+          "id": "mins_label",
+          "default": "Minutes",
+          "label": "Minutes label"
+        },
+        {
+          "type": "select",
+          "id": "mins_background_color",
+          "options": [
+            {
+              "value": "color-main-bg",
+              "label": "t:settings_schema.colors.settings.colors_background_main.label"
+            },
+            {
+              "value": "color-bg-1",
+              "label": "t:settings_schema.colors.settings.colors_background_section_1.label"
+            },
+            {
+              "value": "color-bg-2",
+              "label": "t:settings_schema.colors.settings.colors_background_section_2.label"
+            },
+            {
+              "value": "color-bg-3",
+              "label": "t:settings_schema.colors.settings.colors_background_section_3.label"
+            },
+            {
+              "value": "color-bg-4",
+              "label": "t:settings_schema.colors.settings.colors_background_section_4.label"
+            },
+            {
+              "value": "color-bg-5",
+              "label": "t:settings_schema.colors.settings.colors_background_section_5.label"
+            }
+          ],
+          "default": "color-bg-4",
+          "label": "t:settings_schema.colors.settings.background_colors.content",
+          "info": "t:sections.all.colors.has_cards_info"
+        },
+        {
+          "type": "text",
+          "id": "secs_label",
+          "default": "Seconds",
+          "label": "Seconds label"
+        },
+        {
+          "type": "select",
+          "id": "secs_background_color",
+          "options": [
+            {
+              "value": "color-main-bg",
+              "label": "t:settings_schema.colors.settings.colors_background_main.label"
+            },
+            {
+              "value": "color-bg-1",
+              "label": "t:settings_schema.colors.settings.colors_background_section_1.label"
+            },
+            {
+              "value": "color-bg-2",
+              "label": "t:settings_schema.colors.settings.colors_background_section_2.label"
+            },
+            {
+              "value": "color-bg-3",
+              "label": "t:settings_schema.colors.settings.colors_background_section_3.label"
+            },
+            {
+              "value": "color-bg-4",
+              "label": "t:settings_schema.colors.settings.colors_background_section_4.label"
+            },
+            {
+              "value": "color-bg-5",
+              "label": "t:settings_schema.colors.settings.colors_background_section_5.label"
+            }
+          ],
+          "default": "color-bg-3",
+          "label": "t:settings_schema.colors.settings.background_colors.content",
+          "info": "t:sections.all.colors.has_cards_info"
+        },
+        {
+          "type": "color",
+          "id": "coundown_number_color",
+          "label": "Number color",
+          "default": "#6E2FA8"
+        },
+        {
+          "type": "range",
+          "id": "coundown_number_size",
+          "min": 18,
+          "max": 48,
+          "step": 1,
+          "unit": "px",
+          "label": "Number font size",
+          "default": 32
+        },
+				{
+					"type": "range",
+					"id": "coundown_number_size_mb",
+					"min": 16,
+					"max": 100,
+					"step": 1,
+					"unit": "px",
+					"label": "Number font size mobile",
+					"default": 36
+				},
+        {
+          "type": "select",
+          "id": "coundown_number_weight",
+          "options": [
+            {
+              "value": "700",
+              "label": "Bold"
+            },
+            {
+              "value": "600",
+              "label": "Semi bold"
+            },
+            {
+              "value": "500",
+              "label": "Medium"
+            },
+            {
+              "value": "400",
+              "label": "Normal"
+            },
+            {
+              "value": "300",
+              "label": "Light"
+            }
+          ],
+          "default": "700",
+          "label": "Number weight"
+        },
+        {
+          "type": "color",
+          "id": "coundown_title_color",
+          "label": "Label color",
+          "default": "#222222"
+        },
+        {
+          "type": "range",
+          "id": "coundown_title_size",
+          "min": 14,
+          "max": 18,
+          "step": 1,
+          "unit": "px",
+          "label": "Label font size",
+          "default": 16
+        },
+        {
+          "type": "select",
+          "id": "coundown_title_weight",
+          "options": [
+            {
+              "value": "700",
+              "label": "Bold"
+            },
+            {
+              "value": "600",
+              "label": "Semi bold"
+            },
+            {
+              "value": "500",
+              "label": "Medium"
+            },
+            {
+              "value": "400",
+              "label": "Normal"
+            },
+            {
+              "value": "300",
+              "label": "Light"
+            }
+          ],
+          "default": "400",
+          "label": "Label weight"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promo banner",
+      "blocks": [
+        {
+          "type": "icon"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "countdown"
+        },
+        {
+          "type": "button"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

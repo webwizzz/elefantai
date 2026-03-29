@@ -1,0 +1,318 @@
+{{ "section-logos.css" |  asset_url |  stylesheet_tag }}
+
+
+{%- style -%}
+	#shopify-section-{{ section.id }} {
+    --padding-top: {{ section.settings.padding_top }}px;
+    --padding-bottom: {{ section.settings.padding_bottom }}px;
+	}
+
+  {% if section.settings.enable_heading_custom_color == true %} 
+    #shopify-section-{{ section.id }} .logos__text,
+    #shopify-section-{{ section.id }} .logos__text > * {
+        color: {{ section.settings.text_color }};
+    }        
+  {% endif %}
+
+  {% if section.settings.colors_background_section_gradient != blank %}
+    #shopify-section-{{ section.id }} .section-responsive-padding {
+      background: {{ section.settings.colors_background_section_gradient }};
+    }
+  {% endif %}
+
+{%- endstyle -%}
+
+<div class="logos section-responsive-padding {{ section.settings.section_background_color }}">
+  <div class="page-width-test">
+    <div class="logos__inner">
+        
+      {% if section.settings.heading != blank %}
+          <div class="logos__text-wrapper {{ section.settings.heading_background_color }}">
+              <h4 class="logos__text inline-richtext {% if section.settings.enable_heading_custom_color == false %} text-color-{{ section.settings.heading_color }} {% endif %} {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+                  {{ section.settings.heading }}
+              </h4> 
+          </div> 
+      {% endif %}
+      <div class="logos__items-wrapper {{ section.settings.logo_background_color }}">
+        <div class="logos__items">
+          {%- for block in section.blocks -%}
+            <div id="block-{{ block.id }}" class="logos__item {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {% if settings.animations_reveal_on_scroll %} data-cascade{% endif %} {% if settings.animations_reveal_on_scroll %}style="--animation-order: {{ forloop.index }};"{% endif %} {{ block.shopify_attributes }}
+            >
+
+            <style>
+              #block-{{ block.id }}.logos__item {
+                height: {{ block.settings.icon_custom_height | divided_by: 10.0 }}rem;
+              }
+
+              @media screen and (max-width: 989px) {
+                #block-{{ block.id }}.logos__item {
+                  height: {{ block.settings.icon_custom_height_mobile | divided_by: 10.0 }}rem;
+                }
+              }
+            </style>
+
+            {% if block.settings.image != blank %}
+              {%- assign widths = '165, 360, 535, 750' -%}
+              {{
+                  block.settings.image
+                  | image_url: width: 500
+                  | image_tag: loading: 'lazy', sizes: '500px', widths: widths
+              }}
+            {%- else -%}
+              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+            {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema  %} 
+{
+  "name": "Logos",
+  "tag": "section",
+  "disabled_on": {
+      "groups": [
+          "header",
+          "footer",
+          "custom.additions"
+      ]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Logos heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_color",
+      "options": [
+        {
+          "value": "main",
+          "label": "t:settings_schema.colors.settings.colors_text.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_text.label"
+        },
+        {
+          "value": "heading",
+          "label": "t:settings_schema.colors.settings.colors_heading.label"
+        },
+        {
+          "value": "heading-secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_heading.label"
+        }
+      ],
+      "default": "heading",
+      "label": "t:sections.all.colors.label_heading"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_heading_custom_color",
+      "default": true,
+      "label": "Enable a custom color for the header"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Heading custom color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "select",
+      "id": "heading_background_color",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "color-main-bg",
+          "label": "t:settings_schema.colors.settings.colors_background_main.label"
+        },
+        {
+          "value": "color-bg-1",
+          "label": "t:settings_schema.colors.settings.colors_background_section_1.label"
+        },
+        {
+          "value": "color-bg-2",
+          "label": "t:settings_schema.colors.settings.colors_background_section_2.label"
+        },
+        {
+          "value": "color-bg-3",
+          "label": "t:settings_schema.colors.settings.colors_background_section_3.label"
+        },
+        {
+          "value": "color-bg-4",
+          "label": "t:settings_schema.colors.settings.colors_background_section_4.label"
+        },
+        {
+          "value": "color-bg-5",
+          "label": "t:settings_schema.colors.settings.colors_background_section_5.label"
+        }
+      ],
+      "default": "color-bg-5",
+      "label": "Heading background color"
+    },
+    {
+      "type": "select",
+      "id": "logo_background_color",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "color-main-bg",
+          "label": "t:settings_schema.colors.settings.colors_background_main.label"
+        },
+        {
+          "value": "color-bg-1",
+          "label": "t:settings_schema.colors.settings.colors_background_section_1.label"
+        },
+        {
+          "value": "color-bg-2",
+          "label": "t:settings_schema.colors.settings.colors_background_section_2.label"
+        },
+        {
+          "value": "color-bg-3",
+          "label": "t:settings_schema.colors.settings.colors_background_section_3.label"
+        },
+        {
+          "value": "color-bg-4",
+          "label": "t:settings_schema.colors.settings.colors_background_section_4.label"
+        },
+        {
+          "value": "color-bg-5",
+          "label": "t:settings_schema.colors.settings.colors_background_section_5.label"
+        }
+      ],
+      "default": "color-bg-2",
+      "label": "Logo background color"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "select",
+      "id": "section_background_color",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "color-main-bg",
+          "label": "t:settings_schema.colors.settings.colors_background_main.label"
+        },
+        {
+          "value": "color-bg-1",
+          "label": "t:settings_schema.colors.settings.colors_background_section_1.label"
+        },
+        {
+          "value": "color-bg-2",
+          "label": "t:settings_schema.colors.settings.colors_background_section_2.label"
+        },
+        {
+          "value": "color-bg-3",
+          "label": "t:settings_schema.colors.settings.colors_background_section_3.label"
+        },
+        {
+          "value": "color-bg-4",
+          "label": "t:settings_schema.colors.settings.colors_background_section_4.label"
+        },
+        {
+          "value": "color-bg-5",
+          "label": "t:settings_schema.colors.settings.colors_background_section_5.label"
+        }
+      ],
+      "default": "color-bg-5",
+      "label": "Background color"
+    },
+    {
+      "id": "colors_background_section_gradient",
+      "type": "color_background",
+      "label": "t:settings_schema.colors.settings.colors_background_section_gradient.label"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 180,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 180,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.multicolumn.blocks.column.settings.image.label"
+        },
+        {
+          "type": "range",
+          "id": "icon_custom_height",
+          "min": 10,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Icon custom height",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "icon_custom_height_mobile",
+          "min": 10,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Icon custom height mobile",
+          "default": 20
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Logos",
+      "blocks": [
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

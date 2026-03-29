@@ -1,0 +1,1011 @@
+{{ 'template-collection.css' | asset_url | stylesheet_tag }}
+{{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+
+{% if settings.enable_product_variants %}
+  {{ 'product-card-variants.css' | asset_url | stylesheet_tag }}
+{% endif %}
+
+{%- if settings.enable_quick_add -%}
+  {{ 'quick-add.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{%- style -%}
+   @media screen and (max-width: 749px) {
+     .section-{{ section.id }}-padding {
+       padding-top: {{ section.settings.padding_top | times: 0.53 | round: 0 }}px;
+       padding-bottom: {{ section.settings.padding_bottom | times: 0.53 | round: 0 }}px;
+     }
+   }
+
+  @media screen and (min-width: 750px) and (max-width: 1024px) {
+     .section-{{ section.id }}-padding {
+  		padding-top: {{ section.settings.padding_top | times: 0.67 | round: 0 }}px;
+       padding-bottom: {{ section.settings.padding_bottom | times: 0.67 | round: 0 }}px;
+     }
+   }
+
+   @media screen and (min-width: 1025px) {
+     .section-{{ section.id }}-padding {
+       padding-top: {{ section.settings.padding_top }}px;
+       padding-bottom: {{ section.settings.padding_bottom }}px;
+     }
+   }
+
+  {% if section.settings.colors_background_section_gradient != blank %}
+     .section-{{ section.id }}-padding {
+       background: {{ section.settings.colors_background_section_gradient }};
+     }
+     .section-{{ section.id }}-padding .gradient {
+       background: transparent;
+     }
+
+   {% endif %}
+{%- endstyle -%}
+
+{%- liquid
+  if section.settings.image_overlay != blank or section.settings.image_overlay_2 != blank or section.settings.image_overlay_3 != blank or section.settings.shape_type != 'none'
+    assign section_overlay = true
+  endif
+-%}
+
+<div class="section-{{ section.id }}-padding {{ section.settings.background_color }}{% if section_overlay == true %} section-overlay{% endif %}">
+  {%- if section.settings.image_overlay != blank
+    or section.settings.image_overlay_2 != blank
+    or section.settings.image_overlay_3 != blank
+  -%}
+    {% render 'section-overlay' %}
+  {%- endif -%}
+
+  {%- if section.settings.shape_type != 'none' -%}
+    {% render 'shape',
+      position: section.settings.shape_position,
+      type: section.settings.shape_type,
+      color: section.settings.shape_color,
+      width: section.settings.shape_width
+    %}
+  {%- endif -%}
+
+  {%- paginate collection.products by section.settings.products_per_page -%}
+    <div class="collection-grid{% if section.settings.filter_type == 'vertical' %} facets-vertical page-width{% endif %}{% if section.settings.filter_type == 'horizontal' %} facets-type-horisontal{% endif %}">
+
+      {{ 'component-facets.css' | asset_url | stylesheet_tag }}
+      <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
+
+      {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+        <aside aria-labelledby="verticalTitle" class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width{% endif %} text-color-{{ section.settings.filter_color_hover }}-hover{% if section.settings.show_filter_checkbox == false %} hide-checkbox{% endif %}" id="main-collection-filters" data-id="{{ section.id }}">
+          {% render 'facets',
+            results: collection,
+            enable_filtering: section.settings.enable_filtering,
+            grid_navigation: section.settings.grid_navigation,
+						grid_style: section.settings.grid_style,
+            filter_type: section.settings.filter_type,
+						filter_size: section.settings.filter_size,
+            enable_sorting: section.settings.enable_sorting,
+            show_sorting_label: section.settings.show_sorting_label,
+            paginate: paginate,
+            filter_bg: section.settings.filtering_background_color,
+            custom_color: section.settings.enable_custom_color,
+            facets_dropdown_background_color: section.settings.facets_dropdown_background_color
+          %}
+        </aside>
+      {%- endif -%}
+
+      <div class="product-grid-container{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" id="ProductGridContainer" {% if settings.animations_reveal_on_scroll %} data-cascade {% endif %}>
+
+        {%- if collection.products.size == 0 -%}
+          <div class="collection collection--empty page-width" id="product-grid" data-id="{{ section.id }}">
+            <div class="loading-overlay gradient {{ section.settings.colors_background_section_gradient }}"></div>
+            <div class="title-wrapper center">
+              <h2 class="title title--primary">
+                {{- 'sections.collection_template.empty' | t -}}
+                <br>
+                {{
+                  'sections.collection_template.use_fewer_filters_html'
+                  | t: link: collection.url, class: 'underlined-link link'
+                -}}
+              </h2>
+            </div>
+          </div>
+        {%- else -%}
+
+          {%- if section.settings.filter_type == 'vertical' -%}
+            {%- if section.settings.grid_navigation == true -%}
+              <grid-navigation class="grid-navigation small-hide medium-hide">
+                <div class="grid-navigation__list">
+                  <div class="grid-navigation__item item-desktop{% if section.settings.columns_desktop == 3 %} active{% endif %}" data-grid-type="grid--3-col-desktop grid-style-{{ section.settings.grid_style }}" role="button" aria-label="Card variant" tabindex="0">
+
+                    {%- if section.settings.grid_style == 'grid' -%}
+                      <svg width="32" height="20" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="8" height="8" rx="1.5" stroke="currentColor"/>
+                        <rect x="0.5" y="11.5" width="8" height="8" rx="1.5" stroke="currentColor"/>
+                        <rect x="11.5" y="0.5" width="8" height="8" rx="1.5" stroke="currentColor"/>
+                        <rect x="11.5" y="11.5" width="8" height="8" rx="1.5" stroke="currentColor"/>
+                        <rect x="22.5" y="0.5" width="8" height="8" rx="1.5" stroke="currentColor"/>
+                        <rect x="22.5" y="11.5" width="8" height="8" rx="1.5" stroke="currentColor"/>
+                      </svg>
+                    {%- else -%}
+                      <svg width="42" height="20" viewBox="0 0 42 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="8" height="8" rx="1.5" stroke="currentColor"/>
+                        <rect x="0.5" y="11.5" width="8" height="8" rx="1.5" stroke="currentColor"/>
+                        <rect x="11.5" y="0.5" width="8" height="8" rx="1.5" stroke="currentColor"/>
+                        <rect x="11.5" y="11.5" width="8" height="8" rx="1.5" stroke="currentColor"/>
+                        <rect x="22.5" y="0.5" width="8" height="8" rx="1.5" stroke="currentColor"/>
+                        <rect x="22.5" y="11.5" width="8" height="8" rx="1.5" stroke="currentColor"/>
+                        <rect x="33.5" y="0.5" width="8" height="8" rx="1.5" stroke="currentColor"/>
+                        <rect x="33.5" y="11.5" width="8" height="8" rx="1.5" stroke="currentColor"/>
+                      </svg>
+                    {%- endif -%}
+                    
+                  </div>
+
+                  <div class="grid-navigation__item item-desktop{% if section.settings.columns_desktop == 4 %} active{% endif %}" data-grid-type="grid--4-col-desktop grid-style-{{ section.settings.grid_style }}" role="button" aria-label="Card variant" tabindex="0">
+                    {%- if section.settings.grid_style == 'grid' -%}
+                      <svg width="42" height="20" viewBox="0 0 42 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="8" height="8" rx="1.5" stroke="currentColor"/>
+                        <rect x="0.5" y="11.5" width="8" height="8" rx="1.5" stroke="currentColor"/>
+                        <rect x="11.5" y="0.5" width="8" height="8" rx="1.5" stroke="currentColor"/>
+                        <rect x="11.5" y="11.5" width="8" height="8" rx="1.5" stroke="currentColor"/>
+                        <rect x="22.5" y="0.5" width="8" height="8" rx="1.5" stroke="currentColor"/>
+                        <rect x="22.5" y="11.5" width="8" height="8" rx="1.5" stroke="currentColor"/>
+                        <rect x="33.5" y="0.5" width="8" height="8" rx="1.5" stroke="currentColor"/>
+                        <rect x="33.5" y="11.5" width="8" height="8" rx="1.5" stroke="currentColor"/>
+                      </svg>
+                    {%- else -%}
+                      <svg width="42" height="20" viewBox="0 0 42 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="8" height="8" rx="1.5" stroke="currentColor"/>
+                        <rect x="22.5" y="0.5" width="8" height="8" rx="1.5" stroke="currentColor"/>
+                        <rect x="0.5" y="11.5" width="19" height="8" rx="1.5" stroke="currentColor"/>
+                        <rect x="11.5" y="0.5" width="8" height="8" rx="1.5" stroke="currentColor"/>
+                        <rect x="33.5" y="0.5" width="8" height="8" rx="1.5" stroke="currentColor"/>
+                        <rect x="22.5" y="11.5" width="19" height="8" rx="1.5" stroke="currentColor"/>
+                      </svg>
+                    {%- endif -%}
+                  </div>
+
+                  <div class="grid-navigation__item item-desktop{% if section.settings.columns_desktop == 2 %} active{% endif %}" data-grid-type="grid--2-col-desktop grid--2-col-tablet-down grid-style-{{ section.settings.grid_style }}" role="button" aria-label="Card variant" tabindex="0">
+                    <svg width="42" height="20" viewBox="0 0 42 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="22.5" y="0.5" width="19" height="19" rx="1.5" stroke="currentColor"/>
+                      <rect x="0.5" y="0.5" width="19" height="19" rx="1.5" stroke="currentColor"/>
+                    </svg>
+                  </div>
+                </div>
+              </grid-navigation>
+            {%- endif -%}
+
+            <facet-filters-form class="facets facets-vertical-sort page-width small-hide no-js-hidden">
+              <form class="facets-vertical-form" id="FacetSortForm">
+                <div class="product-count-vertical" role="status">
+                  <h2 class="product-count__text text-body">
+                    <span id="ProductCountDesktop">
+                      {%- if collection.results_count -%}
+                        {{
+                          'templates.search.results_with_count'
+                          | t: terms: collection.terms, count: collection.results_count
+                        }}
+                      {%- elsif collection.products_count == collection.all_products_count -%}
+                        {{ 'products.facets.product_count_simple' | t: count: collection.products_count }}
+                      {%- else -%}
+                        {{
+                          'products.facets.product_count'
+                          | t: product_count: collection.products_count, count: collection.all_products_count
+                        }}
+                      {%- endif -%}
+                    </span>
+                  </h2>
+                  <div class="loading-overlay__spinner">
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      class="spinner"
+                      viewBox="0 0 66 66"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                    </svg>
+                  </div>
+                </div>
+
+                {%- if section.settings.enable_sorting -%}
+                  <div class="facet-filters sorting caption">
+                    <div class="facet-filters__field">
+                      {% if section.settings.show_sorting_label %}
+                        <h2 class="facet-filters__label caption-large text-body">
+                          <label for="SortBy">{{ 'products.facets.sort_by_label' | t }}</label>
+                        </h2>
+                      {% endif %}
+
+                      <div class="select">
+                        {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+                        <select
+                          name="sort_by"
+                          class="facet-filters__sort select__select caption-large"
+                          id="SortBy"
+                          aria-describedby="a11y-refresh-page-message"
+                        >
+                          {%- for option in collection.sort_options -%}
+                            <option
+                              value="{{ option.value | escape }}"
+                              {% if option.value == sort_by %}
+                                selected="selected"
+                              {% endif %}
+                            >
+                              {{ option.name | escape }}
+                            </option>
+                          {%- endfor -%}
+                        </select>
+                        {% render 'icon-caret' %}
+                      </div>
+                    </div>
+                    <noscript>
+                      <button type="submit" class="facets__button-no-js button">
+                        {{ 'products.facets.sort_button' | t }}
+                      </button>
+                    </noscript>
+                  </div>
+                {%- endif -%}
+              </form>
+            </facet-filters-form>
+          {%- endif -%}
+
+          <div class="collection{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}">
+            <div class="loading-overlay gradient {{ section.settings.colors_background_section_gradient }}"></div>
+
+            <ul id="product-grid" data-id="{{ section.id }}" class="1 grid product-grid load_list grid--{{ section.settings.columns_mobile }}-col-tablet-down grid--{{ section.settings.columns_desktop }}-col-desktop grid-style-{{ section.settings.grid_style }}" data-next-url="{{ paginate.next.url }}">
+              {%- for product in collection.products -%}
+                {% assign lazy_load = false %}
+                {%- if forloop.index > 2 -%}
+                  {%- assign lazy_load = true -%}
+                {%- endif -%}
+                <li class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} load_item"
+                  {% if settings.animations_reveal_on_scroll %}
+                    data-cascade style="--animation-order: {{ forloop.index }};"
+                  {% endif %}>
+
+									{%- assign placeholder_image = 'product-1' -%}
+                  {% render 'card-product',
+                    card_product: product,
+                    media_aspect_ratio: section.settings.image_ratio,
+                    show_secondary_image: section.settings.show_secondary_image,
+                    show_vendor: section.settings.show_vendor,
+                    show_rating: section.settings.show_rating,
+                    lazy_load: lazy_load,
+                    show_quick_add: settings.enable_quick_add,
+										placeholder_image: placeholder_image,
+                    section_id: section.id
+                  %}
+                </li>
+              {%- endfor -%}
+            </ul>
+
+            {%- if paginate.pages > 1 -%}
+              {% render 'pagination', paginate: paginate, anchor: '' %}
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endpaginate -%}
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-collection-product-grid.name",
+  "class": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 6,
+      "max": 50,
+      "step": 1,
+      "default": 10,
+      "label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.main-collection-product-grid.settings.columns_desktop.label"
+    },
+    {
+      "type": "select",
+      "id": "grid_style",
+      "options": [
+        {
+          "value": "grid",
+          "label": "Grid"
+        },
+        {
+          "value": "collage",
+          "label": "Collage"
+        }
+      ],
+      "default": "collage",
+      "label": "Grid style"
+    },
+    {
+      "type": "checkbox",
+      "id": "grid_navigation",
+      "default": true,
+      "label": "Show grid navigation"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-collection-product-grid.settings.header__3.content"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__2.label"
+        },
+        {
+          "value": "tallview",
+          "label": "Tall view"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__3.label"
+        },
+        {
+          "value": "landscape",
+          "label": "Landscape"
+        }
+      ],
+      "default": "adapt",
+      "label": "t:sections.main-collection-product-grid.settings.image_ratio.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "t:sections.main-collection-product-grid.settings.show_secondary_image.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "t:sections.main-collection-product-grid.settings.show_vendor.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": false,
+      "label": "t:sections.main-collection-product-grid.settings.show_rating.label",
+      "info": "t:sections.main-collection-product-grid.settings.show_rating.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-collection-product-grid.settings.header__1.content"
+    },
+    {
+      "type": "select",
+      "id": "filtering_background_color",
+      "options": [
+        {
+          "value": "color-main-bg",
+          "label": "t:settings_schema.colors.settings.colors_background_main.label"
+        },
+        {
+          "value": "color-bg-1",
+          "label": "t:settings_schema.colors.settings.colors_background_section_1.label"
+        },
+        {
+          "value": "color-bg-2",
+          "label": "t:settings_schema.colors.settings.colors_background_section_2.label"
+        },
+        {
+          "value": "color-bg-3",
+          "label": "t:settings_schema.colors.settings.colors_background_section_3.label"
+        },
+        {
+          "value": "color-bg-4",
+          "label": "t:settings_schema.colors.settings.colors_background_section_4.label"
+        },
+        {
+          "value": "color-bg-5",
+          "label": "t:settings_schema.colors.settings.colors_background_section_5.label"
+        }
+      ],
+      "default": "color-main-bg",
+      "label": "Filtering background",
+      "info": "t:sections.all.colors.has_cards_info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_filtering",
+      "default": true,
+      "label": "t:sections.main-collection-product-grid.settings.enable_filtering.label",
+      "info": "t:sections.main-collection-product-grid.settings.enable_filtering.info"
+    },
+    {
+      "type": "select",
+      "id": "filter_type",
+      "options": [
+        {
+          "value": "horizontal",
+          "label": "t:sections.main-collection-product-grid.settings.filter_type.options__1.label"
+        },
+        {
+          "value": "vertical",
+          "label": "t:sections.main-collection-product-grid.settings.filter_type.options__2.label"
+        },
+        {
+          "value": "drawer",
+          "label": "t:sections.main-collection-product-grid.settings.filter_type.options__3.label"
+        }
+      ],
+      "default": "horizontal",
+      "label": "t:sections.main-collection-product-grid.settings.filter_type.label",
+      "info": "t:sections.main-collection-product-grid.settings.filter_type.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_filter_checkbox",
+      "default": false,
+      "label": "Show filter checkboxes"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sorting",
+      "default": true,
+      "label": "t:sections.main-collection-product-grid.settings.enable_sorting.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sorting_label",
+      "default": true,
+      "label": "Show sorting label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_custom_color",
+      "default": false,
+      "label": "Enable custom color"
+    },
+    {
+      "type": "color",
+      "id": "facets_dropdown_background_color",
+      "default": "#FEF7E6",
+      "label": "Filters dropdown color"
+    },
+		{
+      "type": "select",
+      "id": "filter_size",
+      "options": [
+        {
+          "value": "h6",
+          "label": "Small"
+        },
+        {
+          "value": "h5",
+          "label": "Medium"
+        },
+        {
+          "value": "h4",
+          "label": "Large"
+        }
+      ],
+      "default": "h4",
+      "label": "Filtering size"
+    },	
+    {
+      "type": "select",
+      "id": "filter_color_hover",
+      "options": [
+        {
+          "value": "main",
+          "label": "t:settings_schema.colors.settings.colors_text.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_text.label"
+        },
+        {
+          "value": "heading",
+          "label": "t:settings_schema.colors.settings.colors_heading.label"
+        },
+        {
+          "value": "heading-secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_heading.label"
+        }
+      ],
+      "default": "heading-secondary",
+      "label": "Filtering and sorting colors on hover",
+      "info": "t:sections.all.colors.has_cards_info"
+    },
+    {
+      "type": "header",
+      "content": "Pagination"
+    },
+    {
+      "type": "select",
+      "id": "load_pagination",
+      "options": [
+        {
+          "value": "pagination",
+          "label": "Pagination"
+        },
+        {
+          "value": "load",
+          "label": "Load more"
+        },
+        {
+          "value": "infinite",
+          "label": "Infinite scroll"
+        }
+      ],
+      "default": "pagination",
+      "label": "Select a way to expand the list"
+    },
+    {
+      "type": "select",
+      "id": "pagination_color",
+      "options": [
+        {
+          "value": "main",
+          "label": "t:settings_schema.colors.settings.colors_text.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_text.label"
+        },
+        {
+          "value": "heading",
+          "label": "t:settings_schema.colors.settings.colors_heading.label"
+        },
+        {
+          "value": "heading-secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_heading.label"
+        }
+      ],
+      "default": "main",
+      "label": "Pagination color",
+      "info": "t:sections.all.colors.has_cards_info"
+    },
+    {
+      "type": "select",
+      "id": "pagination_background_color",
+      "options": [
+        {
+          "value": "color-main-bg",
+          "label": "t:settings_schema.colors.settings.colors_background_main.label"
+        },
+        {
+          "value": "color-bg-1",
+          "label": "t:settings_schema.colors.settings.colors_background_section_1.label"
+        },
+        {
+          "value": "color-bg-2",
+          "label": "t:settings_schema.colors.settings.colors_background_section_2.label"
+        },
+        {
+          "value": "color-bg-3",
+          "label": "t:settings_schema.colors.settings.colors_background_section_3.label"
+        },
+        {
+          "value": "color-bg-4",
+          "label": "t:settings_schema.colors.settings.colors_background_section_4.label"
+        },
+        {
+          "value": "color-bg-5",
+          "label": "t:settings_schema.colors.settings.colors_background_section_5.label"
+        }
+      ],
+      "default": "color-bg-1",
+      "label": "Pagination background",
+      "info": "t:sections.all.colors.has_cards_info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-collection-product-grid.settings.header_mobile.content"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "default": "2",
+      "label": "t:sections.main-collection-product-grid.settings.columns_mobile.label",
+      "options": [
+        {
+          "value": "1",
+          "label": "t:sections.main-collection-product-grid.settings.columns_mobile.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.main-collection-product-grid.settings.columns_mobile.options__2.label"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Section overlay"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_overlay",
+      "label": "Image overlay"
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_width",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image width",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_vertical",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image vertical position",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_horizontal",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image horizontal position",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_width_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image width mobile",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_vertical_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image vertical position mobile",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_horizontal_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image horizontal position mobile",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "image_overlay_animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "ambient",
+          "label": "Ambient"
+        }
+      ],
+      "default": "none",
+      "label": "Animation"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_overlay_2",
+      "label": "Image overlay"
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_width_2",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image width",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_vertical_2",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image vertical position",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_horizontal_2",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image horizontal position",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_width_2_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image width mobile",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_vertical_2_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image vertical position mobile",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_horizontal_2_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image horizontal position mobile",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "image_overlay_animation_2",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "ambient",
+          "label": "Ambient"
+        }
+      ],
+      "default": "none",
+      "label": "Animation"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_overlay_3",
+      "label": "Image overlay"
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_width_3",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image width",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_vertical_3",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image vertical position",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_horizontal_3",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image horizontal position",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_width_3_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image width mobile",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_vertical_3_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image vertical position mobile",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_horizontal_3_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image horizontal position mobile",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "image_overlay_animation_3",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "ambient",
+          "label": "Ambient"
+        }
+      ],
+      "default": "none",
+      "label": "Animation"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.shape_divider.name"
+    },
+    {
+      "type": "select",
+      "id": "shape_position",
+      "options": [
+        {
+          "value": "top",
+          "label": "t:sections.all.shape_divider.settings.position_options.option_1"
+        },
+        {
+          "value": "bottom",
+          "label": "t:sections.all.shape_divider.settings.position_options.option_2"
+        },
+        {
+          "value": "both",
+          "label": "t:sections.all.shape_divider.settings.position_options.option_3"
+        }
+      ],
+      "default": "top",
+      "label": "t:sections.all.shape_divider.settings.position"
+    },
+    {
+      "type": "select",
+      "id": "shape_type",
+      "options": [
+				{
+          "value": "none",
+          "label": "t:sections.all.shape_divider.settings.type_options.option_1"
+        },
+        {
+          "value": "curve",
+          "label": "t:sections.all.shape_divider.settings.type_options.option_2"
+        },
+        {
+          "value": "curve-wide",
+          "label": "Curve wide"
+        },
+        {
+          "value": "curve-invert",
+          "label": "t:sections.all.shape_divider.settings.type_options.option_3"
+        },
+        {
+          "value": "waves",
+          "label": "t:sections.all.shape_divider.settings.type_options.option_4"
+        }
+      ],
+      "default": "none",
+      "label": "t:sections.all.shape_divider.settings.type"
+    },
+    {
+      "type": "color",
+      "id": "shape_color",
+      "default": "#fff",
+      "label": "t:sections.all.shape_divider.settings.color"
+    },
+    {
+      "type": "range",
+      "id": "shape_width",
+      "min": 100,
+      "max": 200,
+      "step": 1,
+      "unit": "%",
+      "label": "t:sections.all.shape_divider.settings.width",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "select",
+      "id": "background_color",
+      "options": [
+        {
+          "value": "color-main-bg",
+          "label": "t:settings_schema.colors.settings.colors_background_main.label"
+        },
+        {
+          "value": "color-bg-1",
+          "label": "t:settings_schema.colors.settings.colors_background_section_1.label"
+        },
+        {
+          "value": "color-bg-2",
+          "label": "t:settings_schema.colors.settings.colors_background_section_2.label"
+        },
+        {
+          "value": "color-bg-3",
+          "label": "t:settings_schema.colors.settings.colors_background_section_3.label"
+        },
+        {
+          "value": "color-bg-4",
+          "label": "t:settings_schema.colors.settings.colors_background_section_4.label"
+        },
+        {
+          "value": "color-bg-5",
+          "label": "t:settings_schema.colors.settings.colors_background_section_5.label"
+        }
+      ],
+      "default": "color-main-bg",
+      "label": "t:settings_schema.colors.settings.background_colors.content",
+      "info": "t:sections.all.colors.has_cards_info"
+    },
+    {
+      "id": "colors_background_section_gradient",
+      "type": "color_background",
+      "label": "t:settings_schema.colors.settings.colors_background_section_gradient.label"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 180,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 180,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

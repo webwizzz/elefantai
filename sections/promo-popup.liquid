@@ -1,0 +1,480 @@
+{{ 'promo-popup.css' | asset_url | stylesheet_tag }}
+
+{% if request.design_mode
+  and section.settings.enable_in_customizer == true
+  and section.settings.popup_type == 'popup_subscribe'
+%}
+  <style>
+    #shopify-section-{{ section.id }} .promo-popup.promo-popup-subscribe {
+      visibility: visible!important;
+      opacity: 1!important;
+      z-index: 998!important;
+      z-index: 99;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    #shopify-section-{{ section.id }} .image-shape.promo-popup-wrap .promo-popup-container:after {
+      z-index: 999!important;
+    }
+    #shopify-section-{{ section.id }} .promo-popup-subscribe .promo-popup-container {
+      transform: scale(1, 1);
+    }
+    #shopify-section-{{ section.id }} .promo-popup-subscribe .promo-popup-content {
+      opacity: 1;
+    }
+  </style>
+{% elsif request.design_mode
+  and section.settings.enable_in_customizer == true
+  and section.settings.popup_type == 'popup_discount'
+%}
+  <style>
+    #shopify-section-{{ section.id }} .promo-popup.promo-popup-promo {
+      visibility: visible!important;
+      opacity: 1!important;
+      z-index: 999!important;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+    #shopify-section-{{ section.id }} .promo-popup-promo .promo-popup-container {
+      transform: scale(1, 1);
+    }
+    #shopify-section-{{ section.id }} .promo-popup-promo .promo-popup-content {
+      opacity: 1;
+    }
+  </style>
+{% endif %}
+
+{% if section.settings.subscripbe_popup_shape == true %}
+  {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
+{% endif %}
+
+<div
+  class="promo-popup-wrap{% if section.settings.subscripbe_popup_shape == true %} image-shape{% endif %}"
+  data-popup-timeout="{{ section.settings.popup_timeout }}"
+  data-popup-times="{{ section.settings.popup_times }}"
+>
+  {% form 'customer', id: 'promo-popup-form', class: 'promo-popup-form' %}
+    <div class="promo-popup promo-popup-subscribe" style="visibility: hidden;">
+      <div class="promo-popup-container">
+        <div class="promo-popup-content" style="background-color: {{ section.settings.background_color }};">
+          <span class="promo-popup-close promo-popup-close-subscribe"> </span>
+
+          <div class="promo-popup-title rte text-alignment-{{ section.settings.text_alignment }} text-color-{{ section.settings.text_color }}">
+            {{ section.settings.popup_heading }}
+          </div>
+
+          <div class="promo-popup-description rte text-alignment-{{ section.settings.text_alignment }} text-color-{{ section.settings.description_color }}">
+            {{ section.settings.popup_description }}
+          </div>
+
+          <div class="form-wrapp">
+            <input type="hidden" name="contact[tags]" value="{{ section.settings.popup_tag }}">
+            <div class="promo-popup-form__field-wrapper">
+              {% if section.settings.subscripbe_popup_shape != true %}
+                <div class="field">
+                  <input
+                    class="field__input"
+                    autocomplete="first_name"
+                    type="text"
+                    id="PromoForm--firstname"
+                    name="contact[first_name]"
+                    value=""
+                    placeholder="First Name*"
+                    required
+                  >
+                  <label class="field__label" for="PromoForm--firstname"> {{ 'newsletter.label_name' | t }} * </label>
+                </div>
+              {% endif %}
+
+              <div class="field">
+                <input
+                  id="NewsletterForm--{{ section.id }}"
+                  type="email"
+                  name="contact[email]"
+                  class="field__input"
+                  value="{{ form.email }}"
+                  aria-required="true"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  autocomplete="email"
+                  {% if form.errors %}
+                    autofocus aria-invalid="true" aria-describedby="Newsletter-error--{{ section.id }}"
+                  {% elsif form.posted_successfully? %}
+                    aria-describedby="Newsletter-success--{{ section.id }}"
+                  {% endif %}
+                  placeholder="{{ 'newsletter.label' | t }}"
+                  required
+                >
+
+                <label class="field__label" for="NewsletterForm--{{ section.id }}">
+                  {{ 'newsletter.label' | t }} *
+                </label>
+              </div>
+
+              <div class="field field-submit">
+                <button
+                  type="submit"
+                  class="button promo-popup-form-submit"
+                  name="commit"
+                  id="Subscribe-{{ section.id }}"
+                  aria-label="{{ 'newsletter.button_label' | t }}"
+                >
+                  {{ 'newsletter.button_label' | t }}
+                  {% if settings.mood_type != 'mood6' %} 
+                    <span class="link-icon">
+                      {% render 'icon-arrow-link' %}
+                    </span>
+                  {% endif %}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="overlay"></div>
+    </div>
+
+    <div
+      class="promo-popup promo-popup-promo{% if form.posted_successfully? %} promo-popup-success{% endif %}"
+      style="visibility: hidden;"
+    >
+      <div class="promo-popup-container">
+        <div
+          class="promo-popup-content{% if section.settings.discount_popup_shape == true %} image-shape{% endif %}"
+          style="background-color: {{ section.settings.discount_background_color }};"
+        >
+          <span class="promo-popup-close promo-popup-close-promo"> </span>
+
+          <div class="promo-popup-title rte text-alignment-{{ section.settings.promo_text_alignment }} text-color-{{ section.settings.promo_text_color }}">
+            {{ section.settings.discount_popup_heading }}
+          </div>
+
+          <div class="promo-popup-description rte text-alignment-{{ section.settings.promo_text_alignment }} text-color-{{ section.settings.promo_description_color }}">
+            {{ section.settings.discount_popup_description }}
+          </div>
+          <div class="form-wrapp">
+            <div class="promo-popup-form__field-wrapper">
+              {%- if section.settings.discount_promocode != blank -%}
+                <div class="promo-zone" style="background-color: {{ section.settings.discount_background }};">
+                  <input
+                    type="text"
+                    value="{{ section.settings.discount_promocode }}"
+                    id="copyPromoCode"
+                    readonly="readonly"
+                  >
+                </div>
+              {%- endif -%}
+
+              {%- if section.settings.discount_button_label != blank -%}
+                <div class="field field-submit">
+                  <button
+                    type="button"
+                    class="button"
+                    name="commit"
+                    aria-label="{{ section.settings.discount_button_label | escape }}"
+                  >
+                    {{ section.settings.discount_button_label | escape }}
+									{% if settings.mood_type != 'mood6' %} 
+                    <span class="link-icon">
+                      {% render 'icon-arrow-link' %}
+                    </span>
+									{%- endif -%}
+                  </button>
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="overlay"></div>
+    </div>
+  {% endform %}
+
+  {% if section.settings.enable_promo_popup %}
+    <script src="{{ 'promo-popup.js' | asset_url }}" defer="defer"></script>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Promo popup",
+  "tag": "section",
+  "class": "spaced-section section-promo-popup",
+  "limit": 1,
+  "enabled_on": {
+    "groups": ["custom.additions"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Promo popup subscribe"
+    },
+    {
+      "type": "paragraph",
+      "content": "For more details, follow [this link](https://docs.muup.co/article/750-promo-pop-up)"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_promo_popup",
+      "default": true,
+      "label": "Show promo popup"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_in_customizer",
+      "default": false,
+      "label": "Enable test mode",
+      "info": "Shows a popup example in the theme editor only."
+    },
+    {
+      "type": "radio",
+      "id": "popup_type",
+      "label": "Test mode popup type",
+      "options": [
+        {
+          "value": "popup_subscribe",
+          "label": "Popup subscribe"
+        },
+        {
+          "value": "popup_discount",
+          "label": "Popup discount"
+        }
+      ],
+      "default": "popup_subscribe"
+    },
+    {
+      "type": "richtext",
+      "id": "popup_heading",
+      "default": "<p>Add campaign or promotional text here.</p>",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "text_color",
+      "options": [
+        {
+          "value": "main",
+          "label": "t:settings_schema.colors.settings.colors_text.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_text.label"
+        },
+        {
+          "value": "heading",
+          "label": "t:settings_schema.colors.settings.colors_heading.label"
+        },
+        {
+          "value": "heading-secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_heading.label"
+        }
+      ],
+      "default": "heading-secondary",
+      "label": "t:sections.all.colors.label_heading",
+      "info": "t:sections.all.colors.has_cards_info"
+    },
+    {
+      "type": "richtext",
+      "id": "popup_description",
+      "default": "<p>Add descriptive text to invite your users to sign up for your newsletter.</p>",
+      "label": "Description"
+    },
+    {
+      "type": "select",
+      "id": "description_color",
+      "options": [
+        {
+          "value": "main",
+          "label": "t:settings_schema.colors.settings.colors_text.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_text.label"
+        },
+        {
+          "value": "heading",
+          "label": "t:settings_schema.colors.settings.colors_heading.label"
+        },
+        {
+          "value": "heading-secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_heading.label"
+        }
+      ],
+      "default": "heading",
+      "label": "t:sections.all.colors.label_description",
+      "info": "t:sections.all.colors.has_cards_info"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center",
+      "label": "Content alignment"
+    },
+    {
+      "type": "text",
+      "id": "popup_tag",
+      "default": "Discount code.",
+      "label": "Customer tag"
+    },
+    {
+      "type": "range",
+      "id": "popup_timeout",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "unit": "s",
+      "label": "Timeout",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "popup_times",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "label": "Show dismissed popup times",
+      "default": 3
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#F9F5F0"
+    },
+    {
+      "type": "header",
+      "content": "Promo popup discount"
+    },
+    {
+      "type": "richtext",
+      "id": "discount_popup_heading",
+      "default": "<p>Congratulations! You’ve successfully joined our list</p>",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "promo_text_color",
+      "options": [
+        {
+          "value": "main",
+          "label": "t:settings_schema.colors.settings.colors_text.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_text.label"
+        },
+        {
+          "value": "heading",
+          "label": "t:settings_schema.colors.settings.colors_heading.label"
+        },
+        {
+          "value": "heading-secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_heading.label"
+        }
+      ],
+      "default": "heading-secondary",
+      "label": "t:sections.all.colors.label_heading",
+      "info": "t:sections.all.colors.has_cards_info"
+    },
+    {
+      "type": "richtext",
+      "id": "discount_popup_description",
+      "default": "<p>Stay tuned for further updates</p>",
+      "label": "Description"
+    },
+    {
+      "type": "select",
+      "id": "promo_description_color",
+      "options": [
+        {
+          "value": "main",
+          "label": "t:settings_schema.colors.settings.colors_text.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_text.label"
+        },
+        {
+          "value": "heading",
+          "label": "t:settings_schema.colors.settings.colors_heading.label"
+        },
+        {
+          "value": "heading-secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_heading.label"
+        }
+      ],
+      "default": "heading",
+      "label": "t:sections.all.colors.label_description",
+      "info": "t:sections.all.colors.has_cards_info"
+    },
+    {
+      "type": "select",
+      "id": "promo_text_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center",
+      "label": "Content alignment"
+    },
+    {
+      "type": "text",
+      "id": "discount_promocode",
+      "default": "Promo",
+      "label": "Promo code"
+    },
+    {
+      "type": "color",
+      "id": "discount_background",
+      "label": "Discount background color",
+      "default": "#E3CDB4"
+    },
+    {
+      "type": "text",
+      "id": "discount_button_label",
+      "default": "Copy code",
+      "label": "Link label"
+    },
+    {
+      "type": "color",
+      "id": "discount_background_color",
+      "label": "Background color",
+      "default": "#F9F5F0"
+    },
+    {
+      "type": "checkbox",
+      "id": "subscripbe_popup_shape",
+      "default": true,
+      "label": "Add popup shape"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promo popup"
+    }
+  ]
+}
+{% endschema %}

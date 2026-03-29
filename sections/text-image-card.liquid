@@ -1,0 +1,336 @@
+{%- style -%}
+  #TIC-{{ section.id }} {
+    background-color: {{ section.settings.section_bg_color }};
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+    font-family: inherit;
+  }
+
+  .tic-card {
+    background: {{ section.settings.card_bg_color }};
+    border-radius: {{ section.settings.card_radius }}px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+    display: flex;
+    width: 100%;
+    max-width: 1081px;
+    aspect-ratio: 1081 / 560;
+    overflow: hidden;
+    {% if section.settings.show_white_border %}
+    border: 4px solid #fff;
+    {% endif %}
+  }
+
+  /* Right-align layout flip if checked */
+  {% if section.settings.image_position == "left" %}
+  .tic-card {
+    flex-direction: row-reverse;
+  }
+  {% endif %}
+
+  @media (max-width: 900px) {
+    .tic-card {
+      flex-direction: column !important; /* Stack vertically on mobile */
+      aspect-ratio: auto; /* Remove fixed ratio on small screens to fit text naturally */
+    }
+    #TIC-{{ section.id }} {
+      padding: 40px 15px;
+    }
+  }
+
+  .tic-content-col {
+    flex: 1;
+    padding: 60px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  @media (max-width: 900px) {
+    .tic-content-col {
+      padding: 40px 30px;
+    }
+  }
+
+  .tic-title {
+    font-size: clamp(3rem, 4vw, 4.4rem);
+    font-weight: 800;
+    line-height: 1.25;
+    color: {{ section.settings.title_color }};
+    margin: 0 0 24px 0;
+  }
+
+  /* Bold text maps exactly to the highlight color setting */
+  .tic-title strong,
+  .tic-title b {
+    color: {{ section.settings.highlight_color }};
+    font-weight: inherit;
+  }
+
+  .tic-desc {
+    font-size: 1.6rem;
+    color: {{ section.settings.desc_color }};
+    line-height: 1.6;
+    margin: 0 0 40px 0;
+    max-width: 90%;
+  }
+
+  .tic-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .tic-btn {
+    display: inline-block;
+    padding: 14px 34px;
+    border-radius: 50px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  /* Primary Button Pill */
+  .tic-btn-primary {
+    background: {{ section.settings.btn_1_bg }};
+    color: {{ section.settings.btn_1_text }};
+    border: 2px solid {{ section.settings.btn_1_bg }};
+  }
+  .tic-btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  }
+
+  /* Secondary Button Outlined */
+  .tic-btn-secondary {
+    background: transparent;
+    color: {{ section.settings.btn_2_text }};
+    border: 2px solid {{ section.settings.btn_2_text }};
+  }
+  .tic-btn-secondary:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-3px);
+  }
+
+  .tic-img-col {
+    flex: 1;
+    position: relative;
+    min-height: 350px;
+  }
+  .tic-img-col img,
+  .tic-img-col svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Assures image scales without stretching and fills the half */
+  }
+  .placeholder-svg {
+    background: #e8e8e8;
+    fill: #ccc;
+  }
+{%- endstyle -%}
+
+<div id="TIC-{{ section.id }}">
+  <div class="tic-card">
+    <div class="tic-content-col">
+      <h2 class="tic-title">{{ section.settings.heading }}</h2>
+      <p class="tic-desc">{{ section.settings.description }}</p>
+
+      <div class="tic-buttons">
+        {% if section.settings.button_label_1 != blank %}
+          <a
+            {% if section.settings.button_link_1 == blank %}
+              role="link" aria-disabled="true"
+            {% else %}
+              href="{{ section.settings.button_link_1 }}"
+            {% endif %}
+            class="tic-btn tic-btn-primary"
+          >
+            {{ section.settings.button_label_1 }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.button_label_2 != blank %}
+          <a
+            {% if section.settings.button_link_2 == blank %}
+              role="link" aria-disabled="true"
+            {% else %}
+              href="{{ section.settings.button_link_2 }}"
+            {% endif %}
+            class="tic-btn tic-btn-secondary"
+          >
+            {{ section.settings.button_label_2 }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="tic-img-col">
+      {% if section.settings.image != blank %}
+        <img
+          src="{{ section.settings.image | image_url: width: 1000 }}"
+          alt="{{ section.settings.image.alt | default: 'Elevated Card Image' | escape }}"
+          loading="lazy"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.height }}"
+        >
+      {% else %}
+        {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Elevated Split Card",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout Options"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Section Background",
+      "default": "#f6f5fb"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_white_border",
+      "label": "Show Inner White Border Framing",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Card Corner Radius",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Desktop Image Position",
+      "options": [
+        { "value": "right", "label": "Right" },
+        { "value": "left", "label": "Left" }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "header",
+      "content": "Content Block Setup"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Content Background Color",
+      "default": "#71507C"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Get <strong>60% Sellback</strong> with the <strong>Circular Toy Economy</strong>",
+      "info": "Making text Bold will apply the Highlight Color."
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Heading Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Heading Highlight Color (for Bold text)",
+      "default": "#FDC64A"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Toys don't end up in landfills. They circulate between families, creating value for everyone while being better for the planet."
+    },
+    {
+      "type": "color",
+      "id": "desc_color",
+      "label": "Description Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Primary Button (Solid)"
+    },
+    {
+      "type": "text",
+      "id": "button_label_1",
+      "label": "Button Label",
+      "default": "Start Shopping"
+    },
+    {
+      "type": "url",
+      "id": "button_link_1",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "btn_1_bg",
+      "label": "Button Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "btn_1_text",
+      "label": "Button Text Color",
+      "default": "#71507C"
+    },
+    {
+      "type": "header",
+      "content": "Secondary Button (Outlined)"
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Button Label",
+      "default": "Learn How it Works"
+    },
+    {
+      "type": "url",
+      "id": "button_link_2",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "btn_2_text",
+      "label": "Button Highlight/Outline Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Media Upload"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Card Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Elevated Split Card",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}

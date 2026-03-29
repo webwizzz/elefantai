@@ -1,0 +1,17 @@
+.related-products {
+  display: block;
+}
+
+.related-products-heading {
+  display: flex;
+  gap: 5rem;
+  align-items: flex-start;
+}
+
+.related-products-heading:has(.center) {
+	justify-content: center;
+}
+
+.related-products__heading {
+  margin: 0 0 4rem;
+}

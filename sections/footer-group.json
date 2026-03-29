@@ -1,0 +1,91 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "84eaedc0-09bd-4a5c-81dd-ba29c3597644": {
+          "type": "link_list",
+          "settings": {
+            "heading": "<strong>Home</strong>",
+            "menu": "footer"
+          }
+        },
+        "41f35ea5-4aca-4830-8881-5ddf285c62ce": {
+          "type": "link_list",
+          "settings": {
+            "heading": "<strong>Shop</strong>",
+            "menu": "footer"
+          }
+        },
+        "e3e4143d-6c10-4c54-a1c7-35683289ed7b": {
+          "type": "link_list",
+          "settings": {
+            "heading": "<strong>About Us</strong>",
+            "menu": "footer"
+          }
+        },
+        "13a6e0c3-76fd-48af-88a3-86384d9d7161": {
+          "type": "link_list",
+          "settings": {
+            "heading": "<strong>Contact Us</strong>",
+            "menu": ""
+          }
+        }
+      },
+      "block_order": [
+        "84eaedc0-09bd-4a5c-81dd-ba29c3597644",
+        "41f35ea5-4aca-4830-8881-5ddf285c62ce",
+        "e3e4143d-6c10-4c54-a1c7-35683289ed7b",
+        "13a6e0c3-76fd-48af-88a3-86384d9d7161"
+      ],
+      "settings": {
+        "navigation_heading_color": "main",
+        "text_color": "main",
+        "text_color_hover": "heading",
+        "show_logo": false,
+        "newsletter_enable": false,
+        "newsletter_heading": "<strong>Sign Up To The Newsletter</strong>",
+        "enable_follow_on_shop": true,
+        "show_social": true,
+        "show_social_under": true,
+        "social_color": "main",
+        "social_color_hover": "heading",
+        "enable_country_selector": true,
+        "enable_country_selector_label": false,
+        "show_country_under": false,
+        "show_image": false,
+        "show_name": true,
+        "show_currency": true,
+        "enable_language_selector": false,
+        "enable_language_selector_label": false,
+        "show_language_under": false,
+        "payment_enable": true,
+        "block_position": "right",
+        "bottom_blocks_position": "right",
+        "menu_policy": "footer",
+        "policy_color": "secondary",
+        "policy_background": "#da3c24",
+        "theme_policy": "",
+        "full_width": false,
+        "background_color": "color-main-bg",
+        "colors_background_section_gradient": "",
+        "padding_top": 50,
+        "padding_bottom": 76
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

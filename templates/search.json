@@ -1,0 +1,52 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-search",
+      "settings": {
+        "heading_size": "h1",
+        "text_color": "secondary",
+        "full_width": true,
+        "background_color": "color-bg-4",
+        "colors_background_section_gradient": "",
+        "banner_padding_top": 180,
+        "banner_padding_bottom": 160,
+        "columns_desktop": 4,
+        "grid_style": "collage",
+        "grid_navigation": true,
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "article_show_date": true,
+        "article_show_author": false,
+        "article_show_comments": false,
+        "author_prefix": "By",
+        "enable_filtering": true,
+        "filter_type": "horizontal",
+        "show_filter_checkbox": false,
+        "enable_sorting": true,
+        "show_sorting_label": true,
+        "filter_color_hover": "heading",
+        "pagination_color": "main",
+        "pagination_background_color": "color-bg-1",
+        "columns_mobile": "2",
+        "main_background_color": "color-main-bg",
+        "main_colors_background_section_gradient": "",
+        "padding_top": 160,
+        "padding_bottom": 160
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

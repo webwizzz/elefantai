@@ -1,0 +1,170 @@
+{%- unless product.has_only_default_variant -%}
+  {% liquid 
+    assign choose_variant = block.settings.choose_variant | escape | downcase
+  %}
+  {%- if block.settings.picker_type == 'button' -%}
+    <variant-radios id="variant-radios-{{ section.id }}" class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}" {% if update_url == false %} data-update-url="false" {% endif %} {{ block.shopify_attributes }}>
+
+      {%- for option in product.options_with_values -%}
+        {% liquid 
+          assign variant_name = option.name | escape | downcase
+          assign variant_color_swatch = settings.swatches_variant | escape | downcase
+          assign swatches_variant = false
+          if variant_name == variant_color_swatch and settings.show_swatches == true
+            assign swatches_variant = true
+          endif
+          assign enable_size_popup = false
+          if variant_name == choose_variant and block.settings.enable_size_chart == true
+            assign enable_size_popup = true
+          endif
+        %}
+
+        <fieldset class="js product-form__input variant-{{ option.name | escape | downcase }}{% if swatches_variant == true %} color-swatches{% endif %}{% if enable_size_popup == true %} size-chart{% endif %}">
+					{% if settings.mood_type == 'mood4' %}
+						<div class="product-form__options-wrapper">
+          {% endif %}
+					<legend class="form__label {% if label_size %} text-body--{{ label_size }}{% endif %}">
+            {{ option.name }}{% if swatches_variant == true %} (<span class="selected-option">{{ option.selected_value | escape }}</span>){% endif %}
+          </legend>
+					{% if settings.mood_type == 'mood4' %}
+						<div class="product-form__options">
+          {% endif %}
+
+          {% render 'product-variant-options', product: product, option: option, block: block, swatches_variant: swatches_variant %}
+					
+					{% if settings.mood_type == 'mood4' %}
+						</div>
+          {% endif %}
+
+          {% if enable_size_popup %}
+            <modal-opener class="product-popup-modal__opener no-js-hidden quick-add-hidden" data-modal="#PopupModal-{{ block.id }}" {{ block.shopify_attributes }}>
+              <button id="ProductPopup-{{ block.id }}" class="product-popup-modal__button link" type="button" aria-haspopup="dialog">
+                {{ block.settings.popup_label }}
+              </button>
+            </modal-opener>
+            <a href="{{ block.settings.page.url }}" class="product-popup-modal__button link no-js">
+              {{- block.settings.popup_label -}}
+            </a>
+            <modal-dialog id="PopupModal-{{ block.id }}" class="product-popup-modal" {{ block.shopify_attributes }}>
+              <div role="dialog" aria-label="{{ block.settings.popup_label }}" aria-modal="true" class="product-popup-modal__content"
+                tabindex="-1">
+                <button id="ModalClose-{{ block.id }}" type="button" class="product-popup-modal__toggle" aria-label="{{ 'accessibility.close' | t }}" >
+                  {% render 'icon-close' %}
+                </button>
+                <div class="product-popup-modal__content-info rte">
+                  {{ block.settings.page.content }}
+                </div>
+              </div>
+            </modal-dialog>
+          {% endif %}
+					
+					{% if settings.mood_type == 'mood4' %}
+						</div>
+					{% endif %}
+        </fieldset>
+      {%- endfor -%}
+
+      <script type="application/json">
+        {{ product.variants | json }}
+      </script>
+    </variant-radios>
+  {%- else -%}
+    <variant-selects id="variant-selects-{{ section.id }}" class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}"
+      {% if update_url == false %} data-update-url="false"{% endif %} {{ block.shopify_attributes }}>
+
+      {%- for option in product.options_with_values -%}
+        <div class="product-form__input product-form__input--dropdown">
+          <label class="form__label {% if label_size %} text-body--{{ label_size }}{% endif %}" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+            {{ option.name }}
+          </label>
+          <div class="select">
+            <select id="Option-{{ section.id }}-{{ forloop.index0 }}" class="select__select" name="options[{{ option.name | escape }}]" form="{{ product_form_id }}">
+              {% render 'product-variant-options', product: product, option: option, block: block %}
+            </select>
+            {% render 'icon-caret' %}
+          </div>
+          
+          {% liquid 
+            assign variant_name = option.name | escape | downcase
+            assign variant_color_swatch = settings.swatches_variant | escape | downcase
+            assign swatches_variant = false
+            if variant_name == variant_color_swatch and settings.show_swatches == true
+              assign swatches_variant = true
+            endif
+            assign enable_size_popup = false
+            if variant_name == choose_variant and block.settings.enable_size_chart == true
+              assign enable_size_popup = true
+            endif
+          %}
+          {% if enable_size_popup %}
+            <modal-opener class="product-popup-modal__opener no-js-hidden quick-add-hidden" data-modal="#PopupModal-{{ block.id }}" {{ block.shopify_attributes }}>
+              <button id="ProductPopup-{{ block.id }}" class="product-popup-modal__button link" type="button" aria-haspopup="dialog">
+                {{ block.settings.popup_label }}
+              </button>
+            </modal-opener>
+            <a href="{{ block.settings.page.url }}" class="product-popup-modal__button link no-js">
+              {{- block.settings.popup_label -}}
+            </a>
+            <modal-dialog id="PopupModal-{{ block.id }}" class="product-popup-modal" {{ block.shopify_attributes }}>
+              <div role="dialog" aria-label="{{ block.settings.popup_label }}" aria-modal="true" class="product-popup-modal__content"
+                tabindex="-1">
+                <button id="ModalClose-{{ block.id }}" type="button" class="product-popup-modal__toggle" aria-label="{{ 'accessibility.close' | t }}" >
+                  {% render 'icon-close' %}
+                </button>
+                <div class="product-popup-modal__content-info rte">
+                  {{ block.settings.page.content }}
+                </div>
+              </div>
+            </modal-dialog>
+          {% endif %}
+        </div>
+
+      {%- endfor -%}
+
+      <script type="application/json">
+        {{ product.variants | json }}
+      </script>
+    </variant-selects>
+  {%- endif -%}
+{%- endunless -%}
+
+<noscript class="product-form__noscript-wrapper-{{ section.id }}">
+  <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
+    <label class="form__label {% if label_size %} text-body--{{ label_size }}{% endif %}" for="Variants-{{ section.id }}">
+      {{- 'products.product.product_variants' | t -}}
+    </label>
+    <div class="select">
+      <select name="id" id="Variants-{{ section.id }}" class="select__select" form="{{ product_form_id }}">
+        {%- for variant in product.variants -%}
+          <option {% if variant == product.selected_or_first_available_variant %} selected="selected"{% endif %}
+            {% if variant.available == false %} disabled{% endif %} value="{{ variant.id }}">
+            {%- liquid
+              echo variant.title
+              echo variant.price | money | strip_html | prepend: ' - '
+              if variant.available == false
+                echo 'products.product.sold_out' | t | prepend: ' - '
+              endif
+              if variant.quantity_rule.increment > 1
+                echo 'products.product.quantity.multiples_of' | t: quantity: variant.quantity_rule.increment | prepend: ' - '
+              endif
+              if variant.quantity_rule.min > 1
+                echo 'products.product.quantity.minimum_of' | t: quantity: variant.quantity_rule.min | prepend: ' - '
+              endif
+              if variant.quantity_rule.max != null
+                echo 'products.product.quantity.maximum_of' | t: quantity: variant.quantity_rule.max | prepend: ' - '
+              endif
+              # TODO: enable theme-check once `item_count_for_variant` is accepted as valid filter
+              # theme-check-disable
+              assign cart_quantity = cart | item_count_for_variant: variant.id
+              # theme-check-enable
+              if cart_quantity > 0
+                echo 'products.product.quantity.in_cart_html' | t: quantity: cart_quantity | prepend: ' - '
+              endif
+            -%}
+          </option>
+        {%- endfor -%}
+      </select>
+      {% render 'icon-caret' %}
+    </div>
+  </div>
+</noscript>

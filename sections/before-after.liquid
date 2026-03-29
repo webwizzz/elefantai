@@ -1,0 +1,1041 @@
+{{ 'component-before-after.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+	#shopify-section-{{ section.id }} {
+		--padding-top: {{ section.settings.padding_top }}px;
+		--padding-bottom: {{ section.settings.padding_bottom }}px;
+		--container-width: {{ section.settings.container_width }}px;
+
+		{% if section.settings.enable_border_radius %}
+			--container-radius: {{ section.settings.border_radius }}px;
+		{% endif %}
+	}
+	{% if section.settings.icon != blank %}
+		#shopify-section-{{ section.id }} .block-image-overlay-1 {
+			--mc-icon-width: {{ section.settings.icon_width }}%;
+			--mc-icon-width-mb: {{ section.settings.icon_width_mobile }}%;
+			--mc-icon-top: {{ section.settings.icon_vertical }}%;
+			--mc-icon-top-mb: {{ section.settings.icon_vertical_mobile }}%;
+			--mc-icon-left: {{ section.settings.icon_horizontal }}%;
+			--mc-icon-left-mb: {{ section.settings.icon_horizontal_mobile }}%;
+		}
+	{% endif %}
+	{% if section.settings.icon_2 != blank %}
+		#shopify-section-{{ section.id }} .block-image-overlay-2 {
+			--mc-icon-width: {{ section.settings.icon_width_2 }}%;
+			--mc-icon-width-mb: {{ section.settings.icon_width_mobile_2 }}%;
+			--mc-icon-top: {{ section.settings.icon_vertical_2 }}%;
+			--mc-icon-top-mb: {{ section.settings.icon_vertical_mobile_2 }}%;
+			--mc-icon-left: {{ section.settings.icon_horizontal_2 }}%;
+			--mc-icon-left-mb: {{ section.settings.icon_horizontal_mobile_2 }}%;
+		}
+	{% endif %}
+
+	#shopify-section-{{ section.id }} .image-comparison__figure:not(.image-comparison__figure--overlay) {
+		padding-top: {{ section.settings.image_height }}%;
+	}
+
+	{% if section.settings.colors_background_section_gradient != blank %}
+    #shopify-section-{{ section.id }} .section-responsive-padding {
+      background: {{ section.settings.colors_background_section_gradient }};
+    }
+  {% endif %}
+{%- endstyle -%}
+
+{%- liquid
+  if section.settings.image_overlay != blank or section.settings.image_overlay_2 != blank or section.settings.image_overlay_3 != blank or section.settings.shape_type != 'none'
+    assign section_overlay = true
+  endif
+-%}
+
+<div class="before-after section-responsive-padding {{ section.settings.background_color }}{% if section_overlay == true %} section-overlay{% endif %}">
+
+  {%- if section.settings.image_overlay != blank or section.settings.image_overlay_2 != blank or section.settings.image_overlay_3 != blank -%}
+    {% render 'section-overlay' %}
+  {%- endif -%}
+
+  {%- if section.settings.shape_type != 'none' -%}
+    {% render 'shape',
+      position: section.settings.shape_position, 
+      type: section.settings.shape_type, 
+      color: section.settings.shape_color,
+      width: section.settings.shape_width
+    %}
+  {%- endif -%}
+
+
+	<div class="page-width isolate">
+
+    {%- if section.settings.heading != blank or section.settings.text != blank -%}
+      <div class="title-wrapper {{ section.settings.heading_align }} {{ section.settings.text_bottom_space }}">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="title inline-richtext {{ section.settings.heading_size }} text-color-{{ section.settings.heading_color }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-rotate-in{% endif %}">
+            {{ section.settings.heading }}
+          </h2>
+        {%- endif -%}
+
+        {%- if section.settings.text != blank -%}
+          <div class="description rte {{ section.settings.text_body_size }} text-color-{{ section.settings.text_color }} {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+            {{ section.settings.text -}}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+		<div class="image-comparison {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" data-id="{{ section.id }}" data-is-init="false" data-component="image-comparison-slider">
+			{% if section.settings.icon != blank %}
+				{% liquid
+					assign classes = 'block-image-overlay block-image-overlay-1'
+				%}
+
+				{%- assign widths = '198, 230' -%}
+
+				{%- capture sizes -%}
+					(min-width: {{ settings.page_width }}px) 100vw,
+					(min-width: 750px) calc(100vw - 130px), calc(100vw - 50px)
+				{%- endcapture -%}
+
+				{{
+					section.settings.icon
+					| image_url: width: 230
+					| image_tag: loading: 'lazy', sizes: sizes, widths: widths, class: classes, alt: 'background shape'
+				}}
+			{% endif %}
+			{% if section.settings.icon_2 != blank %}
+				{% liquid
+					assign classes = 'block-image-overlay block-image-overlay-2'
+				%}
+
+				{%- assign widths = '198, 230' -%}
+
+				{%- capture sizes -%}
+					(min-width: {{ settings.page_width }}px) 100vw,
+					(min-width: 750px) calc(100vw - 130px), calc(100vw - 50px)
+				{%- endcapture -%}
+
+				{{
+					section.settings.icon_2
+					| image_url: width: 230
+					| image_tag: loading: 'lazy', sizes: sizes, widths: widths, class: classes, alt: 'background shape'
+				}}
+			{% endif %}
+		<image-comparison class="image-comparison {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" data-id="{{ section.id }}" data-is-init="false" data-layout="horizontal" data-component="image-comparison-slider">
+
+			<div class="image-comparison__slider-wrapper">
+				<label for="image-compare-range" class="image-comparison__label">Move image comparison slider</label>
+				<input type="range" min="0" max="100" value="50" class="image-comparison__range" id="image-compare-range">
+		
+				<div class="image-comparison__image-wrapper image--before image-comparison__image-wrapper--overlay" style="clip-path: inset(0px 50% 0px 0px);">
+					<figure class="image-comparison__figure image-comparison__figure--overlay">
+						<div class="image-comparison__picture">
+							{%- if section.settings.before_image != blank -%}
+                {%- assign widths = '165, 360, 535, 750, 1070, 1200' -%}
+                {%- capture sizes -%}
+                  (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px,
+                  (min-width: 750px) calc((100vw - 130px)), calc((100vw - 50px))
+                {%- endcapture -%}
+								{{
+									section.settings.before_image
+									| image_url: width: 1200
+									| image_tag: loading: 'lazy',
+                  sizes: sizes,
+                  widths: widths,
+                  class: 'image-comparison__image',
+                  alt: section.settings.before_image.alt
+								}}
+							{%- else -%}
+								<div class="image-comparison__image image-comparison__default"></div>
+							{%- endif -%} 
+						</div>
+            {%- if section.settings.before_image_heading != blank -%}
+						  <figcaption class="image-comparison__caption image-comparison__caption--before">
+								<span class="image-comparison__caption-body {{ section.settings.text_before_size }} inline-richtext text-color-{{ section.settings.before_color }}">
+                  {{ section.settings.before_image_heading }}
+                </span>
+              </figcaption>
+						{%- endif -%}
+					</figure>
+				</div>	
+		
+				<div class="image-comparison__image-wrapper image--after" style="clip-path: inset(0px 0px 0px 50%);">
+					<figure class="image-comparison__figure">
+						<div class="image-comparison__picture">
+							{%- if section.settings.after_image != blank -%}
+                {%- assign widths = '165, 360, 535, 750, 1070, 1200' -%}
+                {%- capture sizes -%}
+                  (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px,
+                  (min-width: 750px) calc((100vw - 130px)), calc((100vw - 50px))
+                {%- endcapture -%}
+								{{
+									section.settings.after_image
+									| image_url: width: 1200
+									| image_tag: loading: 'lazy',
+                  sizes: sizes,
+                  widths: widths,
+                  class: 'image-comparison__image',
+                  alt: section.settings.after_image.alt
+								}}
+							{%- else -%}
+								<div class="image-comparison__image image-comparison__default"></div>
+							{%- endif -%} 
+						</div>
+		
+            {%- if section.settings.after_image_heading != blank -%}
+						  <figcaption class="image-comparison__caption image-comparison__caption--after">
+								<span class="image-comparison__caption-body {{ section.settings.text_after_size }} inline-richtext text-color-{{ section.settings.after_color }} ">
+                  {{ section.settings.after_image_heading }}
+                </span>
+              </figcaption>
+						{%- endif -%}
+					</figure>
+				</div>
+
+				<div class="image-comparison__slider">
+					<span class="image-comparison__thumb" data-image-comparison-thumb="">
+						<svg xmlns="http://www.w3.org/2000/svg" width="14" height="19" viewBox="0 0 14 19" fill="none">
+							<path d="M7 1.97144V17.9714" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+							<path d="M13 2V18" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+							<path d="M1 1.97144V17.9714" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+					</span>
+				</div>
+			</div>
+
+		</image-comparison>
+	</div>
+	</div>
+</div>
+
+<script src="{{ 'before-after.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "t:sections.before-after.name",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer",
+      "custom.additions"
+    ]
+  },
+  "settings": [
+    {
+      "type": "range",
+      "id": "image_height",
+      "min": 20,
+      "max": 120,
+      "step": 1,
+      "unit": "%",
+      "label": "Image height",
+      "default": 55
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "<strong>Before and After</strong>",
+      "label": "t:sections.all.heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+		{
+          "value": "h4",
+          "label": "Extra small"
+        },
+        {
+          "value": "h3",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__3.label"
+        }
+      ],
+      "default": "h2",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_color",
+      "options": [
+        {
+          "value": "main",
+          "label": "t:settings_schema.colors.settings.colors_text.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_text.label"
+        },
+        {
+          "value": "heading",
+          "label": "t:settings_schema.colors.settings.colors_heading.label"
+        },
+        {
+          "value": "heading-secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_heading.label"
+        }
+      ],
+      "default": "heading",
+      "label": "t:sections.all.colors.label_heading",
+      "info": "t:sections.all.colors.has_cards_info"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "default": "<p>Explore a range of product variations to discover the ideal match that perfectly suits your style and needs.</p>",
+      "label": "t:sections.all.description"
+    },
+    {
+      "type": "select",
+      "id": "text_body_size",
+      "options": [
+        {
+          "value": "text-body--small",
+          "label": "Small"
+        },
+        {
+          "value": "text-body--medium",
+          "label": "Medium"
+        },
+        {
+          "value": "text-body--large",
+          "label": "Large"
+        }
+      ],
+      "default": "text-body--large",
+      "label": "Text size"
+    },
+    {
+      "type": "select",
+      "id": "text_color",
+      "options": [
+        {
+          "value": "main",
+          "label": "t:settings_schema.colors.settings.colors_text.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_text.label"
+        },
+        {
+          "value": "heading",
+          "label": "t:settings_schema.colors.settings.colors_heading.label"
+        },
+        {
+          "value": "heading-secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_heading.label"
+        }
+      ],
+      "default": "main",
+      "label": "t:sections.all.colors.label_description",
+      "info": "t:sections.all.colors.has_cards_info"
+    },
+    {
+      "type": "select",
+      "id": "heading_align",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.all.heading_align.options__1.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.all.heading_align.options__2.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.all.heading_align.options__3.label"
+        }
+      ],
+      "default": "center",
+      "label": "t:sections.all.heading_align.label__2"
+    },
+		{
+      "type": "select",
+      "id": "text_bottom_space",
+      "options": [
+        {
+          "value": "",
+          "label": "Small"
+        },
+        {
+          "value": "mb-lg-6",
+          "label": "Large"
+        }
+      ],
+      "default": "",
+      "label": "Text bottom space desktop"
+    },
+		{
+			"type": "range",
+			"id": "container_width",
+			"min": 900,
+			"max": 1200,
+			"step": 5,
+			"unit": "px",
+			"label": "Container width",
+			"default": 920
+		},
+		{
+			"type": "checkbox",
+			"id": "enable_border_radius",
+			"label": "Enable custom border radius"
+		},
+		{
+			"type": "range",
+			"id": "border_radius",
+			"min": 0,
+			"max": 300,
+			"step": 5,
+			"unit": "px",
+			"label": "Border radius",
+			"default": 100
+		},
+    {
+      "type": "header",
+      "content": "t:sections.before-after.headings.before_image"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "before_image_heading",
+      "default": "\"Before\" label",
+      "label": "t:sections.before-after.settings.heading.label"
+    },
+	{
+      "type": "select",
+      "id": "text_before_size",
+      "options": [
+        {
+          "value": "text-body--small",
+          "label": "Small"
+        },
+        {
+          "value": "text-body--medium",
+          "label": "Medium"
+        },
+        {
+          "value": "text-body--large",
+          "label": "Large"
+        }
+      ],
+      "default": "text-body--large",
+      "label": "Heading size"
+    },
+    {
+      "type": "select",
+      "id": "before_color",
+      "options": [
+        {
+          "value": "main",
+          "label": "t:settings_schema.colors.settings.colors_text.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_text.label"
+        },
+        {
+          "value": "heading",
+          "label": "t:settings_schema.colors.settings.colors_heading.label"
+        },
+        {
+          "value": "heading-secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_heading.label"
+        }
+      ],
+      "default": "heading",
+      "label": "t:sections.all.colors.label_heading",
+      "info": "t:sections.all.colors.has_cards_info"
+    },
+    {
+      "type": "image_picker",
+      "id": "before_image",
+      "label": "t:sections.before-after.settings.image.label",
+      "info": "For best results, use an image with width and height like in an external image container."
+    },
+    {
+      "type": "header",
+      "content": "t:sections.before-after.headings.after_image"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "after_image_heading",
+      "default": "\"After\" label",
+      "label": "t:sections.before-after.settings.heading.label"
+    },
+	{
+      "type": "select",
+      "id": "text_after_size",
+      "options": [
+        {
+          "value": "text-body--small",
+          "label": "Small"
+        },
+        {
+          "value": "text-body--medium",
+          "label": "Medium"
+        },
+        {
+          "value": "text-body--large",
+          "label": "Large"
+        }
+      ],
+      "default": "text-body--large",
+      "label": "Heading size"
+    },
+    {
+      "type": "select",
+      "id": "after_color",
+      "options": [
+        {
+          "value": "main",
+          "label": "t:settings_schema.colors.settings.colors_text.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_text.label"
+        },
+        {
+          "value": "heading",
+          "label": "t:settings_schema.colors.settings.colors_heading.label"
+        },
+        {
+          "value": "heading-secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_heading.label"
+        }
+      ],
+      "default": "heading",
+      "label": "t:sections.all.colors.label_heading",
+      "info": "t:sections.all.colors.has_cards_info"
+    },
+    {
+      "type": "image_picker",
+      "id": "after_image",
+      "label": "t:sections.before-after.settings.image.label",
+      "info": "For best results, use an image with width and height like in an external image container."
+    },
+		{
+			"type": "header",
+			"content": "Icon settings"
+		},
+		{
+			"type": "image_picker",
+			"id": "icon",
+			"label": "Icon"
+		},
+		{
+			"type": "range",
+			"id": "icon_width",
+			"min": 1,
+			"max": 100,
+			"step": 1,
+			"unit": "%",
+			"label": "Image width",
+			"default": 25
+		},
+		{
+			"type": "range",
+			"id": "icon_vertical",
+			"min": -5,
+			"max": 105,
+			"step": 1.1,
+			"unit": "%",
+			"label": "Image vertical position",
+			"default": 0.5
+		},
+		{
+			"type": "range",
+			"id": "icon_horizontal",
+			"min": -5,
+			"max": 105,
+			"step": 1.1,
+			"unit": "%",
+			"label": "Image horizontal position",
+			"default": 0.5
+		},
+		{
+			"type": "range",
+			"id": "icon_width_mobile",
+			"min": 1,
+			"max": 100,
+			"step": 1,
+			"unit": "%",
+			"label": "Image width mobile",
+			"default": 25
+		},
+		{
+			"type": "range",
+			"id": "icon_vertical_mobile",
+			"min": -5,
+			"max": 105,
+			"step": 1.1,
+			"unit": "%",
+			"label": "Image vertical position mobile",
+			"default": 0.5
+		},
+		{
+			"type": "range",
+			"id": "icon_horizontal_mobile",
+			"min": -5,
+			"max": 105,
+			"step": 1.1,
+			"unit": "%",
+			"label": "Image horizontal position mobile",
+			"default": 0.5
+		},
+		{
+			"type": "image_picker",
+			"id": "icon_2",
+			"label": "Icon"
+		},
+		{
+			"type": "range",
+			"id": "icon_width_2",
+			"min": 1,
+			"max": 100,
+			"step": 1,
+			"unit": "%",
+			"label": "Image width",
+			"default": 25
+		},
+		{
+			"type": "range",
+			"id": "icon_vertical_2",
+			"min": -5,
+			"max": 105,
+			"step": 1.1,
+			"unit": "%",
+			"label": "Image vertical position",
+			"default": 96.2
+		},
+		{
+			"type": "range",
+			"id": "icon_horizontal_2",
+			"min": -5,
+			"max": 105,
+			"step": 1.1,
+			"unit": "%",
+			"label": "Image horizontal position",
+			"default": 67.6
+		},
+		{
+			"type": "range",
+			"id": "icon_width_mobile_2",
+			"min": 1,
+			"max": 100,
+			"step": 1,
+			"unit": "%",
+			"label": "Image width mobile",
+			"default": 25
+		},
+		{
+			"type": "range",
+			"id": "icon_vertical_mobile_2",
+			"min": -5,
+			"max": 105,
+			"step": 1.1,
+			"unit": "%",
+			"label": "Image vertical position mobile",
+			"default": 96.2
+		},
+		{
+			"type": "range",
+			"id": "icon_horizontal_mobile_2",
+			"min": -5,
+			"max": 105,
+			"step": 1.1,
+			"unit": "%",
+			"label": "Image horizontal position mobile",
+			"default": 67.6
+		},
+    {
+      "type": "header",
+      "content": "Section overlay"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_overlay",
+      "label": "Image overlay"
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_width",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image width",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_vertical",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image vertical position",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_horizontal",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image horizontal position",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_width_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image width mobile",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_vertical_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image vertical position mobile",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_horizontal_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image horizontal position mobile",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "image_overlay_animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "ambient",
+          "label": "Ambient"
+        }
+      ],
+      "default": "none",
+      "label": "Animation"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_overlay_2",
+      "label": "Image overlay"
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_width_2",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image width",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_vertical_2",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image vertical position",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_horizontal_2",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image horizontal position",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_width_2_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image width mobile",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_vertical_2_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image vertical position mobile",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_horizontal_2_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image horizontal position mobile",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "image_overlay_animation_2",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "ambient",
+          "label": "Ambient"
+        }
+      ],
+      "default": "none",
+      "label": "Animation"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_overlay_3",
+      "label": "Image overlay"
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_width_3",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image width",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_vertical_3",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image vertical position",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_horizontal_3",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image horizontal position",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_width_3_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image width mobile",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_vertical_3_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image vertical position mobile",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_horizontal_3_mobile",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image horizontal position mobile",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "image_overlay_animation_3",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "ambient",
+          "label": "Ambient"
+        }
+      ],
+      "default": "none",
+      "label": "Animation"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.shape_divider.name"
+    },
+    {
+      "type": "select",
+      "id": "shape_position",
+      "options": [
+        {
+          "value": "top",
+          "label": "t:sections.all.shape_divider.settings.position_options.option_1"
+        },
+        {
+          "value": "bottom",
+          "label": "t:sections.all.shape_divider.settings.position_options.option_2"
+        },
+        {
+          "value": "both",
+          "label": "t:sections.all.shape_divider.settings.position_options.option_3"
+        }
+      ],
+      "default": "top",
+      "label": "t:sections.all.shape_divider.settings.position"
+    },
+    {
+      "type": "select",
+      "id": "shape_type",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.all.shape_divider.settings.type_options.option_1"
+        },
+        {
+          "value": "curve",
+          "label": "t:sections.all.shape_divider.settings.type_options.option_2"
+        },
+        {
+          "value": "curve-wide",
+          "label": "Curve wide"
+        },
+        {
+          "value": "curve-invert",
+          "label": "t:sections.all.shape_divider.settings.type_options.option_3"
+        },
+        {
+          "value": "waves",
+          "label": "t:sections.all.shape_divider.settings.type_options.option_4"
+        }
+      ],
+      "default": "none",
+      "label": "t:sections.all.shape_divider.settings.type"
+    },
+    {
+      "type": "color",
+      "id": "shape_color",
+      "default": "#fff",
+      "label": "t:sections.all.shape_divider.settings.color"
+    },
+    {
+      "type": "range",
+      "id": "shape_width",
+      "min": 100,
+      "max": 200,
+      "step": 1,
+      "unit": "%",
+      "label": "t:sections.all.shape_divider.settings.width",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "select",
+      "id": "background_color",
+      "options": [
+        {
+          "value": "color-main-bg",
+          "label": "t:settings_schema.colors.settings.colors_background_main.label"
+        },
+        {
+          "value": "color-bg-1",
+          "label": "t:settings_schema.colors.settings.colors_background_section_1.label"
+        },
+        {
+          "value": "color-bg-2",
+          "label": "t:settings_schema.colors.settings.colors_background_section_2.label"
+        },
+        {
+          "value": "color-bg-3",
+          "label": "t:settings_schema.colors.settings.colors_background_section_3.label"
+        },
+        {
+          "value": "color-bg-4",
+          "label": "t:settings_schema.colors.settings.colors_background_section_4.label"
+        },
+        {
+          "value": "color-bg-5",
+          "label": "t:settings_schema.colors.settings.colors_background_section_5.label"
+        }
+      ],
+      "default": "color-main-bg",
+      "label": "t:settings_schema.colors.settings.background_colors.content",
+      "info": "t:sections.all.colors.has_cards_info"
+    },
+    {
+      "id": "colors_background_section_gradient",
+      "type": "color_background",
+      "label": "t:settings_schema.colors.settings.colors_background_section_gradient.label"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 180,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 76
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 180,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 54
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.before-after.name"
+    }
+  ]
+}
+{% endschema %}

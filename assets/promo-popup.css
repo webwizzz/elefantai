@@ -1,0 +1,308 @@
+.shopify-section.spaced-section.section-promo-popup {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+}
+
+.promo-popup {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	outline: 0 !important;
+	-webkit-backface-visibility: hidden;
+	box-sizing: border-box;
+	overflow-y: scroll;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.promo-popup .text-alignment-center {
+	text-align: center;
+}
+
+.promo-popup .text-alignment-left {
+	text-align: left;
+}
+
+.promo-popup .text-alignment-right {
+	text-align: right;
+}
+
+.promo-popup {
+	background-color: transparent;
+	z-index: -111;
+	opacity: 0;
+	visibility: hidden;
+	transition: background-color .2s ease;
+}
+
+.promo-popup .promo-popup-container {
+	transform: scale(.8, .7);
+	transition: transform .3s ease .1s;
+}
+
+.promo-popup .promo-popup-content {
+	opacity: 0;
+	transition: opacity .3s ease .1s;
+}
+
+.promo-popup.active {
+	z-index: 99;
+	opacity: 1;
+	visibility: visible;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.promo-popup.active .overlay {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 100;
+}
+
+.promo-popup.active .promo-popup-container {
+	transform: scale(1, 1);
+	position: relative;
+	z-index: 111;
+}
+
+.promo-popup.active .promo-popup-content {
+	opacity: 1;
+}
+
+.promo-popup-close {
+	position: absolute;
+	top: 12.5rem;
+	left: auto;
+	right: 1rem;
+	width: 4rem;
+	height: 4rem;
+	border: .1rem solid rgba(var(--button-color-bg), 1);
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(var(--button-color-bg), 1);
+	cursor: pointer;
+	transition: all var(--duration-mid);
+}
+
+
+
+.promo-popup-close::before,
+.promo-popup-close::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	display: inline-block;
+	width: 2.7rem;
+	height: .15rem;
+	background-color: rgba(var(--button-color-text), 1);
+}
+
+.promo-popup-close::before {
+	transform: translateX(-50%) rotate(45deg);
+}
+
+.promo-popup-close::after {
+	transform: translateX(-50%) rotate(-45deg);
+}
+
+.promo-popup-container {
+	padding: 3rem;
+	width: 100%;
+	max-width: 60rem;
+	box-sizing: border-box;
+	margin: auto;
+}
+
+.promo-popup-content {
+	position: relative;
+	width: 100%;
+	padding: 14.5rem 9.5rem 13.5rem;
+	border-radius: 30rem;
+	background-color: #F9F5F0;
+	box-shadow: 0 .4rem .8rem 0 rgba(0, 0, 0, 0.2), 0 .6rem 2rem 0 rgba(0, 0, 0, 0.19);
+}
+
+.promo-popup-container .promo-popup-title+.promo-popup-description,
+.promo-popup-container .promo-popup-title+.form-wrapp {
+	margin-top: 4rem;
+}
+
+@media screen and (max-width: 749px) {
+
+	.promo-popup-container .promo-popup-title+.promo-popup-description,
+	.promo-popup-container .promo-popup-title+.form-wrapp {
+		margin-top: 2rem;
+	}
+}
+
+.promo-popup-container .promo-popup-description+.form-wrapp {
+	margin-top: 1rem;
+}
+
+.promo-popup-title p {
+	margin: 0;
+}
+
+.promo-popup-title h2+p,
+.promo-popup-title h4+p,
+.promo-popup-title h5+p {
+	margin-top: 1rem;
+}
+
+.promo-popup .field:not(:first-of-type) {
+	margin-top: 2.5rem;
+}
+
+.promo-popup .field.field-submit {
+	margin-top: 5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.promo-popup .field.field-submit svg,
+.promo-popup .field.field-submit img {
+	max-width: 2rem;
+	max-height: 1.4rem;
+	margin-left: 1rem;
+}
+
+.promo-popup .field__input {
+	border: none;
+	box-shadow: none;
+	padding-left: 2rem;
+}
+
+.promo-popup .field__label {
+	left: 2rem;
+	color: rgba(var(--color-base-text), .7);
+}
+
+.promo-popup-wrap .newsletter-form__message {
+	position: relative;
+}
+
+.promo-popup-form {
+	width: 100%;
+}
+
+.promo-popup-form .newsletter-form__message {
+	display: flex;
+	justify-content: center;
+	bottom: auto;
+}
+
+@media screen and (max-width: 749px) {
+	.promo-popup-content {
+		padding: 9.5rem 7.5rem;
+	}
+
+	.promo-popup-close {
+		top: 4.5rem;
+	}
+}
+
+@media screen and (max-width: 549px) {
+	.promo-popup-content {
+		padding: 8.5rem 4.5rem;
+	}
+}
+
+@media screen and (max-width: 449px) {
+	.promo-popup-content {
+		padding: 8.5rem 3.5rem;
+	}
+}
+
+.promo-popup-form__field-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.promo-popup-promo .promo-popup-form__field-wrapper {
+	justify-content: center;
+}
+
+.promo-zone {
+	height: 20rem;
+	width: 20rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+}
+
+.promo-zone input {
+	resize: none;
+	text-align: center;
+	font-weight: 500;
+	font-size: 2.4rem;
+	border: 0;
+	background-color: transparent;
+	color: inherit;
+	min-width: 17rem;
+	width: auto;
+	padding: 1rem;
+	white-space: normal;
+	transition: all .3s ease;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	outline-width: 0;
+	outline: none;
+}
+
+
+.promo-zone input:focus,
+.promo-zone input::placeholder {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	outline-width: 0;
+	outline: none;
+}
+
+
+.promo-zone input.copied {
+	opacity: .5;
+}
+
+.promo-zone input[type="text"]:focus-visible {
+	box-shadow: none;
+}
+
+.promo-popup-success .promo-popup-content {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	transition: all .3s ease;
+}
+
+.promo-popup button .link-icon {
+	transition: all .3s ease;
+}
+
+.promo-popup button:hover .link-icon {
+	transform: translateX(5px);
+}

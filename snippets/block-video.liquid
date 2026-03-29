@@ -1,0 +1,152 @@
+{%- liquid
+  assign video_id = block.settings.video.id | default: block.settings.video_url.id
+  assign video_alt = block.settings.video.alt | default: block.settings.description
+  assign alt = 'sections.video.load_video' | t: description: video_alt | escape
+  assign poster = block.settings.cover_image | default: block.settings.video.preview_image
+  assign poster_with_video_id = "https://img.youtube.com/vi/" | append: video_id | append: "/sddefault.jpg"
+
+  if block.settings.video != null
+    assign ratio_diff = block.settings.video.aspect_ratio | minus: poster.aspect_ratio | abs
+    if ratio_diff < 0.01 and ratio_diff > 0
+      assign fix_ratio = true
+    endif
+  endif
+
+  if block.settings.video != null
+    assign video_ratio = 1 | divided_by: block.settings.video.aspect_ratio | times: 100
+  endif
+-%}
+
+{%- capture sizes -%}
+  (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, 
+  (min-width: 750px) calc(100vw - 10rem), 100vw
+{%- endcapture -%}
+
+<div id="block-{{ block.id }}" class="block-video{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} {{ classes }}" {% if settings.animations_reveal_on_scroll %} data-cascade{% endif %} {% if settings.animations_reveal_on_scroll %}style="--animation-order: {{ forloop.index }};"{% endif %} {{ block.shopify_attributes }}>
+
+  <style>
+    #block-{{ block.id }}.block-video {
+      width: {{ block.settings.video_width }}%;
+    }
+  </style>
+
+  {{ 'block-video.css' | asset_url | stylesheet_tag }}
+  {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+
+  <noscript>
+    <div class="video-section__media" {% if poster != null %} style="--ratio-percent: {{ 1 | divided_by: poster.aspect_ratio | times: 100 }}%;"{% endif %}>
+      {%- if block.settings.video == null and block.settings.video_url != null and block.settings.autoplay == false -%}
+        <a href="{{ block.settings.video_url }}" class="video-section__poster media media--transparent{% if poster == null %} video-section__placeholder{% endif %}">
+          {%- if poster != null -%}
+            {{
+              poster
+              | image_url: width: 3840
+              | image_tag:
+                loading: 'lazy',
+                sizes: sizes,
+                widths: '375, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+                alt: alt
+            }}
+          {%- else -%}
+            {{ 'collection-2' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+          {%- endif -%}
+        </a>
+      {%- else -%}
+        {{
+          block.settings.video
+          | video_tag: 
+          image_size: '1100x', 
+          loop: true, 
+          controls: true, 
+          muted: false
+        }}
+      {%- endif -%}
+    </div>
+  </noscript>
+  
+  <deferred-media class="video-section__media deferred-media no-js-hidden gradient {{ block.settings.background_color }} global-media-settings{% if block.settings.full_width %} global-media-settings--full-width{% endif %}{% if fix_ratio %} media-fit-cover{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" data-media-id="{{ video_id }}" 
+  {% if poster != null %} 
+    {% if block.settings.video != null %}
+      style="--ratio-percent: {{ video_ratio }}%;"
+    {% else %}
+      style="--ratio-percent: {{ 1 | divided_by: poster.aspect_ratio | times: 100 }}%;"
+    {% endif %}
+  {% endif %}>
+
+    {% if block.settings.autoplay == false %}
+  
+      <button id="Deferred-Poster-Modal-{{ video_id }}" class="video-section__poster media deferred-media__poster media--landscape" type="button" aria-label="{{ alt }}">
+        {%- if poster != null -%}
+          {{
+            poster
+            | image_url: width: 1840
+            | image_tag: loading: 'lazy', 
+            sizes: sizes, 
+            widths: '375, 750, 1100, 1500, 1780, 2000', 
+            alt: alt
+          }}
+        {% elsif poster_with_video_id != null %}
+          <img src="{{ poster_with_video_id }}" width="700" height="500" loading="lazy" alt="Cover Image">
+        {%- else -%}
+          {{ 'collection-2' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+        {% endif %}
+
+        {% if block.settings.autoplay == false %}
+          <span class="deferred-media__poster-button motion-reduce">
+            {%- render 'icon-play' -%}
+          </span>
+        {% endif %}
+      </button>
+
+      <template>
+        {%- if block.settings.video == null and block.settings.video_url != null -%}
+          {%- if block.settings.video_url.type == 'youtube' -%}
+            <iframe src="https://www.youtube.com/embed/{{ video_id }}?enablejsapi=1&autoplay=1&loop=1" class="js-youtube"
+              allow="autoplay; encrypted-media" allowfullscreen title="{{ block.settings.description | escape }}"></iframe>
+          {%- else -%}
+            <iframe src="https://player.vimeo.com/video/{{ video_id }}?autoplay=1&loop=1" class="js-vimeo" 
+              allow="autoplay; encrypted-media" allowfullscreen title="{{ block.settings.description | escape }}"></iframe>
+          {%- endif -%}
+        {%- else -%}
+          {{
+            block.settings.video
+            | video_tag: 
+              autoplay: true,
+              loop: true,
+              controls: true,
+              muted: true
+          }}
+        {%- endif -%}
+      </template>
+
+    {% else %}
+
+      {%- liquid
+        assign loop = ''
+        if block.settings.autoplay
+          assign loop = '&loop=1&playlist=' | append: video_id
+        endif
+      -%}
+
+      {%- if block.settings.video == null and block.settings.video_url != null -%}
+        {%- if block.settings.video_url.type == 'youtube' -%}
+          <iframe src="https://www.youtube.com/embed/{{ video_id }}?enablejsapi=1&autoplay=1&controls=0{{ loop }}&mute=1" class="js-youtube"
+            allow="autoplay; encrypted-media" allowfullscreen title="{{ block.settings.description | escape }}"></iframe>
+        {%- else -%}
+          <iframe src="https://player.vimeo.com/video/{{ video_id }}?autoplay=1&controls=0{{ loop }}&mute=1" class="js-vimeo" 
+            allow="autoplay; encrypted-media" allowfullscreen title="{{ block.settings.description | escape }}"></iframe>
+        {%- endif -%}
+      {%- else -%}
+        {{
+          block.settings.video
+          | video_tag: 
+            autoplay: true,
+            loop: true,
+            controls: false,
+            muted: true
+        }}
+      {%- endif -%}
+    {% endif %}
+  
+  </deferred-media>
+</div>

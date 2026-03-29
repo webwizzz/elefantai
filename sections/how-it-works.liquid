@@ -1,0 +1,350 @@
+{%- style -%}
+  #HIW-{{ section.id }} {
+    position: relative;
+    padding: 80px 20px;
+    background-color: {{ section.settings.bg_color }};
+    text-align: center;
+    overflow: hidden;
+    font-family: inherit;
+  }
+  
+  .hiw-bg-img {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .hiw-top-left {
+    top: 5%;
+    left: -2%;
+    max-width: 400px;
+  }
+  .hiw-bottom-right {
+    bottom: -10px;
+    right: 0;
+    max-height: 90%;
+    max-width: 350px;
+  }
+
+  /* Responsive image scaling */
+  @media (max-width: 1200px) {
+    .hiw-top-left { max-width: 300px; top: 0; left: -5%; }
+    .hiw-bottom-right { max-width: 250px; right: -5%; }
+  }
+  @media (max-width: 768px) {
+    .hiw-top-left { max-width: 150px; }
+    .hiw-bottom-right { max-width: 150px; opacity: 0.5; /* Fade out slightly on small mobile if it conflicts with text */ }
+    #HIW-{{ section.id }} { padding: 50px 15px; }
+  }
+
+  .hiw-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .hiw-header {
+    margin-bottom: 60px;
+  }
+  .hiw-title {
+    font-size: 3.8rem;
+    font-weight: 700;
+    color: #111;
+    margin: 0 0 12px 0;
+    letter-spacing: 0.5px;
+  }
+  .hiw-subtitle {
+    font-size: 1.6rem;
+    color: #777;
+    margin: 0 auto;
+    max-width: 650px;
+    line-height: 1.6;
+  }
+
+  .hiw-steps-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+  }
+  @media (max-width: 900px) {
+    .hiw-steps-grid { gap: 20px; }
+  }
+  
+  .hiw-step {
+    flex: 1;
+    min-width: 200px;
+    max-width: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .hiw-icon-box {
+    width: 130px;
+    height: 130px;
+    border-radius: 35px; /* Heavy curve as per image */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08); /* Elevated shadow */
+    transition: transform 0.3s ease;
+  }
+  .hiw-step:hover .hiw-icon-box {
+    transform: translateY(-8px);
+  }
+  .hiw-icon-box img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+  }
+  .hiw-icon-box svg {
+    width: 60px;
+    height: 60px;
+    fill: #fff;
+  }
+
+  .hiw-step-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #111;
+    margin: 0 0 8px 0;
+  }
+  .hiw-step-desc {
+    font-size: 1.35rem;
+    color: #888;
+    margin: 0;
+    line-height: 1.4;
+    padding: 0 10px;
+  }
+
+  .hiw-btn-wrapper {
+    margin-top: 30px;
+  }
+  .hiw-btn {
+    display: inline-block;
+    padding: 14px 45px;
+    border: 1px solid;
+    border-radius: 50px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background: transparent;
+  }
+  
+  /* Dynamic Colored Elements */
+  #HIW-{{ section.id }} .hiw-title .highlight {
+    color: {{ section.settings.highlight_color }};
+  }
+  #HIW-{{ section.id }} .hiw-btn {
+    border-color: {{ section.settings.highlight_color }};
+    color: {{ section.settings.highlight_color }};
+  }
+  #HIW-{{ section.id }} .hiw-btn:hover {
+    background-color: {{ section.settings.highlight_color }};
+    color: #fff;
+  }
+{%- endstyle -%}
+
+<div id="HIW-{{ section.id }}">
+  <!-- Background Elements -->
+  {% if section.settings.top_left_image %}
+    <img src="{{ section.settings.top_left_image | image_url: width: 800 }}" alt="" class="hiw-bg-img hiw-top-left" loading="lazy" width="{{ section.settings.top_left_image.width }}" height="{{ section.settings.top_left_image.height }}">
+  {% endif %}
+  
+  {% if section.settings.bottom_right_image %}
+    <img src="{{ section.settings.bottom_right_image | image_url: width: 800 }}" alt="" class="hiw-bg-img hiw-bottom-right" loading="lazy" width="{{ section.settings.bottom_right_image.width }}" height="{{ section.settings.bottom_right_image.height }}">
+  {% endif %}
+
+  <div class="hiw-content">
+    
+    <div class="hiw-header">
+      <h2 class="hiw-title">
+        {{ section.settings.heading_1 }} 
+        <span class="highlight">{{ section.settings.highlight_text }}</span> 
+        {{ section.settings.heading_2 }}
+      </h2>
+      <p class="hiw-subtitle">{{ section.settings.subtitle }}</p>
+    </div>
+
+    <div class="hiw-steps-grid">
+      {% for block in section.blocks %}
+        <div class="hiw-step" {{ block.shopify_attributes }}>
+          <div class="hiw-icon-box" style="background-color: {{ block.settings.bg_color }};">
+            {% if block.settings.icon %}
+              <img src="{{ block.settings.icon | image_url: width: 150 }}" alt="{{ block.settings.title | escape }}" width="{{ block.settings.icon.width }}" height="{{ block.settings.icon.height }}">
+            {% else %}
+               <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+            {% endif %}
+          </div>
+          <h3 class="hiw-step-title">{{ block.settings.title }}</h3>
+          <p class="hiw-step-desc">{{ block.settings.description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.button_label != blank %}
+      <div class="hiw-btn-wrapper">
+        <a {% if section.settings.button_link == blank %}role="link" aria-disabled="true"{% else %}href="{{ section.settings.button_link }}"{% endif %} class="hiw-btn">
+          {{ section.settings.button_label }}
+        </a>
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "How It Works",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Decorative Background Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "top_left_image",
+      "label": "Top Left Image (e.g. Dotted Line)"
+    },
+    {
+      "type": "image_picker",
+      "id": "bottom_right_image",
+      "label": "Bottom Right Image (e.g. Character Illustration)"
+    },
+    {
+      "type": "header",
+      "content": "Heading & Content"
+    },
+    {
+      "type": "text",
+      "id": "heading_1",
+      "label": "Heading Part 1",
+      "default": "The "
+    },
+    {
+      "type": "text",
+      "id": "highlight_text",
+      "label": "Highlighted Word",
+      "default": "Circular"
+    },
+    {
+      "type": "text",
+      "id": "heading_2",
+      "label": "Heading Part 2",
+      "default": " Toy Economy!"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight Text & Button Color",
+      "default": "#8C6F9C"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "The smart way to buy toys. Play, return when done, and get money back."
+    },
+    {
+      "type": "header",
+      "content": "Call To Action"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Learn How it Works"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Process Step",
+      "settings": [
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Icon Box Background Color",
+          "default": "#F1BD56"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Upload Icon (White SVG/PNG recommended)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Step Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Short description of the step goes here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How It Works",
+      "category": "Text",
+      "blocks": [
+        { 
+          "type": "step", 
+          "settings": { 
+            "title": "Buy", 
+            "description": "Choose quality toys for your child", 
+            "bg_color": "#F1BD56" 
+          } 
+        },
+        { 
+          "type": "step", 
+          "settings": { 
+            "title": "Play", 
+            "description": "Enjoy for weeks or months", 
+            "bg_color": "#5699DC" 
+          } 
+        },
+        { 
+          "type": "step", 
+          "settings": { 
+            "title": "Return", 
+            "description": "Send back when done playing", 
+            "bg_color": "#ED719E" 
+          } 
+        },
+        { 
+          "type": "step", 
+          "settings": { 
+            "title": "Get Credit", 
+            "description": "Receive 60% back", 
+            "bg_color": "#9169A3" 
+          } 
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

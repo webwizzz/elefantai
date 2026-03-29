@@ -1,0 +1,206 @@
+.collection-hero__inner {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+}
+
+.collection-hero--with-image .collection-hero__inner {
+  margin-bottom: 0;
+  padding-bottom: 2rem;
+}
+
+@media screen and (min-width: 750px) {
+  .collection-hero--with-image .collection-hero__inner {
+    padding-bottom: 0;
+  }
+}
+
+.collection-hero__text-wrapper {
+  flex-basis: 100%;
+}
+
+.collection-hero {
+  position: relative;
+	overflow: hidden;
+}
+
+.collection-hero--background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+}
+
+.collection-hero--background img {
+  display: block;
+  max-width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+	object-position: center;
+	object-fit: cover;
+}
+
+.collection-hero--overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: auto;
+  height: 100%;
+  text-align: left;
+}
+
+.collection-hero--overlay-right {
+  position: absolute;
+  left: auto;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  text-align: right;
+}
+
+.collection-hero--overlay-right img,
+.collection-hero--overlay img {
+  height: 100%;
+  width: auto;
+}
+
+@media screen and (max-width: 1199px) {
+  .collection-hero--overlay,
+  .collection-hero--overlay-right {
+    height: 50%;
+  }
+  .collection-hero--overlay {
+    bottom: auto;
+  }
+  .collection-hero--overlay-right {
+    top: 0;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .collection-hero.full-width {
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .collection-hero:not(.full-width) {
+    margin: 0 5rem;
+    max-width: var(--header-width);
+    border-radius: 2rem;
+    overflow: hidden;
+  }
+
+  .collection-hero__inner {
+    align-items: center;
+    flex-direction: row;
+    padding-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 1700px) {
+  .collection-hero:not(.full-width) {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+.collection-hero__title {
+  font-weight: 700;
+}
+
+.section-header:has(sticky-header[data-sticky-type="cover-logo-size"]) ~ .content-for-layout .collection-hero__title {
+  margin-top: 2rem;
+}
+
+@media screen and (min-width: 750px) {
+  .collection-hero__title {
+    margin: 2.5rem 0;
+    font-weight: 700;
+  }
+  .section-header:has(sticky-header[data-sticky-type="cover-logo-size"]) ~ .content-for-layout .collection-hero__title {
+    margin: 3.5rem 0 2.5rem;
+  }
+}
+
+.collection-hero__title + .collection-hero__description {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+.center .collection-hero__title + .collection-hero__description {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (min-width: 750px) {
+  .collection-hero__title + .collection-hero__description {
+    font-size: 1.8rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .collection-hero__description {
+    max-width: 66.67%;
+  }
+
+  .collection-hero--with-image .collection-hero__description {
+    max-width: 100%;
+  }
+}
+
+.collection-hero--with-image .collection-hero__title {
+  margin: 0;
+}
+
+.collection-hero--with-image .collection-hero__text-wrapper {
+  padding: 5rem 0 4rem;
+}
+
+.collection-hero__image-container {
+  border-radius: var(--media-radius);
+}
+
+@media screen and (max-width: 749px) {
+  .collection-hero__image-container {
+    height: 20rem;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .collection-hero--with-image .collection-hero__text-wrapper {
+    padding: 4rem 2rem 4rem 0;
+    flex-basis: 50%;
+  }
+
+  .collection-hero__image-container {
+    align-self: stretch;
+    flex: 1 0 50%;
+    margin-left: 3rem;
+    min-height: 35rem;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .section-header.section-header:has(sticky-header[data-sticky-type="cover-logo-size"]) ~ .content-for-layout .collection-hero__inner {
+    margin-top: 3rem;
+  }
+}
+@media screen and (max-width: 749px) {
+  .section-header.section-header:has(sticky-header[data-sticky-type="cover-logo-size"]) ~ .content-for-layout .collection-hero__inner {
+    margin-top: 2rem;
+  }
+}
+
+.collection-hero__description.text-color-main {
+  color: rgb(var(--color-base-text));
+}

@@ -1,0 +1,330 @@
+{% if section.blocks.size > 0 %}
+
+  {{ 'component-mobile-sticky-bar.css' | asset_url | stylesheet_tag }}
+
+  {% style %}
+    @media screen and (max-width:749px) {
+      #shopify-section-footer {
+        padding-bottom: 5.5rem;
+      }
+      .menu-drawer .list-social {
+        margin-top: 0;
+        margin-bottom: 4rem;
+      }
+      {% if request.design_mode and section.settings.enable_in_customizer %}
+        div.mobile-sticky-bar {
+          transform: translateY(0);
+        }
+      {% endif %}
+    }
+  {% endstyle %}
+
+  <div class="{{ section.settings.background_color }}">
+    <div class="page-width">
+      <ul class="grid grid--col{% if section.blocks.size > 0 %} grid--{{ section.blocks.size }}-col{% endif %}">
+
+        {%- for block in section.blocks -%}
+
+          {%- case block.type -%}
+
+            {%- when 'home'-%}
+              <li class="grid__item text-color-{{ section.settings.text_color }}" {{ block.shopify_attributes }}>
+                <a class="link" href="{{ routes.root_url }}" title="{{ shop.name | replace: '-', ' ' | capitalize }}" aria-label="{{ shop.name | replace: '-', ' ' | capitalize }}">
+                  <svg class="icon icon-scroll" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20,8h0L14,2.74a3,3,0,0,0-4,0L4,8a3,3,0,0,0-1,2.26V19a3,3,0,0,0,3,3H18a3,3,0,0,0,3-3V10.25A3,3,0,0,0,20,8ZM14,20H10V15a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1Zm5-1a1,1,0,0,1-1,1H16V15a3,3,0,0,0-3-3H11a3,3,0,0,0-3,3v5H6a1,1,0,0,1-1-1V10.25a1,1,0,0,1,.34-.75l6-5.25a1,1,0,0,1,1.32,0l6,5.25a1,1,0,0,1,.34.75Z" fill="currentColor"/>
+                  </svg>
+                </a>
+              </li>
+
+            {%- when 'collection'-%}
+              <li class="grid__item text-color-{{ section.settings.text_color }}" {{ block.shopify_attributes }}>
+                <a class="link" href="{{ routes.all_products_collection_url }}" title="Products" aria-label="Products">
+                  <svg class="icon icon-scroll" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21,2H3A1,1,0,0,0,2,3V21a1,1,0,0,0,1,1H21a1,1,0,0,0,1-1V3A1,1,0,0,0,21,2ZM8,20H4V16H8Zm0-6H4V10H8ZM8,8H4V4H8Zm6,12H10V16h4Zm0-6H10V10h4Zm0-6H10V4h4Zm6,12H16V16h4Zm0-6H16V10h4Zm0-6H16V4h4Z" fill="currentColor"/>
+                  </svg>
+                </a>
+              </li>
+
+            {%- when 'cart'-%}
+              {%- if template != 'cart' -%}
+                <li class="grid__item text-color-{{ section.settings.text_color }}" {{ block.shopify_attributes }}>
+                  {% if settings.cart_type == "drawer" %}
+                    <button id="cart-icon-bubble-sticky" class="link cart-modal" type="button" name="{{ 'templates.cart.cart' | t }}" aria-label="{{ 'templates.cart.cart' | t }}">
+                      <svg class="icon icon-scroll" data-name="Layer 1" id="Layer_1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.5,19A1.5,1.5,0,1,0,10,20.5,1.5,1.5,0,0,0,8.5,19ZM19,16H7a1,1,0,0,1,0-2h8.49121A3.0132,3.0132,0,0,0,18.376,11.82422L19.96143,6.2749A1.00009,1.00009,0,0,0,19,5H6.73907A3.00666,3.00666,0,0,0,3.92139,3H3A1,1,0,0,0,3,5h.92139a1.00459,1.00459,0,0,1,.96142.7251l.15552.54474.00024.00506L6.6792,12.01709A3.00006,3.00006,0,0,0,7,18H19a1,1,0,0,0,0-2ZM17.67432,7l-1.2212,4.27441A1.00458,1.00458,0,0,1,15.49121,12H8.75439l-.25494-.89221L7.32642,7ZM16.5,19A1.5,1.5,0,1,0,18,20.5,1.5,1.5,0,0,0,16.5,19Z" fill="currentColor"/>
+                      </svg>
+
+                      <span class="header__icon-text cart-count">
+                        <span aria-hidden="true" class="cart-count-bubble-sticky">
+                          ({{ cart.item_count }})
+                        </span>
+                      </span>
+                    </button>
+                  {% else %}
+                    <a href="{{ routes.cart_url }}" id="cart-icon-bubble-sticky" class="link cart-modal">
+                      <svg class="icon icon-scroll" data-name="Layer 1" id="Layer_1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.5,19A1.5,1.5,0,1,0,10,20.5,1.5,1.5,0,0,0,8.5,19ZM19,16H7a1,1,0,0,1,0-2h8.49121A3.0132,3.0132,0,0,0,18.376,11.82422L19.96143,6.2749A1.00009,1.00009,0,0,0,19,5H6.73907A3.00666,3.00666,0,0,0,3.92139,3H3A1,1,0,0,0,3,5h.92139a1.00459,1.00459,0,0,1,.96142.7251l.15552.54474.00024.00506L6.6792,12.01709A3.00006,3.00006,0,0,0,7,18H19a1,1,0,0,0,0-2ZM17.67432,7l-1.2212,4.27441A1.00458,1.00458,0,0,1,15.49121,12H8.75439l-.25494-.89221L7.32642,7ZM16.5,19A1.5,1.5,0,1,0,18,20.5,1.5,1.5,0,0,0,16.5,19Z" fill="currentColor"/>
+                      </svg>
+
+                      <span class="header__icon-text  cart-count">
+                        <span aria-hidden="true" class="cart-count-bubble-sticky">
+                          ({{ cart.item_count }})
+                        </span>
+                      </span>
+                    </a>
+                  {% endif %}
+                </li>
+              {%- endif -%}
+
+            {%- when 'search'-%}
+              <li class="grid__item" {{ block.shopify_attributes }}>
+                <details-modal class="header__search">
+                  <details>
+                    <summary class="header__icon header__icon--search header__icon--summary link focus-inset modal__toggle" aria-haspopup="dialog" aria-label="{{ 'general.search.search' | t }}">
+                      <span class="link text-color-{{ section.settings.text_color }}">
+                        <svg class="icon icon-scroll" data-name="Layer 1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M21.07,16.83,19,14.71a3.08,3.08,0,0,0-3.4-.57l-.9-.9a7,7,0,1,0-1.41,1.41l.89.89A3,3,0,0,0,14.71,19l2.12,2.12a3,3,0,0,0,4.24,0A3,3,0,0,0,21.07,16.83Zm-8.48-4.24a5,5,0,1,1,0-7.08A5,5,0,0,1,12.59,12.59Zm7.07,7.07a1,1,0,0,1-1.42,0l-2.12-2.12a1,1,0,0,1,0-1.42,1,1,0,0,1,1.42,0l2.12,2.12A1,1,0,0,1,19.66,19.66Z" fill="currentColor"/>
+                        </svg>
+                      </span>
+                    </summary>
+
+                    <div class="search-modal modal__content gradient" role="dialog" aria-modal="true" aria-label="{{ 'general.search.search' | t }}">
+                      <div class="modal-overlay"></div>
+                      <div class="search-modal__content{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} search-modal__content-top{% else %} search-modal__content-bottom{% endif %}" tabindex="-1">
+                        {%- if settings.predictive_search_enabled -%}
+                          <predictive-search class="search-modal__form" data-loading-text="{{ 'accessibility.loading' | t }}">
+                        {%- else -%}
+                          <search-form class="search-modal__form">
+                        {%- endif -%}
+                            <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
+                              <div class="field">
+                                <input class="search__input field__input"
+                                  id="Search-In-Modal-sticky"
+                                  type="search"
+                                  name="q"
+                                  value="{{ search.terms | escape }}"
+                                  placeholder="{{ 'general.search.search' | t }}"
+                                  {%- if settings.predictive_search_enabled -%}
+                                    role="combobox"
+                                    aria-expanded="false"
+                                    aria-owns="predictive-search-results"
+                                    aria-controls="predictive-search-results"
+                                    aria-haspopup="listbox"
+                                    aria-autocomplete="list"
+                                    autocorrect="off"
+                                    autocomplete="off"
+                                    autocapitalize="off"
+                                    spellcheck="false"
+                                  {%- endif -%}
+                                >
+                                <label class="field__label" for="Search-In-Modal-sticky">{{ 'general.search.search' | t }}</label>
+                                <input type="hidden" name="options[prefix]" value="last">
+                                <button type="reset" class="reset__button field__button{% if search.terms == blank %} hidden{% endif %}" aria-label="{{ 'general.search.reset' | t }}">
+                                  <svg class="icon icon-close" aria-hidden="true" focusable="false">
+                                    <use xlink:href="#icon-reset">
+                                  </svg>
+                                </button>
+                                <button class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
+                                  <svg class="icon icon-search" aria-hidden="true" focusable="false">
+                                    <use href="#icon-search">
+                                  </svg>
+                                </button>
+                              </div>
+                
+                              {%- if settings.predictive_search_enabled -%}
+                                <div class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search>
+                                  <div class="predictive-search__loading-state">
+                                    <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                      <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                                    </svg>
+                                  </div>
+                                </div>
+                
+                                <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+                              {%- endif -%}
+                            </form>
+                          {%- if settings.predictive_search_enabled -%}
+                            </predictive-search>
+                          {%- else -%}
+                            </search-form>
+                          {%- endif -%}
+                        <button type="button" class="search-modal__close-button modal__close-button link link--text focus-inset" aria-label="{{ 'accessibility.close' | t }}">
+                          <svg class="icon icon-close" aria-hidden="true" focusable="false">
+                            <use href="#icon-close">
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </details>
+                </details-modal>
+              </li>
+
+            {%- when 'account'-%}
+              {%- if shop.customer_accounts_enabled -%}
+                {%- liquid
+                  if customer
+                    assign account_title = 'customer.account_fallback' | t
+                  else
+                    assign account_title = 'customer.log_in' | t
+                  endif
+                -%}
+                <li class="grid__item text-color-{{ section.settings.text_color }}" {{ block.shopify_attributes }}>
+                  <a class="link" href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" title="{{ account_title }}" aria-label="{{ account_title }}">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M15.71,12.71a6,6,0,1,0-7.42,0,10,10,0,0,0-6.22,8.18,1,1,0,0,0,2,.22,8,8,0,0,1,15.9,0,1,1,0,0,0,1,.89h.11a1,1,0,0,0,.88-1.1A10,10,0,0,0,15.71,12.71ZM12,12a4,4,0,1,1,4-4A4,4,0,0,1,12,12Z" fill="currentColor"/></svg>
+                  </a>
+                </li>
+              {%- endif -%}
+
+          {%- endcase -%}
+
+        {%- endfor -%}
+
+      </ul>
+    </div>
+  </div>
+
+  <script src="{{ 'mobile-sticky-bar.js' | asset_url }}" defer="defer"></script>
+
+{% endif %}
+
+
+{% schema %}
+{
+  "name": "t:sections.mobile-sticky-bar.name",
+  "class": "mobile-sticky-bar color-background-1 gradient medium-hide large-up-hide",
+  "limit": 1,
+  "enabled_on": {
+    "groups": [
+      "custom.additions"
+    ]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.mobile-sticky-bar.settings.paragraph"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_in_customizer",
+      "default": true,
+      "label": "Enable test mode",
+      "info": "Shows in the theme editor only."
+    },
+    {
+      "type": "select",
+      "id": "text_color",
+      "options": [
+        {
+          "value": "main",
+          "label": "t:settings_schema.colors.settings.colors_text.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_text.label"
+        },
+        {
+          "value": "heading",
+          "label": "t:settings_schema.colors.settings.colors_heading.label"
+        },
+        {
+          "value": "heading-secondary",
+          "label": "t:settings_schema.colors.settings.colors_secondary_heading.label"
+        }
+      ],
+      "default": "heading-secondary",
+      "label": "Icons color",
+      "info": "t:sections.all.colors.has_cards_info"
+    },
+    {
+      "type": "select",
+      "id": "background_color",
+      "options": [
+        {
+          "value": "color-main-bg",
+          "label": "t:settings_schema.colors.settings.colors_background_main.label"
+        },
+        {
+          "value": "color-bg-1",
+          "label": "t:settings_schema.colors.settings.colors_background_section_1.label"
+        },
+        {
+          "value": "color-bg-2",
+          "label": "t:settings_schema.colors.settings.colors_background_section_2.label"
+        },
+        {
+          "value": "color-bg-3",
+          "label": "t:settings_schema.colors.settings.colors_background_section_3.label"
+        },
+        {
+          "value": "color-bg-4",
+          "label": "t:settings_schema.colors.settings.colors_background_section_4.label"
+        },
+        {
+          "value": "color-bg-5",
+          "label": "t:settings_schema.colors.settings.colors_background_section_5.label"
+        }
+      ],
+      "default": "color-bg-2",
+      "label": "t:settings_schema.colors.settings.background_colors.content",
+      "info": "t:sections.all.colors.has_cards_info"
+    }
+  ],
+  "max_blocks": 5,
+  "blocks": [
+    {
+      "type": "home",
+      "name": "t:sections.mobile-sticky-bar.blocks.home.name",
+      "limit": 1
+    },
+    {
+      "type": "collection",
+      "name": "t:sections.mobile-sticky-bar.blocks.collection.name",
+      "limit": 1
+    },
+    {
+      "type": "cart",
+      "name": "t:sections.mobile-sticky-bar.blocks.cart.name",
+      "limit": 1
+    },
+    {
+      "type": "search",
+      "name": "t:sections.mobile-sticky-bar.blocks.search.name",
+      "limit": 1
+    },
+    {
+      "type": "account",
+      "name": "t:sections.mobile-sticky-bar.blocks.account.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.mobile-sticky-bar.blocks.account.settings.paragraph"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.mobile-sticky-bar.name",
+      "blocks": [
+        {
+          "type": "home"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "cart"
+        },
+        {
+          "type": "search"
+        },
+        {
+          "type": "account"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

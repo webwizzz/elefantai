@@ -1,0 +1,48 @@
+{%- comment -%}
+  Extract a style from the color swatch config. You must passed two parameters to this snippet:
+
+  - color_swatch_config: extracted from the theme settings
+  - value: the actual color
+{%- endcomment -%}
+
+{% liquid
+  assign color_swatch_style = ''
+
+	assign swatch_value = null
+	if swatch.image or swatch.color
+
+		if swatch.image
+			assign image_url = swatch.image | image_url: width: 50
+			assign swatch_value = 'url(' | append: image_url | append: '); background-position: center center !important; background-size: cover'
+		elsif swatch.color
+			assign swatch_value = 'rgb(' | append: swatch.color.rgb | append: ')'
+		endif
+
+		assign color_swatch_style = 'background:' | append: swatch_value | append: ';'
+	else
+		assign color_value_downcase = value | downcase
+    assign color_swatch_style = 'background: ' | append: color_value_downcase
+
+		for color_swatch_item in color_swatch_config
+			assign color_swatch_parts = color_swatch_item | split: ':'
+			assign color_swatch_name = color_swatch_parts.first | downcase | strip
+
+			if color_value_downcase == color_swatch_name
+				assign color_swatch_style = ''
+				assign color_swatch_style = 'background: ' | append: color_value_downcase
+				assign color_swatch_value = color_swatch_parts.last | strip
+
+				if color_swatch_value contains '#'
+					assign color_swatch_style = 'background: ' | append: color_swatch_value
+				elsif images[color_swatch_value] != blank
+					assign color_swatch_image = images[color_swatch_value] | image_url: width: 72, height: 72
+					assign color_swatch_style = 'background: url(' | append: color_swatch_image | append: '); background-position: center center !important'
+				endif
+
+				break
+			endif
+		endfor
+	endif
+%}
+
+{{- color_swatch_style -}}

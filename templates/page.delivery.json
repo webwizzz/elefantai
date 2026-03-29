@@ -1,0 +1,153 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "show_breadcrumbs": false,
+        "breadcrumb_color": "main",
+        "breadcrumb_color_hover": "heading",
+        "hide_banner": false,
+        "heading_size": "h2",
+        "heading_weight": "700",
+        "text_color": "heading",
+        "overlay_image": "",
+        "overlay_image_right": "",
+        "full_width": true,
+        "shape_position": "bottom",
+        "shape_type": "none",
+        "shape_color": "#fef7e6",
+        "shape_width": 100,
+        "background_color": "color-bg-1",
+        "colors_background_section_gradient": "",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "shape_content_position": "top",
+        "shape_content_type": "none",
+        "shape_content_color": "#da3c24",
+        "shape_content_width": 100,
+        "content_background_color": "color-main-bg",
+        "content_colors_background_section_gradient": "",
+        "content_padding_top": 120,
+        "content_padding_bottom": 120
+      }
+    },
+    "showcase_cYNTLf": {
+      "type": "showcase",
+      "blocks": {
+        "column_BBLFDg": {
+          "type": "column",
+          "settings": {
+            "image": "",
+            "column_width": "square",
+            "link": "https://www.instagram.com/shopify/",
+            "enable_border_radius": false,
+            "border_radius": 100
+          }
+        },
+        "column_UBhxHp": {
+          "type": "column",
+          "settings": {
+            "image": "",
+            "column_width": "square",
+            "link": "https://www.instagram.com/shopify/",
+            "enable_border_radius": false,
+            "border_radius": 100
+          }
+        },
+        "column_awMLQN": {
+          "type": "column",
+          "settings": {
+            "image": "",
+            "column_width": "square",
+            "link": "https://www.instagram.com/shopify/",
+            "enable_border_radius": false,
+            "border_radius": 100
+          }
+        },
+        "column_Prya7p": {
+          "type": "column",
+          "settings": {
+            "image": "",
+            "column_width": "medium",
+            "link": "https://www.instagram.com/shopify/",
+            "enable_border_radius": false,
+            "border_radius": 100
+          }
+        }
+      },
+      "block_order": [
+        "column_BBLFDg",
+        "column_UBhxHp",
+        "column_awMLQN",
+        "column_Prya7p"
+      ],
+      "settings": {
+        "layout": "default",
+        "title": "Featured Recent Posts",
+        "heading_size": "h4",
+        "text_color": "main",
+        "text_heading": "Featured",
+        "text_color_2": "#4b7667",
+        "text": "",
+        "text_body_size": "text-body--large",
+        "description_color": "main",
+        "heading_align": "center",
+        "text_bottom_space": "",
+        "show_social": true,
+        "social_label": "",
+        "social_label_size": "h4",
+        "social_label_color": "main",
+        "social_label_weight": "600",
+        "social_color": "heading",
+        "social_color_hover": "heading-secondary",
+        "social_top_space": "",
+        "under_section": false,
+        "icon_on_title": true,
+        "image_overlay_width": 10,
+        "image_overlay_vertical": 20,
+        "image_overlay_horizontal": 20,
+        "image_overlay_width_mobile": 10,
+        "image_overlay_vertical_mobile": 20,
+        "image_overlay_horizontal_mobile": 20,
+        "image_overlay_animation": "none",
+        "image_overlay_width_2": 10,
+        "image_overlay_vertical_2": 20,
+        "image_overlay_horizontal_2": 20,
+        "image_overlay_width_2_mobile": 10,
+        "image_overlay_vertical_2_mobile": 20,
+        "image_overlay_horizontal_2_mobile": 20,
+        "image_overlay_animation_2": "none",
+        "image_overlay_width_3": 10,
+        "image_overlay_vertical_3": 20,
+        "image_overlay_horizontal_3": 20,
+        "image_overlay_width_3_mobile": 10,
+        "image_overlay_vertical_3_mobile": 20,
+        "image_overlay_horizontal_3_mobile": 20,
+        "image_overlay_animation_3": "none",
+        "shape_position": "top",
+        "shape_type": "none",
+        "shape_color": "#ffffff",
+        "shape_width": 100,
+        "full_width": false,
+        "background_color": "color-main-bg",
+        "colors_background_section_gradient": "",
+        "padding_top": 120,
+        "padding_bottom": 120,
+        "margin_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "showcase_cYNTLf"
+  ]
+}

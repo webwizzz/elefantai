@@ -1,0 +1,97 @@
+<header-drawer class="header-drawer-menu" data-menu="menu" data-breakpoint="desktop">
+  <details id="Details-menu-drawer-container-2" class="menu-drawer-container">
+    <summary class="header__menu-item list-menu__item link focus-inset" aria-label="{{ 'sections.header.menu' | t }}">
+      <span {%- if link.child_active %} class="header__active-menu-item"{% endif %}>
+        {{ link.title | escape }}
+      </span>
+      {% render 'icon-caret' %}
+    </summary>
+
+    <div id="menu-drawer" class="gradient menu-drawer motion-reduce {{ section.settings.submenu_style }} {{ section.settings.background_color }}">
+
+      <span class="drawer-icon-close">
+        {% render 'icon-close' %}
+      </span>
+
+      <div class="menu-drawer__inner-container">
+        <div class="menu-drawer__navigation-container">
+          <nav class="menu-drawer__navigation">
+            <ul class="menu-drawer__menu has-submenu list-menu" role="list">
+              {%- for childlink in link.links -%}
+                <li>
+                  {%- if childlink.links == blank -%}
+                    <a id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}" href="{{ childlink.url }}"
+                      class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"
+                      {% if childlink.current %} aria-current="page"{% endif %}>
+                      {{ childlink.title | escape }}
+                    </a>
+                  {%- else -%}
+                    <details id="Details-menu-drawer-{{ link.handle }}-{{ childlink.handle }}">
+                      <summary id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">
+                        {{ childlink.title | escape }}
+                        {% render 'icon-arrow' %}
+                        {% render 'icon-caret' %}
+                      </summary>
+
+                      <div id="childlink-{{ childlink.handle | escape }}" class="menu-drawer__submenu has-submenu motion-reduce">
+                        <button class="menu-drawer__close-button link focus-inset" aria-expanded="true">
+                          {% render 'icon-arrow' %}
+                          {{ childlink.title | escape }}
+                        </button>
+
+                        <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                          {%- for grandchildlink in childlink.links -%}
+                            <li>
+                              <a id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}" href="{{ grandchildlink.url }}"
+                                class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if grandchildlink.current %} menu-drawer__menu-item--active{% endif %}" {% if grandchildlink.current %} aria-current="page" {% endif %}>
+                                {{ grandchildlink.title | escape }}
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      </div>
+                    </details>
+                  {%- endif -%}
+                </li>
+              {%- endfor -%}
+            </ul>
+          </nav>
+
+          {% if section.settings.dm_product != blank %}
+            <div class="menu-drawer__product">
+              {% if settings.enable_product_variants %}
+                {{ 'product-card-variants.css' | asset_url | stylesheet_tag }}
+              {% endif %}
+              
+							{%- assign placeholder_image = 'product-1' -%}
+              {% render 'card-product', 
+                card_product: section.settings.dm_product,
+                media_aspect_ratio: 'landscape',
+                show_secondary_image: true,
+                show_vendor: false,
+                show_rating: false,
+                show_quick_add: true,
+								placeholder_image: placeholder_image,
+                section_id: section.id
+              %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      {% if section.settings.dm_image != blank %}
+        <div class="menu-drawer-owerlay">
+          {{
+            section.settings.dm_image
+            | image_url: width: 320
+            | image_tag: loading: 'lazy', 
+            sizes: '32rem',
+            widths: '198, 230, 280, 330',
+            class: 'menu-drawer-owerlay-image'
+          }}
+        </div>
+      {% endif %}
+    </div>
+
+  </details>
+</header-drawer>

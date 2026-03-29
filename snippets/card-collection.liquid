@@ -1,0 +1,316 @@
+{% comment %}
+  Renders a collection card
+
+  Accepts:
+  - card_collection: {Object} Collection Liquid object
+	- card_drawer: {Boolean} Add link to image in cart drawer
+  - media_aspect_ratio: {String} Size of the product image card. Values are "square" and "portrait". Default is "square" (optional)
+  - columns: {Number}
+	- main_list_secondary_image: {Boolean} Show the secondary image on hover. Default: false (optional)
+  - extend_height: {Boolean} Card height extends to available container space. Default: false (optional)
+  - wrapper_class: {String} Wrapper class for card (optional)
+  - collection_heading_weight: {String}
+	-bg_color: {{ String }} RGB background color
+	-layout: {{ String }} 
+
+  Usage:
+  {% render 'card-collection' %}
+{% endcomment %}
+
+{%- liquid
+
+  assign ratio = 1
+  if card_collection.featured_image and media_aspect_ratio == 'portrait'
+    assign ratio = 0.82
+  elsif card_collection.featured_image and media_aspect_ratio == 'landscape'
+    assign ratio = 1.2
+	elsif  card_collection.featured_image and media_aspect_ratio == 'tallview'
+	assign ratio = 0.72
+  elsif card_collection.featured_image and media_aspect_ratio == 'adapt'
+    assign ratio = card_collection.featured_image.aspect_ratio
+  endif
+
+  if ratio == 0 or ratio == null
+    assign ratio = 1
+  endif
+
+  assign card_style = 'standard'
+  if wrapper_class == null or wrapper_class == 'none'
+    assign card_style = 'standard'
+  endif
+
+  assign card_video = false
+  if collection_video != blank
+    assign card_video = collection_video
+  endif
+
+  if product_media_aspect_ratio != blank
+    assign media_aspect_ratio_product = product_media_aspect_ratio
+  endif
+
+-%}
+
+<div class="card-wrapper animate-arrow {% if wrapper_class and wrapper_class != 'none' %}{{ wrapper_class }}{% else %}collection-card-wrapper{% endif %}" tabindex="0">
+  <div class="card collection-list-card card--{{ card_style }}  {% if layout != blank %} layout--{{ layout }} {% endif %} {% if card_collection.featured_image %} card--media{% else %} card--text{% endif %}{% if extend_height %} card--extend-height{% endif %}{% if card_collection == blank %} card-empty{% endif %} {% if bg_color != blank and bg_color != 'rgba(0,0,0,0)' %} bg{% endif %}"
+    style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;">
+
+    {% if section.settings.columns_desktop == 1 %}
+      <div class="card__information card__information--top collection-list-card__information text-color-{{ collection_text_color }}{% if section.settings.columns_desktop == 1 and enable_slider != true %} medium-hide large-up-hide{% endif %}">
+
+        <h3 class="card__heading {{ collection_heading_size }} {% if collection_heading_weight != blank %} text-weight-{{ collection_heading_weight }} {% endif %}">
+          <a {% if card_collection == blank %}role="link" aria-disabled="true"{% else %}href="{{ card_collection.url }}"{% endif %} class="full-unstyled-link" tabindex="0">
+            {%- if card_collection.title != blank -%}
+              {{- card_collection.title | escape -}}
+            {%- else -%}
+              {{- 'onboarding.collection_title' | t -}}
+            {%- endif -%}
+          </a>
+        </h3>
+
+        {% if section.settings.columns_desktop == 1 and enable_slider == true %}
+          <a {% if section.settings.collection.url != blank %}href="{{ section.settings.collection.url }}"{% else %}href="{{ card_collection.url }}"{% endif %} class="collection-list-button button small-hide" aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: section.settings.collection.title }}">
+            {{ 'sections.featured_collection.view_all' | t }}
+          </a>
+        {% endif %}
+
+        {%- if card_collection.featured_image == null and card_collection.description != blank -%}
+          <p class="card__caption">
+            {{- card_collection.description | strip_html | truncatewords: 12 -}}
+          </p>
+        {%- endif -%}
+      </div>
+    {% endif %}
+
+		{% if layout == 'reverse' %}
+			{% if card_style == 'card' or card_collection.featured_image or section.settings.columns_desktop == 1 %}
+				<div class="card__content collection-list-card__content">
+					{% if enable_slider != true or section.settings.columns_desktop != 1 %}
+						<div class="card__information collection-list-card__information text-color-{{ collection_text_color }} {% if section.settings.columns_desktop == 1 %} small-hide{% endif %}">
+							
+							<h3 class="card__heading {{ collection_heading_size }} {% if collection_heading_weight != blank %} text-weight-{{ collection_heading_weight }} {% endif %}">
+								<a {% if card_collection == blank %}role="link" aria-disabled="true"{% else %}href="{{ card_collection.url }}"{% endif %} class="full-unstyled-link">
+									{%- if card_collection.title != blank -%}
+										{{- card_collection.title | escape -}}
+									{%- else -%}
+										{{- 'onboarding.collection_title' | t -}}
+									{%- endif -%}
+								</a>
+							</h3>
+	
+							{%- if card_collection.featured_image == null and card_collection.description != blank -%}
+								<p class="card__caption">
+									{{- card_collection.description | strip_html | truncatewords: 12 -}}
+								</p>
+							{%- endif -%}
+	
+						</div>
+					{% endif %}
+	
+					{% if section.settings.columns_desktop == 1 %}
+						<div class="card_products">
+							{%- for product in card_collection.products limit: 2 -%}
+								<div class="card__item">
+									{% assign placeholder_image = 'product-1' %}
+									{% if main_list_secondary_image != blank and main_list_secondary_image == true %}
+										{% assign show_secondary_img = main_list_secondary_image %}
+									{% else %}
+										{% assign show_secondary_img = section.settings.show_secondary_image %}
+									{% endif %}
+									{%
+										render 'card-product',
+										card_product: product,
+										media_aspect_ratio: media_aspect_ratio_product,
+										show_secondary_image: show_secondary_img,
+										show_vendor: section.settings.show_vendor,
+										show_rating: section.settings.show_rating,
+										show_quick_add: settings.enable_quick_add,
+										placeholder_image: placeholder_image,
+										section_id: section.id
+									%}
+								</div>
+							{%- else -%}
+								{%- for i in (1..2) -%}
+									<div class="card__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" {% if settings.animations_reveal_on_scroll %} data-cascade style="--animation-order: {{ forloop.index }};" {% endif %}>
+										{% assign placeholder_image = 'product-' | append: forloop.index %}
+										{% render 'card-product', 
+											show_vendor: false,
+											placeholder_image: placeholder_image
+										%}
+									</div>
+								{%- endfor -%}
+							{%- endfor -%}
+						</div>
+					{% endif %}
+				</div>
+			{% endif %}
+			
+			{% if section.settings.columns_desktop == 1 and enable_slider == true %}
+				<a {% if section.settings.collection.url != blank %}href="{{ section.settings.collection.url }}"{% else %}href="{{ card_collection.url }}"{% endif %} class="collection-list-button button medium-hide large-up-hide" aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: section.settings.collection.title }}">
+					{{ 'sections.featured_collection.view_all' | t }}
+				</a>
+			{% endif %}
+		{% endif %}
+
+    <div class="card__inner collection-list-card__inner {% if card_collection.featured_image or card_style == 'standard' %} ratio{% endif %}{% if image_shape == true %} image-shape-wrap{% endif %}"
+      style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;">
+      <div class="card__media{% if image_shape == true %} image-shape{% endif %}">
+        {% if card_video != false %}
+          {{ card_video | video_tag: autoplay: true, loop: true, muted: true }}
+        {% elsif card_collection.featured_image %}
+          <div class="media media--transparent media--hover-effect">
+            {%- if card_drawer -%}
+              <a href="{{ card_collection.url }}">
+            {%- endif -%}
+						<img srcset="
+							{%- if card_collection.featured_image.width >= 165 -%}{{ card_collection.featured_image | image_url: width: 165 }} 165w,{%- endif -%}
+							{%- if card_collection.featured_image.width >= 330 -%}{{ card_collection.featured_image | image_url: width: 330 }} 330w,{%- endif -%}
+							{%- if card_collection.featured_image.width >= 535 -%}{{ card_collection.featured_image | image_url: width: 535 }} 535w,{%- endif -%}
+							{%- if card_collection.featured_image.width >= 750 -%}{{ card_collection.featured_image | image_url: width: 750 }} 750w,{%- endif -%}
+							{%- if card_collection.featured_image.width >= 1000 -%}{{ card_collection.featured_image | image_url: width: 1000 }} 1000w,{%- endif -%}
+							{%- if card_collection.featured_image.width >= 1500 -%}{{ card_collection.featured_image | image_url: width: 1500 }} 1500w,{%- endif -%}
+							{{ card_collection.featured_image | image_url }} {{ card_collection.featured_image.width }}w"
+							src="{{ card_collection.featured_image | image_url: width: 1500 }}"
+							sizes="
+								(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: columns }}px,
+								(min-width: 750px) {% if columns > 1 %}calc((100vw - 10rem) / 2){% else %}calc(100vw - 10rem){% endif %},
+								calc(100vw - 3rem)" 
+							alt="{{ card_collection.title | escape }}" 
+							height="{{ card_collection.featured_image.height }}" 
+							width="{{ card_collection.featured_image.width }}"
+							{% if loading != "blank" %}
+								loading = {{ loading }} 
+							{% else %}
+								loading = "lazy" 
+							{% endif %}
+							{% if fetch_priority != "blank" %}
+								fetchpriority = {{ fetch_priority }}
+							{% endif %}
+							class="motion-reduce">
+						{%- if card_drawer -%}
+							</a>
+						{%- endif -%}
+					</div>		
+        {% else %}
+				{{ 'product-1' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+        {% endif %}
+      </div>
+
+      {% if card_collection != blank %}
+        <div class="collection-list-card-link{% if image_shape == true %} image-shape{% endif %}">
+          <a href="{{ card_collection.url }}" class="button">
+            <span>{{ 'sections.featured_collection.view_all' | t }}</span>
+          </a>
+        </div>
+      {% endif %}
+
+      <div class="card__content collection-list-card__content">
+        <div class="card__information text-color-{{ collection_text_color }}">
+          <h3 class="card__heading {{ collection_heading_size }} {% if collection_heading_weight != blank %} text-weight-{{ collection_heading_weight }} {% endif %}">
+            <a {% if card_collection == blank %}role="link" aria-disabled="true"{% else %}href="{{ card_collection.url }}"{% endif %} class="full-unstyled-link">
+							<span>
+								{%- if card_collection.title != blank -%}
+									{{- card_collection.title | escape }}
+								{%- else -%}
+									{{- 'onboarding.collection_title' | t }}
+								{%- endif -%}
+							</span>
+              {%- if card_collection.description == blank -%}
+                <span class="icon-wrap">{% render 'icon-arrow' %}</span>
+              {%- endif %}
+            </a>
+          </h3>
+          {%- if card_collection.description != blank -%}
+            <p class="card__caption">
+              {{- card_collection.description | strip_html | truncatewords: 12 }}
+              <span class="icon-wrap">&nbsp;{% render 'icon-arrow' %}</span>
+            </p>
+          {%- endif -%}
+        </div>
+      </div>
+
+	  {% if icon != blank %}
+		{{
+		  icon
+		  | image_url: width: 103
+		  | image_tag: loading: 'lazy', class: 'collection-list__item--icon', alt: icon.alt
+		}}
+	  {% endif %}
+    </div>
+
+		{% if layout == 'default' %}
+			{% if card_style == 'card' or card_collection.featured_image or section.settings.columns_desktop == 1 %}
+				<div class="card__content collection-list-card__content">
+						{% if enable_slider != true or section.settings.columns_desktop != 1%}
+							<div class="card__information collection-list-card__information text-color-{{ collection_text_color }} {% if section.settings.columns_desktop == 1 %} small-hide{% endif %}">
+								
+								<h3 class="card__heading {{ collection_heading_size }} {% if collection_heading_weight != blank %} text-weight-{{ collection_heading_weight }} {% endif %}">
+									<a {% if card_collection == blank %}role="link" aria-disabled="true"{% else %}href="{{ card_collection.url }}"{% endif %} class="full-unstyled-link {{ section.settings.collection_info_align }}">
+										{%- if card_collection.title != blank -%}
+											{{- card_collection.title | escape -}}
+
+											{% if settings.mood_type == 'mood5' %}
+												{% render 'icon-arrow-short' %}
+											{% endif %}
+
+										{%- else -%}
+											{{- 'onboarding.collection_title' | t -}}
+										{%- endif -%}
+									</a>
+								</h3>
+		
+								{%- if card_collection.featured_image == null and card_collection.description != blank -%}
+									<p class="card__caption">
+										{{- card_collection.description | strip_html | truncatewords: 12 -}}
+									</p>
+								{%- endif -%}
+		
+							</div>
+						{% endif %}
+
+					{% if section.settings.columns_desktop == 1 %}
+						<div class="card_products">
+							{%- for product in card_collection.products limit: 2 -%}
+								<div class="card__item">
+									{% assign placeholder_image = 'product-' | append: forloop.index %}
+									{% if main_list_secondary_image != blank and main_list_secondary_image == true %}
+										{% assign show_secondary_img = main_list_secondary_image %}
+									{% else %}
+										{% assign show_secondary_img = section.settings.show_secondary_image %}
+									{% endif %}
+									{%
+										render 'card-product',
+										card_product: product,
+										media_aspect_ratio: media_aspect_ratio_product,
+										show_secondary_image: show_secondary_img,
+										show_vendor: section.settings.show_vendor,
+										show_rating: section.settings.show_rating,
+										show_quick_add: settings.enable_quick_add,
+										placeholder_image: placeholder_image,
+										section_id: section.id
+									%}
+								</div>
+							{%- else -%}
+								{%- for i in (1..2) -%}
+									<div class="card__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" {% if settings.animations_reveal_on_scroll %} data-cascade style="--animation-order: {{ forloop.index }};" {% endif %}>
+										{% assign placeholder_image = 'product-' | append: forloop.index %}
+										{% render 'card-product', 
+											show_vendor: false,
+											placeholder_image: placeholder_image
+										%}
+									</div>
+								{%- endfor -%}
+							{%- endfor -%}
+						</div>
+					{% endif %}
+				</div>
+			{% endif %}
+			
+			{% if section.settings.columns_desktop == 1 and enable_slider == true %}
+				<a {% if section.settings.collection.url != blank %}href="{{ section.settings.collection.url }}"{% else %}href="{{ card_collection.url }}"{% endif %} class="collection-list-button button medium-hide large-up-hide" aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: section.settings.collection.title }}">
+					{{ 'sections.featured_collection.view_all' | t }}
+				</a>
+			{% endif %}
+		{% endif %}
+
+  </div>
+</div>

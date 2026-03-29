@@ -1,0 +1,28 @@
+<div class="progress-bar {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" {% if settings.animations_reveal_on_scroll %} data-cascade style="--animation-order: {{ forloop.index }};"{% endif %} {{ block.shopify_attributes }}>
+
+  {{ 'progress-bar.css' | asset_url | stylesheet_tag }}
+
+  <div class="progress-label">
+    {% if block.settings.lablel_icon != blank %}
+      <div class="progress-icon" style="width: {{ block.settings.icon_width }}px;">
+        {{
+          block.settings.lablel_icon
+          | image_url: width: 150
+          | image_tag: loading: 'lazy', 
+          alt: block.settings.lablel_icon.alt
+        }}
+      </div>
+    {% endif %}
+  
+    {% if block.settings.progress_text != blank %}
+      <div class="rte text-color-{{ block.settings.progress_text_color }}">
+        {{ block.settings.progress_text }}
+      </div>
+    {% endif %}
+  </div>
+
+
+  <span class="inventory-progress-bar" style="background-color: {{ block.settings.progress_color }};">
+    <span style="width: {{ block.settings.progress_status }}%; background-color: {{ block.settings.current_progress_color }};"> </span>
+  </span>
+</div>

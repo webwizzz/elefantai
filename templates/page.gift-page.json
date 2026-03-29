@@ -1,0 +1,465 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "heading_size": "h1",
+        "text_color": "secondary",
+        "overlay_image": "",
+        "overlay_image_right": "",
+        "full_width": true,
+        "shape_position": "bottom",
+        "shape_type": "none",
+        "shape_color": "#fef7e6",
+        "shape_width": 100,
+        "background_color": "color-bg-4",
+        "colors_background_section_gradient": "",
+        "padding_top": 180,
+        "padding_bottom": 90,
+        "shape_content_position": "top",
+        "shape_content_type": "curve",
+        "shape_content_color": "#DA3C24",
+        "shape_content_width": 100,
+        "content_background_color": "color-main-bg",
+        "content_colors_background_section_gradient": "",
+        "content_padding_top": 100,
+        "content_padding_bottom": 100
+      }
+    },
+    "9106fcde-409e-47c9-9c7e-ef448845d7ca": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "",
+        "title": "<strong>Gifts for Your Loved Ones</strong>",
+        "heading_size": "h2",
+        "heading_color": "heading",
+        "description": "",
+        "text_body_size": "text-body--large",
+        "text_color": "heading",
+        "heading_align": "center",
+        "show_collection_image": false,
+        "image_position": "top",
+        "image_overlay_opacity": 0,
+        "banner_text": "",
+        "banner_text_color": "secondary",
+        "coundown_date": "Apr 31, 2025",
+        "coundown_end": "show_zeroes",
+        "days_label": "Days",
+        "days_background_color": "color-main-bg",
+        "hours_label": "Hours",
+        "hours_background_color": "color-main-bg",
+        "mins_label": "Minutes",
+        "mins_background_color": "color-main-bg",
+        "secs_label": "Seconds",
+        "secs_background_color": "color-main-bg",
+        "coundown_number_color": "#DA3C24",
+        "coundown_number_size": 36,
+        "coundown_number_weight": "700",
+        "coundown_title_color": "#222222",
+        "coundown_title_size": 14,
+        "coundown_title_weight": "400",
+        "full_width": false,
+        "show_view_all": false,
+        "products_to_show": 8,
+        "columns_desktop_grid": 4,
+        "columns_mobile_grid": "2",
+        "enable_slider": false,
+        "columns_desktop": 2.8,
+        "columns_mobile": 2,
+        "image_ratio": "square",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "image_overlay_width": 10,
+        "image_overlay_vertical": 20,
+        "image_overlay_horizontal": 20,
+        "image_overlay_width_mobile": 10,
+        "image_overlay_vertical_mobile": 20,
+        "image_overlay_horizontal_mobile": 20,
+        "image_overlay_animation": "none",
+        "image_overlay_width_2": 10,
+        "image_overlay_vertical_2": 20,
+        "image_overlay_horizontal_2": 20,
+        "image_overlay_width_2_mobile": 10,
+        "image_overlay_vertical_2_mobile": 20,
+        "image_overlay_horizontal_2_mobile": 20,
+        "image_overlay_animation_2": "none",
+        "image_overlay_width_3": 10,
+        "image_overlay_vertical_3": 20,
+        "image_overlay_horizontal_3": 20,
+        "image_overlay_width_3_mobile": 10,
+        "image_overlay_vertical_3_mobile": 20,
+        "image_overlay_horizontal_3_mobile": 20,
+        "image_overlay_animation_3": "none",
+        "shape_position": "top",
+        "shape_type": "curve",
+        "shape_color": "#DA3C24",
+        "shape_width": 100,
+        "background_color": "color-main-bg",
+        "colors_background_section_gradient": "",
+        "padding_top": 154,
+        "padding_bottom": 66
+      }
+    },
+    "gift-page-featured-product": {
+      "type": "featured-product",
+      "blocks": {
+        "template--19680450806063__7c4e19c2-b0b4-42cc-9d16-04aeb6b3cd18-16878509464b9750b9-1": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h3",
+            "heading_weight": "600",
+            "heading_color": "main"
+          }
+        },
+        "template--19680450806063__7c4e19c2-b0b4-42cc-9d16-04aeb6b3cd18-16878509464b9750b9-2": {
+          "type": "price",
+          "settings": {
+            "price_size": "h2",
+            "price_weight": "600",
+            "price_badge": true
+          }
+        },
+        "text_GmAe3y": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Unlock joy with endless possibilities! Treat yourself or a loved one with this versatile gift card. Perfect for any occasion. Enjoy!</p>",
+            "text_style": "body"
+          }
+        },
+        "coundown_bar_i973JG": {
+          "type": "coundownBar",
+          "settings": {
+            "coundown_date": "Apr 31, 2025",
+            "coundown_end": "show_zeroes",
+            "contdown_label": "Hurry Up! Offer Ends In",
+            "contdown_label_size": "h4",
+            "contdown_label_text_color": "heading-secondary",
+            "days_label": "Days",
+            "days_background_color": "color-bg-1",
+            "hours_label": "Hours",
+            "hours_background_color": "color-bg-1",
+            "mins_label": "Minutes",
+            "mins_background_color": "color-bg-1",
+            "secs_label": "Seconds",
+            "secs_background_color": "color-bg-1",
+            "coundown_number_color": "#DA3C24",
+            "coundown_number_size": 36,
+            "coundown_number_weight": "700",
+            "coundown_title_color": "#222222",
+            "coundown_title_size": 14,
+            "coundown_title_weight": "400"
+          }
+        },
+        "template--19680450806063__7c4e19c2-b0b4-42cc-9d16-04aeb6b3cd18-16878509464b9750b9-3": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "enable_size_chart": true,
+            "choose_variant": "Size",
+            "popup_label": "Size Chart",
+            "page": ""
+          }
+        },
+        "template--19680450806063__7c4e19c2-b0b4-42cc-9d16-04aeb6b3cd18-16878509464b9750b9-4": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true,
+            "block_position": "under_media"
+          }
+        },
+        "share_AN7Y4e": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share:",
+            "show_linkedin_share": true,
+            "show_fb_share": true,
+            "show_twitter_share": true,
+            "show_pinterest_share": false,
+            "show_telegram_share": false,
+            "show_snapchat_share": false,
+            "show_tumblr_share": false,
+            "social_color": "main",
+            "social_color_hover": "heading"
+          }
+        }
+      },
+      "block_order": [
+        "template--19680450806063__7c4e19c2-b0b4-42cc-9d16-04aeb6b3cd18-16878509464b9750b9-1",
+        "template--19680450806063__7c4e19c2-b0b4-42cc-9d16-04aeb6b3cd18-16878509464b9750b9-2",
+        "text_GmAe3y",
+        "coundown_bar_i973JG",
+        "template--19680450806063__7c4e19c2-b0b4-42cc-9d16-04aeb6b3cd18-16878509464b9750b9-3",
+        "template--19680450806063__7c4e19c2-b0b4-42cc-9d16-04aeb6b3cd18-16878509464b9750b9-4",
+        "share_AN7Y4e"
+      ],
+      "settings": {
+        "product": "",
+        "media_size": "medium",
+        "global_media_position": "right",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail",
+        "media_position": "bottom",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "mobile_thumbnails": "show",
+        "image_overlay_width": 10,
+        "image_overlay_vertical": 20,
+        "image_overlay_horizontal": 20,
+        "image_overlay_width_mobile": 10,
+        "image_overlay_vertical_mobile": 20,
+        "image_overlay_horizontal_mobile": 20,
+        "image_overlay_animation": "none",
+        "image_overlay_width_2": 10,
+        "image_overlay_vertical_2": 20,
+        "image_overlay_horizontal_2": 20,
+        "image_overlay_width_2_mobile": 10,
+        "image_overlay_vertical_2_mobile": 20,
+        "image_overlay_horizontal_2_mobile": 20,
+        "image_overlay_animation_2": "none",
+        "secondary_background_color": "color-bg-1",
+        "info_background_color": "color-main-bg",
+        "background_color": "color-main-bg",
+        "colors_background_section_gradient": "",
+        "padding_top": 96,
+        "padding_bottom": 74
+      }
+    },
+    "9989255f-abd3-4862-a98a-f1bac9b0e838": {
+      "type": "image-with-text",
+      "blocks": {
+        "template--19680450806063__9989255f-abd3-4862-a98a-f1bac9b0e838-168785520856dd55dc-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>How to Gift Wrap a Soft Toy....</strong>",
+            "heading_size": "h2",
+            "heading_color": "heading"
+          }
+        },
+        "template--19680450806063__9989255f-abd3-4862-a98a-f1bac9b0e838-168785520856dd55dc-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>To beautifully gift wrap a soft toy, follow these steps for a charming presentation. Lay out a sheet of wrapping paper, positioning the soft toy diagonally on it. Gently fold one corner of the paper over the toy, tucking it snugly underneath. Secure the edges with tape, ensuring a clean fold. Next, fold the opposite corner over the toy, overlapping the first fold slightly, and secure with tape.</p>",
+            "text_style": "body",
+            "text_color": "main"
+          }
+        }
+      },
+      "block_order": [
+        "template--19680450806063__9989255f-abd3-4862-a98a-f1bac9b0e838-168785520856dd55dc-0",
+        "template--19680450806063__9989255f-abd3-4862-a98a-f1bac9b0e838-168785520856dd55dc-1"
+      ],
+      "settings": {
+        "image": "",
+        "image_shape": true,
+        "enable_video": false,
+        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "autoplay": false,
+        "height": "medium",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "desktop_content_space": "padding-large",
+        "mobile_content_alignment": "left",
+        "image_overlay_width": 10,
+        "image_overlay_vertical": 20,
+        "image_overlay_horizontal": 20,
+        "image_overlay_width_mobile": 10,
+        "image_overlay_vertical_mobile": 20,
+        "image_overlay_horizontal_mobile": 20,
+        "image_overlay_animation": "none",
+        "image_overlay_width_2": 10,
+        "image_overlay_vertical_2": 20,
+        "image_overlay_horizontal_2": 20,
+        "image_overlay_width_2_mobile": 10,
+        "image_overlay_vertical_2_mobile": 20,
+        "image_overlay_horizontal_2_mobile": 20,
+        "image_overlay_animation_2": "none",
+        "image_overlay_width_3": 10,
+        "image_overlay_vertical_3": 20,
+        "image_overlay_horizontal_3": 20,
+        "image_overlay_width_3_mobile": 10,
+        "image_overlay_vertical_3_mobile": 20,
+        "image_overlay_horizontal_3_mobile": 20,
+        "image_overlay_animation_3": "none",
+        "shape_position": "top",
+        "shape_type": "none",
+        "shape_color": "#ffffff",
+        "shape_width": 100,
+        "secondary_background_color": "none",
+        "background_color": "color-main-bg",
+        "colors_background_section_gradient": "",
+        "padding_top": 90,
+        "padding_bottom": 160
+      }
+    },
+    "gift-page-showcase": {
+      "type": "showcase",
+      "blocks": {
+        "template--18867160121647__showcase-1683710468ee8b3279-0": {
+          "type": "column",
+          "settings": {
+            "image": "",
+            "link": ""
+          }
+        },
+        "template--18867160121647__showcase-1683710468ee8b3279-1": {
+          "type": "column",
+          "settings": {
+            "image": "",
+            "link": ""
+          }
+        },
+        "template--18867160121647__showcase-1683710468ee8b3279-2": {
+          "type": "column",
+          "settings": {
+            "image": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--18867160121647__showcase-1683710468ee8b3279-0",
+        "template--18867160121647__showcase-1683710468ee8b3279-1",
+        "template--18867160121647__showcase-1683710468ee8b3279-2"
+      ],
+      "settings": {
+        "title": "<strong>Loved by Our Community</strong>",
+        "heading_size": "h2",
+        "text_color": "heading",
+        "text": "",
+        "text_body_size": "text-body--large",
+        "description_color": "main",
+        "heading_align": "center",
+        "show_social": true,
+        "social_label": "Follow Us",
+        "social_label_color": "main",
+        "social_color": "main",
+        "social_color_hover": "heading",
+        "under_section": true,
+        "image_overlay": "",
+        "image_overlay_width": 10,
+        "image_overlay_vertical": 83,
+        "image_overlay_horizontal": 5,
+        "image_overlay_width_mobile": 10,
+        "image_overlay_vertical_mobile": 83,
+        "image_overlay_horizontal_mobile": 5,
+        "image_overlay_animation": "ambient",
+        "image_overlay_2": "",
+        "image_overlay_width_2": 10,
+        "image_overlay_vertical_2": 18,
+        "image_overlay_horizontal_2": 95,
+        "image_overlay_width_2_mobile": 10,
+        "image_overlay_vertical_2_mobile": 18,
+        "image_overlay_horizontal_2_mobile": 95,
+        "image_overlay_animation_2": "ambient",
+        "image_overlay_width_3": 10,
+        "image_overlay_vertical_3": 20,
+        "image_overlay_horizontal_3": 20,
+        "image_overlay_width_3_mobile": 10,
+        "image_overlay_vertical_3_mobile": 20,
+        "image_overlay_horizontal_3_mobile": 20,
+        "image_overlay_animation_3": "none",
+        "shape_position": "top",
+        "shape_type": "none",
+        "shape_color": "#ffffff",
+        "shape_width": 100,
+        "full_width": false,
+        "background_color": "color-bg-2",
+        "colors_background_section_gradient": "",
+        "padding_top": 154,
+        "padding_bottom": 140
+      }
+    },
+    "gift-page-newsletter": {
+      "type": "newsletter",
+      "blocks": {
+        "template--18867160121647__newsletter-16830990270b07a601-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Sign Up to the Newsletter</strong>",
+            "heading_size": "h2",
+            "heading_color": "main"
+          }
+        },
+        "template--18867160121647__newsletter-16830990270b07a601-1": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Be The First To Get Notified About New Arrivals, Discounts, And Bargain Deals!</p>",
+            "text_style": "body",
+            "text_color": "main"
+          }
+        },
+        "template--18867160121647__newsletter-16830990270b07a601-2": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "template--18867160121647__newsletter-16830990270b07a601-0",
+        "template--18867160121647__newsletter-16830990270b07a601-1",
+        "template--18867160121647__newsletter-16830990270b07a601-2"
+      ],
+      "settings": {
+        "show_image": false,
+        "column_width": 40,
+        "background_color": "none",
+        "colors_background_section_gradient": "",
+        "full_width": true,
+        "image_overlay": "",
+        "image_overlay_width": 10,
+        "image_overlay_vertical": 5,
+        "image_overlay_horizontal": 20,
+        "image_overlay_width_mobile": 13,
+        "image_overlay_vertical_mobile": 3,
+        "image_overlay_horizontal_mobile": 10,
+        "image_overlay_animation": "ambient",
+        "image_overlay_2": "",
+        "image_overlay_width_2": 15,
+        "image_overlay_vertical_2": 60,
+        "image_overlay_horizontal_2": 7,
+        "image_overlay_width_2_mobile": 17,
+        "image_overlay_vertical_2_mobile": 87,
+        "image_overlay_horizontal_2_mobile": 9,
+        "image_overlay_animation_2": "ambient",
+        "image_overlay_3": "",
+        "image_overlay_width_3": 10,
+        "image_overlay_vertical_3": 44,
+        "image_overlay_horizontal_3": 95,
+        "image_overlay_width_3_mobile": 12,
+        "image_overlay_vertical_3_mobile": 20,
+        "image_overlay_horizontal_3_mobile": 94,
+        "image_overlay_animation_3": "ambient",
+        "shape_position": "top",
+        "shape_type": "waves",
+        "shape_color": "#f6ecd3",
+        "shape_width": 100,
+        "background_color_main": "color-bg-3",
+        "color_background_main": "",
+        "padding_top": 50,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "9106fcde-409e-47c9-9c7e-ef448845d7ca",
+    "gift-page-featured-product",
+    "9989255f-abd3-4862-a98a-f1bac9b0e838",
+    "gift-page-showcase",
+    "gift-page-newsletter"
+  ]
+}
