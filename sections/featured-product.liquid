@@ -68,9 +68,6 @@
 <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
 
 {%- liquid
-  assign product = section.settings.product
-  assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src'
-
   if section.settings.image_overlay != blank or section.settings.image_overlay_2 != blank or section.settings.image_overlay_3 != blank or section.settings.shape_type != 'none'
     assign section_overlay = true
   endif
@@ -98,32 +95,41 @@
     %}
   {%- endif -%}
 
-  <div class="page-width{% if section.settings.secondary_background_color != "none" %} product-background-secondary{% endif %}">
+  <div class="product-slider-full-width{% if section.settings.secondary_background_color != "none" %} product-background-secondary{% endif %}" style="max-width: 100%; overflow: hidden;">
 
     {%- if section.settings.title != blank or section.settings.text != blank -%}
-      <div class="featured-product-title-wrapper title-wrapper {{ section.settings.heading_align }}">
-        {%- if section.settings.title != blank -%}
-          <h2 class="title inline-richtext {{ section.settings.heading_size }} text-color-{{ section.settings.heading_color }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-rotate-in{% endif %}">
-            {{ section.settings.title }}
-          </h2>
-        {%- endif -%}
+      <div class="page-width">
+        <div class="featured-product-title-wrapper title-wrapper {{ section.settings.heading_align }}">
+          {%- if section.settings.title != blank -%}
+            <h2 class="title inline-richtext {{ section.settings.heading_size }} text-color-{{ section.settings.heading_color }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-rotate-in{% endif %}">
+              {{ section.settings.title }}
+            </h2>
+          {%- endif -%}
 
-        {%- if section.settings.text != blank -%}
-          <div class="description rte {{ section.settings.text_body_size }} text-color-{{ section.settings.text_color }} {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-            {{ section.settings.text -}}
-          </div>
-        {%- endif -%}
+          {%- if section.settings.text != blank -%}
+            <div class="description rte {{ section.settings.text_body_size }} text-color-{{ section.settings.text_color }} {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+              {{ section.settings.text -}}
+            </div>
+          {%- endif -%}
+        </div>
       </div>
     {%- endif -%}
 
-    {% if section.settings.secondary_background_color != "none" %}
-      <div class="product-wrapp {{ section.settings.secondary_background_color }}">
-    {% endif %}
-
-      <div class="featured-product product product--{{ section.settings.media_size }}{% if section.settings.secondary_background_color != "none" %} {{ section.settings.secondary_background_color }}{% else %} {{ section.settings.background_color }}{% endif %} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col gradient {% if product.media.size > 0 %} grid--2-col-tablet{% elsif product == blank %} empty-product{% else %} product--no-media{% endif %}{% if section.settings.gallery_layout != "dots" %}{% if section.settings.media_position != "bottom" %} thumbnail-aside{% endif %} thumbnail--{{ section.settings.media_position }}{% endif %}">
-        
-        {% if section.settings.global_media_position == 'left' %}
-          <div class="grid__item product__media-wrapper {% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}">
+      <slider-component class="slider-mobile-gutter">
+        <ul class="product-list slider slider--everywhere" id="Slider-{{ section.id }}" role="list" style="margin:0; padding:0; display: flex; flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x mandatory; gap: 2rem;">
+          {%- for product in section.settings.product_list -%}
+            {%- liquid
+              assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src'
+              assign first_3d_model = product.media | where: 'media_type', 'model' | first
+            -%}
+            <li id="Slide-{{ section.id }}-{{ product.id | default: forloop.index }}" class="product-list__item slider__slide" style="flex: 0 0 calc(90% - 1rem); box-sizing: border-box; scroll-snap-align: start;">
+              {% if section.settings.secondary_background_color != "none" %}
+                <div class="product-wrapp {{ section.settings.secondary_background_color }}" style="height: 100%; border-radius: 12px; overflow: hidden;">
+              {% endif %}
+              <div class="featured-product product product--{{ section.settings.media_size }}{% if section.settings.secondary_background_color != "none" %} {{ section.settings.secondary_background_color }}{% else %} {{ section.settings.background_color }}{% endif %} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col gradient {% if product.media.size > 0 %} grid--2-col-tablet{% elsif product == blank %} empty-product{% else %} product--no-media{% endif %}{% if section.settings.gallery_layout != "dots" %}{% if section.settings.media_position != "bottom" %} thumbnail-aside{% endif %} thumbnail--{{ section.settings.media_position }}{% endif %}">
+                
+                {% if section.settings.global_media_position == 'left' %}
+                  <div class="grid__item product__media-wrapper {% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}">
 		{%- if settings.mood_type == 'mood4' -%}
 			<div class="product__media-container">
 		{%- endif -%}
@@ -137,7 +143,7 @@
 				{%- case block.type -%}
 				  {%- when 'buy_buttons' -%}
 					{% if block.settings.block_position == 'under_media' %}
-					  {%- assign product_form_id = 'product-form-' | append: section.id -%}
+					  {%- assign product_form_id = 'product-form-' | append: section.id | append: '-' | append: product.id -%}
 					  {%- render 'buy-buttons', 
 						block: block, 
 						product: product, 
@@ -170,8 +176,8 @@
         {% endif %}
 
         <div class="product__info-wrapper grid__item{% if section.settings.info_background_color != "none" %} info-wrapper-background-secondary {{ section.settings.info_background_color }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} {% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}">
-          <product-info id="ProductInfo-{{ section.id }}" class="product__info-container{% if section.settings.info_background_color != "none" %} info-background-secondary{% endif %}" data-section="{{ section.id }}" data-url="{{ product.url }}">
-            {%- assign product_form_id = 'product-form-' | append: section.id -%}
+          <product-info id="ProductInfo-{{ section.id }}-{{ product.id }}" class="product__info-container{% if section.settings.info_background_color != "none" %} info-background-secondary{% endif %}" data-section="{{ section.id }}-{{ product.id }}" data-original-section="{{ section.id }}" data-url="{{ product.url }}">
+            {%- assign product_form_id = 'product-form-' | append: section.id | append: '-' | append: product.id -%}
 
             {%- for block in section.blocks -%}
               {%- case block.type -%}
@@ -236,7 +242,7 @@
                   {% endif %}
 
                 {%- when 'price' -%}
-                  <div class="no-js-hidden" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+                  <div class="no-js-hidden" id="price-{{ section.id }}-{{ product.id }}" role="status" {{ block.shopify_attributes }}>
                     {%- render 'price',
                       product: product,
                       use_variant: true,
@@ -281,7 +287,7 @@
                   {%- endif -%}
 
                 {%- when 'sku' -%}
-                  <p class="product__sku no-js-hidden{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}" id="Sku-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+                  <p class="product__sku no-js-hidden{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}" id="Sku-{{ section.id }}-{{ product.id }}" role="status" {{ block.shopify_attributes }}>
                     <span class="visually-hidden">{{ 'products.product.sku' | t }}:</span>
                     {{- product.selected_or_first_available_variant.sku -}}
                   </p>
@@ -325,7 +331,7 @@
                   {% endif %}
 
                 {%- when 'inventory' -%}
-                  <p class="product__inventory {{ block.settings.heading_size }} text-weight-{{ block.settings.heading_weight }} no-js-hidden{% if product.selected_or_first_available_variant.inventory_management != 'shopify' %} visibility-hidden{% endif %}{% if block.settings.show_inventory_progress %} inventory-progress{% endif %}" {{ block.shopify_attributes }} id="Inventory-{{ section.id }}" role="status">
+                  <p class="product__inventory {{ block.settings.heading_size }} text-weight-{{ block.settings.heading_weight }} no-js-hidden{% if product.selected_or_first_available_variant.inventory_management != 'shopify' %} visibility-hidden{% endif %}{% if block.settings.show_inventory_progress %} inventory-progress{% endif %}" {{ block.shopify_attributes }} id="Inventory-{{ section.id }}-{{ product.id }}" role="status">
   
                     {%- if product.selected_or_first_available_variant.inventory_management == 'shopify' -%}
                       {%- if product.selected_or_first_available_variant.inventory_quantity <= block.settings.inventory_threshold and block.settings.show_inventory_low -%}
@@ -571,7 +577,7 @@
 				{%- case block.type -%}
 				  {%- when 'buy_buttons' -%}
 					{% if block.settings.block_position == 'under_media' %}
-					  {%- assign product_form_id = 'product-form-' | append: section.id -%}
+					  {%- assign product_form_id = 'product-form-' | append: section.id | append: '-' | append: product.id -%}
 					  {%- render 'buy-buttons', 
 						block: block, 
 						product: product, 
@@ -618,11 +624,32 @@
         {%- endfor -%}
       {% endif %}
 
-      {% render 'product-media-modal', variant_images: variant_images, product: product %}
-
-    {% if section.settings.secondary_background_color != "none" %}
-      </div>
-    {% endif %}
+              {% render 'product-media-modal', variant_images: variant_images, product: product %}
+              {% if section.settings.secondary_background_color != "none" %}
+                </div>
+              {% endif %}
+            </li>
+          {%- endfor -%}
+        </ul>
+        <div class="slider-buttons no-js-hidden" style="margin-top: 2rem; display: flex; align-items: center; justify-content: center; gap: 1rem;">
+          <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="Previous">
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+            </svg>
+          </button>
+          <div class="slider-counter caption" style="display:-webkit-box; align-items:center;">
+            <span class="slider-counter--current">1</span>
+            <span aria-hidden="true"> / </span>
+            <span class="visually-hidden">of</span>
+            <span class="slider-counter--total">{{ section.settings.product_list.count }}</span>
+          </div>
+          <button type="button" class="slider-button slider-button--next" name="next" aria-label="Next">
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+            </svg>
+          </button>
+        </div>
+      </slider-component>
 
   </div>
 </section>
@@ -637,13 +664,17 @@
   <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
-{%- if first_3d_model -%}
-  <script type="application/json" id="ProductJSON-{{ product.id }}">
-    {{ product.media | where: 'media_type', 'model' | json }}
-  </script>
-  <script src="{{ 'product-model.js' | asset_url }}" defer></script>
-{%- endif -%}
+{%- for product in section.settings.product_list -%}
+  {%- assign first_3d_model = product.media | where: 'media_type', 'model' | first -%}
+  {%- if first_3d_model -%}
+    <script type="application/json" id="ProductJSON-{{ product.id }}">
+      {{ product.media | where: 'media_type', 'model' | json }}
+    </script>
+    <script src="{{ 'product-model.js' | asset_url }}" defer></script>
+  {%- endif -%}
+{%- endfor -%}
 
+{%- for product in section.settings.product_list -%}
 {%- liquid
   if product.selected_or_first_available_variant.featured_media
     assign seo_media = product.selected_or_first_available_variant.featured_media
@@ -696,6 +727,7 @@
     ]
   }
 </script>
+{%- endfor -%}
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -707,20 +739,31 @@
       return msie > 0 || trident > 0;
     }
 
-    if (!isIE()) return;
-    const hiddenInput = document.querySelector('#{{ product_form_id }} input[name="id"]');
-    const noScriptInputWrapper = document.createElement('div');
-    const variantSwitcher =
-      document.querySelector('variant-radios[data-section="{{ section.id }}"]') ||
-      document.querySelector('variant-selects[data-section="{{ section.id }}"]');
-    noScriptInputWrapper.innerHTML = document.querySelector(
-      '.product-form__noscript-wrapper-{{ section.id }}'
-    ).textContent;
-    variantSwitcher.outerHTML = noScriptInputWrapper.outerHTML;
+    if (isIE()) {
+      {%- for product in section.settings.product_list -%}
+        {%- assign product_form_id = 'product-form-' | append: section.id | append: '-' | append: product.id -%}
+        (function() {
+          const hiddenInput = document.querySelector('#{{ product_form_id }} input[name="id"]');
+          const noScriptInputWrapper = document.createElement('div');
+          const variantSwitcher =
+            document.querySelector('variant-radios[data-section="{{ section.id }}-{{ product.id }}"]') ||
+            document.querySelector('variant-selects[data-section="{{ section.id }}-{{ product.id }}"]');
+          
+          const wrapperEl = document.querySelector('.product-form__noscript-wrapper-{{ section.id }}-{{ product.id }}');
+          if (wrapperEl && variantSwitcher) {
+            noScriptInputWrapper.innerHTML = wrapperEl.textContent;
+            variantSwitcher.outerHTML = noScriptInputWrapper.outerHTML;
+          }
 
-    document.querySelector('#Variants-{{ section.id }}').addEventListener('change', function (event) {
-      hiddenInput.value = event.currentTarget.value;
-    });
+          const variantsEl = document.querySelector('#Variants-{{ section.id }}-{{ product.id }}');
+          if (variantsEl) {
+            variantsEl.addEventListener('change', function (event) {
+              if (hiddenInput) hiddenInput.value = event.currentTarget.value;
+            });
+          }
+        })();
+      {%- endfor -%}
+    }
   });
 
 </script>
@@ -2839,9 +2882,9 @@
       "label": "t:sections.main-product.settings.enable_sticky_info.label"
     },
     {
-      "type": "product",
-      "id": "product",
-      "label": "t:sections.featured-product.settings.product.label"
+      "type": "product_list",
+      "id": "product_list",
+      "label": "Products"
     },
     {
       "type": "header",

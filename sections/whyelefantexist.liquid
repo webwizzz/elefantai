@@ -1,0 +1,385 @@
+<style>
+.why-elefant-section {
+  padding: 60px 0;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--section-bg-color, #f5f5f7);
+}
+.why-elefant-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+.why-elefant-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+.why-elefant-header-left {
+  max-width: 60%;
+  position: relative;
+  z-index: 2;
+}
+.why-elefant-title {
+  font-size: 42px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 10px 0;
+  line-height: 1.2;
+}
+.why-elefant-title .highlight-font {
+  color: #7d6599;  /* purple color from design */
+  font-family: inherit; /* Inherit heading, though it might be custom handled */
+  /* Fallback to marker/cursive font */
+  font-family: "Shadows Into Light", "Gochi Hand", "Comic Sans MS", cursive, sans-serif;
+  font-weight: 400;
+}
+.why-elefant-subtitle {
+  font-size: 18px;
+  color: #666;
+  margin: 0;
+}
+.why-elefant-kite {
+  position: absolute;
+  top: -30px;
+  right: 25%; 
+  width: 160px;
+  z-index: 10;
+  pointer-events: none;
+}
+.why-elefant-kite img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.why-elefant-cta-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 30px;
+  background-color: transparent;
+  color: #333;
+  border: 1px solid #7d6599;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+.why-elefant-cta-btn:hover {
+  background-color: #f8f8f8;
+}
+
+.why-elefant-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.why-elefant-card {
+  background-color: var(--card-bg-color, #ffffff);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 439px;
+  height: 323px;
+  margin: 0 auto;
+}
+.why-elefant-card-image {
+  width: 80px;  
+  height: 80px; 
+  margin-bottom: 24px;
+  border-radius: 16px; 
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.why-elefant-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.why-elefant-card h3 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 12px 0;
+}
+.why-elefant-card p {
+  font-size: 16px;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+}
+.why-elefant-mobile-cta {
+  display: none;
+}
+
+/* Scrollbar hide for webkit */
+.why-elefant-cards::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .why-elefant-section {
+    padding: 40px 0;
+  }
+  .why-elefant-container {
+    padding: 0 20px;
+  }
+  .why-elefant-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .why-elefant-header-left {
+    max-width: 100%;
+  }
+  .why-elefant-title {
+    font-size: 32px;
+  }
+  .why-elefant-kite {
+    right: -10px;
+    top: -10px;
+    width: 120px;
+  }
+  .hide-on-mobile {
+    display: none !important;
+  }
+  .why-elefant-cards {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    padding-bottom: 10px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .why-elefant-card {
+    min-width: 288px;
+    width: 288px;
+    height: 214px;
+    scroll-snap-align: center;
+    padding: 24px;
+  }
+  .why-elefant-card-image {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 16px;
+  }
+  .why-elefant-card h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  .why-elefant-card p {
+    font-size: 14px;
+  }
+  .why-elefant-slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .why-elefant-slider-dots .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #d1d1d1;
+    transition: all 0.3s;
+  }
+  .why-elefant-slider-dots .dot.active {
+    background-color: #999;
+    width: 20px;
+    border-radius: 4px;
+  }
+  .why-elefant-mobile-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+}
+@media (min-width: 769px) {
+  .why-elefant-slider-dots {
+    display: none;
+  }
+}
+</style>
+
+<div class="why-elefant-section" style="--section-bg-color: {{ section.settings.background_color }}; --card-bg-color: {{ section.settings.card_bg_color }};" id="WhyElefant-{{ section.id }}">
+  <div class="why-elefant-container">
+    
+    <div class="why-elefant-header">
+      <div class="why-elefant-header-left">
+        <h2 class="why-elefant-title">
+          {% assign heading = section.settings.heading %}
+          {% if heading contains '*' %}
+            {% assign parts = heading | split: '*' %}
+            {{ parts[0] }}<span class="highlight-font">{{ parts[1] }}</span>{{ parts[2] }}
+          {% else %}
+            {{ heading }}
+          {% endif %}
+        </h2>
+        {% if section.settings.description != blank %}
+          <p class="why-elefant-subtitle">{{ section.settings.description }}</p>
+        {% endif %}
+      </div>
+      
+      {% if section.settings.kite_image != blank %}
+        <div class="why-elefant-kite">
+          {{ section.settings.kite_image | image_url: width: 400 | image_tag: loading: 'lazy', alt: 'Decorative graphic' }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+        <div class="why-elefant-cta-wrapper hide-on-mobile">
+          <a href="{{ section.settings.button_link }}" class="why-elefant-cta-btn">{{ section.settings.button_label }}</a>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="why-elefant-cards">
+      {% for block in section.blocks %}
+        <div class="why-elefant-card" {{ block.shopify_attributes }}>
+          <div class="why-elefant-card-image">
+            {% if block.settings.icon != blank %}
+              {{ block.settings.icon | image_url: width: 200 | image_tag: loading: 'lazy', alt: block.settings.title }}
+            {% endif %}
+          </div>
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.text }}</p>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="why-elefant-slider-dots">
+      {% for block in section.blocks %}
+        <div class="dot{% if forloop.first %} active{% endif %}"></div>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+      <div class="why-elefant-mobile-cta">
+        <a href="{{ section.settings.button_link }}" class="why-elefant-cta-btn">{{ section.settings.button_label }}</a>
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const sectionId = "WhyElefant-{{ section.id }}";
+    const sectionEl = document.getElementById(sectionId);
+    if (!sectionEl) return;
+
+    const cardsContainer = sectionEl.querySelector('.why-elefant-cards');
+    const dots = sectionEl.querySelectorAll('.why-elefant-slider-dots .dot');
+
+    if (cardsContainer && dots.length > 0) {
+      cardsContainer.addEventListener('scroll', () => {
+        const firstCard = cardsContainer.querySelector('.why-elefant-card');
+        if (!firstCard) return;
+        
+        // Mobile gap is 16px
+        const cardWidth = firstCard.offsetWidth + 16; 
+        const index = Math.round(cardsContainer.scrollLeft / cardWidth);
+        
+        dots.forEach((dot, i) => {
+          if (i === index) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Why EleFant Exists",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why EleFant *Exists*",
+      "info": "Wrap word in *asterisks* to style it with primary curly font. Example: Why EleFant *Exists*"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "We understand the challenges every parent faces"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Learn How it Works"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "kite_image",
+      "label": "Floating Graphic Image (e.g. Kite)"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section Background Color",
+      "default": "#f5f5f7"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card Background Color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Custom Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Custom description text."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why EleFant Exists",
+      "blocks": [
+        {"type": "card"},
+        {"type": "card"},
+        {"type": "card"}
+      ]
+    }
+  ]
+}
+{% endschema %}

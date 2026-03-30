@@ -64,13 +64,14 @@ if (!customElements.get('product-info')) {
           this.querySelector('.quantity__rules-cart .loading-overlay').classList.remove('hidden');
         }
 
-        fetch(`${this.dataset.url}?variant=${this.currentVariant.value}&section_id=${this.dataset.section}`)
+        const sectionId = this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section;
+        fetch(`${this.dataset.url}?variant=${this.currentVariant.value}&section_id=${sectionId}`)
           .then((response) => {
             return response.text();
           })
           .then((responseText) => {
             const html = new DOMParser().parseFromString(responseText, 'text/html');
-            this.updateQuantityRules(this.dataset.section, html);
+            this.updateQuantityRules(sectionId, html);
             this.setQuantityBoundries();
           })
           .catch((e) => {
@@ -84,7 +85,8 @@ if (!customElements.get('product-info')) {
       }
 
       updateQuantityRules(sectionId, html) {
-        const quantityFormUpdated = html.getElementById(`Quantity-Form-${sectionId}`);
+        const actualSectionId = this.dataset.section;
+        const quantityFormUpdated = html.getElementById(`Quantity-Form-${actualSectionId}`) || html.getElementById(`Quantity-Form-${sectionId}`);
         const selectors = ['.quantity__input', '.quantity__rules', '.quantity__label'];
         for (let selector of selectors) {
           const current = this.quantityForm.querySelector(selector);

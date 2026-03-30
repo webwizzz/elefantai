@@ -1244,31 +1244,22 @@ function getFocusableElements(container) {
 		  if (this.currentVariant.id !== requestedVariantId) return;
   
 		  const html = new DOMParser().parseFromString(responseText, 'text/html');
-		  const destination = document.getElementById(`price-${this.dataset.section}`);
-		  const source = html.getElementById(
-			`price-${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`
-		  );
-		  const skuSource = html.getElementById(
-			`Sku-${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`
-		  );
-		  const skuDestination = document.getElementById(`Sku-${this.dataset.section}`);
-		  const inventorySource = html.getElementById(
-			`Inventory-${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`
-		  );
-		  const inventoryDestination = document.getElementById(`Inventory-${this.dataset.section}`);
+		  const actualSectionId = this.dataset.section;
+		  const destination = document.getElementById(`price-${actualSectionId}`);
+		  const source = html.getElementById(`price-${actualSectionId}`) || html.getElementById(`price-${sectionId}`);
+		  const skuSource = html.getElementById(`Sku-${actualSectionId}`) || html.getElementById(`Sku-${sectionId}`);
+		  const skuDestination = document.getElementById(`Sku-${actualSectionId}`);
+		  const inventorySource = html.getElementById(`Inventory-${actualSectionId}`) || html.getElementById(`Inventory-${sectionId}`);
+		  const inventoryDestination = document.getElementById(`Inventory-${actualSectionId}`);
   
-		  const volumePricingSource = html.getElementById(
-			`Volume-${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`
-		  );
+		  const volumePricingSource = html.getElementById(`Volume-${actualSectionId}`) || html.getElementById(`Volume-${sectionId}`);
   
-		  const pricePerItemDestination = document.getElementById(`Price-Per-Item-${this.dataset.section}`);
-		  const pricePerItemSource = html.getElementById(
-			`Price-Per-Item-${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`
-		  );
+		  const pricePerItemDestination = document.getElementById(`Price-Per-Item-${actualSectionId}`);
+		  const pricePerItemSource = html.getElementById(`Price-Per-Item-${actualSectionId}`) || html.getElementById(`Price-Per-Item-${sectionId}`);
   
-		  const volumePricingDestination = document.getElementById(`Volume-${this.dataset.section}`);
-		  const qtyRules = document.getElementById(`Quantity-Rules-${this.dataset.section}`);
-		  const volumeNote = document.getElementById(`Volume-Note-${this.dataset.section}`);
+		  const volumePricingDestination = document.getElementById(`Volume-${actualSectionId}`);
+		  const qtyRules = document.getElementById(`Quantity-Rules-${actualSectionId}`);
+		  const volumeNote = document.getElementById(`Volume-Note-${actualSectionId}`);
   
 		  if (volumeNote) volumeNote.classList.remove('hidden');
 		  if (volumePricingDestination) volumePricingDestination.classList.remove('hidden');
