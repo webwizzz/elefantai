@@ -388,6 +388,7 @@
         "template--18867160121647__multicolumn-1683045791d5fdb6c1-2",
         "template--18867160121647__multicolumn-1683045791d5fdb6c1-1"
       ],
+      "disabled": true,
       "settings": {
         "layout": "default",
         "heading": "<strong>Our Values</strong>",
@@ -449,7 +450,7 @@
         "text_EnCFWy": {
           "type": "text",
           "settings": {
-            "text": "<p>{{ section.settings.product.vendor }}</p>",
+            "text": "",
             "text_color": "main",
             "text_style": "body",
             "block_position": "sidebar"
@@ -467,6 +468,18 @@
             "additional_text_color": "#666666"
           }
         },
+        "variant_picker_Ld4LXt": {
+          "type": "variant_picker",
+          "disabled": true,
+          "settings": {
+            "picker_type": "button",
+            "label_size": "medium",
+            "enable_size_chart": true,
+            "choose_variant": "Size",
+            "popup_label": "Size Chart",
+            "page": ""
+          }
+        },
         "price_icqcjj": {
           "type": "price",
           "settings": {
@@ -476,15 +489,43 @@
             "price_badge": true
           }
         },
-        "variant_picker_Ld4LXt": {
-          "type": "variant_picker",
+        "inventory_W4BjDm": {
+          "type": "inventory",
           "settings": {
-            "picker_type": "button",
-            "label_size": "medium",
-            "enable_size_chart": true,
-            "choose_variant": "Size",
-            "popup_label": "Size Chart",
-            "page": ""
+            "heading_size": "",
+            "heading_weight": "400",
+            "show_inventory_quantity": true,
+            "inventory_threshold": 10,
+            "show_inventory_low": false,
+            "show_inventory_progress": true,
+            "inventory_threshold_start": 100
+          }
+        },
+        "coundown_bar_ExDa3R": {
+          "type": "coundownBar",
+          "settings": {
+            "coundown_date": "Apr 31, 2024",
+            "coundown_end": "show_zeroes",
+            "coundown_style": "colon",
+            "contdown_label": "Hurry Up! Sale Ends In",
+            "contdown_label_size": "h5",
+            "contdown_label_weight": "600",
+            "contdown_label_text_color": "heading-secondary",
+            "days_label": "Days",
+            "days_background_color": "color-bg-2",
+            "hours_label": "Hours",
+            "hours_background_color": "color-bg-1",
+            "mins_label": "Minutes",
+            "mins_background_color": "color-bg-4",
+            "secs_label": "Seconds",
+            "secs_background_color": "color-bg-3",
+            "coundown_number_color": "#6e2fa8",
+            "coundown_number_size": 32,
+            "coundown_number_size_mb": 36,
+            "coundown_number_weight": "700",
+            "coundown_title_color": "#222222",
+            "coundown_title_size": 16,
+            "coundown_title_weight": "400"
           }
         },
         "buy_buttons_VrTGaw": {
@@ -495,11 +536,12 @@
             "hide_quantity": false,
             "full_width": true,
             "show_availability": true,
-            "block_position": "under_media"
+            "block_position": "sidebar"
           }
         },
         "share_nRNA6b": {
           "type": "share",
+          "disabled": true,
           "settings": {
             "share_label": "Share:",
             "show_linkedin_share": true,
@@ -517,8 +559,10 @@
       "block_order": [
         "text_EnCFWy",
         "title_ByPeAb",
-        "price_icqcjj",
         "variant_picker_Ld4LXt",
+        "price_icqcjj",
+        "inventory_W4BjDm",
+        "coundown_bar_ExDa3R",
         "buy_buttons_VrTGaw",
         "share_nRNA6b"
       ],
@@ -528,17 +572,21 @@
         "heading_size": "h2",
         "heading_color": "heading",
         "text": "",
-        "text_body_size": "text-body--large",
+        "text_body_size": "text-body--medium",
         "text_color": "main",
-        "heading_align": "center",
+        "heading_align": "left",
         "enable_sticky_info": true,
-        "product": "",
+        "product_list": [
+          "dummy-product",
+          "dummy-product-copy",
+          "dummy-product-copy-copy"
+        ],
         "media_size": "large",
-        "global_media_position": "right",
+        "global_media_position": "left",
         "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "gallery_layout": "thumbnail_slider",
-        "media_position": "left",
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail",
+        "media_position": "right",
         "image_zoom": "lightbox",
         "hide_variants": false,
         "enable_video_looping": false,
@@ -566,7 +614,7 @@
         "image_overlay_animation_3": "none",
         "shape_position": "top",
         "shape_type": "none",
-        "shape_color": "#fff",
+        "shape_color": "#ffffff",
         "shape_width": 100,
         "secondary_background_color": "color-bg-1",
         "info_background_color": "color-main-bg",
@@ -574,6 +622,270 @@
         "colors_background_section_gradient": "",
         "padding_top": 74,
         "padding_bottom": 74
+      }
+    },
+    "whyelefantexist_4pFVGt": {
+      "type": "whyelefantexist",
+      "blocks": {
+        "card_jc3V9b": {
+          "type": "card",
+          "settings": {
+            "icon": "shopify://shop_images/Frame_1430103512.svg",
+            "title": "Custom Title",
+            "text": "Custom description text."
+          }
+        },
+        "card_8PGxNk": {
+          "type": "card",
+          "settings": {
+            "icon": "shopify://shop_images/Frame_1430103512-3.svg",
+            "title": "Custom Title",
+            "text": "Custom description text."
+          }
+        },
+        "card_YGyitd": {
+          "type": "card",
+          "settings": {
+            "icon": "shopify://shop_images/Frame_1430103512-2.svg",
+            "title": "Custom Title",
+            "text": "Custom description text."
+          }
+        }
+      },
+      "block_order": [
+        "card_jc3V9b",
+        "card_8PGxNk",
+        "card_YGyitd"
+      ],
+      "name": "Why EleFant Exists",
+      "settings": {
+        "heading": "Why EleFant Exists",
+        "description": "We understand the challenges every parent faces",
+        "button_label": "Learn How it Works",
+        "button_link": "shopify://pages/about-us",
+        "kite_image": "shopify://shop_images/Frame-2.svg",
+        "background_color": "#f5f5f7",
+        "card_bg_color": "#ffffff"
+      }
+    },
+    "what_this_mean_teUf3C": {
+      "type": "what-this-mean",
+      "blocks": {
+        "card_K9PEVH": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/WhatsAppImage2026-03-27at19.17.18.jpg",
+            "theme_color": "#9b76d6",
+            "badge_text": "Real Story",
+            "title": "The Sharma Family",
+            "subtitle": "Bought a ₹3,000 learning tablet",
+            "bottom_text": "After 6 months, returned it and got ₹1,800 back (60%)"
+          }
+        },
+        "card_7TGNkc": {
+          "type": "card",
+          "settings": {
+            "theme_color": "#4b8df2",
+            "badge_text": "Real Story",
+            "title": "The Sharma Family",
+            "subtitle": "Bought a ₹3,000 learning tablet",
+            "bottom_text": "After 6 months, returned it and got ₹1,800 back (60%)"
+          }
+        },
+        "card_aTAH4D": {
+          "type": "card",
+          "settings": {
+            "theme_color": "#ec8eb0",
+            "badge_text": "Real Story",
+            "title": "The Sharma Family",
+            "subtitle": "Bought a ₹3,000 learning tablet",
+            "bottom_text": "After 6 months, returned it and got ₹1,800 back (60%)"
+          }
+        },
+        "card_a8XkPn": {
+          "type": "card",
+          "settings": {
+            "theme_color": "#ebbc38",
+            "badge_text": "Real Story",
+            "title": "The Sharma Family",
+            "subtitle": "Bought a ₹3,000 learning tablet",
+            "bottom_text": "After 6 months, returned it and got ₹1,800 back (60%)"
+          }
+        }
+      },
+      "block_order": [
+        "card_K9PEVH",
+        "card_7TGNkc",
+        "card_aTAH4D",
+        "card_a8XkPn"
+      ],
+      "name": "What This Means",
+      "settings": {
+        "heading": "What This *Means* for You",
+        "subtitle": "See how real families are saving money while giving their kids amazing play experiences",
+        "background_color": "#fafafa",
+        "card_bg_color": "#f5f6fa",
+        "card_border_radius": 20,
+        "heading_size_desktop": 54,
+        "subtitle_size_desktop": 24,
+        "card_title_desktop": 20,
+        "card_desc_desktop": 15,
+        "card_bottom_desktop": 14,
+        "heading_size_mobile": 32,
+        "subtitle_size_mobile": 15,
+        "card_title_mobile": 18,
+        "card_desc_mobile": 14,
+        "card_bottom_mobile": 13
+      }
+    },
+    "shopby_section_TeNxPk": {
+      "type": "shopby-section",
+      "blocks": {
+        "category_card_VTwVU9": {
+          "type": "category_card",
+          "settings": {
+            "overlay_gradient": "linear-gradient(0deg, rgba(204,113,135,0.9) 0%, rgba(204,113,135,0) 100%)",
+            "badge": "0-12 Months",
+            "title": "Newborn & Infant",
+            "desc": "Sensory toys, rattles, and soft blocks for early development",
+            "btn_label": "Explore",
+            "btn_text_color": "#cc7187",
+            "btn_link": ""
+          }
+        },
+        "category_card_XP7TXC": {
+          "type": "category_card",
+          "settings": {
+            "overlay_gradient": "linear-gradient(0deg, rgba(82,143,195,0.9) 0%, rgba(82,143,195,0) 100%)",
+            "badge": "1-2 Years",
+            "title": "Toddler",
+            "desc": "Sensory toys, rattles, and soft blocks for early development",
+            "btn_label": "Explore",
+            "btn_text_color": "#528fc3",
+            "btn_link": ""
+          }
+        },
+        "category_card_kYr8fA": {
+          "type": "category_card",
+          "settings": {
+            "overlay_gradient": "linear-gradient(0deg, rgba(205,152,43,0.9) 0%, rgba(205,152,43,0) 100%)",
+            "badge": "2-4 Years",
+            "title": "Pre-school",
+            "desc": "Sensory toys, rattles, and soft blocks for early development",
+            "btn_label": "Explore",
+            "btn_text_color": "#cd982b",
+            "btn_link": ""
+          }
+        },
+        "category_card_A8aWxT": {
+          "type": "category_card",
+          "settings": {
+            "overlay_gradient": "linear-gradient(0deg, rgba(142,75,98,0.9) 0%, rgba(142,75,98,0) 100%)",
+            "badge": "4-6 Years",
+            "title": "School Age",
+            "desc": "Sensory toys, rattles, and soft blocks for early development",
+            "btn_label": "Explore",
+            "btn_text_color": "#8e4b62",
+            "btn_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_card_VTwVU9",
+        "category_card_XP7TXC",
+        "category_card_kYr8fA",
+        "category_card_A8aWxT"
+      ],
+      "name": "Shop By Age",
+      "settings": {
+        "heading": "Shop by *Age*",
+        "subtitle": "Find the perfect toys for your child's developmental stage",
+        "bg_gradient": "linear-gradient(135deg, rgba(251, 250, 253, 1), rgba(253, 245, 252, 1) 100%)",
+        "main_btn_label": "Browse all Categories",
+        "main_btn_link": "",
+        "heading_size_desktop": 44,
+        "subtitle_size_desktop": 18,
+        "card_title_desktop": 20,
+        "card_desc_desktop": 14,
+        "heading_size_mobile": 32,
+        "subtitle_size_mobile": 15,
+        "card_title_mobile": 18,
+        "card_desc_mobile": 13
+      }
+    },
+    "play_return_4GMAq4": {
+      "type": "play-return",
+      "blocks": {
+        "feature_card_NT6U8J": {
+          "type": "feature_card",
+          "settings": {
+            "icon_bg_color": "#4a90e2",
+            "title": "Order Delivered",
+            "desc": "<p>Once the order is marked as Delivered, the user becomes eligible to initiate a return/sellback.</p>"
+          }
+        },
+        "feature_card_jQUCAb": {
+          "type": "feature_card",
+          "settings": {
+            "icon_bg_color": "#f5b642",
+            "title": "Raise Sellback Request",
+            "desc": "<p>User can raise a request directly from their account.</p>"
+          }
+        },
+        "feature_card_kyy4jn": {
+          "type": "feature_card",
+          "settings": {
+            "icon_bg_color": "#ff6b9e",
+            "title": "Condition Check",
+            "desc": "<p>Our Ops team connects with the user to verify:<br>• Toy condition / damage<br>• Missing parts (if any)<br>• Final eligibility</p>"
+          }
+        },
+        "feature_card_jibyb7": {
+          "type": "feature_card",
+          "settings": {
+            "icon_bg_color": "#8a5a9c",
+            "title": "Cashback Calculation",
+            "desc": "<p>Based on the condition, the final sellback amount is calculated.</p>"
+          }
+        },
+        "feature_card_ewkE4r": {
+          "type": "feature_card",
+          "settings": {
+            "icon_bg_color": "#f37845",
+            "title": "Get Your Money Back",
+            "desc": "<p>User can choose how they want the cashback:<br>• Wallet credit<br>• Direct payout<br>• Membership conversion</p>"
+          }
+        }
+      },
+      "block_order": [
+        "feature_card_NT6U8J",
+        "feature_card_jQUCAb",
+        "feature_card_kyy4jn",
+        "feature_card_jibyb7",
+        "feature_card_ewkE4r"
+      ],
+      "name": "Play Return Earn Back",
+      "settings": {
+        "heading": "Play. Return. *Earn Back.*",
+        "subtitle": "The smart way to buy toys. Play, return when done, and get money back.",
+        "bg_gradient": "linear-gradient(180deg, rgba(235, 170, 68, 1), rgba(228, 124, 56, 1) 100%)",
+        "heading_color": "#000000",
+        "subtitle_color": "#606060",
+        "card_bg_color": "#ffffff",
+        "card_title_color": "#000000",
+        "card_desc_color": "#8c8c8c",
+        "heading_weight": 900,
+        "subtitle_weight": 700,
+        "card_title_weight": 900,
+        "card_desc_weight": 400,
+        "heading_size_desktop": 52,
+        "subtitle_size_desktop": 22,
+        "card_title_desktop": 22,
+        "card_desc_desktop": 18,
+        "heading_size_mobile": 32,
+        "subtitle_size_mobile": 15,
+        "card_title_mobile": 18,
+        "card_desc_mobile": 15
       }
     },
     "7ecf4e46-62f5-40fe-882a-ae2dca0d5343": {
@@ -618,6 +930,7 @@
         "tabs_collection_6TEeMn",
         "tabs_collection_LX7AEG"
       ],
+      "disabled": true,
       "settings": {
         "title": "<strong>Our Favourite Collections</strong>",
         "heading_size": "h2",
@@ -715,6 +1028,7 @@
         "template--15086792638515__51dd9d77-601e-4e0b-9130-4ae1489700ba-text-1",
         "template--15086792638515__51dd9d77-601e-4e0b-9130-4ae1489700ba-button-1"
       ],
+      "disabled": true,
       "settings": {
         "layout_block": "default",
         "image_shape": false,
@@ -781,6 +1095,7 @@
     },
     "featured-collection": {
       "type": "featured-collection",
+      "disabled": true,
       "settings": {
         "collection": "",
         "title": "<strong>Favorites of the Season</strong>",
@@ -904,6 +1219,7 @@
         "template--19016959000879__4ee3638f-2d1f-4acd-b0f0-b47676f91b48-168373027976681f9a-2",
         "cf49b06c-db67-470d-8577-bd046c71d151"
       ],
+      "disabled": true,
       "settings": {
         "heading": "",
         "heading_size": "h2",
@@ -1041,6 +1357,7 @@
         "template--18867160121647__7e1685f9-c480-44a3-979a-db7e2a48b5a9-16832962453a47fd15-5",
         "4c0c01ad-c773-4bc5-9864-c4848e4a603b"
       ],
+      "disabled": true,
       "settings": {
         "title": "",
         "heading_size": "h2",
@@ -1050,7 +1367,7 @@
         "text_color": "main",
         "heading_align": "center",
         "enable_sticky_info": true,
-        "product": "",
+        "product_list": [],
         "media_size": "large",
         "global_media_position": "right",
         "constrain_to_viewport": true,
@@ -1140,6 +1457,7 @@
         "text_4ifhPB",
         "ee2f3116-b97b-4aa4-9864-38ee575c4435"
       ],
+      "disabled": true,
       "settings": {
         "hide_images": false,
         "image_overlay_opacity": 30,
@@ -1196,6 +1514,7 @@
     },
     "a2b68e29-ccb8-4168-b17c-216d4002c5c4": {
       "type": "before-after",
+      "disabled": true,
       "settings": {
         "image_height": 59,
         "heading": "<strong>Find the Perfect Match</strong>",
@@ -1284,6 +1603,7 @@
         "c2faee8c-d368-4449-a8e4-f490d0e6d17a",
         "328bbb4f-0501-41ff-ba26-2ab82f1c0f3b"
       ],
+      "disabled": true,
       "settings": {
         "heading": "<strong>Featured In</strong>",
         "heading_size": "h2",
@@ -1341,6 +1661,7 @@
         "0b9ec222-aea6-4bbf-8d16-7e87c6b41118",
         "ca9feb7f-defe-4dc4-bab3-5877f9f2b295"
       ],
+      "disabled": true,
       "settings": {
         "heading": "<strong>Top Stories</strong>",
         "heading_size": "h2",
@@ -1428,6 +1749,7 @@
         "template--15153389109299__ed3e9758-6040-4e2d-94bc-4f8d27bb94aa-item-1",
         "template--15153389109299__ed3e9758-6040-4e2d-94bc-4f8d27bb94aa-item-2"
       ],
+      "disabled": true,
       "settings": {
         "product": "",
         "image_ratio": "portrait",
@@ -1542,6 +1864,7 @@
         "template--15086792638515__f91e8282-0f30-4a65-8135-93d49e9b7026-testimonial-2",
         "template--15086792638515__f91e8282-0f30-4a65-8135-93d49e9b7026-testimonial-3"
       ],
+      "disabled": true,
       "settings": {
         "heading": "<strong>What They Say for Us</strong>",
         "heading_size": "h2",
@@ -1622,6 +1945,7 @@
         "template--18867160121647__showcase-1683710468ee8b3279-1",
         "template--18867160121647__showcase-1683710468ee8b3279-2"
       ],
+      "disabled": true,
       "settings": {
         "layout": "default",
         "title": "<strong>Loved by Our Community</strong>",
@@ -1775,77 +2099,6 @@
         "padding_top": 150,
         "padding_bottom": 158
       }
-    },
-    "newsletter": {
-      "type": "newsletter",
-      "blocks": {
-        "template--18867160121647__newsletter-16830990270b07a601-0": {
-          "type": "heading",
-          "settings": {
-            "heading": "<strong>Sign Up to the Newsletter</strong>",
-            "heading_size": "h2",
-            "heading_weight": "700",
-            "heading_color": "main"
-          }
-        },
-        "template--18867160121647__newsletter-16830990270b07a601-1": {
-          "type": "paragraph",
-          "settings": {
-            "text": "<p>Be the first to get notified about New Arrivals, Discounts, and Bargain Deals!</p>",
-            "text_style": "body",
-            "text_size": "large",
-            "text_color": "main"
-          }
-        },
-        "template--18867160121647__newsletter-16830990270b07a601-2": {
-          "type": "email_form",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "template--18867160121647__newsletter-16830990270b07a601-0",
-        "template--18867160121647__newsletter-16830990270b07a601-1",
-        "template--18867160121647__newsletter-16830990270b07a601-2"
-      ],
-      "settings": {
-        "show_image": false,
-        "hide_image_mb": false,
-        "column_width": 40,
-        "image_position": "left",
-        "content_alignment": "center",
-        "background_color": "none",
-        "colors_background_section_gradient": "",
-        "full_width": false,
-        "image_overlay_width": 10,
-        "image_overlay_vertical": 5,
-        "image_overlay_horizontal": 20,
-        "image_overlay_width_mobile": 13,
-        "image_overlay_vertical_mobile": 3,
-        "image_overlay_horizontal_mobile": 20,
-        "image_overlay_animation": "ambient",
-        "image_overlay_width_2": 15,
-        "image_overlay_vertical_2": 60,
-        "image_overlay_horizontal_2": 7,
-        "image_overlay_width_2_mobile": 17,
-        "image_overlay_vertical_2_mobile": 88,
-        "image_overlay_horizontal_2_mobile": 7,
-        "image_overlay_animation_2": "ambient",
-        "image_overlay_width_3": 10,
-        "image_overlay_vertical_3": 44,
-        "image_overlay_horizontal_3": 95,
-        "image_overlay_width_3_mobile": 12,
-        "image_overlay_vertical_3_mobile": 20,
-        "image_overlay_horizontal_3_mobile": 94,
-        "image_overlay_animation_3": "ambient",
-        "shape_position": "top",
-        "shape_type": "waves",
-        "shape_color": "#fef7e6",
-        "shape_width": 100,
-        "background_color_main": "color-bg-3",
-        "color_background_main": "",
-        "padding_top": 50,
-        "padding_bottom": 0
-      }
     }
   },
   "order": [
@@ -1856,6 +2109,10 @@
     "c8c83462-d911-445e-9faa-cde5f2f80e9e",
     "multicolumn",
     "featured_product_Y6hDiD",
+    "whyelefantexist_4pFVGt",
+    "what_this_mean_teUf3C",
+    "shopby_section_TeNxPk",
+    "play_return_4GMAq4",
     "7ecf4e46-62f5-40fe-882a-ae2dca0d5343",
     "51dd9d77-601e-4e0b-9130-4ae1489700ba",
     "featured-collection",
@@ -1868,7 +2125,6 @@
     "ed3e9758-6040-4e2d-94bc-4f8d27bb94aa",
     "f91e8282-0f30-4a65-8135-93d49e9b7026",
     "showcase",
-    "fe5c78b5-42e5-44db-96cc-0abb3332ca3f",
-    "newsletter"
+    "fe5c78b5-42e5-44db-96cc-0abb3332ca3f"
   ]
 }

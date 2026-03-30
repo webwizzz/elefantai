@@ -62,7 +62,7 @@
     "promo-popup": {
       "type": "promo-popup",
       "settings": {
-        "enable_promo_popup": true,
+        "enable_promo_popup": false,
         "enable_in_customizer": false,
         "popup_type": "popup_subscribe",
         "popup_heading": "<h2><strong>Welcome to EleFant!</strong></h2><p>Be the first to see New Arrivals, Exclusive Deals & much more.</p>",

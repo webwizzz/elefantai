@@ -9,6 +9,10 @@
   .grid--2-col-tablet-down .price {
     font-size: 1.6rem;
   }
+  .h2.price--on-sale .price-item--regular {
+    font-size: 12px;
+    white-space: nowrap;
+  }
 }
 
 .h2.price {
@@ -16,7 +20,8 @@
 }
 
 .h2.price--on-sale .price-item--regular {
-  font-size: 2.4rem;
+  font-size: 18px;
+  white-space: nowrap;
 }
 
 .h3.price {
@@ -24,7 +29,7 @@
 }
 
 .h3.price--on-sale .price-item--regular {
-  font-size: 2.4rem;
+  font-size: 12px;
 }
 
 .h4.price {
@@ -183,7 +188,7 @@
     font-size: 3.2rem;
   }
   .h3.price--on-sale .price-item--regular {
-    font-size: 2.4rem;
+    font-size: 16px;
   }
   .h4.price {
     font-size: 2.4rem;
