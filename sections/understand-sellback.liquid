@@ -1,0 +1,674 @@
+{%- style -%}
+  #US-{{ section.id }} {
+    position: relative;
+    padding: 80px 20px 80px 20px;
+    background: {{ section.settings.bg_color }};
+    {% if section.settings.bg_image != blank %}
+      background-image: url('{{ section.settings.bg_image | image_url: width: 2400 }}');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    {% endif %}
+    font-family: inherit;
+    text-align: center;
+    overflow: hidden; /* Contains floating elements */
+  }
+  
+  /* Background Decorative Elements */
+  .us-floating-icon {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    transform: translate(-50%, -50%); /* Centered properly around coordinates */
+  }
+  .us-floating-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  @media (max-width: 768px) {
+    .us-floating-icon {
+      opacity: 0.3; /* Less opaque on tiny screens to avoid text clash */
+    }
+  }
+
+  /* Core UI Wrappers */
+  .us-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .us-header {
+    margin-bottom: 55px;
+  }
+  
+  .us-title {
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: {{ section.settings.heading_weight }};
+    color: {{ section.settings.title_color }};
+    margin: 0 0 16px 0;
+    letter-spacing: 0.5px;
+  }
+  .us-title .highlight {
+    color: {{ section.settings.title_highlight_color }};
+  }
+  
+  .us-subtitle {
+    font-size: {{ section.settings.subtitle_size }}px;
+    font-weight: {{ section.settings.subtitle_weight }};
+    color: {{ section.settings.subtitle_color }};
+    margin: 0;
+  }
+
+  /* Top Cards Row */
+  .us-cards-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+  @media (max-width: 768px) {
+    .us-cards-row {
+      flex-direction: column;
+      gap: 24px;
+    }
+  }
+
+  .us-feature-card {
+    flex: 1;
+    width: 100%;
+    max-width: {{ section.settings.top_cards_width }}px;
+    min-height: {{ section.settings.top_cards_height }}px;
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.08); /* elevated drop shadow like image */
+    padding: 35px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 3px solid #fff; 
+    transition: transform 0.3s ease;
+  }
+  .us-feature-card:hover { 
+    transform: translateY(-5px); 
+  }
+  
+  .us-card-icon {
+    width: 90px;
+    height: 90px;
+    border-radius: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+  }
+  .us-card-icon img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+  }
+  .us-card-icon svg {
+    width: 50px;
+    height: 50px;
+    stroke: #333;
+    fill: none;
+    stroke-width: 1.5;
+  }
+
+  /* Specific typography for grid cards */
+  .us-card-label {
+    font-size: {{ section.settings.tc_title_size }}px;
+    font-weight: {{ section.settings.tc_title_weight }};
+    color: {{ section.settings.tc_title_color }};
+    margin: 0 0 12px 0;
+  }
+  .us-card-price {
+    font-size: {{ section.settings.tc_price_size }}px;
+    font-weight: {{ section.settings.tc_price_weight }};
+    color: {{ section.settings.tc_price_color }};
+    margin: 0 0 10px 0;
+    line-height: 1;
+  }
+  .us-card-subtext {
+    font-size: {{ section.settings.tc_subtext_size }}px;
+    font-weight: {{ section.settings.tc_subtext_weight }};
+    color: {{ section.settings.tc_subtext_color }};
+    margin: 0;
+  }
+
+  /* Center Directional Arrow */
+  .us-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: {{ section.settings.arrow_color }};
+  }
+  .us-arrow svg {
+    width: 50px;
+    height: 50px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  @media (max-width: 768px) {
+    .us-arrow { 
+      transform: rotate(90deg); 
+    }
+  }
+
+  /* Bottom Effective Cost Card */
+  .us-bottom-card {
+    background: {{ section.settings.card_3_bg }};
+    border-radius: 24px;
+    border: 4px solid #fff;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    max-width: {{ section.settings.bottom_card_width }}px;
+    min-height: {{ section.settings.bottom_card_height }}px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px 40px 45px 40px;
+    position: relative;
+    color: {{ section.settings.card_3_text_color }};
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  .us-bottom-card:hover {
+    transform: scale(1.02);
+  }
+
+  .us-bc-label {
+    font-size: {{ section.settings.bc_title_size }}px;
+    font-weight: {{ section.settings.bc_title_weight }};
+    margin: 0 0 16px 0;
+    color: inherit;
+  }
+  /* Bolding the text connects to the highlight color setting dynamically! */
+  .us-bc-label strong, 
+  .us-bc-label b {
+    color: {{ section.settings.card_3_highlight_color }};
+    font-weight: bold;
+  }
+
+  .us-bc-prices {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 16px;
+  }
+  .us-bc-strikethrough {
+    font-size: calc({{ section.settings.bc_price_size }}px * 0.45);
+    text-decoration: line-through;
+    opacity: 0.8;
+    font-weight: 500;
+    color: inherit;
+  }
+  .us-bc-mainprice {
+    font-size: {{ section.settings.bc_price_size }}px;
+    font-weight: {{ section.settings.bc_price_weight }};
+    line-height: 1;
+    color: inherit;
+  }
+  
+  /* The intersecting bottom pill */
+  .us-bc-pill {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    background: {{ section.settings.pill_bg }};
+    color: {{ section.settings.pill_text_color }};
+    border-radius: 50px;
+    padding: 12px 30px;
+    font-size: {{ section.settings.bc_pill_size }}px;
+    font-weight: {{ section.settings.bc_pill_weight }};
+    white-space: nowrap;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+  
+  /* Auto-scaling big text down explicitly on mobile */
+  @media (max-width: 768px) {
+    .us-title { font-size: calc({{ section.settings.heading_size }}px * 0.75); }
+    .us-card-price { font-size: calc({{ section.settings.tc_price_size }}px * 0.8); }
+    .us-bc-mainprice { font-size: calc({{ section.settings.bc_price_size }}px * 0.8); }
+    .us-bc-strikethrough { font-size: calc({{ section.settings.bc_price_size }}px * 0.35); }
+  }
+
+  @media (max-width: 480px) {
+    .us-bc-prices { flex-direction: column; align-items: center; gap: 5px; margin-bottom: 20px; }
+    .us-bc-pill { padding: 10px 20px; font-size: calc({{ section.settings.bc_pill_size }}px * 0.85); }
+  }
+{%- endstyle -%}
+
+<div id="US-{{ section.id }}">
+  
+  {%- comment -%} Dynamically scattered background icons from Customize blocks {%- endcomment -%}
+  {% for block in section.blocks %}
+    {% if block.type == "icon" and block.settings.image != blank %}
+      <div class="us-floating-icon" style="top: {{ block.settings.top_pos }}%; left: {{ block.settings.left_pos }}%; width: {{ block.settings.size }}px; height: {{ block.settings.size }}px;" {{ block.shopify_attributes }}>
+        <img src="{{ block.settings.image | image_url: width: 400 }}" loading="lazy" width="{{ block.settings.image.width }}" height="{{ block.settings.image.height }}" alt="Decorative Icon">
+      </div>
+    {% endif %}
+  {% endfor %}
+
+  <div class="us-content">
+    
+    <div class="us-header">
+      <h2 class="us-title">
+        {{ section.settings.heading_1 }} 
+        <span class="highlight">{{ section.settings.highlight_text }}</span> 
+        {{ section.settings.heading_2 }}
+      </h2>
+      <p class="us-subtitle">{{ section.settings.subtitle }}</p>
+    </div>
+
+    <div class="us-cards-row">
+      
+      <!-- Card 1 -->
+      <div class="us-feature-card" style="background: {{ section.settings.card_1_bg }};">
+        <div class="us-card-icon" style="background: {{ section.settings.card_1_icon_bg }};">
+          {% if section.settings.card_1_icon != blank %}
+            <img src="{{ section.settings.card_1_icon | image_url: width: 200 }}" alt="" width="{{ section.settings.card_1_icon.width }}" height="{{ section.settings.card_1_icon.height }}" loading="lazy">
+          {% else %}
+             <svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          {% endif %}
+        </div>
+        <h3 class="us-card-label">{{ section.settings.card_1_title }}</h3>
+        <p class="us-card-price">{{ section.settings.card_1_price }}</p>
+        <p class="us-card-subtext">{{ section.settings.card_1_subtext }}</p>
+      </div>
+
+      <!-- Arrow -->
+      <div class="us-arrow">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="us-feature-card" style="background: {{ section.settings.card_2_bg }};">
+        <div class="us-card-icon" style="background: {{ section.settings.card_2_icon_bg }};">
+          {% if section.settings.card_2_icon != blank %}
+            <img src="{{ section.settings.card_2_icon | image_url: width: 200 }}" alt="" width="{{ section.settings.card_2_icon.width }}" height="{{ section.settings.card_2_icon.height }}" loading="lazy">
+          {% else %}
+             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+          {% endif %}
+        </div>
+        <h3 class="us-card-label">{{ section.settings.card_2_title }}</h3>
+        <p class="us-card-price">{{ section.settings.card_2_price }}</p>
+        <p class="us-card-subtext">{{ section.settings.card_2_subtext }}</p>
+      </div>
+
+    </div>
+
+    <!-- Bottom Wide Card -->
+    <div class="us-bottom-card">
+      <p class="us-bc-label">{{ section.settings.card_3_title }}</p>
+      
+      <div class="us-bc-prices">
+        {% if section.settings.card_3_strikethrough != blank %}
+          <div class="us-bc-strikethrough">{{ section.settings.card_3_strikethrough }}</div>
+        {% endif %}
+        <div class="us-bc-mainprice">{{ section.settings.card_3_price }}</div>
+      </div>
+
+      {% if section.settings.pill_text != blank %}
+        <div class="us-bc-pill">
+          {{ section.settings.pill_text }}
+        </div>
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Understand Sellback Value",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Overall Section Theme"
+    },
+    {
+      "type": "color_background",
+      "id": "bg_color",
+      "label": "Overall Background Gradient/Color",
+      "default": "linear-gradient(180deg, #f2f7ff 0%, #a6cbf3 100%)"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Overall Background Image (Optional override)"
+    },
+    {
+      "type": "header",
+      "content": "Headings"
+    },
+    {
+      "type": "text",
+      "id": "heading_1",
+      "label": "Heading Part 1",
+      "default": "Understanding "
+    },
+    {
+      "type": "text",
+      "id": "highlight_text",
+      "label": "Highlighted Phrase",
+      "default": "Sellback"
+    },
+    {
+      "type": "text",
+      "id": "heading_2",
+      "label": "Heading Part 2",
+      "default": " Value"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Heading Text Color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "title_highlight_color",
+      "label": "Highlight Text Color",
+      "default": "#8A67A8"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "See how much you actually save with EleFant's buyback guarantee"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle Color",
+      "default": "#555555"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Center Arrow Color",
+      "default": "#4C9FEF"
+    },
+    {
+      "type": "header",
+      "content": "Card Sizing"
+    },
+    {
+      "type": "range",
+      "id": "top_cards_width",
+      "min": 250,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "label": "Top Cards Max Width",
+      "default": 330
+    },
+    {
+      "type": "range",
+      "id": "top_cards_height",
+      "min": 200,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "label": "Top Cards Min Height",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "bottom_card_width",
+      "min": 300,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "label": "Bottom Card Max Width",
+      "default": 480
+    },
+    {
+      "type": "range",
+      "id": "bottom_card_height",
+      "min": 150,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "label": "Bottom Card Min Height",
+      "default": 220
+    },
+    {
+      "type": "header",
+      "content": "Typography: Headings"
+    },
+    { "type": "range", "id": "heading_size", "min": 20, "max": 80, "step": 1, "unit": "px", "label": "Heading Font Size", "default": 40 },
+    { "type": "select", "id": "heading_weight", "label": "Heading Font Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" }, { "value": "800", "label": "Extra Bold" } ], "default": "700" },
+    { "type": "range", "id": "subtitle_size", "min": 12, "max": 30, "step": 1, "unit": "px", "label": "Subtitle Font Size", "default": 16 },
+    { "type": "select", "id": "subtitle_weight", "label": "Subtitle Font Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" } ], "default": "500" },
+
+    {
+      "type": "header",
+      "content": "Typography: Top Cards"
+    },
+    { "type": "color", "id": "tc_title_color", "label": "Top Cards Title Color", "default": "#111111" },
+    { "type": "range", "id": "tc_title_size", "min": 12, "max": 40, "step": 1, "unit": "px", "label": "Top Cards Title Font Size", "default": 18 },
+    { "type": "select", "id": "tc_title_weight", "label": "Top Cards Title Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" }, { "value": "800", "label": "Extra Bold" } ], "default": "700" },
+
+    { "type": "color", "id": "tc_price_color", "label": "Top Cards Price Color", "default": "#111111" },
+    { "type": "range", "id": "tc_price_size", "min": 20, "max": 80, "step": 1, "unit": "px", "label": "Top Cards Price Size", "default": 38 },
+    { "type": "select", "id": "tc_price_weight", "label": "Top Cards Price Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" }, { "value": "800", "label": "Extra Bold" } ], "default": "800" },
+
+    { "type": "color", "id": "tc_subtext_color", "label": "Top Cards Subtext Color", "default": "#888888" },
+    { "type": "range", "id": "tc_subtext_size", "min": 10, "max": 30, "step": 1, "unit": "px", "label": "Top Cards Subtext Size", "default": 13 },
+    { "type": "select", "id": "tc_subtext_weight", "label": "Top Cards Subtext Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "Semi-Bold" } ], "default": "500" },
+
+    {
+      "type": "header",
+      "content": "Typography: Bottom Card"
+    },
+    { "type": "range", "id": "bc_title_size", "min": 12, "max": 40, "step": 1, "unit": "px", "label": "Bottom Title Size", "default": 16 },
+    { "type": "select", "id": "bc_title_weight", "label": "Bottom Title Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" } ], "default": "600" },
+
+    { "type": "range", "id": "bc_price_size", "min": 20, "max": 100, "step": 1, "unit": "px", "label": "Bottom Main Price Size", "default": 50 },
+    { "type": "select", "id": "bc_price_weight", "label": "Bottom Main Price Weight", "options": [ { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" }, { "value": "800", "label": "Extra Bold" } ], "default": "800" },
+    
+    { "type": "range", "id": "bc_pill_size", "min": 10, "max": 30, "step": 1, "unit": "px", "label": "Bottom Pill Size", "default": 15 },
+    { "type": "select", "id": "bc_pill_weight", "label": "Bottom Pill Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" } ], "default": "700" },
+    {
+      "type": "header",
+      "content": "Left Card (Buy Setup)"
+    },
+    {
+      "type": "color",
+      "id": "card_1_bg",
+      "label": "Card Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_1_icon",
+      "label": "Card Icon Image (PNG/SVG)"
+    },
+    {
+      "type": "color",
+      "id": "card_1_icon_bg",
+      "label": "Icon Wrapper Background",
+      "default": "#FFF3D0"
+    },
+    {
+      "type": "text",
+      "id": "card_1_title",
+      "label": "Title",
+      "default": "You Buy Toys"
+    },
+    {
+      "type": "text",
+      "id": "card_1_price",
+      "label": "Price Detail",
+      "default": "₹10,000"
+    },
+    {
+      "type": "text",
+      "id": "card_1_subtext",
+      "label": "Subtext",
+      "default": "Total Purchase"
+    },
+    {
+      "type": "header",
+      "content": "Right Card (Return Setup)"
+    },
+    {
+      "type": "color",
+      "id": "card_2_bg",
+      "label": "Card Background",
+      "default": "#fffafa"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_2_icon",
+      "label": "Card Icon Image (PNG/SVG)"
+    },
+    {
+      "type": "color",
+      "id": "card_2_icon_bg",
+      "label": "Icon Wrapper Background",
+      "default": "#EAD3FD"
+    },
+    {
+      "type": "text",
+      "id": "card_2_title",
+      "label": "Title",
+      "default": "You Get Back"
+    },
+    {
+      "type": "text",
+      "id": "card_2_price",
+      "label": "Price Detail",
+      "default": "₹6,000"
+    },
+    {
+      "type": "text",
+      "id": "card_2_subtext",
+      "label": "Subtext",
+      "default": "Sellback Value (60%)"
+    },
+    {
+      "type": "header",
+      "content": "Bottom Checkout Card"
+    },
+    {
+      "type": "color_background",
+      "id": "card_3_bg",
+      "label": "Card Background/Gradient",
+      "default": "linear-gradient(135deg, #EF8AB6 0%, #C472DB 100%)"
+    },
+    {
+      "type": "color",
+      "id": "card_3_text_color",
+      "label": "Card Text Base Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "card_3_title",
+      "label": "Title Text",
+      "default": "Your <strong>Effective</strong> Cost",
+      "info": "Bold text maps to the colored Highlight setting below."
+    },
+    {
+      "type": "color",
+      "id": "card_3_highlight_color",
+      "label": "Title BOLD Highlight Color",
+      "default": "#FFCE4A"
+    },
+    {
+      "type": "text",
+      "id": "card_3_strikethrough",
+      "label": "Original Strikethrough Price",
+      "default": "₹10,000"
+    },
+    {
+      "type": "text",
+      "id": "card_3_price",
+      "label": "Final Price",
+      "default": "₹4,000"
+    },
+    {
+      "type": "text",
+      "id": "pill_text",
+      "label": "Intersecting Pill Text",
+      "default": "You Save 60% of Original Cost!"
+    },
+    {
+      "type": "color",
+      "id": "pill_bg",
+      "label": "Intersecting Pill Background",
+      "default": "#EFC44B"
+    },
+    {
+      "type": "color",
+      "id": "pill_text_color",
+      "label": "Intersecting Pill Text Color",
+      "default": "#111111"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "icon",
+      "name": "Floating Flower/Icon",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Upload Decorative Image"
+        },
+        {
+          "type": "range",
+          "id": "top_pos",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Vertical Target (Top to Bottom)",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "left_pos",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Horizontal Target (Left to Right)",
+          "default": 15
+        },
+        {
+          "type": "range",
+          "id": "size",
+          "min": 20,
+          "max": 300,
+          "step": 5,
+          "unit": "px",
+          "label": "Icon Scaling Box Size",
+          "default": 80
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Understand Sellback Value",
+      "category": "Call To Action",
+      "blocks": [
+        { "type": "icon", "settings": { "top_pos": 25, "left_pos": 10, "size": 90 } },
+        { "type": "icon", "settings": { "top_pos": 15, "left_pos": 90, "size": 80 } },
+        { "type": "icon", "settings": { "top_pos": 75, "left_pos": 85, "size": 75 } },
+        { "type": "icon", "settings": { "top_pos": 75, "left_pos": 15, "size": 60 } }
+      ]
+    }
+  ]
+}
+{% endschema %}

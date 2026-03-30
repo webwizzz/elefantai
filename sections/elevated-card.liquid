@@ -1,0 +1,337 @@
+{%- style -%}
+  #EC-{{ section.id }} {
+    background-color: {{ section.settings.section_bg_color }};
+    padding: 80px 20px;
+    display: flex;
+    justify-content: center;
+    font-family: inherit;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Decorative background image (dotted line) */
+  .ec-section-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    min-width: 1200px;
+    z-index: 1;
+    pointer-events: none;
+    opacity: {{ section.settings.section_bg_opacity | divided_by: 100.0 }};
+  }
+
+  .ec-card {
+    background-color: {{ section.settings.card_bg_color }};
+    {% if section.settings.card_bg_image != blank %}
+      background-image: url('{{ section.settings.card_bg_image | image_url: width: 1600 }}');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    {% endif %}
+    border-radius: {{ section.settings.card_radius }}px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.06); 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    max-width: {{ section.settings.card_width }}px;
+    min-height: {{ section.settings.card_height }}px;
+    padding: {{ section.settings.card_padding }}px 40px;
+    position: relative;
+    z-index: 2;
+    {% if section.settings.show_white_border %}
+    border: 4px solid #fff; 
+    {% endif %}
+  }
+
+  @media (max-width: 768px) {
+    .ec-card { 
+      padding: 40px 20px; 
+      min-height: auto;
+    }
+    #EC-{{ section.id }} { 
+      padding: 40px 15px; 
+    }
+  }
+
+  /* Typography Dynamic Binding */
+  .ec-title {
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: {{ section.settings.heading_weight }};
+    color: {{ section.settings.title_color }};
+    margin: 0 0 24px 0;
+    line-height: 1.3;
+    max-width: 900px;
+  }
+  .ec-title strong, 
+  .ec-title b {
+    color: {{ section.settings.highlight_color }};
+    font-weight: inherit; 
+  }
+
+  .ec-desc {
+    font-size: {{ section.settings.subtitle_size }}px;
+    font-weight: {{ section.settings.subtitle_weight }};
+    color: {{ section.settings.desc_color }};
+    line-height: 1.6;
+    margin: 0 0 40px 0;
+    max-width: 800px;
+  }
+
+  .ec-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .ec-btn {
+    display: inline-block;
+    padding: 14px 34px;
+    border-radius: 50px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .ec-btn-primary {
+    background: {{ section.settings.btn_1_bg }};
+    color: {{ section.settings.btn_1_text }};
+    border: 2px solid {{ section.settings.btn_1_bg }};
+  }
+  .ec-btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  }
+
+  .ec-btn-secondary {
+    background: transparent;
+    color: {{ section.settings.btn_2_text }};
+    border: 2px solid {{ section.settings.btn_2_text }};
+  }
+  .ec-btn-secondary:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-3px);
+  }
+
+  /* Auto-scaling big text down explicitly on mobile */
+  @media (max-width: 900px) {
+    .ec-title { font-size: calc({{ section.settings.heading_size }}px * 0.7); }
+    .ec-desc { font-size: calc({{ section.settings.subtitle_size }}px * 0.85); }
+  }
+  @media (max-width: 480px) {
+    .ec-title { font-size: calc({{ section.settings.heading_size }}px * 0.55); }
+  }
+{%- endstyle -%}
+
+<div id="EC-{{ section.id }}">
+  
+  {% if section.settings.section_bg_image != blank %}
+    <img src="{{ section.settings.section_bg_image | image_url: width: 2400 }}" alt="" class="ec-section-bg" loading="lazy" width="{{ section.settings.section_bg_image.width }}" height="{{ section.settings.section_bg_image.height }}">
+  {% endif %}
+
+  <div class="ec-card">
+    <h2 class="ec-title">{{ section.settings.heading }}</h2>
+    <p class="ec-desc">{{ section.settings.description }}</p>
+    
+    <div class="ec-buttons">
+      {% if section.settings.button_label_1 != blank %}
+        <a {% if section.settings.button_link_1 == blank %}role="link" aria-disabled="true"{% else %}href="{{ section.settings.button_link_1 }}"{% endif %} class="ec-btn ec-btn-primary">
+          {{ section.settings.button_label_1 }}
+        </a>
+      {% endif %}
+
+      {% if section.settings.button_label_2 != blank %}
+        <a {% if section.settings.button_link_2 == blank %}role="link" aria-disabled="true"{% else %}href="{{ section.settings.button_link_2 }}"{% endif %} class="ec-btn ec-btn-secondary">
+          {{ section.settings.button_label_2 }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "Elevated Unified Card",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Outer Section Layout"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Outer Section Background Color",
+      "default": "#f6f5fb"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_bg_image",
+      "label": "Outer Background Decor Image",
+      "info": "E.g. dotted lines crossing behind the card."
+    },
+    {
+      "type": "range",
+      "id": "section_bg_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Outer Decor Image Opacity",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Card Styling & Sizing"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card Background Color",
+      "default": "#71507C"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_bg_image",
+      "label": "Card Background Image",
+      "info": "Overrides card background color if provided."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_white_border",
+      "label": "Show Inner White Border Framing",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "card_width",
+      "min": 600,
+      "max": 1400,
+      "step": 20,
+      "unit": "px",
+      "label": "Card Maximum Width",
+      "default": 1100
+    },
+    {
+      "type": "range",
+      "id": "card_height",
+      "min": 200,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "label": "Card Minimum Height",
+      "default": 480
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "min": 20,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "label": "Card Inner Padding (Top/Bottom)",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Card Corner Radius",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Typography Control"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Smart parents <strong>save an average of ₹15,000 annually</strong> by using EleFant Wallet credit!",
+      "info": "Making text Bold will apply the Highlight Color."
+    },
+    { "type": "color", "id": "title_color", "label": "Heading Text Color", "default": "#ffffff" },
+    { "type": "color", "id": "highlight_color", "label": "Heading Highlight Color (for Bold text)", "default": "#FDC64A" },
+    { "type": "range", "id": "heading_size", "min": 20, "max": 80, "step": 1, "unit": "px", "label": "Heading Font Size", "default": 45 },
+    { "type": "select", "id": "heading_weight", "label": "Heading Font Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" }, { "value": "800", "label": "Extra Bold" } ], "default": "700" },
+    
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "The better the condition of the toy when you return it, the higher the buyback value you receive!"
+    },
+    { "type": "color", "id": "desc_color", "label": "Description Text Color", "default": "#ffffff" },
+    { "type": "range", "id": "subtitle_size", "min": 12, "max": 30, "step": 1, "unit": "px", "label": "Subtitle Font Size", "default": 17 },
+    { "type": "select", "id": "subtitle_weight", "label": "Subtitle Font Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" } ], "default": "500" },
+
+    {
+      "type": "header",
+      "content": "Primary Button (Solid)"
+    },
+    {
+      "type": "text",
+      "id": "button_label_1",
+      "label": "Button Label",
+      "default": "Start Shopping"
+    },
+    {
+      "type": "url",
+      "id": "button_link_1",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "btn_1_bg",
+      "label": "Button Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "btn_1_text",
+      "label": "Button Text Color",
+      "default": "#71507C"
+    },
+    {
+      "type": "header",
+      "content": "Secondary Button (Outlined)"
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Button Label",
+      "default": "Learn How it Works"
+    },
+    {
+      "type": "url",
+      "id": "button_link_2",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "btn_2_text",
+      "label": "Button Highlight/Outline Color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Elevated Unified Card",
+      "category": "Call To Action"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,358 @@
+{%- style -%}
+  #Solves-{{ section.id }} {
+    position: relative;
+    padding: 100px 20px 120px 20px;
+    background-color: {{ section.settings.bg_color }};
+    font-family: inherit;
+    text-align: center;
+    overflow: hidden; 
+  }
+
+  /* Decorative Background Blocks */
+  .slv-floating-item {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+  }
+  .slv-floating-item img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain;
+  }
+
+  /* Giant Corner Character Overlap */
+  .slv-character {
+    position: absolute;
+    bottom: 0;
+    right: 5%;
+    width: {{ section.settings.character_size }}px;
+    z-index: 3;
+    pointer-events: none;
+  }
+  .slv-character img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  @media (max-width: 900px) {
+    .slv-character { 
+      width: 160px; 
+      right: -20px; 
+      opacity: 0.6; /* reduce opacity to stop text collision */
+    }
+  }
+
+  /* Header Structure */
+  .slv-header {
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 2;
+  }
+  .slv-title {
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: {{ section.settings.heading_weight }};
+    color: {{ section.settings.title_color }};
+    margin: 0 0 16px 0;
+    line-height: 1.25;
+  }
+  .slv-title strong, 
+  .slv-title b {
+    color: {{ section.settings.highlight_color }};
+    font-weight: inherit;
+  }
+  .slv-subtitle {
+    font-size: {{ section.settings.subtitle_size }}px;
+    font-weight: {{ section.settings.subtitle_weight }};
+    color: {{ section.settings.subtitle_color }};
+    margin: 0;
+  }
+  .slv-squiggle {
+    display: inline-block;
+    margin-top: 15px;
+    width: 140px;
+  }
+
+  /* Main Container Rows */
+  .slv-row {
+    display: flex;
+    max-width: {{ section.settings.row_max_width }}px;
+    margin: 0 auto 60px auto;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+  {% if section.settings.flip_layout %}
+  .slv-row { flex-direction: row-reverse; }
+  {% endif %}
+  @media (max-width: 900px) {
+    .slv-row, .slv-row.slv-row-reverse { 
+      flex-direction: column !important; 
+      gap: 40px; 
+    }
+  }
+
+  /* Left Heavy Image */
+  .slv-image-col {
+    flex: 1;
+    width: 100%;
+  }
+  .slv-hero-img-box {
+    width: 100%;
+    border-radius: {{ section.settings.image_radius }}px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.12); /* Deep shadow */
+    background: #fff;
+    {% if section.settings.show_white_border %}
+    border: 5px solid #fff; 
+    {% endif %}
+  }
+  .slv-hero-img-box img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 4/3; /* Enforce shape */
+  }
+
+  /* Right Features List */
+  .slv-features-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    text-align: left;
+  }
+  .slv-list-item {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .slv-icon-box {
+    flex-shrink: 0;
+    width: 70px;
+    height: 70px;
+    background: {{ section.settings.icon_bg }};
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .slv-icon-box svg {
+    width: 34px;
+    height: 34px;
+    stroke: {{ section.settings.icon_check_color }};
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+  }
+  
+  .slv-item-text {
+    font-size: {{ section.settings.list_font_size }}px;
+    font-weight: {{ section.settings.list_font_weight }};
+    color: {{ section.settings.list_text_color }};
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* Bottom Button */
+  .slv-footer {
+    position: relative;
+    z-index: 2;
+    margin-top: 10px;
+  }
+  .slv-btn {
+    display: inline-block;
+    background: {{ section.settings.btn_bg }};
+    color: {{ section.settings.btn_text }};
+    font-size: {{ section.settings.btn_font_size }}px;
+    font-weight: {{ section.settings.btn_font_weight }};
+    padding: 18px 45px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    transition: all 0.3s ease;
+  }
+  .slv-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  }
+
+  /* Typography Auto Scaling */
+  @media (max-width: 768px) {
+    .slv-title { font-size: calc({{ section.settings.heading_size }}px * 0.75); }
+    .slv-subtitle { font-size: calc({{ section.settings.subtitle_size }}px * 0.9); }
+    .slv-item-text { font-size: calc({{ section.settings.list_font_size }}px * 0.9); }
+    .slv-btn { font-size: calc({{ section.settings.btn_font_size }}px * 0.9); }
+    .slv-icon-box { width: 60px; height: 60px; border-radius: 16px; }
+    .slv-icon-box svg { width: 28px; height: 28px; }
+    #Solves-{{ section.id }} { padding: 60px 15px 80px 15px; }
+  }
+{%- endstyle -%}
+
+<div id="Solves-{{ section.id }}">
+  
+  {%- comment -%} Scattered Background Decoration Elements {%- endcomment -%}
+  {% for block in section.blocks %}
+    {% if block.type == "decoration" and block.settings.image != blank %}
+      <div class="slv-floating-item" style="top: {{ block.settings.top_pos }}%; left: {{ block.settings.left_pos }}%; width: {{ block.settings.size }}px; height: {{ block.settings.size }}px;" {{ block.shopify_attributes }}>
+        <img src="{{ block.settings.image | image_url: width: 300 }}" loading="lazy" width="{{ block.settings.image.width }}" height="{{ block.settings.image.height }}" alt="">
+      </div>
+    {% endif %}
+  {% endfor %}
+
+  {%- comment -%} Corner Overlay Character {%- endcomment -%}
+  {% if section.settings.corner_character != blank %}
+    <div class="slv-character">
+      <img src="{{ section.settings.corner_character | image_url: width: 600 }}" loading="lazy" width="{{ section.settings.corner_character.width }}" height="{{ section.settings.corner_character.height }}" alt="Friendly Box Decor">
+    </div>
+  {% endif %}
+
+  <div class="slv-header">
+    <h2 class="slv-title">{{ section.settings.heading }}</h2>
+    <p class="slv-subtitle">{{ section.settings.subtitle }}</p>
+    {% if section.settings.center_squiggle != blank %}
+      <img src="{{ section.settings.center_squiggle | image_url: width: 300 }}" alt="" class="slv-squiggle" loading="lazy">
+    {% endif %}
+  </div>
+
+  <div class="slv-row">
+    
+    <div class="slv-image-col">
+      <div class="slv-hero-img-box">
+        {% if section.settings.main_image != blank %}
+          <img src="{{ section.settings.main_image | image_url: width: 1200 }}" loading="lazy" width="{{ section.settings.main_image.width }}" height="{{ section.settings.main_image.height }}" alt="">
+        {% else %}
+           {{ 'hero-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="slv-features-col">
+      {% for block in section.blocks %}
+        {% if block.type == "feature" %}
+          <div class="slv-list-item" {{ block.shopify_attributes }}>
+            <div class="slv-icon-box">
+               <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <p class="slv-item-text">{{ block.settings.text }}</p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+  </div>
+
+  <div class="slv-footer">
+    {% if section.settings.btn_label != blank %}
+      <a {% if section.settings.btn_link == blank %}role="link" aria-disabled="true"{% else %}href="{{ section.settings.btn_link }}"{% endif %} class="slv-btn">
+        {{ section.settings.btn_label }}
+      </a>
+    {% endif %}
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "Features Solves Layout",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Overall Section Theme"
+    },
+    { "type": "color", "id": "bg_color", "label": "Section Background Color", "default": "#ffffff" },
+    { "type": "range", "id": "row_max_width", "min": 800, "max": 1600, "step": 50, "unit": "px", "label": "Center Container Width", "default": 1100 },
+    { "type": "checkbox", "id": "flip_layout", "label": "Reverse Layout (Image on Right)", "default": false },
+    {
+      "type": "image_picker", "id": "corner_character", "label": "Bottom Corner Character Overlay"
+    },
+    { "type": "range", "id": "character_size", "min": 100, "max": 600, "step": 10, "unit": "px", "label": "Corner Character Width", "default": 280 },
+    
+    {
+      "type": "header",
+      "content": "Typography: Heading Setup"
+    },
+    {
+      "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "EleFant <strong>Solves</strong> All of This!", "info": "Making text Bold will apply the Highlight Color."
+    },
+    { "type": "color", "id": "title_color", "label": "Heading Base Color", "default": "#111111" },
+    { "type": "color", "id": "highlight_color", "label": "Heading BOLD Highlight Color", "default": "#8A67A8" },
+    { "type": "range", "id": "heading_size", "min": 20, "max": 80, "step": 1, "unit": "px", "label": "Heading Font Size", "default": 45 },
+    { "type": "select", "id": "heading_weight", "label": "Heading Font Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" }, { "value": "800", "label": "Extra Bold" } ], "default": "700" },
+
+    {
+      "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "A circular toy economy that works for your family and your wallet"
+    },
+    { "type": "color", "id": "subtitle_color", "label": "Subtitle Color", "default": "#555555" },
+    { "type": "range", "id": "subtitle_size", "min": 12, "max": 30, "step": 1, "unit": "px", "label": "Subtitle Font Size", "default": 18 },
+    { "type": "select", "id": "subtitle_weight", "label": "Subtitle Font Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" } ], "default": "500" },
+    { "type": "image_picker", "id": "center_squiggle", "label": "Center Subtitle Decor Graphic (Optional)" },
+
+    {
+      "type": "header",
+      "content": "Left Block: Main Image"
+    },
+    { "type": "image_picker", "id": "main_image", "label": "Upload Large Content Image" },
+    { "type": "range", "id": "image_radius", "min": 0, "max": 80, "step": 2, "unit": "px", "label": "Image Corner Radius", "default": 24 },
+    { "type": "checkbox", "id": "show_white_border", "label": "Show White Frame Border", "default": true },
+    
+    {
+      "type": "header",
+      "content": "Right Block: Features Styling"
+    },
+    { "type": "color", "id": "icon_bg", "label": "Checkmark Box Background", "default": "#E2F6D1" },
+    { "type": "color", "id": "icon_check_color", "label": "Checkmark SVG Stroke", "default": "#0EA569" },
+    { "type": "color", "id": "list_text_color", "label": "Feature List Text Color", "default": "#111111" },
+    { "type": "range", "id": "list_font_size", "min": 12, "max": 30, "step": 1, "unit": "px", "label": "Feature Text Size", "default": 17 },
+    { "type": "select", "id": "list_font_weight", "label": "Feature Text Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" } ], "default": "600" },
+
+    {
+      "type": "header",
+      "content": "Bottom Button"
+    },
+    { "type": "text", "id": "btn_label", "label": "Button Label", "default": "Join Thousands of Happy Parents" },
+    { "type": "url", "id": "btn_link", "label": "Button Link" },
+    { "type": "color", "id": "btn_bg", "label": "Button Background Color", "default": "#71507C" },
+    { "type": "color", "id": "btn_text", "label": "Button Text Color", "default": "#ffffff" },
+    { "type": "range", "id": "btn_font_size", "min": 12, "max": 30, "step": 1, "unit": "px", "label": "Button Font Size", "default": 18 },
+    { "type": "select", "id": "btn_font_weight", "label": "Button Font Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" } ], "default": "600" }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Checkmark Feature List",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Feature Text", "default": "Buy guilt-free knowing you'll get money back" }
+      ]
+    },
+    {
+      "type": "decoration",
+      "name": "Floating Decor Icon",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Upload Decorative Image" },
+        { "type": "range", "id": "top_pos", "min": 0, "max": 100, "step": 1, "unit": "%", "label": "Vertical Target (Top to Bottom)", "default": 30 },
+        { "type": "range", "id": "left_pos", "min": 0, "max": 100, "step": 1, "unit": "%", "label": "Horizontal Target (Left to Right)", "default": 15 },
+        { "type": "range", "id": "size", "min": 20, "max": 300, "step": 5, "unit": "px", "label": "Icon Box Size", "default": 60 }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Features Solves Layout",
+      "category": "Call To Action",
+      "blocks": [
+        { "type": "feature", "settings": { "text": "Buy guilt-free knowing you'll get money back" } },
+        { "type": "feature", "settings": { "text": "Declutter easily while recovering your investment" } },
+        { "type": "feature", "settings": { "text": "Keep rotating fresh toys without breaking the bank" } },
+        { "type": "feature", "settings": { "text": "Support sustainability by keeping toys in circulation" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
