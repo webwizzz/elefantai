@@ -192,6 +192,72 @@ padding: 1rem 0 0;
   padding-bottom: 1rem;
 }
 
+/* main product skills learned */
+
+.mood3-mood .product-skills-learned {
+  margin-top: 4rem;
+}
+
+.mood3-mood .product-skills-learned__heading {
+  margin: 0 0 1.6rem;
+  color: #111827;
+  font-size: 4.2rem;
+  line-height: 1.1;
+}
+
+.mood3-mood .product-skills-learned__list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+
+.mood3-mood .product-skills-learned__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.4rem 0.2rem;
+  flex-direction: column;
+}
+
+.mood3-mood .product-skills-learned__icon-wrap {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--skill-bg, #f2f4f7);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mood3-mood .product-skills-learned__icon {
+  width: 1.7rem;
+  height: 1.7rem;
+  object-fit: contain;
+  display: block;
+}
+
+.mood3-mood .product-skills-learned__title {
+  color: #344054;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  font-weight: 500;
+  width: 70%;
+  white-space: pre-wrap;
+  text-align: center;
+}
+
+@media screen and (max-width: 749px) {
+  .mood3-mood .product-skills-learned {
+    margin-top: 3rem;
+  }
+
+  .mood3-mood .product-skills-learned__heading {
+    font-size: 3rem;
+  }
+}
+
 
 /* faq */
 
@@ -674,9 +740,9 @@ padding: 1rem 0 0;
 }
 
 .mood3-mood .product__media-wrapper media-gallery {
-  padding: 2rem;
+  padding: 0rem;
   border-radius: 2rem;
-  border: .1rem solid rgb(var(--border-color));
+  border: none;
 }
 
 @media screen and (max-width: 749px) {
@@ -727,7 +793,7 @@ padding: 1rem 0 0;
 
 @media screen and (min-width: 950px) {
   .mood3-mood .product__media-wrapper media-gallery {
-    padding: 3rem;
+    padding: 0rem;
   }
   .mood3-mood  .product__media-wrapper > media-gallery + .buy-buttons {
     padding: 2rem 3rem 3rem;
@@ -1149,7 +1215,7 @@ media-gallery + .buy-buttons .product-form__quantity .form__label {
     -webkit-box-shadow: -6px 6px 0 0 rgb(var(--button-color-layer-3));
   }
 
-  .customer.activate button:hover,
+  /* .customer.activate button:hover,
   .button:hover,
   .shopify-payment-button__button:hover,
   .main-cart-wrap.columns cart-items.is-empty,
@@ -1174,7 +1240,7 @@ media-gallery + .buy-buttons .product-form__quantity .form__label {
   .mood3-mood .product-banner-slider .slider-arrow:hover {
     box-shadow: -8px 8px 0 0 rgb(var(--button-color-layer-3));
     -webkit-box-shadow: -8px 8px 0 0 rgb(var(--button-color-layer-3));
-  }
+  } */
 
   .mood3-mood .product-banner-slider .slider-arrow-prev:hover {
     box-shadow: 8px -8px 0 0 rgb(var(--button-color-layer-3));

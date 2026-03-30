@@ -49,9 +49,14 @@
           {% else %} role="presentation" {% endif %} height="auto" width="auto" loading="lazy">
       {%- endif -%}
 
-      <span class="inline-richtext {{ block.settings.heading_1_size }}">
-        {{- block.settings.heading_1 -}}
-      </span>
+      <div class="icon-with-text__content">
+        <span class="inline-richtext {{ block.settings.heading_1_size }}">
+          {{- block.settings.heading_1 -}}
+        </span>
+        {% if block.settings.description_1 != blank %}
+          <span class="icon-with-text__description">{{ block.settings.description_1 }}</span>
+        {% endif %}
+      </div>
     </li>
   {%- endunless -%}
 
@@ -65,9 +70,14 @@
           {% else %} role="presentation" {% endif %} height="auto" width="auto" loading="lazy">
       {%- endif -%}
 
-      <span class="inline-richtext {{ block.settings.heading_2_size }}">
-        {{- block.settings.heading_2 -}}
-      </span>
+      <div class="icon-with-text__content">
+        <span class="inline-richtext {{ block.settings.heading_2_size }}">
+          {{- block.settings.heading_2 -}}
+        </span>
+        {% if block.settings.description_2 != blank %}
+          <span class="icon-with-text__description">{{ block.settings.description_2 }}</span>
+        {% endif %}
+      </div>
     </li>
   {%- endunless -%}
 
@@ -81,9 +91,14 @@
           {% else %} role="presentation" {% endif %} height="auto" width="auto" loading="lazy">
       {%- endif -%}
 
-      <span class="inline-richtext {{ block.settings.heading_3_size }}">
-        {{- block.settings.heading_3 -}}
-      </span>
+      <div class="icon-with-text__content">
+        <span class="inline-richtext {{ block.settings.heading_3_size }}">
+          {{- block.settings.heading_3 -}}
+        </span>
+        {% if block.settings.description_3 != blank %}
+          <span class="icon-with-text__description">{{ block.settings.description_3 }}</span>
+        {% endif %}
+      </div>
     </li>
   {%- endunless -%}
 </ul>

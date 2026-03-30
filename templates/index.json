@@ -324,9 +324,76 @@
         "padding_bottom": 160
       }
     },
-    "text_image_card_DqxUbB": {
-      "type": "text-image-card",
-      "name": "Elevated Split Card",
+    "multicolumn": {
+      "type": "multicolumn",
+      "blocks": {
+        "template--18867160121647__multicolumn-1683045791d5fdb6c1-0": {
+          "type": "column",
+          "settings": {
+            "image_position": "bottom",
+            "title": "Organic",
+            "text": "<p>Toyo takes great pride in sourcing materials for its products organically, ensuring the highest level of quality and safety.</p>",
+            "heading_color": "",
+            "link_label": "",
+            "link": "",
+            "column_background_color": "color-main-bg",
+            "enable_border_radius": false,
+            "border_radius": 1,
+            "icon_width": 25,
+            "icon_vertical": 0.5,
+            "icon_horizontal": 0.5,
+            "icon_width_mobile": 25,
+            "icon_vertical_mobile": 0.5,
+            "icon_horizontal_mobile": 0.5
+          }
+        },
+        "template--18867160121647__multicolumn-1683045791d5fdb6c1-2": {
+          "type": "column",
+          "settings": {
+            "image_position": "bottom",
+            "title": "Innovative & Safe",
+            "text": "<p>At Toyo innovation meets safety as we curate products that spark joy and provide peace of mind for parents and their children.</p>",
+            "heading_color": "#e61e5b",
+            "link_label": "",
+            "link": "",
+            "column_background_color": "color-main-bg",
+            "enable_border_radius": false,
+            "border_radius": 1,
+            "icon_width": 25,
+            "icon_vertical": 0.5,
+            "icon_horizontal": 0.5,
+            "icon_width_mobile": 25,
+            "icon_vertical_mobile": 0.5,
+            "icon_horizontal_mobile": 0.5
+          }
+        },
+        "template--18867160121647__multicolumn-1683045791d5fdb6c1-1": {
+          "type": "column",
+          "settings": {
+            "image_position": "bottom",
+            "title": "Eco Friendly",
+            "text": "<p>Toyo is committed to a greener future, offering eco-friendly products that nurture both babies and the planet they will inherit.</p>",
+            "heading_color": "#34823d",
+            "link_label": "",
+            "link": "",
+            "column_background_color": "color-main-bg",
+            "enable_border_radius": false,
+            "border_radius": 1,
+            "icon_width": 25,
+            "icon_vertical": 0.5,
+            "icon_horizontal": 0.5,
+            "icon_width_mobile": 25,
+            "icon_vertical_mobile": 0.5,
+            "icon_horizontal_mobile": 0.5
+          }
+        }
+      },
+      "block_order": [
+        "template--18867160121647__multicolumn-1683045791d5fdb6c1-0",
+        "template--18867160121647__multicolumn-1683045791d5fdb6c1-2",
+        "template--18867160121647__multicolumn-1683045791d5fdb6c1-1"
+      ],
+      "disabled": true,
       "settings": {
         "section_bg_color": "#f6f5fb",
         "show_white_border": true,
@@ -535,24 +602,24 @@
           "type": "card",
           "settings": {
             "icon": "shopify://shop_images/Frame_1430103512.svg",
-            "title": "Toys Are Expensive",
-            "text": "Quality toys cost ₹2,000-₹5,000 each, and kids need new ones constantly."
+            "title": "Custom Title",
+            "text": "Custom description text."
           }
         },
         "card_8PGxNk": {
           "type": "card",
           "settings": {
             "icon": "shopify://shop_images/Frame_1430103512-3.svg",
-            "title": "Kids Get Bored Quickly",
-            "text": "That expensive toy they cried for? It's gathering dust after 2 weeks."
+            "title": "Custom Title",
+            "text": "Custom description text."
           }
         },
         "card_YGyitd": {
           "type": "card",
           "settings": {
             "icon": "shopify://shop_images/Frame_1430103512-2.svg",
-            "title": "Homes Get Cluttered",
-            "text": "Unused toys pile up, taking over your living space and creating chaos."
+            "title": "Custom Title",
+            "text": "Custom description text."
           }
         }
       },
@@ -568,12 +635,232 @@
         "button_label": "Learn How it Works",
         "button_link": "shopify://pages/about-us",
         "kite_image": "shopify://shop_images/Frame-2.svg",
-        "background_color": "#f2f0f5",
-        "card_bg_color": "#f5f5f5"
+        "background_color": "#f5f5f7",
+        "card_bg_color": "#ffffff"
       }
     },
     "what_this_mean_teUf3C": {
       "type": "what-this-mean",
+      "blocks": {
+        "card_K9PEVH": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/WhatsAppImage2026-03-27at19.17.18.jpg",
+            "theme_color": "#9b76d6",
+            "badge_text": "Real Story",
+            "title": "The Sharma Family",
+            "subtitle": "Bought a ₹3,000 learning tablet",
+            "bottom_text": "After 6 months, returned it and got ₹1,800 back (60%)"
+          }
+        },
+        "card_7TGNkc": {
+          "type": "card",
+          "settings": {
+            "theme_color": "#4b8df2",
+            "badge_text": "Real Story",
+            "title": "The Sharma Family",
+            "subtitle": "Bought a ₹3,000 learning tablet",
+            "bottom_text": "After 6 months, returned it and got ₹1,800 back (60%)"
+          }
+        },
+        "card_aTAH4D": {
+          "type": "card",
+          "settings": {
+            "theme_color": "#ec8eb0",
+            "badge_text": "Real Story",
+            "title": "The Sharma Family",
+            "subtitle": "Bought a ₹3,000 learning tablet",
+            "bottom_text": "After 6 months, returned it and got ₹1,800 back (60%)"
+          }
+        },
+        "card_a8XkPn": {
+          "type": "card",
+          "settings": {
+            "theme_color": "#ebbc38",
+            "badge_text": "Real Story",
+            "title": "The Sharma Family",
+            "subtitle": "Bought a ₹3,000 learning tablet",
+            "bottom_text": "After 6 months, returned it and got ₹1,800 back (60%)"
+          }
+        }
+      },
+      "block_order": [
+        "card_K9PEVH",
+        "card_7TGNkc",
+        "card_aTAH4D",
+        "card_a8XkPn"
+      ],
+      "name": "What This Means",
+      "settings": {
+        "heading": "What This *Means* for You",
+        "subtitle": "See how real families are saving money while giving their kids amazing play experiences",
+        "background_color": "#fafafa",
+        "card_bg_color": "#f5f6fa",
+        "card_border_radius": 20,
+        "heading_size_desktop": 54,
+        "subtitle_size_desktop": 24,
+        "card_title_desktop": 20,
+        "card_desc_desktop": 15,
+        "card_bottom_desktop": 14,
+        "heading_size_mobile": 32,
+        "subtitle_size_mobile": 15,
+        "card_title_mobile": 18,
+        "card_desc_mobile": 14,
+        "card_bottom_mobile": 13
+      }
+    },
+    "shopby_section_TeNxPk": {
+      "type": "shopby-section",
+      "blocks": {
+        "category_card_VTwVU9": {
+          "type": "category_card",
+          "settings": {
+            "overlay_gradient": "linear-gradient(0deg, rgba(204,113,135,0.9) 0%, rgba(204,113,135,0) 100%)",
+            "badge": "0-12 Months",
+            "title": "Newborn & Infant",
+            "desc": "Sensory toys, rattles, and soft blocks for early development",
+            "btn_label": "Explore",
+            "btn_text_color": "#cc7187",
+            "btn_link": ""
+          }
+        },
+        "category_card_XP7TXC": {
+          "type": "category_card",
+          "settings": {
+            "overlay_gradient": "linear-gradient(0deg, rgba(82,143,195,0.9) 0%, rgba(82,143,195,0) 100%)",
+            "badge": "1-2 Years",
+            "title": "Toddler",
+            "desc": "Sensory toys, rattles, and soft blocks for early development",
+            "btn_label": "Explore",
+            "btn_text_color": "#528fc3",
+            "btn_link": ""
+          }
+        },
+        "category_card_kYr8fA": {
+          "type": "category_card",
+          "settings": {
+            "overlay_gradient": "linear-gradient(0deg, rgba(205,152,43,0.9) 0%, rgba(205,152,43,0) 100%)",
+            "badge": "2-4 Years",
+            "title": "Pre-school",
+            "desc": "Sensory toys, rattles, and soft blocks for early development",
+            "btn_label": "Explore",
+            "btn_text_color": "#cd982b",
+            "btn_link": ""
+          }
+        },
+        "category_card_A8aWxT": {
+          "type": "category_card",
+          "settings": {
+            "overlay_gradient": "linear-gradient(0deg, rgba(142,75,98,0.9) 0%, rgba(142,75,98,0) 100%)",
+            "badge": "4-6 Years",
+            "title": "School Age",
+            "desc": "Sensory toys, rattles, and soft blocks for early development",
+            "btn_label": "Explore",
+            "btn_text_color": "#8e4b62",
+            "btn_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_card_VTwVU9",
+        "category_card_XP7TXC",
+        "category_card_kYr8fA",
+        "category_card_A8aWxT"
+      ],
+      "name": "Shop By Age",
+      "settings": {
+        "heading": "Shop by *Age*",
+        "subtitle": "Find the perfect toys for your child's developmental stage",
+        "bg_gradient": "linear-gradient(135deg, rgba(251, 250, 253, 1), rgba(253, 245, 252, 1) 100%)",
+        "main_btn_label": "Browse all Categories",
+        "main_btn_link": "",
+        "heading_size_desktop": 44,
+        "subtitle_size_desktop": 18,
+        "card_title_desktop": 20,
+        "card_desc_desktop": 14,
+        "heading_size_mobile": 32,
+        "subtitle_size_mobile": 15,
+        "card_title_mobile": 18,
+        "card_desc_mobile": 13
+      }
+    },
+    "play_return_4GMAq4": {
+      "type": "play-return",
+      "blocks": {
+        "feature_card_NT6U8J": {
+          "type": "feature_card",
+          "settings": {
+            "icon_bg_color": "#4a90e2",
+            "title": "Order Delivered",
+            "desc": "<p>Once the order is marked as Delivered, the user becomes eligible to initiate a return/sellback.</p>"
+          }
+        },
+        "feature_card_jQUCAb": {
+          "type": "feature_card",
+          "settings": {
+            "icon_bg_color": "#f5b642",
+            "title": "Raise Sellback Request",
+            "desc": "<p>User can raise a request directly from their account.</p>"
+          }
+        },
+        "feature_card_kyy4jn": {
+          "type": "feature_card",
+          "settings": {
+            "icon_bg_color": "#ff6b9e",
+            "title": "Condition Check",
+            "desc": "<p>Our Ops team connects with the user to verify:<br>• Toy condition / damage<br>• Missing parts (if any)<br>• Final eligibility</p>"
+          }
+        },
+        "feature_card_jibyb7": {
+          "type": "feature_card",
+          "settings": {
+            "icon_bg_color": "#8a5a9c",
+            "title": "Cashback Calculation",
+            "desc": "<p>Based on the condition, the final sellback amount is calculated.</p>"
+          }
+        },
+        "feature_card_ewkE4r": {
+          "type": "feature_card",
+          "settings": {
+            "icon_bg_color": "#f37845",
+            "title": "Get Your Money Back",
+            "desc": "<p>User can choose how they want the cashback:<br>• Wallet credit<br>• Direct payout<br>• Membership conversion</p>"
+          }
+        }
+      },
+      "block_order": [
+        "feature_card_NT6U8J",
+        "feature_card_jQUCAb",
+        "feature_card_kyy4jn",
+        "feature_card_jibyb7",
+        "feature_card_ewkE4r"
+      ],
+      "name": "Play Return Earn Back",
+      "settings": {
+        "heading": "Play. Return. *Earn Back.*",
+        "subtitle": "The smart way to buy toys. Play, return when done, and get money back.",
+        "bg_gradient": "linear-gradient(180deg, rgba(235, 170, 68, 1), rgba(228, 124, 56, 1) 100%)",
+        "heading_color": "#000000",
+        "subtitle_color": "#606060",
+        "card_bg_color": "#ffffff",
+        "card_title_color": "#000000",
+        "card_desc_color": "#8c8c8c",
+        "heading_weight": 900,
+        "subtitle_weight": 700,
+        "card_title_weight": 900,
+        "card_desc_weight": 400,
+        "heading_size_desktop": 52,
+        "subtitle_size_desktop": 22,
+        "card_title_desktop": 22,
+        "card_desc_desktop": 18,
+        "heading_size_mobile": 32,
+        "subtitle_size_mobile": 15,
+        "card_title_mobile": 18,
+        "card_desc_mobile": 15
+      }
+    },
+    "7ecf4e46-62f5-40fe-882a-ae2dca0d5343": {
+      "type": "collections-with-tabs",
       "blocks": {
         "card_K9PEVH": {
           "type": "card",
@@ -624,7 +911,7 @@
         "card_aTAH4D",
         "card_a8XkPn"
       ],
-      "name": "What This Means",
+      "disabled": true,
       "settings": {
         "heading": "What This *Means* for You",
         "subtitle": "See how real families are saving money while giving their kids amazing play experiences",
@@ -702,7 +989,7 @@
         "category_card_kYr8fA",
         "category_card_A8aWxT"
       ],
-      "name": "Shop By Age",
+      "disabled": true,
       "settings": {
         "heading": "Shop by *Age*",
         "subtitle": "Find the perfect toys for your child's developmental stage",
@@ -721,60 +1008,9 @@
         "card_desc_mobile": 13
       }
     },
-    "play_return_4GMAq4": {
-      "type": "play-return",
-      "blocks": {
-        "feature_card_NT6U8J": {
-          "type": "feature_card",
-          "settings": {
-            "icon_bg_color": "#4a90e2",
-            "icon": "shopify://shop_images/SVGRepo_iconCarrier.svg",
-            "title": "Order Delivered",
-            "desc": "<p>Once the order is marked as Delivered, the user becomes eligible to initiate a return/sellback.</p>"
-          }
-        },
-        "feature_card_jQUCAb": {
-          "type": "feature_card",
-          "settings": {
-            "icon_bg_color": "#f5b642",
-            "icon": "shopify://shop_images/Shopicon.svg",
-            "title": "Raise Sellback Request",
-            "desc": "<p>User can raise a request directly from their account.</p>"
-          }
-        },
-        "feature_card_kyy4jn": {
-          "type": "feature_card",
-          "settings": {
-            "icon_bg_color": "#ff6b9e",
-            "title": "Condition Check",
-            "desc": "<p>Our Ops team connects with the user to verify:<br/>• Toy condition / damage<br/>• Missing parts (if any)<br/>• Final eligibility</p>"
-          }
-        },
-        "feature_card_jibyb7": {
-          "type": "feature_card",
-          "settings": {
-            "icon_bg_color": "#8a5a9c",
-            "title": "Cashback Calculation",
-            "desc": "<p>Based on the condition, the final sellback amount is calculated.</p>"
-          }
-        },
-        "feature_card_ewkE4r": {
-          "type": "feature_card",
-          "settings": {
-            "icon_bg_color": "#f37845",
-            "title": "Get Your Money Back",
-            "desc": "<p>User can choose how they want the cashback:<br>• Wallet credit<br>• Direct payout<br>• Membership conversion</p>"
-          }
-        }
-      },
-      "block_order": [
-        "feature_card_NT6U8J",
-        "feature_card_jQUCAb",
-        "feature_card_kyy4jn",
-        "feature_card_jibyb7",
-        "feature_card_ewkE4r"
-      ],
-      "name": "Play Return Earn Back",
+    "featured-collection": {
+      "type": "featured-collection",
+      "disabled": true,
       "settings": {
         "heading": "Play. Return. *Earn Back.*",
         "subtitle": "The smart way to buy toys. Play, return when done, and get money back.",
@@ -1910,77 +2146,6 @@
         "padding_top": 150,
         "padding_bottom": 158
       }
-    },
-    "newsletter": {
-      "type": "newsletter",
-      "blocks": {
-        "template--18867160121647__newsletter-16830990270b07a601-0": {
-          "type": "heading",
-          "settings": {
-            "heading": "<strong>Sign Up to the Newsletter</strong>",
-            "heading_size": "h2",
-            "heading_weight": "700",
-            "heading_color": "main"
-          }
-        },
-        "template--18867160121647__newsletter-16830990270b07a601-1": {
-          "type": "paragraph",
-          "settings": {
-            "text": "<p>Be the first to get notified about New Arrivals, Discounts, and Bargain Deals!</p>",
-            "text_style": "body",
-            "text_size": "large",
-            "text_color": "main"
-          }
-        },
-        "template--18867160121647__newsletter-16830990270b07a601-2": {
-          "type": "email_form",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "template--18867160121647__newsletter-16830990270b07a601-0",
-        "template--18867160121647__newsletter-16830990270b07a601-1",
-        "template--18867160121647__newsletter-16830990270b07a601-2"
-      ],
-      "settings": {
-        "show_image": false,
-        "hide_image_mb": false,
-        "column_width": 40,
-        "image_position": "left",
-        "content_alignment": "center",
-        "background_color": "none",
-        "colors_background_section_gradient": "",
-        "full_width": false,
-        "image_overlay_width": 10,
-        "image_overlay_vertical": 5,
-        "image_overlay_horizontal": 20,
-        "image_overlay_width_mobile": 13,
-        "image_overlay_vertical_mobile": 3,
-        "image_overlay_horizontal_mobile": 20,
-        "image_overlay_animation": "ambient",
-        "image_overlay_width_2": 15,
-        "image_overlay_vertical_2": 60,
-        "image_overlay_horizontal_2": 7,
-        "image_overlay_width_2_mobile": 17,
-        "image_overlay_vertical_2_mobile": 88,
-        "image_overlay_horizontal_2_mobile": 7,
-        "image_overlay_animation_2": "ambient",
-        "image_overlay_width_3": 10,
-        "image_overlay_vertical_3": 44,
-        "image_overlay_horizontal_3": 95,
-        "image_overlay_width_3_mobile": 12,
-        "image_overlay_vertical_3_mobile": 20,
-        "image_overlay_horizontal_3_mobile": 94,
-        "image_overlay_animation_3": "ambient",
-        "shape_position": "top",
-        "shape_type": "waves",
-        "shape_color": "#fef7e6",
-        "shape_width": 100,
-        "background_color_main": "color-bg-3",
-        "color_background_main": "",
-        "padding_top": 50,
-        "padding_bottom": 0
-      }
     }
   },
   "order": [
@@ -1995,9 +2160,9 @@
     "what_this_mean_teUf3C",
     "shopby_section_TeNxPk",
     "play_return_4GMAq4",
-    "understand_sellback_KrNNCj",
-    "elevated_card_iUVLPb",
-    "solves_7MVLy3",
+    "7ecf4e46-62f5-40fe-882a-ae2dca0d5343",
+    "51dd9d77-601e-4e0b-9130-4ae1489700ba",
+    "featured-collection",
     "4ee3638f-2d1f-4acd-b0f0-b47676f91b48",
     "7e1685f9-c480-44a3-979a-db7e2a48b5a9",
     "d351875c-ae97-4e00-a108-1a4965c0f8c8",
@@ -2007,7 +2172,6 @@
     "ed3e9758-6040-4e2d-94bc-4f8d27bb94aa",
     "f91e8282-0f30-4a65-8135-93d49e9b7026",
     "showcase",
-    "fe5c78b5-42e5-44db-96cc-0abb3332ca3f",
-    "newsletter"
+    "fe5c78b5-42e5-44db-96cc-0abb3332ca3f"
   ]
 }

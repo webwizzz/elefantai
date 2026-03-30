@@ -2588,7 +2588,7 @@ input[type='checkbox'] {
 
 /* component-quantity */
 .quantity {
-  color: rgba(var(--color-base-text));
+  color: #F17A3E;
   position: relative;
   width: 100%;
   display: flex;
@@ -2600,7 +2600,7 @@ input[type='checkbox'] {
 
 .product .quantity {
   justify-content: space-between;
-  max-width: none;
+  max-width: 40%;
 }
 
 .quantity:after {
@@ -2611,7 +2611,7 @@ input[type='checkbox'] {
   right: 0;
   bottom: 0;
   left: 0;
-  border: 0.1rem solid rgba(var(--color-base-text));
+  border: .2rem solid #ffffff;
   border-radius: var(--buttons-border-radius);
   transition: box-shadow var(--duration-short) ease;
   z-index: 1;
@@ -2621,6 +2621,8 @@ input[type='checkbox'] {
   pointer-events: none;
   content: '';
   position: absolute;
+  background: #F8F8F8;
+  box-shadow: 0 2rem 4.5rem #00000014;
   top: 0;
   right: 0;
   bottom: 0;
@@ -2665,7 +2667,7 @@ input[type='checkbox'] {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgb(var(--color-base-text));
+  color: #F17A3E;
   padding: 0;
   height: 5rem;
 }
