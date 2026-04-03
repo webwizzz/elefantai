@@ -323,7 +323,7 @@
         "image_overlay_animation_3": "none",
         "shape_position": "top",
         "shape_type": "none",
-        "shape_color": "#fff",
+        "shape_color": "#ffffff",
         "shape_width": 100,
         "background_color": "color-bg-4",
         "colors_background_section_gradient": "",
@@ -1047,77 +1047,6 @@
         "padding_top": 60,
         "padding_bottom": 60
       }
-    },
-    "newsletter": {
-      "type": "newsletter",
-      "blocks": {
-        "template--18867160121647__newsletter-16830990270b07a601-0": {
-          "type": "heading",
-          "settings": {
-            "heading": "<strong>Sign Up to the Newsletter</strong>",
-            "heading_size": "h2",
-            "heading_weight": "700",
-            "heading_color": "main"
-          }
-        },
-        "template--18867160121647__newsletter-16830990270b07a601-1": {
-          "type": "paragraph",
-          "settings": {
-            "text": "<p>Be the first to get notified about New Arrivals, Discounts, and Bargain Deals!</p>",
-            "text_style": "body",
-            "text_size": "large",
-            "text_color": "main"
-          }
-        },
-        "template--18867160121647__newsletter-16830990270b07a601-2": {
-          "type": "email_form",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "template--18867160121647__newsletter-16830990270b07a601-0",
-        "template--18867160121647__newsletter-16830990270b07a601-1",
-        "template--18867160121647__newsletter-16830990270b07a601-2"
-      ],
-      "settings": {
-        "show_image": false,
-        "hide_image_mb": false,
-        "column_width": 40,
-        "image_position": "left",
-        "content_alignment": "center",
-        "background_color": "none",
-        "colors_background_section_gradient": "",
-        "full_width": false,
-        "image_overlay_width": 10,
-        "image_overlay_vertical": 5,
-        "image_overlay_horizontal": 20,
-        "image_overlay_width_mobile": 13,
-        "image_overlay_vertical_mobile": 3,
-        "image_overlay_horizontal_mobile": 20,
-        "image_overlay_animation": "ambient",
-        "image_overlay_width_2": 15,
-        "image_overlay_vertical_2": 60,
-        "image_overlay_horizontal_2": 7,
-        "image_overlay_width_2_mobile": 17,
-        "image_overlay_vertical_2_mobile": 88,
-        "image_overlay_horizontal_2_mobile": 7,
-        "image_overlay_animation_2": "ambient",
-        "image_overlay_width_3": 10,
-        "image_overlay_vertical_3": 44,
-        "image_overlay_horizontal_3": 95,
-        "image_overlay_width_3_mobile": 12,
-        "image_overlay_vertical_3_mobile": 20,
-        "image_overlay_horizontal_3_mobile": 94,
-        "image_overlay_animation_3": "ambient",
-        "shape_position": "top",
-        "shape_type": "waves",
-        "shape_color": "#fef7e6",
-        "shape_width": 100,
-        "background_color_main": "color-bg-3",
-        "color_background_main": "",
-        "padding_top": 50,
-        "padding_bottom": 0
-      }
     }
   },
   "order": [
@@ -1134,7 +1063,6 @@
     "play_return_r6F4gN",
     "understand_sellback_QYfiY9",
     "elevated_card_hNVmQ8",
-    "eco_raxapP",
-    "newsletter"
+    "eco_raxapP"
   ]
 }

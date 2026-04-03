@@ -229,7 +229,7 @@
         "info_background_color": "color-main-bg",
         "background_color": "--colors-background-main",
         "colors_background_section_gradient": "",
-        "padding_top": 150,
+        "padding_top": 20,
         "padding_bottom": 0
       }
     },
@@ -342,9 +342,7 @@
       "name": "Understand Sellback Value",
       "settings": {
         "bg_color": "linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(79, 152, 222, 1) 100%)",
-        "bottom_left_image": "shopify://shop_images/Isolation_Mode_ee3f1b44-74f4-4bbc-940d-4e5ed2051966.svg",
         "bottom_left_width": 200,
-        "bottom_right_image": "shopify://shop_images/Group-14.svg",
         "bottom_right_width": 200,
         "heading_1": "Understanding",
         "highlight_text": "Sellback",
