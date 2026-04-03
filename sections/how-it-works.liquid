@@ -1,13 +1,13 @@
 {%- style -%}
   #HIW-{{ section.id }} {
     position: relative;
-    padding: 80px 20px;
+    padding: 50px 20px;
     background-color: {{ section.settings.bg_color }};
     text-align: center;
     overflow: hidden;
     font-family: inherit;
   }
-  
+
   .hiw-bg-img {
     position: absolute;
     z-index: 1;
@@ -16,7 +16,7 @@
   .hiw-top-left {
     top: 5%;
     left: -2%;
-    max-width: 400px;
+    max-width: 600px;
   }
   .hiw-bottom-right {
     bottom: -10px;
@@ -42,56 +42,88 @@
     max-width: 1200px;
     margin: 0 auto;
   }
-  
+
   .hiw-header {
     margin-bottom: 60px;
   }
   .hiw-title {
-    font-size: 3.8rem;
+    font-size: 52px;
     font-weight: 700;
     color: #111;
     margin: 0 0 12px 0;
     letter-spacing: 0.5px;
   }
+  @media (max-width: 768px) {
+    .hiw-title { font-size: 32px; }
+  }
   .hiw-subtitle {
-    font-size: 1.6rem;
-    color: #777;
+    font-size: 22px;
+    color: #606060;
     margin: 0 auto;
-    max-width: 650px;
+    max-width: 700px;
     line-height: 1.6;
+  }
+  @media (max-width: 768px) {
+    .hiw-subtitle { font-size: 16px; }
   }
 
   .hiw-steps-grid {
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 10px;
     flex-wrap: wrap;
     margin-bottom: 50px;
   }
   @media (max-width: 900px) {
-    .hiw-steps-grid { gap: 20px; }
+    .hiw-steps-grid { gap: 10px; }
   }
-  
+  @media (max-width: 768px) {
+    .hiw-steps-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px 16px;
+      max-width: 360px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
   .hiw-step {
     flex: 1;
-    min-width: 200px;
-    max-width: 240px;
+    min-width: 230px;
+    max-width: 250px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
-  
+  @media (max-width: 768px) {
+    .hiw-step {
+      min-width: unset;
+      max-width: unset;
+      width: 100%;
+    }
+  }
+
   .hiw-icon-box {
-    width: 130px;
-    height: 130px;
-    border-radius: 35px; /* Heavy curve as per image */
+    width: 135px;
+    height: 135px;
+    border-radius: 32px; /* Heavy curve as per image */
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 24px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.08); /* Elevated shadow */
+    border: 4px solid #fff;
     transition: transform 0.3s ease;
+  }
+  @media (max-width: 768px) {
+    .hiw-icon-box {
+      width: 100px;
+      height: 100px;
+      border-radius: 24px;
+      margin-bottom: 14px;
+    }
   }
   .hiw-step:hover .hiw-icon-box {
     transform: translateY(-8px);
@@ -101,41 +133,64 @@
     height: 60px;
     object-fit: contain;
   }
+  @media (max-width: 768px) {
+    .hiw-icon-box img {
+      width: 45px;
+      height: 45px;
+    }
+  }
   .hiw-icon-box svg {
     width: 60px;
     height: 60px;
     fill: #fff;
   }
+  @media (max-width: 768px) {
+    .hiw-icon-box svg {
+      width: 45px;
+      height: 45px;
+    }
+  }
 
   .hiw-step-title {
-    font-size: 1.8rem;
-    font-weight: 800;
+    font-size: 22px;
+    font-weight: 700;
     color: #111;
     margin: 0 0 8px 0;
   }
+  @media (max-width: 768px) {
+    .hiw-step-title { font-size: 18px; }
+  }
   .hiw-step-desc {
-    font-size: 1.35rem;
-    color: #888;
+    font-size: 18px;
+    color: #8C8C8C;
     margin: 0;
     line-height: 1.4;
+    max-width: 180px;
     padding: 0 10px;
+  }
+  @media (max-width: 768px) {
+    .hiw-step-desc {
+      font-size: 16px;
+      max-width: unset;
+      padding: 0 4px;
+    }
   }
 
   .hiw-btn-wrapper {
-    margin-top: 30px;
+    margin-top: 35px;
   }
   .hiw-btn {
     display: inline-block;
     padding: 14px 45px;
     border: 1px solid;
     border-radius: 50px;
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 22px;
+    font-weight: 500;
     text-decoration: none;
     transition: all 0.3s ease;
     background: transparent;
   }
-  
+
   /* Dynamic Colored Elements */
   #HIW-{{ section.id }} .hiw-title .highlight {
     color: {{ section.settings.highlight_color }};
@@ -153,19 +208,32 @@
 <div id="HIW-{{ section.id }}">
   <!-- Background Elements -->
   {% if section.settings.top_left_image %}
-    <img src="{{ section.settings.top_left_image | image_url: width: 800 }}" alt="" class="hiw-bg-img hiw-top-left" loading="lazy" width="{{ section.settings.top_left_image.width }}" height="{{ section.settings.top_left_image.height }}">
+    <img
+      src="{{ section.settings.top_left_image | image_url: width: 800 }}"
+      alt=""
+      class="hiw-bg-img hiw-top-left"
+      loading="lazy"
+      width="{{ section.settings.top_left_image.width }}"
+      height="{{ section.settings.top_left_image.height }}"
+    >
   {% endif %}
-  
+
   {% if section.settings.bottom_right_image %}
-    <img src="{{ section.settings.bottom_right_image | image_url: width: 800 }}" alt="" class="hiw-bg-img hiw-bottom-right" loading="lazy" width="{{ section.settings.bottom_right_image.width }}" height="{{ section.settings.bottom_right_image.height }}">
+    <img
+      src="{{ section.settings.bottom_right_image | image_url: width: 800 }}"
+      alt=""
+      class="hiw-bg-img hiw-bottom-right"
+      loading="lazy"
+      width="{{ section.settings.bottom_right_image.width }}"
+      height="{{ section.settings.bottom_right_image.height }}"
+    >
   {% endif %}
 
   <div class="hiw-content">
-    
     <div class="hiw-header">
       <h2 class="hiw-title">
-        {{ section.settings.heading_1 }} 
-        <span class="highlight">{{ section.settings.highlight_text }}</span> 
+        {{ section.settings.heading_1 }}
+        <span class="highlight">{{ section.settings.highlight_text }}</span>
         {{ section.settings.heading_2 }}
       </h2>
       <p class="hiw-subtitle">{{ section.settings.subtitle }}</p>
@@ -176,9 +244,23 @@
         <div class="hiw-step" {{ block.shopify_attributes }}>
           <div class="hiw-icon-box" style="background-color: {{ block.settings.bg_color }};">
             {% if block.settings.icon %}
-              <img src="{{ block.settings.icon | image_url: width: 150 }}" alt="{{ block.settings.title | escape }}" width="{{ block.settings.icon.width }}" height="{{ block.settings.icon.height }}">
+              <img
+                src="{{ block.settings.icon | image_url: width: 150 }}"
+                alt="{{ block.settings.title | escape }}"
+                width="{{ block.settings.icon.width }}"
+                height="{{ block.settings.icon.height }}"
+              >
             {% else %}
-               <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#fff"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line>
+              </svg>
             {% endif %}
           </div>
           <h3 class="hiw-step-title">{{ block.settings.title }}</h3>
@@ -189,12 +271,18 @@
 
     {% if section.settings.button_label != blank %}
       <div class="hiw-btn-wrapper">
-        <a {% if section.settings.button_link == blank %}role="link" aria-disabled="true"{% else %}href="{{ section.settings.button_link }}"{% endif %} class="hiw-btn">
+        <a
+          {% if section.settings.button_link == blank %}
+            role="link" aria-disabled="true"
+          {% else %}
+            href="{{ section.settings.button_link }}"
+          {% endif %}
+          class="hiw-btn"
+        >
           {{ section.settings.button_label }}
         </a>
       </div>
     {% endif %}
-
   </div>
 </div>
 
@@ -311,37 +399,37 @@
       "name": "How It Works",
       "category": "Text",
       "blocks": [
-        { 
-          "type": "step", 
-          "settings": { 
-            "title": "Buy", 
-            "description": "Choose quality toys for your child", 
-            "bg_color": "#F1BD56" 
-          } 
+        {
+          "type": "step",
+          "settings": {
+            "title": "Buy",
+            "description": "Choose quality toys for your child",
+            "bg_color": "#F1BD56"
+          }
         },
-        { 
-          "type": "step", 
-          "settings": { 
-            "title": "Play", 
-            "description": "Enjoy for weeks or months", 
-            "bg_color": "#5699DC" 
-          } 
+        {
+          "type": "step",
+          "settings": {
+            "title": "Play",
+            "description": "Enjoy for weeks or months",
+            "bg_color": "#5699DC"
+          }
         },
-        { 
-          "type": "step", 
-          "settings": { 
-            "title": "Return", 
-            "description": "Send back when done playing", 
-            "bg_color": "#ED719E" 
-          } 
+        {
+          "type": "step",
+          "settings": {
+            "title": "Return",
+            "description": "Send back when done playing",
+            "bg_color": "#ED719E"
+          }
         },
-        { 
-          "type": "step", 
-          "settings": { 
-            "title": "Get Credit", 
-            "description": "Receive 60% back", 
-            "bg_color": "#9169A3" 
-          } 
+        {
+          "type": "step",
+          "settings": {
+            "title": "Get Credit",
+            "description": "Receive 60% back",
+            "bg_color": "#9169A3"
+          }
         }
       ]
     }

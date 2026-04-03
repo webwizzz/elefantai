@@ -27,6 +27,11 @@
     .elevated-hero-content {
       margin-bottom: 6rem; /* space for arrows */
     }
+     .elevated-hero-banner {
+
+    padding: 60px 10px 20px;
+
+  }
   }
 
   @media screen and (min-width: 750px) {
@@ -43,8 +48,8 @@
   }
 
   .elevated-hero-heading {
-    font-size: 52px;
-    line-height: 1.25;
+    font-size: 42px;
+    line-height: 42px;
     font-weight: 700;
     margin-top: 0;
     margin-bottom: 2rem;
@@ -54,6 +59,7 @@
   @media screen and (min-width: 750px) {
     .elevated-hero-heading {
       font-size: 52px;
+      line-height: 1.25;
     }
   }
 
@@ -62,10 +68,17 @@
   }
 
   .elevated-hero-text {
-    font-size: 22px;
-    line-height: 1.6;
+    font-size: 18px;
+    line-height: 26px;
     margin-bottom: 3.5rem;
     max-width: 480px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .elevated-hero-text {
+      font-size: 22px;
+      line-height: 1.6;
+    }
   }
 
   .elevated-hero-buttons {
@@ -79,11 +92,17 @@
     display: inline-block;
     padding: 1.4rem 2.8rem;
     border-radius: 50px;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 400;
     text-decoration: none;
     transition: all 0.3s ease;
     cursor: pointer;
+  }
+
+  @media screen and (min-width: 750px) {
+    .hero-btn {
+      font-size: 22px;
+    }
   }
 
   .hero-btn-primary {
@@ -170,10 +189,29 @@
   }
 {%- endstyle -%}
 
+<style>
+  #HeroCard-{{ section.id }} {
+    background-color: {{ section.settings.fallback_bg_color }};
+    {% if section.settings.image_mobile != blank %}
+      background-image: url('{{ section.settings.image_mobile | image_url: width: 800 }}');
+    {% elsif section.settings.image != blank %}
+      background-image: url('{{ section.settings.image | image_url: width: 800 }}');
+    {% endif %}
+  }
+
+  @media screen and (min-width: 750px) {
+    #HeroCard-{{ section.id }} {
+      {% if section.settings.image != blank %}
+        background-image: url('{{ section.settings.image | image_url: width: 2400 }}');
+      {% endif %}
+    }
+  }
+</style>
+
 <div class="elevated-hero-banner">
   <div
     class="elevated-hero-card"
-    style="{% if section.settings.image != blank %}background-image: url('{{ section.settings.image | image_url: width: 2400 }}');{% else %}background-color: {{ section.settings.fallback_bg_color }};{% endif %}"
+    id="HeroCard-{{ section.id }}"
   >
     <div class="elevated-hero-content">
       <h2 class="elevated-hero-heading" style="color: {{ section.settings.heading_color }};">
@@ -254,6 +292,12 @@
       "id": "image",
       "label": "Background Image",
       "info": "Upload the full banner image containing the characters/background."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Mobile Background Image (Optional)",
+      "info": "Upload an alternative image for small screens. Falls back to desktop image if empty."
     },
     {
       "type": "color",

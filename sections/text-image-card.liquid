@@ -30,11 +30,11 @@
 
   @media (max-width: 900px) {
     .tic-card {
-      flex-direction: column !important; /* Stack vertically on mobile */
+      flex-direction: column-reverse !important; /* Stack vertically on mobile, image on top */
       aspect-ratio: auto; /* Remove fixed ratio on small screens to fit text naturally */
     }
     #TIC-{{ section.id }} {
-      padding: 40px 15px;
+      padding: 10px 15px;
     }
   }
 
@@ -52,11 +52,13 @@
   }
 
   .tic-title {
-    font-size: clamp(3rem, 4vw, 4.4rem);
-    font-weight: 800;
-    line-height: 1.25;
+    font-size: 62px;
+    font-weight: 500;
+    line-height: 70px;
     color: {{ section.settings.title_color }};
-    margin: 0 0 24px 0;
+    font-family: sag-semibold !important;
+    max-width: 400px;
+    margin: 0 0 18px 0;
   }
 
   /* Bold text maps exactly to the highlight color setting */
@@ -67,9 +69,9 @@
   }
 
   .tic-desc {
-    font-size: 1.6rem;
+    font-size: 22px;
     color: {{ section.settings.desc_color }};
-    line-height: 1.6;
+    line-height: 30px;
     margin: 0 0 40px 0;
     max-width: 90%;
   }
@@ -82,10 +84,10 @@
 
   .tic-btn {
     display: inline-block;
-    padding: 14px 34px;
+    padding: 10px 28px;
     border-radius: 50px;
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 22px;
+    font-weight: 400;
     text-decoration: none;
     transition: all 0.3s ease;
     text-align: center;
@@ -131,6 +133,24 @@
   .placeholder-svg {
     background: #e8e8e8;
     fill: #ccc;
+  }
+
+  @media (max-width: 900px) {
+    .tic-title {
+      font-size: 42px;
+      line-height: 48px;
+    }
+    .tic-desc {
+      font-size: 16px;
+      line-height: 24px;
+    }
+    .tic-btn {
+      font-size: 16px;
+      padding: 8px 24px;
+    }
+    .tic-img-col {
+      min-height: 300px;
+    }
   }
 {%- endstyle -%}
 

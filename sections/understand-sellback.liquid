@@ -72,8 +72,8 @@
   }
   @media (max-width: 768px) {
     .us-cards-row {
-      flex-direction: column;
-      gap: 24px;
+      flex-direction: row;
+      gap: 10px;
     }
   }
 
@@ -156,7 +156,11 @@
   }
   @media (max-width: 768px) {
     .us-arrow { 
-      transform: rotate(90deg); 
+      transform: none; 
+    }
+    .us-arrow svg {
+      width: 30px;
+      height: 30px;
     }
   }
 
@@ -170,7 +174,7 @@
     min-height: {{ section.settings.bottom_card_height }}px;
     width: 100%;
     margin: 0 auto;
-    padding: 30px 40px 45px 40px;
+    padding: 30px 40px 30px 40px;
     position: relative;
     color: {{ section.settings.card_3_text_color }};
     text-align: center;
@@ -215,10 +219,8 @@
   
   /* The intersecting bottom pill */
   .us-bc-pill {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 50%);
+    display: inline-block;
+    margin-top: 20px;
     background: {{ section.settings.pill_bg }};
     color: {{ section.settings.pill_text_color }};
     border-radius: 50px;
@@ -229,17 +231,25 @@
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   }
   
-  /* Auto-scaling big text down explicitly on mobile */
+  /* Explicit mapping for mobile fonts from settings */
   @media (max-width: 768px) {
-    .us-title { font-size: calc({{ section.settings.heading_size }}px * 0.75); }
-    .us-card-price { font-size: calc({{ section.settings.tc_price_size }}px * 0.8); }
-    .us-bc-mainprice { font-size: calc({{ section.settings.bc_price_size }}px * 0.8); }
-    .us-bc-strikethrough { font-size: calc({{ section.settings.bc_price_size }}px * 0.35); }
+    .us-feature-card { padding: 25px 10px; border-radius: 12px; min-height: auto; border-width: 2px; }
+    .us-card-icon { width: 60px; height: 60px; border-radius: 16px; margin-bottom: 15px; }
+    .us-card-icon img, .us-card-icon svg { width: 35px; height: 35px; }
+    .us-title { font-size: {{ section.settings.heading_size_m }}px; }
+    .us-subtitle { font-size: {{ section.settings.subtitle_size_m }}px; }
+    .us-card-label { font-size: {{ section.settings.tc_title_size_m }}px; }
+    .us-card-price { font-size: {{ section.settings.tc_price_size_m }}px; }
+    .us-card-subtext { font-size: {{ section.settings.tc_subtext_size_m }}px; }
+    .us-bc-label { font-size: {{ section.settings.bc_title_size_m }}px; }
+    .us-bc-mainprice { font-size: {{ section.settings.bc_price_size_m }}px; }
+    .us-bc-strikethrough { font-size: calc({{ section.settings.bc_price_size_m }}px * 0.45); }
+    .us-bc-pill { font-size: {{ section.settings.bc_pill_size_m }}px; }
   }
 
   @media (max-width: 480px) {
     .us-bc-prices { flex-direction: column; align-items: center; gap: 5px; margin-bottom: 20px; }
-    .us-bc-pill { padding: 10px 20px; font-size: calc({{ section.settings.bc_pill_size }}px * 0.85); }
+    .us-bc-pill { padding: 10px 20px; }
   }
 {%- endstyle -%}
 
@@ -444,9 +454,11 @@
       "type": "header",
       "content": "Typography: Headings"
     },
-    { "type": "range", "id": "heading_size", "min": 20, "max": 80, "step": 1, "unit": "px", "label": "Heading Font Size", "default": 40 },
+    { "type": "range", "id": "heading_size", "min": 20, "max": 80, "step": 1, "unit": "px", "label": "Heading Font Size (Desktop)", "default": 40 },
+    { "type": "range", "id": "heading_size_m", "min": 16, "max": 60, "step": 1, "unit": "px", "label": "Heading Font Size (Mobile)", "default": 30 },
     { "type": "select", "id": "heading_weight", "label": "Heading Font Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" }, { "value": "800", "label": "Extra Bold" } ], "default": "700" },
-    { "type": "range", "id": "subtitle_size", "min": 12, "max": 30, "step": 1, "unit": "px", "label": "Subtitle Font Size", "default": 16 },
+    { "type": "range", "id": "subtitle_size", "min": 12, "max": 30, "step": 1, "unit": "px", "label": "Subtitle Font Size (Desktop)", "default": 16 },
+    { "type": "range", "id": "subtitle_size_m", "min": 10, "max": 24, "step": 1, "unit": "px", "label": "Subtitle Font Size (Mobile)", "default": 14 },
     { "type": "select", "id": "subtitle_weight", "label": "Subtitle Font Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" } ], "default": "500" },
 
     {
@@ -454,28 +466,34 @@
       "content": "Typography: Top Cards"
     },
     { "type": "color", "id": "tc_title_color", "label": "Top Cards Title Color", "default": "#111111" },
-    { "type": "range", "id": "tc_title_size", "min": 12, "max": 40, "step": 1, "unit": "px", "label": "Top Cards Title Font Size", "default": 18 },
+    { "type": "range", "id": "tc_title_size", "min": 12, "max": 40, "step": 1, "unit": "px", "label": "Top Cards Title Size (Desktop)", "default": 18 },
+    { "type": "range", "id": "tc_title_size_m", "min": 10, "max": 30, "step": 1, "unit": "px", "label": "Top Cards Title Size (Mobile)", "default": 16 },
     { "type": "select", "id": "tc_title_weight", "label": "Top Cards Title Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" }, { "value": "800", "label": "Extra Bold" } ], "default": "700" },
 
     { "type": "color", "id": "tc_price_color", "label": "Top Cards Price Color", "default": "#111111" },
-    { "type": "range", "id": "tc_price_size", "min": 20, "max": 80, "step": 1, "unit": "px", "label": "Top Cards Price Size", "default": 38 },
+    { "type": "range", "id": "tc_price_size", "min": 20, "max": 80, "step": 1, "unit": "px", "label": "Top Cards Price Size (Desktop)", "default": 38 },
+    { "type": "range", "id": "tc_price_size_m", "min": 16, "max": 60, "step": 1, "unit": "px", "label": "Top Cards Price Size (Mobile)", "default": 30 },
     { "type": "select", "id": "tc_price_weight", "label": "Top Cards Price Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" }, { "value": "800", "label": "Extra Bold" } ], "default": "800" },
 
     { "type": "color", "id": "tc_subtext_color", "label": "Top Cards Subtext Color", "default": "#888888" },
-    { "type": "range", "id": "tc_subtext_size", "min": 10, "max": 30, "step": 1, "unit": "px", "label": "Top Cards Subtext Size", "default": 13 },
+    { "type": "range", "id": "tc_subtext_size", "min": 10, "max": 30, "step": 1, "unit": "px", "label": "Top Cards Subtext Size (Desktop)", "default": 13 },
+    { "type": "range", "id": "tc_subtext_size_m", "min": 8, "max": 24, "step": 1, "unit": "px", "label": "Top Cards Subtext Size (Mobile)", "default": 12 },
     { "type": "select", "id": "tc_subtext_weight", "label": "Top Cards Subtext Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "Semi-Bold" } ], "default": "500" },
 
     {
       "type": "header",
       "content": "Typography: Bottom Card"
     },
-    { "type": "range", "id": "bc_title_size", "min": 12, "max": 40, "step": 1, "unit": "px", "label": "Bottom Title Size", "default": 16 },
+    { "type": "range", "id": "bc_title_size", "min": 12, "max": 40, "step": 1, "unit": "px", "label": "Bottom Title Size (Desktop)", "default": 16 },
+    { "type": "range", "id": "bc_title_size_m", "min": 10, "max": 30, "step": 1, "unit": "px", "label": "Bottom Title Size (Mobile)", "default": 14 },
     { "type": "select", "id": "bc_title_weight", "label": "Bottom Title Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" } ], "default": "600" },
 
-    { "type": "range", "id": "bc_price_size", "min": 20, "max": 100, "step": 1, "unit": "px", "label": "Bottom Main Price Size", "default": 50 },
+    { "type": "range", "id": "bc_price_size", "min": 20, "max": 100, "step": 1, "unit": "px", "label": "Bottom Main Price Size (Desktop)", "default": 50 },
+    { "type": "range", "id": "bc_price_size_m", "min": 16, "max": 80, "step": 1, "unit": "px", "label": "Bottom Main Price Size (Mobile)", "default": 40 },
     { "type": "select", "id": "bc_price_weight", "label": "Bottom Main Price Weight", "options": [ { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" }, { "value": "800", "label": "Extra Bold" } ], "default": "800" },
     
-    { "type": "range", "id": "bc_pill_size", "min": 10, "max": 30, "step": 1, "unit": "px", "label": "Bottom Pill Size", "default": 15 },
+    { "type": "range", "id": "bc_pill_size", "min": 10, "max": 30, "step": 1, "unit": "px", "label": "Bottom Pill Size (Desktop)", "default": 15 },
+    { "type": "range", "id": "bc_pill_size_m", "min": 8, "max": 24, "step": 1, "unit": "px", "label": "Bottom Pill Size (Mobile)", "default": 13 },
     { "type": "select", "id": "bc_pill_weight", "label": "Bottom Pill Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" } ], "default": "700" },
     {
       "type": "header",

@@ -1,6 +1,6 @@
 {%- style -%}
   .featured-collections-wrapper {
-    background-color: #f8f8fc;
+    background-color: #f2f0f5;
     padding: 60px 40px;
     font-family: inherit;
   }
@@ -24,12 +24,24 @@
   .fc-title-area {
     max-width: 600px;
   }
+  @media (max-width: 768px) {
+    .fc-title-area {
+      text-align: center;
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
   .fc-title {
     font-size: 52px;
     font-weight: 700;
     margin: 0 0 10px 0;
     color: #111;
     letter-spacing: 0.5px;
+  }
+  @media (max-width: 768px) {
+    .fc-title {
+      font-size: 32px;
+    }
   }
   .fc-title .highlight {
     color: #6c4c87; /* purple */
@@ -40,10 +52,28 @@
     margin: 0;
     line-height: 1.5;
   }
+  @media (max-width: 768px) {
+    .fc-subtitle {
+      font-size: 16px;
+    }
+  }
   .fc-tabs {
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
+  }
+  @media (max-width: 768px) {
+    .fc-tabs {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding-bottom: 5px;
+      width: 100%;
+    }
+    .fc-tabs::-webkit-scrollbar {
+      display: none;
+    }
   }
   .fc-tab-btn {
     border: 1px solid #6e4b7e;
@@ -55,54 +85,92 @@
     font-weight: 400;
     cursor: pointer;
     transition: all 0.3s;
+    white-space: nowrap;
+  }
+  @media (max-width: 768px) {
+    .fc-tab-btn {
+      font-size: 16px;
+      padding: 6px 14px;
+    }
   }
   .fc-tab-btn.active,
   .fc-tab-btn:hover {
     background: rgba(108, 76, 135, 0.08); /* slight fill on hover/active to match image "tubes" which look outlined */
   }
 
-  /* Grid styling for products */
-  .fc-grid-container {
+  /* Wrapper and Grid styling for products */
+  .fc-slider-wrapper {
     display: none;
   }
-  .fc-grid-container.active {
+  .fc-slider-wrapper.active {
+    display: block;
+    animation: fadeIn 0.4s ease-in-out;
+  }
+  .fc-grid-container {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 20px;
-    animation: fadeIn 0.4s ease-in-out;
+    position: relative;
   }
   @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   @media (max-width: 1400px) {
-    .fc-grid-container.active {
-      grid-template-columns: repeat(4, 1fr);
-    }
+    .fc-grid-container { grid-template-columns: repeat(4, 1fr); }
   }
   @media (max-width: 1100px) {
-    .fc-grid-container.active {
-      grid-template-columns: repeat(3, 1fr);
+    .fc-grid-container { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  }
+  @media (max-width: 900px) {
+    .fc-grid-container { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  }
+  @media (max-width: 768px) {
+    .fc-grid-container {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 20px;
       gap: 16px;
+      align-items: stretch;
+    }
+    .fc-grid-container::-webkit-scrollbar { 
+      display: none !important; 
+      width: 0 !important;
+      height: 0 !important;
+    }
+    .fc-card {
+      flex: 0 0 85%;
+      scroll-snap-align: center;
     }
   }
-  @media (max-width: 800px) {
-    .fc-grid-container.active {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
+  .fc-dots-container {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
   }
-  @media (max-width: 500px) {
-    .fc-grid-container.active {
-      grid-template-columns: 1fr;
-    }
+  @media (max-width: 768px) {
+    .fc-dots-container { display: flex; }
+  }
+  .fc-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #d1d1d1;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .fc-dot.active {
+    width: 28px;
+    border-radius: 10px;
+    background-color: #a0a0a0;
   }
 
   /* Product Card styling matching exactly */
@@ -286,8 +354,8 @@
     color: #fff;
     padding: 14px;
     border-radius: 50px;
-    font-weight: 600;
-    font-size: 1.5rem;
+    font-weight: 500;
+    font-size: 22px;
     text-decoration: none;
     border: none;
     cursor: pointer;
@@ -309,11 +377,17 @@
     color: #6c4c87;
     padding: 12px 40px;
     border-radius: 50px;
-    font-size: 1.5rem;
+    font-size: 22px;
     font-weight: 600;
     text-decoration: none;
     background: transparent;
     transition: background 0.2s;
+  }
+  @media (max-width: 768px) {
+    .fc-view-all {
+      font-size: 16px;
+      padding: 10px 30px;
+    }
   }
   .fc-view-all:hover {
     background: rgba(108, 76, 135, 0.05);
@@ -342,11 +416,11 @@
       {% for block in section.blocks %}
         {% assign collection = collections[block.settings.collection] %}
         {% if collection.title != blank %}
-          <button class="fc-tab-btn {% if forloop.first %}active{% endif %}" data-target="FC-grid-{{ block.id }}">
+          <button class="fc-tab-btn {% if forloop.first %}active{% endif %}" data-target="FC-wrapper-{{ block.id }}">
             {{ collection.title }}
           </button>
         {% else %}
-          <button class="fc-tab-btn {% if forloop.first %}active{% endif %}" data-target="FC-grid-{{ block.id }}">
+          <button class="fc-tab-btn {% if forloop.first %}active{% endif %}" data-target="FC-wrapper-{{ block.id }}">
             Collection {{ forloop.index }}
           </button>
         {% endif %}
@@ -361,10 +435,11 @@
     {% for block in section.blocks %}
       {% assign collection = collections[block.settings.collection] %}
       <div
-        class="fc-grid-container {% if forloop.first %}active{% endif %}"
-        id="FC-grid-{{ block.id }}"
+        class="fc-slider-wrapper {% if forloop.first %}active{% endif %}"
+        id="FC-wrapper-{{ block.id }}"
         {{ block.shopify_attributes }}
       >
+        <div class="fc-grid-container" id="FC-grid-{{ block.id }}">
         {% if collection.products.size > 0 %}
           {% for product in collection.products limit: 5 %}
             {%- comment -%} Determine Badge Class securely based on loop index to imitate image {%- endcomment -%}
@@ -472,12 +547,15 @@
             </div>
           {% endfor %}
         {% endif %}
+        </div>
+        <div class="fc-dots-container" id="FC-dots-{{ block.id }}"></div>
       </div>
     {% endfor %}
 
     {%- comment -%} Default placeholder if strictly 0 blocks {%- endcomment -%}
     {% if section.blocks.size == 0 %}
-      <div class="fc-grid-container active" id="FC-grid-placeholder">
+      <div class="fc-slider-wrapper active" id="FC-wrapper-placeholder">
+        <div class="fc-grid-container" id="FC-grid-placeholder">
         {% for i in (1..5) %}
           <div class="fc-card">
             <div class="fc-card-img-wrap">
@@ -505,6 +583,8 @@
             <button class="fc-card-btn" disabled>Add to Cart</button>
           </div>
         {% endfor %}
+        </div>
+        <div class="fc-dots-container" id="FC-dots-placeholder"></div>
       </div>
     {% endif %}
   </div>
@@ -517,26 +597,86 @@
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const tabs = document.querySelectorAll('#FC-{{ section.id }} .fc-tab-btn');
-    const grids = document.querySelectorAll('#FC-{{ section.id }} .fc-grid-container');
+    const wrappers = document.querySelectorAll('#FC-{{ section.id }} .fc-slider-wrapper');
 
     tabs.forEach((tab) => {
       tab.addEventListener('click', function (e) {
         e.preventDefault();
 
-        // Remove active from all tabs
         tabs.forEach((t) => t.classList.remove('active'));
         this.classList.add('active');
 
-        // Hide all grids
-        grids.forEach((g) => g.classList.remove('active'));
+        wrappers.forEach((w) => w.classList.remove('active'));
 
-        // Find and show the associated grid
         const targetId = this.getAttribute('data-target');
-        const targetGrid = document.getElementById(targetId);
-        if (targetGrid) {
-          targetGrid.classList.add('active');
+        if (targetId) {
+          const targetWrapper = document.getElementById(targetId);
+          if (targetWrapper) {
+            targetWrapper.classList.add('active');
+            // Re-trigger scroll to force dot sync for newly visible flex container
+            const targetGrid = targetWrapper.querySelector('.fc-grid-container');
+            if (targetGrid) {
+              targetGrid.dispatchEvent(new Event('scroll'));
+            }
+          }
         }
       });
+    });
+
+    // Mobile Carousel Dot logic - runs for all wrappers
+    wrappers.forEach(wrapper => {
+      const grid = wrapper.querySelector('.fc-grid-container');
+      const dotsContainer = wrapper.querySelector('.fc-dots-container');
+      if (!grid || !dotsContainer) return;
+      
+      const cards = grid.querySelectorAll('.fc-card');
+      if (cards.length === 0) return;
+
+      // Always clear first to avoid duplicates on re-render
+      dotsContainer.innerHTML = '';
+
+      // Build one dot per card
+      cards.forEach((_, idx) => {
+        const dot = document.createElement('div');
+        dot.className = 'fc-dot' + (idx === 0 ? ' active' : '');
+        dot.dataset.index = idx;
+        dotsContainer.appendChild(dot);
+      });
+
+      const dots = dotsContainer.querySelectorAll('.fc-dot');
+
+      const setActiveDot = (index) => {
+        dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+      };
+
+      const updateActiveDot = () => {
+        const gridCenter = grid.scrollLeft + grid.clientWidth / 2;
+        let closestIndex = 0;
+        let minDist = Infinity;
+        cards.forEach((card, index) => {
+          const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+          const dist = Math.abs(gridCenter - cardCenter);
+          if (dist < minDist) { minDist = dist; closestIndex = index; }
+        });
+        setActiveDot(closestIndex);
+      };
+
+      grid.addEventListener('scroll', updateActiveDot, { passive: true });
+      window.addEventListener('resize', updateActiveDot, { passive: true });
+
+      // Dot click scrolls to that card
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          const card = cards[index];
+          if (card) {
+            const left = card.offsetLeft - (grid.clientWidth - card.offsetWidth) / 2;
+            grid.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
+          }
+        });
+      });
+
+      // Init first dot as active right away
+      setActiveDot(0);
     });
   });
 </script>

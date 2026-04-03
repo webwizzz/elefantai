@@ -1,0 +1,84 @@
+<style>
+  #shopify-section-{{ id }} .product-form__submit {
+    background-color: {{ block.settings.atc_bg_color }} !important;
+    color: {{ block.settings.atc_text_color }} !important;
+    border: 4px solid {{ block.settings.atc_border_color }} !important;
+    border-radius: {{ block.settings.button_border_radius }}px !important;
+    font-size: {{ block.settings.button_font_size }}px !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
+    min-height: 80px !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    font-weight: 500 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    opacity: 1 !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+  }
+
+  #shopify-section-{{ id }} .product-form__submit::after,
+  #shopify-section-{{ id }} .product-form__submit::before {
+    display: none !important;
+  }
+
+  #shopify-section-{{ id }} .shopify-payment-button__button--unbranded {
+    background-color: {{ block.settings.bin_bg_color }} !important;
+    color: {{ block.settings.bin_text_color }} !important;
+    border: 4px solid {{ block.settings.bin_border_color }} !important;
+    border-radius: {{ block.settings.button_border_radius }}px !important;
+    font-size: {{ block.settings.button_font_size }}px !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
+    min-height: 80px !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    font-weight: 500 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    opacity: 1 !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+  }
+
+  #shopify-section-{{ id }} .shopify-payment-button__button--unbranded::after,
+  #shopify-section-{{ id }} .shopify-payment-button__button--unbranded::before {
+    display: none !important;
+  }
+
+  #shopify-section-{{ id }} .product-form__submit[disabled],
+  #shopify-section-{{ id }} .shopify-payment-button__button[disabled] {
+    opacity: 1 !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+  }
+
+  #shopify-section-{{ id }} .product-form__submit[disabled]+.shopify-payment-button .shopify-payment-button__button[disabled] {
+    opacity: 1 !important;
+    cursor: pointer !important;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var section = document.getElementById('shopify-section-{{ id }}');
+    if (!section) return;
+    
+    section.querySelectorAll('product-form').forEach(function(pf) {
+      var form = pf.querySelector('form');
+      if (!form) return;
+      
+      var variantInput = form.querySelector('[name=id]');
+      if (variantInput) {
+        variantInput.disabled = false;
+      }
+      
+      var submitBtn = pf.querySelector('[type="submit"]');
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.removeAttribute('aria-disabled');
+      }
+    });
+  });
+</script>
