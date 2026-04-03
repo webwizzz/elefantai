@@ -1,314 +1,340 @@
 <style>
-#ShopBy-{{ section.id }} {
-  --heading-size-desktop: {{ section.settings.heading_size_desktop }}px;
-  --heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
-  --desc-size-desktop: {{ section.settings.subtitle_size_desktop }}px;
-  --desc-size-mobile: {{ section.settings.subtitle_size_mobile }}px;
-  
-  --card-title-desktop: {{ section.settings.card_title_desktop }}px;
-  --card-title-mobile: {{ section.settings.card_title_mobile }}px;
-  --card-desc-desktop: {{ section.settings.card_desc_desktop }}px;
-  --card-desc-mobile: {{ section.settings.card_desc_mobile }}px;
-  
-  --card-btn-desktop: 15px;
-  --card-btn-mobile: 14px;
-  
-  {% if section.settings.bg_image != blank %}
-    background-image: url('{{ section.settings.bg_image | image_url }}');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  {% else %}
-    background: {{ section.settings.bg_gradient }};
-  {% endif %}
-  
-  padding: 80px 0 100px 0;
-  position: relative;
-  overflow: hidden;
-}
-
-.sba-deco-img {
-  position: absolute;
-  top: 40px;
-  left: 4%;
-  width: 120px;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.sba-container {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 40px;
-  position: relative;
-  z-index: 10;
-}
-
-.sba-header {
-  text-align: center;
-  margin-bottom: 60px;
-  position: relative;
-  z-index: 2;
-}
-
-.sba-title {
-  font-size: var(--heading-size-desktop);
-  font-weight: 700;
-  color: #1a1a1a;
-  margin: 0 0 16px 0;
-  line-height: 1.2;
-}
-
-.sba-title .highlight-font {
-  color: #7d6599;  
-  font-family: inherit;
-  font-family: "Shadows Into Light", "Gochi Hand", "Comic Sans MS", cursive, sans-serif;
-  font-weight: 500;
-}
-
-.sba-subtitle {
-  font-size: var(--desc-size-desktop);
-  color: #555;
-  margin: 0 auto;
-  max-width: 700px;
-  line-height: 1.5;
-}
-
-.sba-cards {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-bottom: 50px;
-}
-
-.sba-card {
-  position: relative;
-  width: 255px;
-  height: 422px;
-  border-radius: 20px;
-  border: 6px solid #ffffff;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-  overflow: hidden;
-  display: block;
-  text-decoration: none;
-  background-color: #ededed;
-  flex-shrink: 0;
-}
-
-.sba-card-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-  transition: transform 0.5s ease;
-}
-
-.sba-card:hover .sba-card-bg {
-  transform: scale(1.04);
-}
-
-.sba-card-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 65%;
-  z-index: 2;
-  /* Background gradient is pulled from block style inline */
-}
-
-.sba-badge {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  background-color: #ffffff;
-  color: #1a1a1a;
-  padding: 5px 12px;
-  font-size: 11px;
-  font-weight: 600;
-  border-radius: 12px;
-  z-index: 3;
-}
-
-.sba-card-content {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 24px;
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-.sba-card-title {
-  color: #ffffff;
-  font-size: var(--card-title-desktop);
-  font-weight: 700;
-  margin: 0 0 10px 0;
-  line-height: 1.25;
-}
-
-.sba-card-desc {
-  color: #ffffff;
-  font-size: var(--card-desc-desktop);
-  line-height: 1.4;
-  margin: 0 0 20px 0;
-  opacity: 0.95;
-}
-
-.sba-card-btn {
-  background-color: #ffffff;
-  border-radius: 30px;
-  text-align: center;
-  padding: 12px 0;
-  font-size: var(--card-btn-desktop);
-  font-weight: 600;
-  width: 100%;
-  display: block;
-  transition: transform 0.3s ease;
-}
-
-.sba-card:hover .sba-card-btn {
-  transform: translateY(-2px);
-}
-
-.sba-bottom-action {
-  text-align: center;
-  position: relative;
-  z-index: 2;
-}
-
-.sba-main-btn {
-  display: inline-block;
-  background-color: #6b527d;
-  color: #ffffff;
-  padding: 16px 40px;
-  border-radius: 40px;
-  font-size: 16px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: background-color 0.3s;
-  border: none;
-  cursor: pointer;
-}
-
-.sba-main-btn:hover {
-  background-color: #554064;
-}
-
-.sba-dots {
-  display: none;
-}
-
-/* Hide scrollbar on mobile carousel */
-.sba-cards::-webkit-scrollbar {
-  display: none;
-}
-
-@media (max-width: 1024px) {
-  .sba-cards {
-    gap: 16px;
-  }
-  .sba-card-content {
-    padding: 16px;
-  }
-}
-
-@media (max-width: 768px) {
   #ShopBy-{{ section.id }} {
-    padding: 50px 0 60px 0;
+    --heading-size-desktop: {{ section.settings.heading_size_desktop }}px;
+    --heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
+    --desc-size-desktop: {{ section.settings.subtitle_size_desktop }}px;
+    --desc-size-mobile: {{ section.settings.subtitle_size_mobile }}px;
+
+    --card-title-desktop: {{ section.settings.card_title_desktop }}px;
+    --card-title-mobile: {{ section.settings.card_title_mobile }}px;
+    --card-desc-desktop: {{ section.settings.card_desc_desktop }}px;
+    --card-desc-mobile: {{ section.settings.card_desc_mobile }}px;
+
+    --card-btn-desktop: 15px;
+    --card-btn-mobile: 14px;
+
+    {% if section.settings.bg_image != blank %}
+      background-image: url('{{ section.settings.bg_image | image_url }}');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    {% else %}
+      background: {{ section.settings.bg_gradient }};
+    {% endif %}
+
+    padding: 80px 0 100px 0;
+    position: relative;
+    overflow: hidden;
   }
+
   .sba-deco-img {
-    width: 60px;
-    top: 20px;
+    position: absolute;
+    top: 40px;
+    left: 4%;
+    width: 120px;
+    z-index: 1;
+    pointer-events: none;
   }
+
   .sba-container {
-    padding: 0 20px;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 3;
   }
-  
+
+  .sba-header {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 2;
+  }
+
   .sba-title {
-    font-size: var(--heading-size-mobile);
+    font-size: var(--heading-size-desktop);
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 16px 0;
+    line-height: 1.2;
   }
+
+  .sba-title .highlight-font {
+    color: #7d6599;
+    font-family: inherit;
+    font-family: "Shadows Into Light", "Gochi Hand", "Comic Sans MS", cursive, sans-serif;
+    font-weight: 500;
+  }
+
   .sba-subtitle {
-    font-size: var(--desc-size-mobile);
-  }
-  
-  .sba-card-title {
-    font-size: var(--card-title-mobile);
-  }
-  .sba-card-desc {
-    font-size: var(--card-desc-mobile);
-  }
-  .sba-card-btn {
-    font-size: var(--card-btn-mobile);
-    padding: 10px 0;
+    font-size: var(--desc-size-desktop);
+    color: #555;
+    margin: 0 auto;
+    max-width: 700px;
+    line-height: 1.5;
   }
 
   .sba-cards {
     display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 16px;
-    padding-bottom: 20px;
+    margin-bottom: 50px;
   }
-  
+
   .sba-card {
-    width: 240px;
-    height: 397px; /* Scaled slightly for mobile while keeping rough ratio */
-    min-width: 240px;
-    scroll-snap-align: center;
+    position: relative;
+    width: 255px;
+    height: 422px;
+    border-radius: 20px;
+    border: 6px solid #ffffff;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    overflow: hidden;
+    display: block;
+    text-decoration: none;
+    background-color: #ededed;
+    flex-shrink: 0;
   }
-  
-  .sba-main-btn {
+
+  .sba-card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 14px 20px;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    transition: transform 0.5s ease;
+  }
+
+  .sba-card:hover .sba-card-bg {
+    transform: scale(1.04);
+  }
+
+  .sba-card-black-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 75%;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .sba-card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 65%;
+    z-index: 4;
+    pointer-events: none;
+    /* Background gradient is pulled from block style inline */
+  }
+
+  .sba-card-overlay-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .sba-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background-color: #ffffff;
+    color: #1a1a1a;
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 12px;
+    z-index: 5;
+  }
+
+  .sba-card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 24px;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .sba-card-title {
+    color: #ffffff;
+    font-size: var(--card-title-desktop);
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    line-height: 1.25;
+  }
+
+  .sba-card-desc {
+    color: #ffffff;
+    font-size: var(--card-desc-desktop);
+    line-height: 1.4;
+    margin: 0 0 20px 0;
+    opacity: 0.95;
+  }
+
+  .sba-card-btn {
+    background-color: #ffffff;
+    border-radius: 30px;
+    text-align: center;
+    padding: 12px 0;
+    font-size: var(--card-btn-desktop);
+    font-weight: 600;
+    width: 100%;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .sba-card:hover .sba-card-btn {
+    transform: translateY(-2px);
+  }
+
+  .sba-bottom-action {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .sba-main-btn {
+    display: inline-block;
+    background-color: #6b527d;
+    color: #ffffff;
+    padding: 16px 40px;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .sba-main-btn:hover {
+    background-color: #554064;
   }
 
   .sba-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 30px;
+    display: none;
   }
-  
-  .sba-dots .sba-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: #d1d1d1;
-    transition: all 0.3s;
+
+  /* Hide scrollbar on mobile carousel */
+  .sba-cards::-webkit-scrollbar {
+    display: none;
   }
-  
-  .sba-dots .sba-dot.active {
-    background-color: #6b527d;
-    width: 20px;
-    border-radius: 4px;
+
+  @media (max-width: 1024px) {
+    .sba-cards {
+      gap: 16px;
+    }
+    .sba-card-content {
+      padding: 16px;
+    }
   }
-}
+
+  @media (max-width: 768px) {
+    #ShopBy-{{ section.id }} {
+      padding: 50px 0 60px 0;
+    }
+    .sba-deco-img {
+      width: 60px;
+      top: 20px;
+    }
+    .sba-container {
+      padding: 0 20px;
+    }
+
+    .sba-title {
+      font-size: var(--heading-size-mobile);
+    }
+    .sba-subtitle {
+      font-size: var(--desc-size-mobile);
+    }
+
+    .sba-card-title {
+      font-size: var(--card-title-mobile);
+    }
+    .sba-card-desc {
+      font-size: var(--card-desc-mobile);
+    }
+    .sba-card-btn {
+      font-size: var(--card-btn-mobile);
+      padding: 10px 0;
+    }
+
+    .sba-cards {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      gap: 16px;
+      padding-bottom: 20px;
+    }
+
+    .sba-card {
+      width: 240px;
+      height: 397px; /* Scaled slightly for mobile while keeping rough ratio */
+      min-width: 240px;
+      scroll-snap-align: center;
+    }
+
+    .sba-main-btn {
+      width: 100%;
+      padding: 14px 20px;
+    }
+
+    .sba-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 30px;
+    }
+
+    .sba-dots .sba-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #d1d1d1;
+      transition: all 0.3s;
+    }
+
+    .sba-dots .sba-dot.active {
+      background-color: #6b527d;
+      width: 20px;
+      border-radius: 4px;
+    }
+  }
 </style>
 
 <div id="ShopBy-{{ section.id }}">
-  
   {% if section.settings.deco_image != blank %}
-    {{ section.settings.deco_image | image_url: width: 300 | image_tag: loading: 'lazy', alt: 'Decoration', class: 'sba-deco-img' }}
+    {{
+      section.settings.deco_image
+      | image_url: width: 300
+      | image_tag: loading: 'lazy', alt: 'Decoration', class: 'sba-deco-img'
+    }}
   {% endif %}
-  
+
   <div class="sba-container">
-    
     <div class="sba-header">
       <h2 class="sba-title">
         {% assign heading = section.settings.heading %}
         {% if heading contains '*' %}
           {% assign parts = heading | split: '*' %}
-          {{ parts[0] }}<span class="highlight-font">{{ parts[1] }}</span>{{ parts[2] }}
+          {{ parts[0] -}}
+          <span class="highlight-font">{{ parts[1] }}</span>{{ parts[2] }}
         {% else %}
           {{ heading }}
         {% endif %}
@@ -317,20 +343,36 @@
         <p class="sba-subtitle">{{ section.settings.subtitle }}</p>
       {% endif %}
     </div>
-    
+
     <div class="sba-cards">
       {% for block in section.blocks %}
         <a href="{{ block.settings.btn_link }}" class="sba-card" {{ block.shopify_attributes }}>
           {% if block.settings.image != blank %}
-            {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: block.settings.title, class: 'sba-card-bg' }}
+            {{
+              block.settings.image
+              | image_url: width: 600
+              | image_tag: loading: 'lazy', alt: block.settings.title, class: 'sba-card-bg'
+            }}
+          {% endif %}
+
+          <div class="sba-card-black-gradient"></div>
+
+          {% if block.settings.overlay_image != blank %}
+            {{
+              block.settings.overlay_image
+              | image_url: width: 600
+              | image_tag: loading: 'lazy', alt: block.settings.title, class: 'sba-card-overlay-img'
+            }}
           {% endif %}
           
-          <div class="sba-card-overlay" style="background: {{ block.settings.overlay_gradient }};"></div>
-          
+          {% if block.settings.overlay_gradient != blank %}
+            <div class="sba-card-overlay" style="background: {{ block.settings.overlay_gradient }};"></div>
+          {% endif %}
+
           {% if block.settings.badge != blank %}
             <div class="sba-badge">{{ block.settings.badge }}</div>
           {% endif %}
-          
+
           <div class="sba-card-content">
             <h3 class="sba-card-title">{{ block.settings.title }}</h3>
             <p class="sba-card-desc">{{ block.settings.desc }}</p>
@@ -341,13 +383,13 @@
         </a>
       {% endfor %}
     </div>
-    
+
     <div class="sba-dots">
       {% for block in section.blocks %}
         <div class="sba-dot{% if forloop.first %} active{% endif %}"></div>
       {% endfor %}
     </div>
-    
+
     {% if section.settings.main_btn_label != blank %}
       <div class="sba-bottom-action">
         <a href="{{ section.settings.main_btn_link }}" class="sba-main-btn">
@@ -355,13 +397,12 @@
         </a>
       </div>
     {% endif %}
-    
   </div>
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const sectionId = "ShopBy-{{ section.id }}";
+  document.addEventListener('DOMContentLoaded', function () {
+    const sectionId = 'ShopBy-{{ section.id }}';
     const sectionEl = document.getElementById(sectionId);
     if (!sectionEl) return;
 
@@ -372,12 +413,12 @@
       cardsContainer.addEventListener('scroll', () => {
         const firstCard = cardsContainer.querySelector('.sba-card');
         if (!firstCard) return;
-        
-        const cardWidth = firstCard.offsetWidth + 16; 
+
+        const cardWidth = firstCard.offsetWidth + 16;
         let index = Math.round(cardsContainer.scrollLeft / cardWidth);
-        
-        if(index < 0) index = 0;
-        if(index > dots.length - 1) index = dots.length - 1;
+
+        if (index < 0) index = 0;
+        if (index > dots.length - 1) index = dots.length - 1;
 
         dots.forEach((dot, i) => {
           if (i === index) {
@@ -528,6 +569,12 @@
           "type": "image_picker",
           "id": "image",
           "label": "Card Background Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "overlay_image",
+          "label": "Overlay Image",
+          "info": "Overrides the gradient if selected."
         },
         {
           "type": "color_background",
