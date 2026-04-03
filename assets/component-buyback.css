@@ -1,0 +1,66 @@
+.product-buyback {
+  background: var(--buyback-bg, #ffffff);
+  border-radius: 20px;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  box-shadow: 0 12px 30px rgba(16, 24, 40, 0.06);
+  border: 1px solid #FFE4DA;
+  overflow: hidden;
+}
+
+.product-buyback__left {
+  font-size: 50px;
+  line-height: 1;
+  font-weight: 800;
+  color: var(--buyback-accent, #ff6a00);
+  flex: 0 0 auto;
+}
+
+.product-buyback__text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.product-buyback__titles {
+  display: flex;
+    flex-direction: column;
+  align-items: baseline;
+  font-size: 20px;
+}
+
+.product-buyback__title {
+  font-weight: 700;
+  color: var(--buyback-title-color, #ff6a00);
+}
+
+.product-buyback__emphasis {
+  font-weight: 900;
+  color: var(--buyback-emphasis-color, #000000);
+}
+
+.product-buyback__desc {
+  color: #8a8f98;
+  font-size: 0.95rem;
+  max-width: 60ch;
+  margin-top: 6px;
+}
+
+@media (max-width: 1030px) {
+    .product-buyback{
+        padding: 10px;
+        gap: 8px;
+    }
+  .product-buyback { flex-direction: row;  }
+  .product-buyback__text{
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    gap: 0;
+  }
+  .product-buyback__left { font-size: 40px; }
+  .product-buyback__titles { gap: 0px; font-size: 16px;}
+}
