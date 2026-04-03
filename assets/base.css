@@ -2603,6 +2603,13 @@ input[type='checkbox'] {
   max-width: 40%;
 }
 
+@media screen and (max-width: 949px) {
+  .product .quantity {
+    max-width: 60%;
+  }
+  
+}
+
 .quantity:after {
   pointer-events: none;
   content: '';
