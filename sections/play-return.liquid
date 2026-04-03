@@ -1,237 +1,239 @@
 <style>
-#PlayReturn-{{ section.id }} {
-  --heading-size-desktop: {{ section.settings.heading_size_desktop }}px;
-  --heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
-  --desc-size-desktop: {{ section.settings.subtitle_size_desktop }}px;
-  --desc-size-mobile: {{ section.settings.subtitle_size_mobile }}px;
-  
-  --card-title-desktop: {{ section.settings.card_title_desktop }}px;
-  --card-title-mobile: {{ section.settings.card_title_mobile }}px;
-  --card-desc-desktop: {{ section.settings.card_desc_desktop }}px;
-  --card-desc-mobile: {{ section.settings.card_desc_mobile }}px;
-  
-  --heading-color: {{ section.settings.heading_color }};
-  --heading-weight: {{ section.settings.heading_weight }};
-  --subtitle-color: {{ section.settings.subtitle_color }};
-  --subtitle-weight: {{ section.settings.subtitle_weight }};
-  
-  --card-title-color: {{ section.settings.card_title_color }};
-  --card-title-weight: {{ section.settings.card_title_weight }};
-  --card-desc-color: {{ section.settings.card_desc_color }};
-  --card-desc-weight: {{ section.settings.card_desc_weight }};
-  
-  --card-bg-color: {{ section.settings.card_bg_color }};
-  
-  {% if section.settings.bg_image != blank %}
-    background-image: url('{{ section.settings.bg_image | image_url }}');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  {% else %}
-    background: {{ section.settings.bg_gradient }};
-  {% endif %}
-  
-  padding: 80px 0 100px 0;
-  position: relative;
-}
-
-.prb-container {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 40px;
-}
-
-.prb-header {
-  text-align: center;
-  margin-bottom: 50px;
-}
-
-.prb-title {
-  font-size: var(--heading-size-desktop);
-  font-weight: var(--heading-weight);
-  color: var(--heading-color);
-  margin: 0 0 16px 0;
-  line-height: 1.2;
-}
-
-.prb-title .highlight-font {
-  color: #7d6599;  
-  font-family: inherit;
-  font-family: "Shadows Into Light", "Gochi Hand", "Comic Sans MS", cursive, sans-serif;
-  font-weight: 500;
-}
-
-.prb-subtitle {
-  font-size: var(--desc-size-desktop);
-  color: var(--subtitle-color);
-  font-weight: var(--subtitle-weight);
-  margin: 0 auto;
-  max-width: 700px;
-  line-height: 1.5;
-}
-
-.prb-cards {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: nowrap;
-}
-
-.prb-card {
-  background-color: var(--card-bg-color);
-  border-radius: 24px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  padding: 40px 24px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
-  min-width: 220px; /* Base size */
-}
-
-.prb-icon-wrap {
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 24px;
-  flex-shrink: 0;
-}
-
-.prb-icon-wrap img {
-  width: 65px;
-  height: auto;
-  object-fit: contain;
-}
-
-.prb-card-title {
-  font-size: var(--card-title-desktop);
-  font-weight: var(--card-title-weight);
-  color: var(--card-title-color);
-  margin: 0 0 12px 0;
-  line-height: 1.3;
-}
-
-.prb-card-desc {
-  font-size: var(--card-desc-desktop);
-  font-weight: var(--card-desc-weight);
-  color: var(--card-desc-color);
-  line-height: 1.5;
-}
-
-.prb-card-desc p {
-  margin: 0 0 8px 0;
-}
-.prb-card-desc p:last-child {
-  margin: 0;
-}
-
-.prb-dots {
-  display: none;
-}
-
-/* Hide scrollbar on mobile carousel */
-.prb-cards::-webkit-scrollbar {
-  display: none;
-}
-
-@media (max-width: 1200px) {
-  .prb-cards {
-    flex-wrap: wrap;
-  }
-  .prb-card {
-    min-width: calc(33.333% - 20px);
-  }
-}
-
-@media (max-width: 768px) {
   #PlayReturn-{{ section.id }} {
-    padding: 50px 0 60px 0;
+    --heading-size-desktop: {{ section.settings.heading_size_desktop }}px;
+    --heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
+    --desc-size-desktop: {{ section.settings.subtitle_size_desktop }}px;
+    --desc-size-mobile: {{ section.settings.subtitle_size_mobile }}px;
+
+    --card-title-desktop: {{ section.settings.card_title_desktop }}px;
+    --card-title-mobile: {{ section.settings.card_title_mobile }}px;
+    --card-desc-desktop: {{ section.settings.card_desc_desktop }}px;
+    --card-desc-mobile: {{ section.settings.card_desc_mobile }}px;
+
+    --heading-color: {{ section.settings.heading_color }};
+    --heading-weight: {{ section.settings.heading_weight }};
+    --subtitle-color: {{ section.settings.subtitle_color }};
+    --subtitle-weight: {{ section.settings.subtitle_weight }};
+
+    --card-title-color: {{ section.settings.card_title_color }};
+    --card-title-weight: {{ section.settings.card_title_weight }};
+    --card-desc-color: {{ section.settings.card_desc_color }};
+    --card-desc-weight: {{ section.settings.card_desc_weight }};
+
+    --card-bg-color: {{ section.settings.card_bg_color }};
+
+    {% if section.settings.bg_image != blank %}
+      background-image: url('{{ section.settings.bg_image | image_url }}');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    {% else %}
+      background: {{ section.settings.bg_gradient }};
+    {% endif %}
+
+    padding: 80px 0 100px 0;
+    position: relative;
   }
+
   .prb-container {
-    padding: 0 20px;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 40px;
   }
-  
+
+  .prb-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
   .prb-title {
-    font-size: var(--heading-size-mobile);
+    font-size: var(--heading-size-desktop);
+    font-weight: var(--heading-weight);
+    color: var(--heading-color);
+    margin: 0 0 16px 0;
+    line-height: 1.2;
   }
+
   .prb-title .highlight-font {
-    display: block;
-    margin-top: 6px;
+    color: #6E4B7E;
+    font-family: inherit !important;
+
+    font-weight: 700;
   }
+
   .prb-subtitle {
-    font-size: var(--desc-size-mobile);
-  }
-  
-  .prb-card-title {
-    font-size: var(--card-title-mobile);
-  }
-  .prb-card-desc {
-    font-size: var(--card-desc-mobile);
+    font-size: var(--desc-size-desktop);
+    color: var(--subtitle-color);
+    font-weight: var(--subtitle-weight);
+    margin: 0 auto;
+    max-width: 700px;
+    line-height: 30px;
   }
 
   .prb-cards {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    gap: 16px;
-    padding-bottom: 20px;
-  }
-  
-  .prb-card {
-    min-width: 78vw;
-    max-width: 320px;
-    scroll-snap-align: center;
-    flex: 0 0 auto;
-  }
-  
-  .prb-icon-wrap {
-    width: 140px;
-    height: 140px;
-    margin-bottom: 24px;
-  }
-  
-  .prb-icon-wrap img {
-    width: 70px;
-  }
-  
-  .prb-dots {
     display: flex;
     justify-content: center;
-    gap: 8px;
-    margin-top: 10px;
+    gap: 20px;
+    flex-wrap: nowrap;
   }
-  
-  .prb-dots .prb-dot {
-    width: 8px;
-    height: 8px;
+
+  .prb-card {
+    background-color: var(--card-bg-color);
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: 3px solid #fff;
+    padding: 40px 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-width: 220px; /* Base size */
+  }
+
+  .prb-icon-wrap {
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
-    background-color: rgba(255,255,255,0.4);
-    transition: all 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+    border: 2px solid #fff;
+    flex-shrink: 0;
   }
-  
-  .prb-dots .prb-dot.active {
-    background-color: rgba(255,255,255,1);
-    width: 20px;
-    border-radius: 4px;
+
+  .prb-icon-wrap img {
+    width: 65px;
+    height: auto;
+    object-fit: contain;
   }
-}
+
+  .prb-card-title {
+    font-size: var(--card-title-desktop);
+    font-weight: var(--card-title-weight);
+    color: var(--card-title-color);
+    margin: 0 0 12px 0;
+    line-height: 1.3;
+  }
+
+  .prb-card-desc {
+    font-size: var(--card-desc-desktop);
+    font-weight: var(--card-desc-weight);
+    color: var(--card-desc-color);
+    line-height: 1.5;
+  }
+
+  .prb-card-desc p {
+    margin: 0 0 8px 0;
+  }
+  .prb-card-desc p:last-child {
+    margin: 0;
+  }
+
+  .prb-dots {
+    display: none;
+  }
+
+  /* Hide scrollbar on mobile carousel */
+  .prb-cards::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (max-width: 1200px) {
+    .prb-cards {
+      flex-wrap: wrap;
+    }
+    .prb-card {
+      min-width: calc(33.333% - 20px);
+    }
+  }
+
+  @media (max-width: 768px) {
+    #PlayReturn-{{ section.id }} {
+      padding: 50px 0 60px 0;
+    }
+    .prb-container {
+      padding: 0 20px;
+    }
+
+    .prb-title {
+      font-size: var(--heading-size-mobile);
+    }
+    .prb-title .highlight-font {
+      display: block;
+      margin-top: 6px;
+    }
+    .prb-subtitle {
+      font-size: var(--desc-size-mobile);
+    }
+
+    .prb-card-title {
+      font-size: var(--card-title-mobile);
+    }
+    .prb-card-desc {
+      font-size: var(--card-desc-mobile);
+    }
+
+    .prb-cards {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      gap: 16px;
+      padding-bottom: 20px;
+    }
+
+    .prb-card {
+      min-width: 78vw;
+      max-width: 320px;
+      scroll-snap-align: center;
+      flex: 0 0 auto;
+    }
+
+    .prb-icon-wrap {
+      width: 140px;
+      height: 140px;
+      margin-bottom: 24px;
+    }
+
+    .prb-icon-wrap img {
+      width: 70px;
+    }
+
+    .prb-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .prb-dots .prb-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: rgba(255,255,255,0.4);
+      transition: all 0.3s;
+    }
+
+    .prb-dots .prb-dot.active {
+      background-color: rgba(255,255,255,1);
+      width: 20px;
+      border-radius: 4px;
+    }
+  }
 </style>
 
 <div id="PlayReturn-{{ section.id }}">
   <div class="prb-container">
-    
     <div class="prb-header">
       <h2 class="prb-title">
         {% assign heading = section.settings.heading %}
         {% if heading contains '*' %}
           {% assign parts = heading | split: '*' %}
-          {{ parts[0] }}<span class="highlight-font">{{ parts[1] }}</span>{{ parts[2] }}
+          {{ parts[0] -}}
+          <span class="highlight-font">{{ parts[1] }}</span>{{ parts[2] }}
         {% else %}
           {{ heading }}
         {% endif %}
@@ -240,38 +242,35 @@
         <p class="prb-subtitle">{{ section.settings.subtitle }}</p>
       {% endif %}
     </div>
-    
+
     <div class="prb-cards">
       {% for block in section.blocks %}
         <div class="prb-card" {{ block.shopify_attributes }}>
-          
           <div class="prb-icon-wrap" style="background-color: {{ block.settings.icon_bg_color | default: '#4a90e2' }};">
             {% if block.settings.icon != blank %}
               {{ block.settings.icon | image_url: width: 200 | image_tag: loading: 'lazy', alt: block.settings.title }}
             {% endif %}
           </div>
-          
+
           <h3 class="prb-card-title">{{ block.settings.title }}</h3>
           <div class="prb-card-desc">
             {{ block.settings.desc }}
           </div>
-          
         </div>
       {% endfor %}
     </div>
-    
+
     <div class="prb-dots">
       {% for block in section.blocks %}
         <div class="prb-dot{% if forloop.first %} active{% endif %}"></div>
       {% endfor %}
     </div>
-    
   </div>
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const sectionId = "PlayReturn-{{ section.id }}";
+  document.addEventListener('DOMContentLoaded', function () {
+    const sectionId = 'PlayReturn-{{ section.id }}';
     const sectionEl = document.getElementById(sectionId);
     if (!sectionEl) return;
 
@@ -282,12 +281,12 @@
       cardsContainer.addEventListener('scroll', () => {
         const firstCard = cardsContainer.querySelector('.prb-card');
         if (!firstCard) return;
-        
-        const cardWidth = firstCard.offsetWidth + 16; 
+
+        const cardWidth = firstCard.offsetWidth + 16;
         let index = Math.round(cardsContainer.scrollLeft / cardWidth);
-        
-        if(index < 0) index = 0;
-        if(index > dots.length - 1) index = dots.length - 1;
+
+        if (index < 0) index = 0;
+        if (index > dots.length - 1) index = dots.length - 1;
 
         dots.forEach((dot, i) => {
           if (i === index) {

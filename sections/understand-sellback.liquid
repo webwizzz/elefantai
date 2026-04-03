@@ -13,7 +13,7 @@
     text-align: center;
     overflow: hidden; /* Contains floating elements */
   }
-  
+
   /* Background Decorative Elements */
   .us-floating-icon {
     position: absolute;
@@ -32,6 +32,31 @@
     }
   }
 
+  /* Corner Images */
+  .us-corner-img {
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+    pointer-events: none;
+    object-fit: contain;
+  }
+  .us-corner-bl {
+    left: 0;
+    width: {{ section.settings.bottom_left_width }}px;
+  }
+  .us-corner-br {
+    right: 0;
+    width: {{ section.settings.bottom_right_width }}px;
+  }
+  @media (max-width: 768px) {
+    .us-corner-bl {
+      width: calc({{ section.settings.bottom_left_width }}px * 0.6);
+    }
+    .us-corner-br {
+      width: calc({{ section.settings.bottom_right_width }}px * 0.6);
+    }
+  }
+
   /* Core UI Wrappers */
   .us-content {
     position: relative;
@@ -43,7 +68,7 @@
   .us-header {
     margin-bottom: 55px;
   }
-  
+
   .us-title {
     font-size: {{ section.settings.heading_size }}px;
     font-weight: {{ section.settings.heading_weight }};
@@ -54,7 +79,7 @@
   .us-title .highlight {
     color: {{ section.settings.title_highlight_color }};
   }
-  
+
   .us-subtitle {
     font-size: {{ section.settings.subtitle_size }}px;
     font-weight: {{ section.settings.subtitle_weight }};
@@ -84,17 +109,17 @@
     min-height: {{ section.settings.top_cards_height }}px;
     border-radius: 20px;
     box-shadow: 0 12px 35px rgba(0,0,0,0.08); /* elevated drop shadow like image */
-    padding: 35px 30px;
+    padding: 20px 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 3px solid #fff; 
+    border: 3px solid #fff;
     transition: transform 0.3s ease;
   }
-  .us-feature-card:hover { 
-    transform: translateY(-5px); 
+  .us-feature-card:hover {
+    transform: translateY(-5px);
   }
-  
+
   .us-card-icon {
     width: 90px;
     height: 90px;
@@ -155,8 +180,8 @@
     stroke-linejoin: round;
   }
   @media (max-width: 768px) {
-    .us-arrow { 
-      transform: none; 
+    .us-arrow {
+      transform: none;
     }
     .us-arrow svg {
       width: 30px;
@@ -191,7 +216,7 @@
     color: inherit;
   }
   /* Bolding the text connects to the highlight color setting dynamically! */
-  .us-bc-label strong, 
+  .us-bc-label strong,
   .us-bc-label b {
     color: {{ section.settings.card_3_highlight_color }};
     font-weight: bold;
@@ -216,7 +241,7 @@
     line-height: 1;
     color: inherit;
   }
-  
+
   /* The intersecting bottom pill */
   .us-bc-pill {
     display: inline-block;
@@ -230,7 +255,7 @@
     white-space: nowrap;
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   }
-  
+
   /* Explicit mapping for mobile fonts from settings */
   @media (max-width: 768px) {
     .us-feature-card { padding: 25px 10px; border-radius: 12px; min-height: auto; border-width: 2px; }
@@ -254,36 +279,74 @@
 {%- endstyle -%}
 
 <div id="US-{{ section.id }}">
-  
   {%- comment -%} Dynamically scattered background icons from Customize blocks {%- endcomment -%}
   {% for block in section.blocks %}
-    {% if block.type == "icon" and block.settings.image != blank %}
-      <div class="us-floating-icon" style="top: {{ block.settings.top_pos }}%; left: {{ block.settings.left_pos }}%; width: {{ block.settings.size }}px; height: {{ block.settings.size }}px;" {{ block.shopify_attributes }}>
-        <img src="{{ block.settings.image | image_url: width: 400 }}" loading="lazy" width="{{ block.settings.image.width }}" height="{{ block.settings.image.height }}" alt="Decorative Icon">
+    {% if block.type == 'icon' and block.settings.image != blank %}
+      <div
+        class="us-floating-icon"
+        style="top: {{ block.settings.top_pos }}%; left: {{ block.settings.left_pos }}%; width: {{ block.settings.size }}px; height: {{ block.settings.size }}px;"
+        {{ block.shopify_attributes }}
+      >
+        <img
+          src="{{ block.settings.image | image_url: width: 400 }}"
+          loading="lazy"
+          width="{{ block.settings.image.width }}"
+          height="{{ block.settings.image.height }}"
+          alt="Decorative Icon"
+        >
       </div>
     {% endif %}
   {% endfor %}
 
+  {%- comment -%} Fixed Corner Images {%- endcomment -%}
+  {% if section.settings.bottom_left_image != blank %}
+    <img
+      src="{{ section.settings.bottom_left_image | image_url: width: 600 }}"
+      class="us-corner-img us-corner-bl"
+      alt=""
+      loading="lazy"
+      width="{{ section.settings.bottom_left_image.width }}"
+      height="{{ section.settings.bottom_left_image.height }}"
+    >
+  {% endif %}
+
+  {% if section.settings.bottom_right_image != blank %}
+    <img
+      src="{{ section.settings.bottom_right_image | image_url: width: 600 }}"
+      class="us-corner-img us-corner-br"
+      alt=""
+      loading="lazy"
+      width="{{ section.settings.bottom_right_image.width }}"
+      height="{{ section.settings.bottom_right_image.height }}"
+    >
+  {% endif %}
+
   <div class="us-content">
-    
     <div class="us-header">
       <h2 class="us-title">
-        {{ section.settings.heading_1 }} 
-        <span class="highlight">{{ section.settings.highlight_text }}</span> 
+        {{ section.settings.heading_1 }}
+        <span class="highlight">{{ section.settings.highlight_text }}</span>
         {{ section.settings.heading_2 }}
       </h2>
       <p class="us-subtitle">{{ section.settings.subtitle }}</p>
     </div>
 
     <div class="us-cards-row">
-      
       <!-- Card 1 -->
       <div class="us-feature-card" style="background: {{ section.settings.card_1_bg }};">
         <div class="us-card-icon" style="background: {{ section.settings.card_1_icon_bg }};">
           {% if section.settings.card_1_icon != blank %}
-            <img src="{{ section.settings.card_1_icon | image_url: width: 200 }}" alt="" width="{{ section.settings.card_1_icon.width }}" height="{{ section.settings.card_1_icon.height }}" loading="lazy">
+            <img
+              src="{{ section.settings.card_1_icon | image_url: width: 200 }}"
+              alt=""
+              width="{{ section.settings.card_1_icon.width }}"
+              height="{{ section.settings.card_1_icon.height }}"
+              loading="lazy"
+            >
           {% else %}
-             <svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
           {% endif %}
         </div>
         <h3 class="us-card-label">{{ section.settings.card_1_title }}</h3>
@@ -293,29 +356,38 @@
 
       <!-- Arrow -->
       <div class="us-arrow">
-        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <svg viewBox="0 0 24 24">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
       </div>
 
       <!-- Card 2 -->
       <div class="us-feature-card" style="background: {{ section.settings.card_2_bg }};">
         <div class="us-card-icon" style="background: {{ section.settings.card_2_icon_bg }};">
           {% if section.settings.card_2_icon != blank %}
-            <img src="{{ section.settings.card_2_icon | image_url: width: 200 }}" alt="" width="{{ section.settings.card_2_icon.width }}" height="{{ section.settings.card_2_icon.height }}" loading="lazy">
+            <img
+              src="{{ section.settings.card_2_icon | image_url: width: 200 }}"
+              alt=""
+              width="{{ section.settings.card_2_icon.width }}"
+              height="{{ section.settings.card_2_icon.height }}"
+              loading="lazy"
+            >
           {% else %}
-             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line>
+            </svg>
           {% endif %}
         </div>
         <h3 class="us-card-label">{{ section.settings.card_2_title }}</h3>
         <p class="us-card-price">{{ section.settings.card_2_price }}</p>
         <p class="us-card-subtext">{{ section.settings.card_2_subtext }}</p>
       </div>
-
     </div>
 
     <!-- Bottom Wide Card -->
     <div class="us-bottom-card">
       <p class="us-bc-label">{{ section.settings.card_3_title }}</p>
-      
+
       <div class="us-bc-prices">
         {% if section.settings.card_3_strikethrough != blank %}
           <div class="us-bc-strikethrough">{{ section.settings.card_3_strikethrough }}</div>
@@ -329,7 +401,6 @@
         </div>
       {% endif %}
     </div>
-
   </div>
 </div>
 
@@ -353,6 +424,40 @@
       "type": "image_picker",
       "id": "bg_image",
       "label": "Overall Background Image (Optional override)"
+    },
+    {
+      "type": "header",
+      "content": "Corner Images (Bottom)"
+    },
+    {
+      "type": "image_picker",
+      "id": "bottom_left_image",
+      "label": "Bottom Left Image"
+    },
+    {
+      "type": "range",
+      "id": "bottom_left_width",
+      "min": 50,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "label": "Bottom Left Image Width",
+      "default": 200
+    },
+    {
+      "type": "image_picker",
+      "id": "bottom_right_image",
+      "label": "Bottom Right Image"
+    },
+    {
+      "type": "range",
+      "id": "bottom_right_width",
+      "min": 50,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "label": "Bottom Right Image Width",
+      "default": 200
     },
     {
       "type": "header",
@@ -454,47 +559,275 @@
       "type": "header",
       "content": "Typography: Headings"
     },
-    { "type": "range", "id": "heading_size", "min": 20, "max": 80, "step": 1, "unit": "px", "label": "Heading Font Size (Desktop)", "default": 40 },
-    { "type": "range", "id": "heading_size_m", "min": 16, "max": 60, "step": 1, "unit": "px", "label": "Heading Font Size (Mobile)", "default": 30 },
-    { "type": "select", "id": "heading_weight", "label": "Heading Font Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" }, { "value": "800", "label": "Extra Bold" } ], "default": "700" },
-    { "type": "range", "id": "subtitle_size", "min": 12, "max": 30, "step": 1, "unit": "px", "label": "Subtitle Font Size (Desktop)", "default": 16 },
-    { "type": "range", "id": "subtitle_size_m", "min": 10, "max": 24, "step": 1, "unit": "px", "label": "Subtitle Font Size (Mobile)", "default": 14 },
-    { "type": "select", "id": "subtitle_weight", "label": "Subtitle Font Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" } ], "default": "500" },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 20,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Font Size (Desktop)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "heading_size_m",
+      "min": 16,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Font Size (Mobile)",
+      "default": 30
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading Font Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtitle Font Size (Desktop)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size_m",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtitle Font Size (Mobile)",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "subtitle_weight",
+      "label": "Subtitle Font Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "500"
+    },
 
     {
       "type": "header",
       "content": "Typography: Top Cards"
     },
     { "type": "color", "id": "tc_title_color", "label": "Top Cards Title Color", "default": "#111111" },
-    { "type": "range", "id": "tc_title_size", "min": 12, "max": 40, "step": 1, "unit": "px", "label": "Top Cards Title Size (Desktop)", "default": 18 },
-    { "type": "range", "id": "tc_title_size_m", "min": 10, "max": 30, "step": 1, "unit": "px", "label": "Top Cards Title Size (Mobile)", "default": 16 },
-    { "type": "select", "id": "tc_title_weight", "label": "Top Cards Title Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" }, { "value": "800", "label": "Extra Bold" } ], "default": "700" },
+    {
+      "type": "range",
+      "id": "tc_title_size",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Top Cards Title Size (Desktop)",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "tc_title_size_m",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Top Cards Title Size (Mobile)",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "tc_title_weight",
+      "label": "Top Cards Title Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" }
+      ],
+      "default": "700"
+    },
 
     { "type": "color", "id": "tc_price_color", "label": "Top Cards Price Color", "default": "#111111" },
-    { "type": "range", "id": "tc_price_size", "min": 20, "max": 80, "step": 1, "unit": "px", "label": "Top Cards Price Size (Desktop)", "default": 38 },
-    { "type": "range", "id": "tc_price_size_m", "min": 16, "max": 60, "step": 1, "unit": "px", "label": "Top Cards Price Size (Mobile)", "default": 30 },
-    { "type": "select", "id": "tc_price_weight", "label": "Top Cards Price Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" }, { "value": "800", "label": "Extra Bold" } ], "default": "800" },
+    {
+      "type": "range",
+      "id": "tc_price_size",
+      "min": 20,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "label": "Top Cards Price Size (Desktop)",
+      "default": 38
+    },
+    {
+      "type": "range",
+      "id": "tc_price_size_m",
+      "min": 16,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Top Cards Price Size (Mobile)",
+      "default": 30
+    },
+    {
+      "type": "select",
+      "id": "tc_price_weight",
+      "label": "Top Cards Price Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" }
+      ],
+      "default": "800"
+    },
 
     { "type": "color", "id": "tc_subtext_color", "label": "Top Cards Subtext Color", "default": "#888888" },
-    { "type": "range", "id": "tc_subtext_size", "min": 10, "max": 30, "step": 1, "unit": "px", "label": "Top Cards Subtext Size (Desktop)", "default": 13 },
-    { "type": "range", "id": "tc_subtext_size_m", "min": 8, "max": 24, "step": 1, "unit": "px", "label": "Top Cards Subtext Size (Mobile)", "default": 12 },
-    { "type": "select", "id": "tc_subtext_weight", "label": "Top Cards Subtext Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "Semi-Bold" } ], "default": "500" },
+    {
+      "type": "range",
+      "id": "tc_subtext_size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Top Cards Subtext Size (Desktop)",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "tc_subtext_size_m",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Top Cards Subtext Size (Mobile)",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "tc_subtext_weight",
+      "label": "Top Cards Subtext Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-Bold" }
+      ],
+      "default": "500"
+    },
 
     {
       "type": "header",
       "content": "Typography: Bottom Card"
     },
-    { "type": "range", "id": "bc_title_size", "min": 12, "max": 40, "step": 1, "unit": "px", "label": "Bottom Title Size (Desktop)", "default": 16 },
-    { "type": "range", "id": "bc_title_size_m", "min": 10, "max": 30, "step": 1, "unit": "px", "label": "Bottom Title Size (Mobile)", "default": 14 },
-    { "type": "select", "id": "bc_title_weight", "label": "Bottom Title Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" } ], "default": "600" },
+    {
+      "type": "range",
+      "id": "bc_title_size",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom Title Size (Desktop)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "bc_title_size_m",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom Title Size (Mobile)",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "bc_title_weight",
+      "label": "Bottom Title Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
 
-    { "type": "range", "id": "bc_price_size", "min": 20, "max": 100, "step": 1, "unit": "px", "label": "Bottom Main Price Size (Desktop)", "default": 50 },
-    { "type": "range", "id": "bc_price_size_m", "min": 16, "max": 80, "step": 1, "unit": "px", "label": "Bottom Main Price Size (Mobile)", "default": 40 },
-    { "type": "select", "id": "bc_price_weight", "label": "Bottom Main Price Weight", "options": [ { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" }, { "value": "800", "label": "Extra Bold" } ], "default": "800" },
-    
-    { "type": "range", "id": "bc_pill_size", "min": 10, "max": 30, "step": 1, "unit": "px", "label": "Bottom Pill Size (Desktop)", "default": 15 },
-    { "type": "range", "id": "bc_pill_size_m", "min": 8, "max": 24, "step": 1, "unit": "px", "label": "Bottom Pill Size (Mobile)", "default": 13 },
-    { "type": "select", "id": "bc_pill_weight", "label": "Bottom Pill Weight", "options": [ { "value": "400", "label": "Normal" }, { "value": "600", "label": "Semi-Bold" }, { "value": "700", "label": "Bold" } ], "default": "700" },
+    {
+      "type": "range",
+      "id": "bc_price_size",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom Main Price Size (Desktop)",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "bc_price_size_m",
+      "min": 16,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom Main Price Size (Mobile)",
+      "default": 40
+    },
+    {
+      "type": "select",
+      "id": "bc_price_weight",
+      "label": "Bottom Main Price Weight",
+      "options": [
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" }
+      ],
+      "default": "800"
+    },
+
+    {
+      "type": "range",
+      "id": "bc_pill_size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom Pill Size (Desktop)",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "bc_pill_size_m",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom Pill Size (Mobile)",
+      "default": 13
+    },
+    {
+      "type": "select",
+      "id": "bc_pill_weight",
+      "label": "Bottom Pill Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "600", "label": "Semi-Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "700"
+    },
     {
       "type": "header",
       "content": "Left Card (Buy Setup)"

@@ -190,6 +190,147 @@
         "card_radius": 24
       }
     },
+    "multi_pallete_3f66Mn": {
+      "type": "multi-pallete",
+      "blocks": {
+        "pallet_fANkn3": {
+          "type": "pallet",
+          "settings": {
+            "pallet_label": "Pallet",
+            "label_color": "#ffffff",
+            "pallet_image": "shopify://shop_images/toy-image-17601822529270.jpg",
+            "pallet_link": "",
+            "background_color": "#3a4490"
+          }
+        },
+        "pallet_wkaqbj": {
+          "type": "pallet",
+          "settings": {
+            "pallet_label": "Pallet",
+            "label_color": "#ffffff",
+            "pallet_link": "",
+            "background_color": "#f1bb4f"
+          }
+        },
+        "pallet_3mEndh": {
+          "type": "pallet",
+          "settings": {
+            "pallet_label": "",
+            "label_color": "#ffffff",
+            "pallet_image": "shopify://shop_images/toy-image-17603302298350_38ed932b-03db-4c73-8264-ed85bd655f4b.png",
+            "pallet_link": "",
+            "background_color": "#34823d"
+          }
+        },
+        "pallet_PQwKbf": {
+          "type": "pallet",
+          "settings": {
+            "pallet_label": "",
+            "label_color": "#ffffff",
+            "pallet_image": "shopify://shop_images/toy-image-17603284294642.jpg",
+            "pallet_link": "",
+            "background_color": "#da3c24"
+          }
+        },
+        "pallet_r6VmRF": {
+          "type": "pallet",
+          "settings": {
+            "pallet_label": "Pallet",
+            "label_color": "#ffffff",
+            "pallet_link": "",
+            "background_color": "#ec6c9a"
+          }
+        },
+        "pallet_yxBTCp": {
+          "type": "pallet",
+          "settings": {
+            "pallet_label": "Pallet",
+            "label_color": "#ffffff",
+            "pallet_link": "",
+            "background_color": "#57be58"
+          }
+        },
+        "pallet_93zibq": {
+          "type": "pallet",
+          "settings": {
+            "pallet_label": "Pallet",
+            "label_color": "#ffffff",
+            "pallet_link": "",
+            "background_color": "#4f98de"
+          }
+        },
+        "pallet_Am9Y4M": {
+          "type": "pallet",
+          "settings": {
+            "pallet_label": "Pallet",
+            "label_color": "#ffffff",
+            "pallet_link": "",
+            "background_color": "#6e4b7e"
+          }
+        },
+        "pallet_78ADc7": {
+          "type": "pallet",
+          "settings": {
+            "pallet_label": "Pallet",
+            "label_color": "#ffffff",
+            "pallet_image": "shopify://shop_images/toy-image-17323502458014.jpg",
+            "pallet_link": "",
+            "background_color": "#3a4490"
+          }
+        }
+      },
+      "block_order": [
+        "pallet_fANkn3",
+        "pallet_wkaqbj",
+        "pallet_3mEndh",
+        "pallet_PQwKbf",
+        "pallet_r6VmRF",
+        "pallet_yxBTCp",
+        "pallet_93zibq",
+        "pallet_Am9Y4M",
+        "pallet_78ADc7"
+      ],
+      "name": "Multipalette",
+      "settings": {
+        "heading": "",
+        "heading_size": "h2",
+        "heading_color": "heading",
+        "text": "",
+        "text_body_size": "text-body--large",
+        "text_color": "main",
+        "heading_align": "center",
+        "text_bottom_space": "",
+        "image_overlay_width": 10,
+        "image_overlay_vertical": 20,
+        "image_overlay_horizontal": 20,
+        "image_overlay_width_mobile": 10,
+        "image_overlay_vertical_mobile": 20,
+        "image_overlay_horizontal_mobile": 20,
+        "image_overlay_animation": "none",
+        "image_overlay_width_2": 10,
+        "image_overlay_vertical_2": 20,
+        "image_overlay_horizontal_2": 20,
+        "image_overlay_width_2_mobile": 10,
+        "image_overlay_vertical_2_mobile": 20,
+        "image_overlay_horizontal_2_mobile": 20,
+        "image_overlay_animation_2": "none",
+        "image_overlay_width_3": 10,
+        "image_overlay_vertical_3": 20,
+        "image_overlay_horizontal_3": 20,
+        "image_overlay_width_3_mobile": 10,
+        "image_overlay_vertical_3_mobile": 20,
+        "image_overlay_horizontal_3_mobile": 20,
+        "image_overlay_animation_3": "none",
+        "shape_position": "top",
+        "shape_type": "none",
+        "shape_color": "#fff",
+        "shape_width": 100,
+        "background_color": "color-bg-4",
+        "colors_background_section_gradient": "",
+        "padding_top": 70,
+        "padding_bottom": 70
+      }
+    },
     "text_image_card_p9QVHG": {
       "type": "text-image-card",
       "name": "Elevated Split Card",
@@ -413,9 +554,10 @@
         "heading": "Why EleFant *Exists*",
         "description": "We understand the challenges every parent faces",
         "button_label": "Learn How it Works",
-        "button_link": "",
-        "background_color": "#f5f5f7",
-        "card_bg_color": "#ffffff"
+        "button_link": "shopify://pages/about-funlearn",
+        "kite_image": "shopify://shop_images/Frame-2.svg",
+        "background_color": "#f2f0f5",
+        "card_bg_color": "#f5f5f5"
       }
     },
     "what_this_mean_6d7UUR": {
@@ -499,8 +641,9 @@
         "category_card_DmYgLq": {
           "type": "category_card",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_3.png",
-            "overlay_gradient": "linear-gradient(0deg, rgba(204, 113, 135, 0.9), rgba(204, 113, 135, 0) 100%)",
+            "image": "shopify://shop_images/IMG_2404-scaled_1.jpg",
+            "overlay_image": "shopify://shop_images/Rectangle_3.png",
+            "overlay_gradient": "linear-gradient(0deg, rgba(236, 108, 154, 1), rgba(204, 113, 135, 0) 100%)",
             "badge": "0-12 Months",
             "title": "Newborn & Infant",
             "desc": "Sensory toys, rattles, and soft blocks for early development",
@@ -512,7 +655,9 @@
         "category_card_byt79K": {
           "type": "category_card",
           "settings": {
-            "overlay_gradient": "linear-gradient(0deg, rgba(82, 143, 195, 0.9), rgba(82, 143, 195, 0) 100%)",
+            "image": "shopify://shop_images/IMG_2404-scaled_1.png",
+            "overlay_image": "shopify://shop_images/Rectangle_3-2.png",
+            "overlay_gradient": "linear-gradient(0deg, rgba(0, 0, 0, 0.9), rgba(82, 143, 195, 0) 100%)",
             "badge": "1-2 Years",
             "title": "Toddler",
             "desc": "Sensory toys, rattles, and soft blocks for early development",
@@ -524,7 +669,9 @@
         "category_card_znGtmd": {
           "type": "category_card",
           "settings": {
-            "overlay_gradient": "linear-gradient(0deg, rgba(205,152,43,0.9) 0%, rgba(205,152,43,0) 100%)",
+            "image": "shopify://shop_images/IMG_2404-scaled_1-2.png",
+            "overlay_image": "shopify://shop_images/Rectangle_3-3.png",
+            "overlay_gradient": "linear-gradient(0deg, rgba(0, 0, 0, 1), rgba(205, 152, 43, 0) 100%)",
             "badge": "2-4 Years",
             "title": "Pre-school",
             "desc": "Sensory toys, rattles, and soft blocks for early development",
@@ -556,6 +703,8 @@
       "settings": {
         "heading": "Shop by *Age*",
         "subtitle": "Find the perfect toys for your child's developmental stage",
+        "deco_image": "shopify://shop_images/Group-2.svg",
+        "bg_image": "shopify://shop_images/Desktop_-_11.png",
         "bg_gradient": "radial-gradient(rgba(242, 240, 245, 1), rgba(242, 240, 245, 0.9882) 100%)",
         "main_btn_label": "Browse all Categories",
         "main_btn_link": "",
@@ -629,20 +778,20 @@
       "settings": {
         "heading": "Play. Return. *Earn Back.*",
         "subtitle": "The smart way to buy toys. Play, return when done, and get money back.",
-        "bg_gradient": "linear-gradient(140deg, rgba(242, 187, 79, 1), rgba(241, 122, 62, 1) 100%)",
-        "heading_color": "#1a1a1a",
-        "subtitle_color": "#444444",
-        "card_bg_color": "#ffffff",
-        "card_title_color": "#1a1a1a",
-        "card_desc_color": "#555555",
+        "bg_gradient": "linear-gradient(88deg, rgba(242, 187, 79, 1) 45%, rgba(241, 122, 62, 1) 100%)",
+        "heading_color": "#000000",
+        "subtitle_color": "#606060",
+        "card_bg_color": "#f5f5f5",
+        "card_title_color": "#000000",
+        "card_desc_color": "#8c8c8c",
         "heading_weight": 700,
         "subtitle_weight": 400,
         "card_title_weight": 700,
         "card_desc_weight": 400,
-        "heading_size_desktop": 44,
-        "subtitle_size_desktop": 18,
-        "card_title_desktop": 18,
-        "card_desc_desktop": 14,
+        "heading_size_desktop": 52,
+        "subtitle_size_desktop": 22,
+        "card_title_desktop": 22,
+        "card_desc_desktop": 18,
         "heading_size_mobile": 32,
         "subtitle_size_mobile": 15,
         "card_title_mobile": 16,
@@ -655,6 +804,7 @@
         "icon_zQGGHH": {
           "type": "icon",
           "settings": {
+            "image": "shopify://shop_images/Group-8.svg",
             "top_pos": 25,
             "left_pos": 10,
             "size": 90
@@ -663,6 +813,7 @@
         "icon_Hj4whF": {
           "type": "icon",
           "settings": {
+            "image": "shopify://shop_images/Group-10.svg",
             "top_pos": 15,
             "left_pos": 90,
             "size": 80
@@ -671,6 +822,7 @@
         "icon_EwwNAG": {
           "type": "icon",
           "settings": {
+            "image": "shopify://shop_images/Group-9.svg",
             "top_pos": 75,
             "left_pos": 85,
             "size": 75
@@ -679,6 +831,7 @@
         "icon_kgRmPW": {
           "type": "icon",
           "settings": {
+            "image": "shopify://shop_images/Group-13.svg",
             "top_pos": 75,
             "left_pos": 15,
             "size": 60
@@ -693,7 +846,11 @@
       ],
       "name": "Understand Sellback Value",
       "settings": {
-        "bg_color": "linear-gradient(180deg, rgba(242, 247, 255, 1), rgba(166, 203, 243, 1) 100%)",
+        "bg_color": "linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(79, 152, 222, 1) 100%)",
+        "bottom_left_image": "shopify://shop_images/Isolation_Mode_ee3f1b44-74f4-4bbc-940d-4e5ed2051966.svg",
+        "bottom_left_width": 200,
+        "bottom_right_image": "shopify://shop_images/Group-14.svg",
+        "bottom_right_width": 200,
         "heading_1": "Understanding",
         "highlight_text": "Sellback",
         "heading_2": "Value",
@@ -702,15 +859,15 @@
         "subtitle": "See how much you actually save with EleFant's buyback guarantee",
         "subtitle_color": "#555555",
         "arrow_color": "#4c9fef",
-        "top_cards_width": 360,
+        "top_cards_width": 260,
         "top_cards_height": 320,
         "bottom_card_width": 460,
         "bottom_card_height": 240,
-        "heading_size": 40,
+        "heading_size": 52,
         "heading_size_m": 30,
         "heading_weight": "700",
-        "subtitle_size": 16,
-        "subtitle_size_m": 14,
+        "subtitle_size": 22,
+        "subtitle_size_m": 16,
         "subtitle_weight": "500",
         "tc_title_color": "#111111",
         "tc_title_size": 32,
@@ -761,21 +918,22 @@
       "name": "Elevated Unified Card",
       "settings": {
         "section_bg_color": "#f6f5fb",
+        "section_bg_image": "shopify://shop_images/Vector-2.svg",
         "section_bg_opacity": 100,
         "card_bg_color": "#71507c",
         "show_white_border": true,
-        "card_width": 1100,
+        "card_width": 1400,
         "card_height": 480,
         "card_padding": 80,
-        "card_radius": 24,
+        "card_radius": 36,
         "heading": "Smart parents <strong>save an average of ₹15,000 annually</strong> by using EleFant Wallet credit!",
         "title_color": "#ffffff",
         "highlight_color": "#fdc64a",
-        "heading_size": 45,
-        "heading_weight": "700",
+        "heading_size": 62,
+        "heading_weight": "800",
         "description": "The better the condition of the toy when you return it, the higher the buyback value you receive!",
         "desc_color": "#ffffff",
-        "subtitle_size": 17,
+        "subtitle_size": 22,
         "subtitle_weight": "500",
         "button_label_1": "Start Shopping",
         "button_link_1": "",
@@ -967,6 +1125,7 @@
     "featuredproducts_cw8znJ",
     "how_it_works_dzJUai",
     "brand_DEffTN",
+    "multi_pallete_3f66Mn",
     "text_image_card_p9QVHG",
     "featured_product_mTRXnC",
     "whyelefantexist_kiEd6F",
