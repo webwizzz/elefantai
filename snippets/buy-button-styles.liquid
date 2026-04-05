@@ -58,27 +58,23 @@
     opacity: 1 !important;
     cursor: pointer !important;
   }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ id }} .product-form__submit,
+    #shopify-section-{{ id }} .shopify-payment-button__button--unbranded {
+      font-size: clamp(18px, 5.6vw, 28px) !important;
+      min-height: clamp(58px, 14vw, 72px) !important;
+      padding: 0.9rem 1.6rem !important;
+      line-height: 1.15 !important;
+      border-width: 3px !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    #shopify-section-{{ id }} .shopify-payment-button__button {
+      min-height: clamp(58px, 14vw, 72px) !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+  }
 </style>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var section = document.getElementById('shopify-section-{{ id }}');
-    if (!section) return;
-    
-    section.querySelectorAll('product-form').forEach(function(pf) {
-      var form = pf.querySelector('form');
-      if (!form) return;
-      
-      var variantInput = form.querySelector('[name=id]');
-      if (variantInput) {
-        variantInput.disabled = false;
-      }
-      
-      var submitBtn = pf.querySelector('[type="submit"]');
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.removeAttribute('aria-disabled');
-      }
-    });
-  });
-</script>

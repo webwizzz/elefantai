@@ -30,20 +30,12 @@
             "title_product_type": false
           }
         },
-        "bb95e0db-baa1-4796-bc47-fd3d9e8820ce": {
-          "type": "share",
-          "disabled": true,
+        "tags_b9YKGF": {
+          "type": "tags",
           "settings": {
-            "share_label": "",
-            "show_linkedin_share": false,
-            "show_fb_share": false,
-            "show_twitter_share": false,
-            "show_pinterest_share": false,
-            "show_telegram_share": false,
-            "show_snapchat_share": false,
-            "show_tumblr_share": false,
-            "social_color": "main",
-            "social_color_hover": "heading"
+            "heading": "Age & Attributes",
+            "pill_color": "#ff6a00",
+            "position": "sidebar"
           }
         },
         "buyback_CTtRCe": {
@@ -200,7 +192,7 @@
       "block_order": [
         "breadcrumb_WBMM3F",
         "title",
-        "bb95e0db-baa1-4796-bc47-fd3d9e8820ce",
+        "tags_b9YKGF",
         "buyback_CTtRCe",
         "description_3GT8yD",
         "price",
@@ -229,60 +221,181 @@
         "info_background_color": "color-main-bg",
         "background_color": "--colors-background-main",
         "colors_background_section_gradient": "",
-        "padding_top": 150,
+        "padding_top": 20,
         "padding_bottom": 0
       }
     },
-    "related-products": {
-      "type": "related-products",
+    "how_it_works_6UJKRt": {
+      "type": "how-it-works",
+      "blocks": {
+        "step_kMFKp8": {
+          "type": "step",
+          "settings": {
+            "bg_color": "#f1bd56",
+            "icon": "shopify://shop_images/SVGRepo_iconCarrier.svg",
+            "title": "Buy",
+            "description": "Choose quality toys for your child"
+          }
+        },
+        "step_RBkdab": {
+          "type": "step",
+          "settings": {
+            "bg_color": "#5699dc",
+            "icon": "shopify://shop_images/SVGRepo_iconCarrier-2.svg",
+            "title": "Play",
+            "description": "Enjoy for weeks or months"
+          }
+        },
+        "step_Y4idpr": {
+          "type": "step",
+          "settings": {
+            "bg_color": "#ed719e",
+            "icon": "shopify://shop_images/Shopicon.svg",
+            "title": "Return",
+            "description": "Send back when done playing"
+          }
+        },
+        "step_xbejLN": {
+          "type": "step",
+          "settings": {
+            "bg_color": "#9169a3",
+            "icon": "shopify://shop_images/SVGRepo_iconCarrier-3.svg",
+            "title": "Get Credit",
+            "description": "Receive 60% back"
+          }
+        }
+      },
+      "block_order": [
+        "step_kMFKp8",
+        "step_RBkdab",
+        "step_Y4idpr",
+        "step_xbejLN"
+      ],
+      "name": "How It Works",
       "settings": {
-        "heading": "<strong>You May also Like</strong>",
-        "heading_size": "h2",
-        "heading_color": "heading",
-        "text": "",
-        "text_body_size": "text-body--large",
-        "description_color": "main",
-        "show_header_button": false,
-        "header_button_label": "SHOP ALL PRODUCTS",
-        "header_button_url": "",
-        "heading_align": "center",
-        "text_bottom_space": "",
-        "products_to_show": 4,
-        "columns_desktop": 4,
-        "image_ratio": "portrait",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "columns_mobile": "2",
-        "image_overlay_width": 10,
-        "image_overlay_vertical": 20,
-        "image_overlay_horizontal": 20,
-        "image_overlay_width_mobile": 10,
-        "image_overlay_vertical_mobile": 20,
-        "image_overlay_horizontal_mobile": 20,
-        "image_overlay_animation": "none",
-        "image_overlay_width_2": 10,
-        "image_overlay_vertical_2": 20,
-        "image_overlay_horizontal_2": 20,
-        "image_overlay_width_2_mobile": 10,
-        "image_overlay_vertical_2_mobile": 20,
-        "image_overlay_horizontal_2_mobile": 20,
-        "image_overlay_animation_2": "none",
-        "image_overlay_width_3": 10,
-        "image_overlay_vertical_3": 20,
-        "image_overlay_horizontal_3": 20,
-        "image_overlay_width_3_mobile": 10,
-        "image_overlay_vertical_3_mobile": 20,
-        "image_overlay_horizontal_3_mobile": 20,
-        "image_overlay_animation_3": "none",
-        "shape_position": "top",
-        "shape_type": "curve",
-        "shape_color": "#ffd265",
-        "shape_width": 100,
-        "background_color": "--colors-background-main",
-        "colors_background_section_gradient": "",
-        "padding_top": 160,
-        "padding_bottom": 160
+        "bg_color": "#f9f8f8",
+        "top_left_image": "shopify://shop_images/Vector.svg",
+        "bottom_right_image": "shopify://shop_images/Isolation_Mode.svg",
+        "heading_1": "The",
+        "highlight_text": "Circular",
+        "heading_2": "Toy Economy!",
+        "highlight_color": "#8c6f9c",
+        "subtitle": "The smart way to buy toys. Play, return when done, and get money back.",
+        "button_label": "Learn How it Works",
+        "button_link": ""
+      }
+    },
+    "understand_sellback_AeKRbC": {
+      "type": "understand-sellback",
+      "blocks": {
+        "icon_tWFgCU": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Group-8.svg",
+            "top_pos": 25,
+            "left_pos": 10,
+            "size": 90
+          }
+        },
+        "icon_eKFJmL": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Group-10.svg",
+            "top_pos": 15,
+            "left_pos": 90,
+            "size": 80
+          }
+        },
+        "icon_VV9qKE": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Group-9.svg",
+            "top_pos": 75,
+            "left_pos": 85,
+            "size": 75
+          }
+        },
+        "icon_wNLgmP": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Group-13.svg",
+            "top_pos": 75,
+            "left_pos": 15,
+            "size": 60
+          }
+        }
+      },
+      "block_order": [
+        "icon_tWFgCU",
+        "icon_eKFJmL",
+        "icon_VV9qKE",
+        "icon_wNLgmP"
+      ],
+      "name": "Understand Sellback Value",
+      "settings": {
+        "bg_color": "linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(79, 152, 222, 1) 100%)",
+        "bottom_left_width": 200,
+        "bottom_right_width": 200,
+        "heading_1": "Understanding",
+        "highlight_text": "Sellback",
+        "heading_2": "Value",
+        "title_color": "#111111",
+        "title_highlight_color": "#8a67a8",
+        "subtitle": "See how much you actually save with EleFant's buyback guarantee",
+        "subtitle_color": "#555555",
+        "arrow_color": "#4c9fef",
+        "top_cards_width": 260,
+        "top_cards_height": 320,
+        "bottom_card_width": 460,
+        "bottom_card_height": 240,
+        "heading_size": 52,
+        "heading_size_m": 30,
+        "heading_weight": "700",
+        "subtitle_size": 22,
+        "subtitle_size_m": 16,
+        "subtitle_weight": "500",
+        "tc_title_color": "#111111",
+        "tc_title_size": 32,
+        "tc_title_size_m": 16,
+        "tc_title_weight": "600",
+        "tc_price_color": "#111111",
+        "tc_price_size": 52,
+        "tc_price_size_m": 30,
+        "tc_price_weight": "700",
+        "tc_subtext_color": "#888888",
+        "tc_subtext_size": 22,
+        "tc_subtext_size_m": 12,
+        "tc_subtext_weight": "400",
+        "bc_title_size": 28,
+        "bc_title_size_m": 14,
+        "bc_title_weight": "600",
+        "bc_price_size": 72,
+        "bc_price_size_m": 40,
+        "bc_price_weight": "800",
+        "bc_pill_size": 18,
+        "bc_pill_size_m": 13,
+        "bc_pill_weight": "700",
+        "card_1_bg": "#f5f5f5",
+        "card_1_icon": "shopify://shop_images/SVGRepo_iconCarrier-4.svg",
+        "card_1_icon_bg": "#ffecc2",
+        "card_1_title": "You Buy Toys",
+        "card_1_price": "₹10,000",
+        "card_1_subtext": "Total Purchase",
+        "card_2_bg": "#f5f5f5",
+        "card_2_icon": "shopify://shop_images/Group-12.svg",
+        "card_2_icon_bg": "#ead3fd",
+        "card_2_title": "You Get Back",
+        "card_2_price": "₹6,000",
+        "card_2_subtext": "Sellback Value (60%)",
+        "card_3_bg": "linear-gradient(73deg, rgba(236, 108, 154, 1), rgba(199, 136, 228, 1) 100%)",
+        "card_3_text_color": "#ffffff",
+        "card_3_title": "Your <strong>Effective</strong> Cost",
+        "card_3_highlight_color": "#f2bb4f",
+        "card_3_strikethrough": "₹10,000",
+        "card_3_price": "₹4,000",
+        "pill_text": "You Save 60% of Original Cost!",
+        "pill_bg": "#f2bb4f",
+        "pill_text_color": "#111111"
       }
     },
     "cc6169d5-45f9-4dd3-be6e-89bb1e5f632c": {
@@ -338,12 +451,66 @@
         "image_ratio": "adapt",
         "show_vendor": false
       }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "<strong>You May also Like</strong>",
+        "heading_size": "h2",
+        "heading_color": "heading",
+        "text": "",
+        "text_body_size": "text-body--large",
+        "description_color": "main",
+        "show_header_button": false,
+        "header_button_label": "SHOP ALL PRODUCTS",
+        "header_button_url": "",
+        "heading_align": "left",
+        "text_bottom_space": "",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "image_ratio": "tallview",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": true,
+        "columns_mobile": "1",
+        "image_overlay_width": 34,
+        "image_overlay_vertical": 20,
+        "image_overlay_horizontal": 20,
+        "image_overlay_width_mobile": 10,
+        "image_overlay_vertical_mobile": 20,
+        "image_overlay_horizontal_mobile": 20,
+        "image_overlay_animation": "none",
+        "image_overlay_width_2": 10,
+        "image_overlay_vertical_2": 20,
+        "image_overlay_horizontal_2": 20,
+        "image_overlay_width_2_mobile": 10,
+        "image_overlay_vertical_2_mobile": 20,
+        "image_overlay_horizontal_2_mobile": 20,
+        "image_overlay_animation_2": "none",
+        "image_overlay_width_3": 10,
+        "image_overlay_vertical_3": 20,
+        "image_overlay_horizontal_3": 20,
+        "image_overlay_width_3_mobile": 10,
+        "image_overlay_vertical_3_mobile": 20,
+        "image_overlay_horizontal_3_mobile": 20,
+        "image_overlay_animation_3": "none",
+        "shape_position": "top",
+        "shape_type": "none",
+        "shape_color": "#ffd265",
+        "shape_width": 100,
+        "background_color": "color-bg-4",
+        "colors_background_section_gradient": "",
+        "padding_top": 160,
+        "padding_bottom": 160
+      }
     }
   },
   "order": [
     "main",
-    "related-products",
+    "how_it_works_6UJKRt",
+    "understand_sellback_AeKRbC",
     "cc6169d5-45f9-4dd3-be6e-89bb1e5f632c",
-    "1a3ebe3b-c3cb-40cb-bc2b-ae3f0b3734d2"
+    "1a3ebe3b-c3cb-40cb-bc2b-ae3f0b3734d2",
+    "related-products"
   ]
 }

@@ -190,6 +190,147 @@
         "card_radius": 24
       }
     },
+    "multi_pallete_3f66Mn": {
+      "type": "multi-pallete",
+      "blocks": {
+        "pallet_fANkn3": {
+          "type": "pallet",
+          "settings": {
+            "pallet_label": "Pallet",
+            "label_color": "#ffffff",
+            "pallet_image": "shopify://shop_images/toy-image-17601822529270.jpg",
+            "pallet_link": "",
+            "background_color": "#3a4490"
+          }
+        },
+        "pallet_wkaqbj": {
+          "type": "pallet",
+          "settings": {
+            "pallet_label": "Pallet",
+            "label_color": "#ffffff",
+            "pallet_link": "",
+            "background_color": "#f1bb4f"
+          }
+        },
+        "pallet_3mEndh": {
+          "type": "pallet",
+          "settings": {
+            "pallet_label": "",
+            "label_color": "#ffffff",
+            "pallet_image": "shopify://shop_images/toy-image-17603302298350_38ed932b-03db-4c73-8264-ed85bd655f4b.png",
+            "pallet_link": "",
+            "background_color": "#34823d"
+          }
+        },
+        "pallet_PQwKbf": {
+          "type": "pallet",
+          "settings": {
+            "pallet_label": "",
+            "label_color": "#ffffff",
+            "pallet_image": "shopify://shop_images/toy-image-17603284294642.jpg",
+            "pallet_link": "",
+            "background_color": "#da3c24"
+          }
+        },
+        "pallet_r6VmRF": {
+          "type": "pallet",
+          "settings": {
+            "pallet_label": "Pallet",
+            "label_color": "#ffffff",
+            "pallet_link": "",
+            "background_color": "#ec6c9a"
+          }
+        },
+        "pallet_yxBTCp": {
+          "type": "pallet",
+          "settings": {
+            "pallet_label": "Pallet",
+            "label_color": "#ffffff",
+            "pallet_link": "",
+            "background_color": "#57be58"
+          }
+        },
+        "pallet_93zibq": {
+          "type": "pallet",
+          "settings": {
+            "pallet_label": "Pallet",
+            "label_color": "#ffffff",
+            "pallet_link": "",
+            "background_color": "#4f98de"
+          }
+        },
+        "pallet_Am9Y4M": {
+          "type": "pallet",
+          "settings": {
+            "pallet_label": "Pallet",
+            "label_color": "#ffffff",
+            "pallet_link": "",
+            "background_color": "#6e4b7e"
+          }
+        },
+        "pallet_78ADc7": {
+          "type": "pallet",
+          "settings": {
+            "pallet_label": "Pallet",
+            "label_color": "#ffffff",
+            "pallet_image": "shopify://shop_images/toy-image-17323502458014.jpg",
+            "pallet_link": "",
+            "background_color": "#3a4490"
+          }
+        }
+      },
+      "block_order": [
+        "pallet_fANkn3",
+        "pallet_wkaqbj",
+        "pallet_3mEndh",
+        "pallet_PQwKbf",
+        "pallet_r6VmRF",
+        "pallet_yxBTCp",
+        "pallet_93zibq",
+        "pallet_Am9Y4M",
+        "pallet_78ADc7"
+      ],
+      "name": "Multipalette",
+      "settings": {
+        "heading": "",
+        "heading_size": "h2",
+        "heading_color": "heading",
+        "text": "",
+        "text_body_size": "text-body--large",
+        "text_color": "main",
+        "heading_align": "center",
+        "text_bottom_space": "",
+        "image_overlay_width": 10,
+        "image_overlay_vertical": 20,
+        "image_overlay_horizontal": 20,
+        "image_overlay_width_mobile": 10,
+        "image_overlay_vertical_mobile": 20,
+        "image_overlay_horizontal_mobile": 20,
+        "image_overlay_animation": "none",
+        "image_overlay_width_2": 10,
+        "image_overlay_vertical_2": 20,
+        "image_overlay_horizontal_2": 20,
+        "image_overlay_width_2_mobile": 10,
+        "image_overlay_vertical_2_mobile": 20,
+        "image_overlay_horizontal_2_mobile": 20,
+        "image_overlay_animation_2": "none",
+        "image_overlay_width_3": 10,
+        "image_overlay_vertical_3": 20,
+        "image_overlay_horizontal_3": 20,
+        "image_overlay_width_3_mobile": 10,
+        "image_overlay_vertical_3_mobile": 20,
+        "image_overlay_horizontal_3_mobile": 20,
+        "image_overlay_animation_3": "none",
+        "shape_position": "top",
+        "shape_type": "none",
+        "shape_color": "#ffffff",
+        "shape_width": 100,
+        "background_color": "color-bg-4",
+        "colors_background_section_gradient": "",
+        "padding_top": 70,
+        "padding_bottom": 70
+      }
+    },
     "text_image_card_p9QVHG": {
       "type": "text-image-card",
       "name": "Elevated Split Card",
@@ -253,8 +394,8 @@
         "coundown_bar_UkPkyh": {
           "type": "coundownBar",
           "settings": {
-            "coundown_date": "Apr 31, 2024",
-            "coundown_end": "disable_buttons",
+            "coundown_date": "Apr 31, 2026",
+            "coundown_end": "hide_coundown",
             "coundown_style": "defaut",
             "contdown_label": "Hurry Up! Sale Ends In",
             "contdown_label_size": "h5",
@@ -277,19 +418,18 @@
             "coundown_title_weight": "400"
           }
         },
-        "variant_picker_KTCrxx": {
+        "variant_picker_pJ3wGY": {
           "type": "variant_picker",
-          "disabled": true,
           "settings": {
             "picker_type": "button",
             "label_size": "medium",
-            "enable_size_chart": false,
+            "enable_size_chart": true,
             "choose_variant": "Size",
             "popup_label": "Size Chart",
             "page": ""
           }
         },
-        "buy_buttons_GckP6D": {
+        "buy_buttons_hTQF3C": {
           "type": "buy_buttons",
           "settings": {
             "show_dynamic_checkout": true,
@@ -314,8 +454,8 @@
         "price_T7TGtr",
         "inventory_aFkmxt",
         "coundown_bar_UkPkyh",
-        "variant_picker_KTCrxx",
-        "buy_buttons_GckP6D"
+        "variant_picker_pJ3wGY",
+        "buy_buttons_hTQF3C"
       ],
       "name": "t:sections.featured-product.presets.name",
       "settings": {
@@ -328,9 +468,12 @@
         "heading_align": "center",
         "enable_sticky_info": true,
         "product_list": [
-          "scooter-pink",
           "mini-bike-yellow",
-          "super-bike-red"
+          "super-bike-red",
+          "2-seater-scooter",
+          "6-in-1-live-band",
+          "atv-bike",
+          "scooter-pink"
         ],
         "media_size": "large",
         "global_media_position": "left",
@@ -413,9 +556,10 @@
         "heading": "Why EleFant *Exists*",
         "description": "We understand the challenges every parent faces",
         "button_label": "Learn How it Works",
-        "button_link": "",
-        "background_color": "#f5f5f7",
-        "card_bg_color": "#ffffff"
+        "button_link": "shopify://pages/about-funlearn",
+        "kite_image": "shopify://shop_images/Frame-2.svg",
+        "background_color": "#f2f0f5",
+        "card_bg_color": "#f5f5f5"
       }
     },
     "what_this_mean_6d7UUR": {
@@ -499,8 +643,9 @@
         "category_card_DmYgLq": {
           "type": "category_card",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_3.png",
-            "overlay_gradient": "linear-gradient(0deg, rgba(204, 113, 135, 0.9), rgba(204, 113, 135, 0) 100%)",
+            "image": "shopify://shop_images/IMG_2404-scaled_1.jpg",
+            "overlay_image": "shopify://shop_images/Rectangle_3.png",
+            "overlay_gradient": "linear-gradient(0deg, rgba(236, 108, 154, 1), rgba(204, 113, 135, 0) 100%)",
             "badge": "0-12 Months",
             "title": "Newborn & Infant",
             "desc": "Sensory toys, rattles, and soft blocks for early development",
@@ -512,7 +657,9 @@
         "category_card_byt79K": {
           "type": "category_card",
           "settings": {
-            "overlay_gradient": "linear-gradient(0deg, rgba(82, 143, 195, 0.9), rgba(82, 143, 195, 0) 100%)",
+            "image": "shopify://shop_images/IMG_2404-scaled_1.png",
+            "overlay_image": "shopify://shop_images/Rectangle_3-2.png",
+            "overlay_gradient": "linear-gradient(0deg, rgba(0, 0, 0, 0.9), rgba(82, 143, 195, 0) 100%)",
             "badge": "1-2 Years",
             "title": "Toddler",
             "desc": "Sensory toys, rattles, and soft blocks for early development",
@@ -524,7 +671,9 @@
         "category_card_znGtmd": {
           "type": "category_card",
           "settings": {
-            "overlay_gradient": "linear-gradient(0deg, rgba(205,152,43,0.9) 0%, rgba(205,152,43,0) 100%)",
+            "image": "shopify://shop_images/IMG_2404-scaled_1-2.png",
+            "overlay_image": "shopify://shop_images/Rectangle_3-3.png",
+            "overlay_gradient": "linear-gradient(0deg, rgba(0, 0, 0, 1), rgba(205, 152, 43, 0) 100%)",
             "badge": "2-4 Years",
             "title": "Pre-school",
             "desc": "Sensory toys, rattles, and soft blocks for early development",
@@ -556,6 +705,8 @@
       "settings": {
         "heading": "Shop by *Age*",
         "subtitle": "Find the perfect toys for your child's developmental stage",
+        "deco_image": "shopify://shop_images/Group-2.svg",
+        "bg_image": "shopify://shop_images/Desktop_-_11.png",
         "bg_gradient": "radial-gradient(rgba(242, 240, 245, 1), rgba(242, 240, 245, 0.9882) 100%)",
         "main_btn_label": "Browse all Categories",
         "main_btn_link": "",
@@ -629,20 +780,20 @@
       "settings": {
         "heading": "Play. Return. *Earn Back.*",
         "subtitle": "The smart way to buy toys. Play, return when done, and get money back.",
-        "bg_gradient": "linear-gradient(140deg, rgba(242, 187, 79, 1), rgba(241, 122, 62, 1) 100%)",
-        "heading_color": "#1a1a1a",
-        "subtitle_color": "#444444",
-        "card_bg_color": "#ffffff",
-        "card_title_color": "#1a1a1a",
-        "card_desc_color": "#555555",
+        "bg_gradient": "linear-gradient(88deg, rgba(242, 187, 79, 1) 45%, rgba(241, 122, 62, 1) 100%)",
+        "heading_color": "#000000",
+        "subtitle_color": "#606060",
+        "card_bg_color": "#f5f5f5",
+        "card_title_color": "#000000",
+        "card_desc_color": "#8c8c8c",
         "heading_weight": 700,
         "subtitle_weight": 400,
         "card_title_weight": 700,
         "card_desc_weight": 400,
-        "heading_size_desktop": 44,
-        "subtitle_size_desktop": 18,
-        "card_title_desktop": 18,
-        "card_desc_desktop": 14,
+        "heading_size_desktop": 52,
+        "subtitle_size_desktop": 22,
+        "card_title_desktop": 22,
+        "card_desc_desktop": 18,
         "heading_size_mobile": 32,
         "subtitle_size_mobile": 15,
         "card_title_mobile": 16,
@@ -655,6 +806,7 @@
         "icon_zQGGHH": {
           "type": "icon",
           "settings": {
+            "image": "shopify://shop_images/Group-8.svg",
             "top_pos": 25,
             "left_pos": 10,
             "size": 90
@@ -663,6 +815,7 @@
         "icon_Hj4whF": {
           "type": "icon",
           "settings": {
+            "image": "shopify://shop_images/Group-10.svg",
             "top_pos": 15,
             "left_pos": 90,
             "size": 80
@@ -671,6 +824,7 @@
         "icon_EwwNAG": {
           "type": "icon",
           "settings": {
+            "image": "shopify://shop_images/Group-9.svg",
             "top_pos": 75,
             "left_pos": 85,
             "size": 75
@@ -679,6 +833,7 @@
         "icon_kgRmPW": {
           "type": "icon",
           "settings": {
+            "image": "shopify://shop_images/Group-13.svg",
             "top_pos": 75,
             "left_pos": 15,
             "size": 60
@@ -693,7 +848,11 @@
       ],
       "name": "Understand Sellback Value",
       "settings": {
-        "bg_color": "linear-gradient(180deg, rgba(242, 247, 255, 1), rgba(166, 203, 243, 1) 100%)",
+        "bg_color": "linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(79, 152, 222, 1) 100%)",
+        "bottom_left_image": "shopify://shop_images/Isolation_Mode_ee3f1b44-74f4-4bbc-940d-4e5ed2051966.svg",
+        "bottom_left_width": 200,
+        "bottom_right_image": "shopify://shop_images/Group-14.svg",
+        "bottom_right_width": 200,
         "heading_1": "Understanding",
         "highlight_text": "Sellback",
         "heading_2": "Value",
@@ -702,15 +861,15 @@
         "subtitle": "See how much you actually save with EleFant's buyback guarantee",
         "subtitle_color": "#555555",
         "arrow_color": "#4c9fef",
-        "top_cards_width": 360,
+        "top_cards_width": 260,
         "top_cards_height": 320,
         "bottom_card_width": 460,
         "bottom_card_height": 240,
-        "heading_size": 40,
+        "heading_size": 52,
         "heading_size_m": 30,
         "heading_weight": "700",
-        "subtitle_size": 16,
-        "subtitle_size_m": 14,
+        "subtitle_size": 22,
+        "subtitle_size_m": 16,
         "subtitle_weight": "500",
         "tc_title_color": "#111111",
         "tc_title_size": 32,
@@ -761,21 +920,20 @@
       "name": "Elevated Unified Card",
       "settings": {
         "section_bg_color": "#f6f5fb",
+        "section_bg_image": "shopify://shop_images/Vector-2.svg",
         "section_bg_opacity": 100,
         "card_bg_color": "#71507c",
         "show_white_border": true,
-        "card_width": 1100,
+        "card_width": 1400,
         "card_height": 480,
         "card_padding": 80,
-        "card_radius": 24,
+        "card_radius": 36,
         "heading": "Smart parents <strong>save an average of ₹15,000 annually</strong> by using EleFant Wallet credit!",
         "title_color": "#ffffff",
         "highlight_color": "#fdc64a",
-        "heading_size": 45,
-        "heading_weight": "700",
         "description": "The better the condition of the toy when you return it, the higher the buyback value you receive!",
         "desc_color": "#ffffff",
-        "subtitle_size": 17,
+        "subtitle_size": 22,
         "subtitle_weight": "500",
         "button_label_1": "Start Shopping",
         "button_link_1": "",
@@ -784,6 +942,71 @@
         "button_label_2": "Learn How it Works",
         "button_link_2": "",
         "btn_2_text": "#ffffff"
+      }
+    },
+    "solves_EcadUB": {
+      "type": "solves",
+      "blocks": {
+        "feature_iFHHrU": {
+          "type": "feature",
+          "settings": {
+            "text": "Buy guilt-free knowing you'll get money back"
+          }
+        },
+        "feature_KzdGYY": {
+          "type": "feature",
+          "settings": {
+            "text": "Declutter easily while recovering your investment"
+          }
+        },
+        "feature_CGnejh": {
+          "type": "feature",
+          "settings": {
+            "text": "Keep rotating fresh toys without breaking the bank"
+          }
+        },
+        "feature_kaAwcJ": {
+          "type": "feature",
+          "settings": {
+            "text": "Support sustainability by keeping toys in circulation"
+          }
+        }
+      },
+      "block_order": [
+        "feature_iFHHrU",
+        "feature_KzdGYY",
+        "feature_CGnejh",
+        "feature_kaAwcJ"
+      ],
+      "name": "Features Solves Layout",
+      "settings": {
+        "bg_color": "#ffffff",
+        "row_max_width": 1100,
+        "flip_layout": false,
+        "character_size": 280,
+        "heading": "EleFant <strong>Solves</strong> All of This!",
+        "title_color": "#111111",
+        "highlight_color": "#6e4b7e",
+        "heading_size": 52,
+        "heading_weight": "700",
+        "subtitle": "A circular toy economy that works for your family and your wallet",
+        "subtitle_color": "#606060",
+        "subtitle_size": 22,
+        "subtitle_weight": "500",
+        "main_image": "shopify://shop_images/how-many-toys-do-kids-really-need-1280x960_1.png",
+        "image_radius": 32,
+        "show_white_border": true,
+        "icon_bg": "#d7f6ca",
+        "icon_check_color": "#048a5f",
+        "list_text_color": "#111111",
+        "list_font_size": 22,
+        "list_font_weight": "500",
+        "btn_label": "Join Thousands of Happy Parents",
+        "btn_link": "",
+        "btn_bg": "#6e4b7e",
+        "btn_text": "#ffffff",
+        "btn_font_size": 22,
+        "btn_font_weight": "600"
       }
     },
     "eco_raxapP": {
@@ -890,75 +1113,84 @@
         "padding_bottom": 60
       }
     },
-    "newsletter": {
-      "type": "newsletter",
+    "get_started_card_nb49mw": {
+      "type": "get-started-card",
+      "name": "Get Started Card",
+      "settings": {
+        "section_bg": "linear-gradient(90deg, rgba(248, 248, 248, 1), rgba(252, 234, 241, 1) 100%)",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "card_bg_gradient": "linear-gradient(48deg, rgba(152, 101, 182, 1), rgba(233, 108, 161, 1) 100%)",
+        "card_image_opacity": 100,
+        "card_radius": 24,
+        "title": "Join 10,000+ Happy Families",
+        "subtitle": "Start saving money on toys today while giving your kids the best play experiences",
+        "btn_text": "Get Started Now",
+        "btn_link": "",
+        "btn_bg_color": "#ffffff",
+        "btn_text_color": "#8b52a1"
+      }
+    },
+    "fa_qs_GQgVaC": {
+      "type": "FAQs",
       "blocks": {
-        "template--18867160121647__newsletter-16830990270b07a601-0": {
-          "type": "heading",
+        "faq_4X8X8a": {
+          "type": "faq",
           "settings": {
-            "heading": "<strong>Sign Up to the Newsletter</strong>",
-            "heading_size": "h2",
-            "heading_weight": "700",
-            "heading_color": "main"
+            "question": "How does the buy back system works?",
+            "answer": "<p>When you buy a toy, we guarantee to buy it back at the stated percentage (up to 60%) within the buyback period. The value depends on the toy's condition when returned. Simply request a return, ship it back with our prepaid label, and receive your credit or cash refund.</p>"
           }
         },
-        "template--18867160121647__newsletter-16830990270b07a601-1": {
-          "type": "paragraph",
+        "faq_YAPywG": {
+          "type": "faq",
           "settings": {
-            "text": "<p>Be the first to get notified about New Arrivals, Discounts, and Bargain Deals!</p>",
-            "text_style": "body",
-            "text_size": "large",
-            "text_color": "main"
+            "question": "How does the buy back system works?",
+            "answer": "<p>When you buy a toy, we guarantee to buy it back at the stated percentage (up to 60%) within the buyback period. The value depends on the toy's condition when returned. Simply request a return, ship it back with our prepaid label, and receive your credit or cash refund.</p>"
           }
         },
-        "template--18867160121647__newsletter-16830990270b07a601-2": {
-          "type": "email_form",
-          "settings": {}
+        "faq_7Hf7XC": {
+          "type": "faq",
+          "settings": {
+            "question": "How does the buy back system works?",
+            "answer": "<p>When you buy a toy, we guarantee to buy it back at the stated percentage (up to 60%) within the buyback period. The value depends on the toy's condition when returned. Simply request a return, ship it back with our prepaid label, and receive your credit or cash refund.</p>"
+          }
+        },
+        "faq_kQEaMz": {
+          "type": "faq",
+          "settings": {
+            "question": "How does the buy back system works?",
+            "answer": "<p>When you buy a toy, we guarantee to buy it back at the stated percentage (up to 60%) within the buyback period. The value depends on the toy's condition when returned. Simply request a return, ship it back with our prepaid label, and receive your credit or cash refund.</p>"
+          }
+        },
+        "faq_dwd473": {
+          "type": "faq",
+          "settings": {
+            "question": "How does the buy back system works?",
+            "answer": "<p>When you buy a toy, we guarantee to buy it back at the stated percentage (up to 60%) within the buyback period. The value depends on the toy's condition when returned. Simply request a return, ship it back with our prepaid label, and receive your credit or cash refund.</p>"
+          }
         }
       },
       "block_order": [
-        "template--18867160121647__newsletter-16830990270b07a601-0",
-        "template--18867160121647__newsletter-16830990270b07a601-1",
-        "template--18867160121647__newsletter-16830990270b07a601-2"
+        "faq_4X8X8a",
+        "faq_YAPywG",
+        "faq_7Hf7XC",
+        "faq_kQEaMz",
+        "faq_dwd473"
       ],
+      "name": "FAQs Section",
       "settings": {
-        "show_image": false,
-        "hide_image_mb": false,
-        "column_width": 40,
-        "image_position": "left",
-        "content_alignment": "center",
-        "background_color": "none",
-        "colors_background_section_gradient": "",
-        "full_width": false,
-        "image_overlay_width": 10,
-        "image_overlay_vertical": 5,
-        "image_overlay_horizontal": 20,
-        "image_overlay_width_mobile": 13,
-        "image_overlay_vertical_mobile": 3,
-        "image_overlay_horizontal_mobile": 20,
-        "image_overlay_animation": "ambient",
-        "image_overlay_width_2": 15,
-        "image_overlay_vertical_2": 60,
-        "image_overlay_horizontal_2": 7,
-        "image_overlay_width_2_mobile": 17,
-        "image_overlay_vertical_2_mobile": 88,
-        "image_overlay_horizontal_2_mobile": 7,
-        "image_overlay_animation_2": "ambient",
-        "image_overlay_width_3": 10,
-        "image_overlay_vertical_3": 44,
-        "image_overlay_horizontal_3": 95,
-        "image_overlay_width_3_mobile": 12,
-        "image_overlay_vertical_3_mobile": 20,
-        "image_overlay_horizontal_3_mobile": 94,
-        "image_overlay_animation_3": "ambient",
-        "shape_position": "top",
-        "shape_type": "waves",
-        "shape_color": "#fef7e6",
-        "shape_width": 100,
-        "background_color_main": "color-bg-3",
-        "color_background_main": "",
-        "padding_top": 50,
-        "padding_bottom": 0
+        "background_image": "shopify://shop_images/Desktop_-_26.png",
+        "bg_color": "#ffffff",
+        "title": "Frequently Asked <em>Questions</em>",
+        "subtitle": "Everything you need to know about EleFant",
+        "accordion_active_border": "#faeeff",
+        "show_contact_card": true,
+        "contact_title": "Still have questions?",
+        "contact_text": "Our friendly team is here to help!",
+        "contact_btn_label": "Contact Support",
+        "contact_btn_link": "",
+        "contact_bg": "#6c5082",
+        "contact_text_color": "#ffffff"
       }
     }
   },
@@ -967,6 +1199,7 @@
     "featuredproducts_cw8znJ",
     "how_it_works_dzJUai",
     "brand_DEffTN",
+    "multi_pallete_3f66Mn",
     "text_image_card_p9QVHG",
     "featured_product_mTRXnC",
     "whyelefantexist_kiEd6F",
@@ -975,7 +1208,9 @@
     "play_return_r6F4gN",
     "understand_sellback_QYfiY9",
     "elevated_card_hNVmQ8",
+    "solves_EcadUB",
     "eco_raxapP",
-    "newsletter"
+    "get_started_card_nb49mw",
+    "fa_qs_GQgVaC"
   ]
 }

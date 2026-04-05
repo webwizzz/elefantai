@@ -148,6 +148,46 @@
         "name": "list.metaobject_reference",
         "category": "REFERENCE"
       }
+    },
+    {
+      "key": "tags",
+      "namespace": "custom",
+      "name": "tags",
+      "description": "",
+      "type": {
+        "name": "list.single_line_text_field",
+        "category": "TEXT"
+      }
+    },
+    {
+      "key": "portability",
+      "namespace": "shopify",
+      "name": "Portability",
+      "description": "Specifies the ease of moving or carrying a product, typically for breast pumps; e.g. portable, compact size",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "infant-age-group",
+      "namespace": "shopify",
+      "name": "Infant age group",
+      "description": "Classifies products suitable for specific infant age ranges, e.g. newborn, 0-6 months",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "developmental-features",
+      "namespace": "shopify",
+      "name": "Developmental features",
+      "description": "Highlights the developmental benefits of a product, such as language development or emotional & social growth",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
     }
   ],
   "variant": [],

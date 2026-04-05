@@ -1,260 +1,300 @@
 <style>
-#WhatThisMeans-{{ section.id }} {
-  --heading-size-desktop: {{ section.settings.heading_size_desktop }}px;
-  --heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
-  --desc-size-desktop: {{ section.settings.subtitle_size_desktop }}px;
-  --desc-size-mobile: {{ section.settings.subtitle_size_mobile }}px;
-  
-  --card-title-desktop: {{ section.settings.card_title_desktop }}px;
-  --card-title-mobile: {{ section.settings.card_title_mobile }}px;
-  --card-desc-desktop: {{ section.settings.card_desc_desktop }}px;
-  --card-desc-mobile: {{ section.settings.card_desc_mobile }}px;
-  --card-bottom-desktop: {{ section.settings.card_bottom_desktop }}px;
-  --card-bottom-mobile: {{ section.settings.card_bottom_mobile }}px;
-  
-  background-color: {{ section.settings.background_color }};
-  padding: 60px 0 80px 0;
-  position: relative;
-  overflow: hidden;
-}
-
-.wtm-banners {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 10;
-}
-.wtm-banner-l {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 300px; /* customizable indirectly if needed, but standard */
-  max-width: 30%;
-}
-.wtm-banner-r {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 300px;
-  max-width: 30%;
-}
-
-.wtm-container {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 40px;
-  position: relative;
-  z-index: 11;
-}
-
-.wtm-header {
-  text-align: center;
-  margin-bottom: 50px;
-}
-
-.wtm-title {
-  font-size: var(--heading-size-desktop);
-  font-weight: 700;
-  color: #1a1a1a;
-  margin: 0 0 16px 0;
-  line-height: 1.2;
-}
-
-.wtm-title .highlight-font {
-  color: #7d6599;  /* default purple color for curly font */
-  font-family: inherit;
-  font-family: "Shadows Into Light", "Gochi Hand", "Comic Sans MS", cursive, sans-serif;
-  font-weight: 500;
-}
-
-.wtm-subtitle {
-  font-size: var(--desc-size-desktop);
-  color: #666;
-  margin: 0 auto;
-  max-width: 600px;
-  line-height: 1.5;
-}
-
-.wtm-cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-}
-
-.wtm-card {
-  background-color: {{ section.settings.card_bg_color }};
-  border-radius: {{ section.settings.card_border_radius }}px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.06);
-  overflow: hidden;
-  border: 6px solid #ffffff;
-}
-
-.wtm-card-image-wrap {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1 / 1.05;
-}
-
-.wtm-card-image-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.wtm-badge {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  background-color: var(--theme-color);
-  color: #fff;
-  font-size: 13px;
-  font-weight: 600;
-  padding: 6px 14px;
-  border-radius: 20px;
-  z-index: 2;
-}
-
-.wtm-card-content {
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.wtm-card-title {
-  font-size: var(--card-title-desktop);
-  color: #1a1a1a;
-  font-weight: 700;
-  margin: 0 0 10px 0;
-  line-height: 1.3;
-}
-
-.wtm-card-desc {
-  font-size: var(--card-desc-desktop);
-  color: #666;
-  margin: 0;
-  line-height: 1.5;
-  flex: 1;
-}
-
-
-.wtm-card-bottom {
-  font-size: var(--card-bottom-desktop);
-  color: var(--theme-color);
-  margin: 0;
-  font-weight: 500;
-  display: flex;
-  align-items: flex-start;
-  gap: 6px;
-  line-height: 1.5;
-}
-
-.wtm-card-bottom .emoji {
-  flex-shrink: 0;
-  font-size: 16px;
-}
-
-.wtm-dots {
-  display: none;
-}
-
-/* Scrollbar hide for webkit */
-.wtm-cards::-webkit-scrollbar {
-  display: none;
-}
-
-@media (max-width: 1024px) {
-  .wtm-cards {
-    gap: 16px;
-  }
-  .wtm-card-content {
-    padding: 20px 16px;
-  }
-}
-
-@media (max-width: 768px) {
   #WhatThisMeans-{{ section.id }} {
-    padding: 40px 0 60px 0;
+    --heading-size-desktop: {{ section.settings.heading_size_desktop }}px;
+    --heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
+    --desc-size-desktop: {{ section.settings.subtitle_size_desktop }}px;
+    --desc-size-mobile: {{ section.settings.subtitle_size_mobile }}px;
+
+    --card-title-desktop: {{ section.settings.card_title_desktop }}px;
+    --card-title-mobile: {{ section.settings.card_title_mobile }}px;
+    --card-desc-desktop: {{ section.settings.card_desc_desktop }}px;
+    --card-desc-mobile: {{ section.settings.card_desc_mobile }}px;
+    --card-bottom-desktop: {{ section.settings.card_bottom_desktop }}px;
+    --card-bottom-mobile: {{ section.settings.card_bottom_mobile }}px;
+    --mobile-banner-offset: {% if section.settings.banner_left != blank or section.settings.banner_right != blank %}92px{% else %}0px{% endif %};
+
+    background-color: {{ section.settings.background_color }};
+    padding: 60px 0 80px 0;
+    position: relative;
+    overflow: hidden;
   }
+
+  .wtm-banners {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .wtm-banner-l {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px; /* customizable indirectly if needed, but standard */
+    max-width: 30%;
+  }
+  .wtm-banner-r {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    max-width: 30%;
+  }
+
   .wtm-container {
-    padding: 0 20px;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 3;
   }
+
+  .wtm-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
   .wtm-title {
-    font-size: var(--heading-size-mobile);
+    font-size: var(--heading-size-desktop);
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 16px 0;
+    line-height: 1.2;
   }
+
+  .wtm-title .highlight-font {
+    color: #7d6599;  /* default purple color for curly font */
+    font-family: inherit;
+    font-family: "Shadows Into Light", "Gochi Hand", "Comic Sans MS", cursive, sans-serif;
+    font-weight: 500;
+  }
+
   .wtm-subtitle {
-    font-size: var(--desc-size-mobile);
-  }
-  .wtm-card-title {
-    font-size: var(--card-title-mobile);
-  }
-  .wtm-card-desc {
-    font-size: var(--card-desc-mobile);
-  }
-  .wtm-card-bottom {
-    font-size: var(--card-bottom-mobile);
+    font-size: var(--desc-size-desktop);
+    color: #666;
+    margin: 0 auto;
+    max-width: 600px;
+    line-height: 1.5;
   }
 
   .wtm-cards {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    padding-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
   }
-  
+
   .wtm-card {
-    min-width: 85%;
-    max-width: 320px;
-    scroll-snap-align: center;
+    background-color: {{ section.settings.card_bg_color }};
+    border-radius: {{ section.settings.card_border_radius }}px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+    overflow: hidden;
+    border: 6px solid #ffffff;
+  }
+
+  .wtm-card-image-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1.05;
+  }
+
+  .wtm-card-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .wtm-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background-color: var(--theme-color);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    z-index: 1;
+  }
+
+  .wtm-card-content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .wtm-card-title {
+    font-size: var(--card-title-desktop);
+    color: #1a1a1a;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    line-height: 1.3;
+  }
+
+  .wtm-card-desc {
+    font-size: var(--card-desc-desktop);
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+    flex: 1;
+  }
+
+
+  .wtm-card-bottom {
+    font-size: var(--card-bottom-desktop);
+    color: var(--theme-color);
+    margin: 0;
+    font-weight: 500;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    line-height: 1.5;
+  }
+
+  .wtm-card-bottom .emoji {
+    flex-shrink: 0;
+    font-size: 16px;
   }
 
   .wtm-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 10px;
+    display: none;
   }
-  
-  .wtm-dots .wtm-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: #d1d1d1;
-    transition: all 0.3s ease;
+
+  /* Scrollbar hide for webkit */
+  .wtm-cards::-webkit-scrollbar {
+    display: none;
   }
-  
-  .wtm-dots .wtm-dot.active {
-    background-color: #999;
-    width: 20px;
-    border-radius: 4px;
+
+  @media (max-width: 1024px) {
+    .wtm-cards {
+      gap: 16px;
+    }
+    .wtm-card-content {
+      padding: 20px 16px;
+    }
   }
-}
+
+  @media (max-width: 768px) {
+    #shopify-section-{{ section.id }} {
+      margin-top: 0 !important;
+    }
+
+    #WhatThisMeans-{{ section.id }} {
+      padding: 0 0 60px 0;
+    }
+
+    .wtm-banners {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 0 20px;
+      margin: 0;
+      line-height: 0;
+      overflow: visible;
+      z-index: 3;
+    }
+
+    .wtm-banner-l,
+    .wtm-banner-r {
+      position: static;
+      display: block;
+      width: min(34vw, 120px);
+      max-width: none;
+      transform: translateY(-36%);
+    }
+
+    .wtm-container {
+      padding: var(--mobile-banner-offset) 20px 0;
+    }
+    .wtm-title {
+      font-size: var(--heading-size-mobile);
+    }
+    .wtm-subtitle {
+      font-size: var(--desc-size-mobile);
+    }
+    .wtm-card-title {
+      font-size: var(--card-title-mobile);
+    }
+    .wtm-card-desc {
+      font-size: var(--card-desc-mobile);
+    }
+    .wtm-card-bottom {
+      font-size: var(--card-bottom-mobile);
+    }
+
+    .wtm-cards {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding-bottom: 20px;
+    }
+
+    .wtm-card {
+      min-width: 85%;
+      max-width: 320px;
+      scroll-snap-align: center;
+    }
+
+    .wtm-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .wtm-dots .wtm-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #d1d1d1;
+      transition: all 0.3s ease;
+    }
+
+    .wtm-dots .wtm-dot.active {
+      background-color: #999;
+      width: 20px;
+      border-radius: 4px;
+    }
+  }
 </style>
 
 <div id="WhatThisMeans-{{ section.id }}" class="wtm-section">
   <div class="wtm-banners">
     {% if section.settings.banner_left != blank %}
-      {{ section.settings.banner_left | image_url: width: 400 | image_tag: loading: 'lazy', class: 'wtm-banner-l', alt: 'Left banner' }}
+      {{
+        section.settings.banner_left
+        | image_url: width: 400
+        | image_tag: loading: 'lazy', class: 'wtm-banner-l', alt: 'Left banner'
+      }}
     {% endif %}
     {% if section.settings.banner_right != blank %}
-      {{ section.settings.banner_right | image_url: width: 400 | image_tag: loading: 'lazy', class: 'wtm-banner-r', alt: 'Right banner' }}
+      {{
+        section.settings.banner_right
+        | image_url: width: 400
+        | image_tag: loading: 'lazy', class: 'wtm-banner-r', alt: 'Right banner'
+      }}
     {% endif %}
   </div>
-  
+
   <div class="wtm-container">
     <div class="wtm-header">
       <h2 class="wtm-title">
         {% assign heading = section.settings.heading %}
         {% if heading contains '*' %}
           {% assign parts = heading | split: '*' %}
-          {{ parts[0] }}<span class="highlight-font">{{ parts[1] }}</span>{{ parts[2] }}
+          {{ parts[0] -}}
+          <span class="highlight-font">{{ parts[1] }}</span>{{ parts[2] }}
         {% else %}
           {{ heading }}
         {% endif %}
@@ -263,7 +303,7 @@
         <p class="wtm-subtitle">{{ section.settings.subtitle }}</p>
       {% endif %}
     </div>
-    
+
     <div class="wtm-cards">
       {% for block in section.blocks %}
         <div class="wtm-card" style="--theme-color: {{ block.settings.theme_color }};" {{ block.shopify_attributes }}>
@@ -277,13 +317,13 @@
               <span class="wtm-badge">{{ block.settings.badge_text }}</span>
             {% endif %}
           </div>
-          
+
           <div class="wtm-card-content">
             <h3 class="wtm-card-title">{{ block.settings.title }}</h3>
             <p class="wtm-card-desc">{{ block.settings.subtitle }}</p>
-            
-            <hr style="display: block; border: none; border-top: 1px solid {{ block.settings.theme_color | default: '#9b76d6' }}; opacity: 0.5; margin: 16px 0; width: 100%; min-height: 1px; flex-shrink: 0;" />
-            
+
+            <hr style="display: block; border: none; border-top: 1px solid {{ block.settings.theme_color | default: '#9b76d6' }}; opacity: 0.5; margin: 16px 0; width: 100%; min-height: 1px; flex-shrink: 0;">
+
             <div class="wtm-card-bottom">
               <span class="emoji">✨</span>
               <span>{{ block.settings.bottom_text }}</span>
@@ -292,19 +332,18 @@
         </div>
       {% endfor %}
     </div>
-    
+
     <div class="wtm-dots">
       {% for block in section.blocks %}
         <div class="wtm-dot{% if forloop.first %} active{% endif %}"></div>
       {% endfor %}
     </div>
-    
   </div>
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const sectionId = "WhatThisMeans-{{ section.id }}";
+  document.addEventListener('DOMContentLoaded', function () {
+    const sectionId = 'WhatThisMeans-{{ section.id }}';
     const sectionEl = document.getElementById(sectionId);
     if (!sectionEl) return;
 
@@ -315,14 +354,14 @@
       cardsContainer.addEventListener('scroll', () => {
         const firstCard = cardsContainer.querySelector('.wtm-card');
         if (!firstCard) return;
-        
+
         // 16px is mobile gap
-        const cardWidth = firstCard.offsetWidth + 16; 
+        const cardWidth = firstCard.offsetWidth + 16;
         let index = Math.round(cardsContainer.scrollLeft / cardWidth);
-        
+
         // Safety bound check
-        if(index < 0) index = 0;
-        if(index > dots.length - 1) index = dots.length - 1;
+        if (index < 0) index = 0;
+        if (index > dots.length - 1) index = dots.length - 1;
 
         dots.forEach((dot, i) => {
           if (i === index) {
@@ -532,10 +571,10 @@
     {
       "name": "What This Means",
       "blocks": [
-        {"type": "card", "settings": {"theme_color": "#9b76d6"}},
-        {"type": "card", "settings": {"theme_color": "#4b8df2"}},
-        {"type": "card", "settings": {"theme_color": "#ec8eb0"}},
-        {"type": "card", "settings": {"theme_color": "#ebbc38"}}
+        { "type": "card", "settings": { "theme_color": "#9b76d6" } },
+        { "type": "card", "settings": { "theme_color": "#4b8df2" } },
+        { "type": "card", "settings": { "theme_color": "#ec8eb0" } },
+        { "type": "card", "settings": { "theme_color": "#ebbc38" } }
       ]
     }
   ]

@@ -70,6 +70,22 @@
      padding:10px;
      overflow: hidden;
    }
+
+   @media screen and (max-width: 749px) {
+     #shopify-section-{{ section.id }} .elefant-product-title {
+       font-size: 34px !important;
+     }
+     #shopify-section-{{ section.id }} .elefant-product-price {
+       font-size: 22px !important;
+     }
+     #shopify-section-{{ section.id }} .elefant-product-compare-price {
+       font-size: 14px !important;
+     }
+     #shopify-section-{{ section.id }} .elefant-custom-title-price .btn,
+     #shopify-section-{{ section.id }} .elefant-custom-title-price button {
+       font-size: 14px !important;
+     }
+   }
 {%- endstyle -%}
 
 <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
@@ -78,10 +94,26 @@
   if section.settings.image_overlay != blank or section.settings.image_overlay_2 != blank or section.settings.image_overlay_3 != blank or section.settings.shape_type != 'none'
     assign section_overlay = true
   endif
+
+  assign featured_has_media = false
+  assign featured_has_3d_model = false
+  for featured_product in section.settings.product_list
+    if featured_product.media.size > 0
+      assign featured_has_media = true
+    endif
+
+    assign featured_first_model = featured_product.media | where: 'media_type', 'model' | first
+    if featured_first_model != blank
+      assign featured_has_3d_model = true
+    endif
+
+    if featured_has_media and featured_has_3d_model
+      break
+    endif
+  endfor
 -%}
 
-{%- assign first_3d_model = product.media | where: 'media_type', 'model' | first -%}
-{%- if first_3d_model -%}
+{%- if featured_has_3d_model -%}
   {{ 'component-product-model.css' | asset_url | stylesheet_tag }}
   <link
     id="ModelViewerStyle"
@@ -147,6 +179,8 @@
       >
         {%- for product in section.settings.product_list -%}
           {%- liquid
+            assign featured_product_section_id = section.id | append: '-' | append: product.id
+            assign product_form_id = 'product-form-' | append: featured_product_section_id
             assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src'
             assign first_3d_model = product.media | where: 'media_type', 'model' | first
           -%}
@@ -168,23 +202,23 @@
                     <div class="product__media-container">
                   {%- endif -%}
 
-                  {% render 'product-media-gallery', variant_images: variant_images, product: product %}
+                  {% render 'product-media-gallery',
+                    variant_images: variant_images,
+                    product: product,
+                    section_id: featured_product_section_id
+                  %}
 
                   {%- for block in section.blocks -%}
                     {%- case block.type -%}
                       {%- when 'buy_buttons' -%}
                         {% render 'buy-button-styles', block: block, id: section.id %}
                         {% if block.settings.block_position == 'under_media' %}
-                          {%- assign product_form_id = 'product-form-'
-                            | append: section.id
-                            | append: '-'
-                            | append: product.id
-                          -%}
                           {%- render 'buy-buttons',
                             block: block,
                             product: product,
                             product_form_id: product_form_id,
-                            section_id: product_form_id,
+                            section_id: featured_product_section_id,
+                            force_first_variant: true,
                             classes: section.settings.secondary_background_color,
                             show_pickup_availability: block.settings.show_availability,
                             show_quantity: block.settings.hide_quantity,
@@ -216,20 +250,17 @@
 
               <div class="product__info-wrapper grid__item{% if section.settings.info_background_color != "none" %} info-wrapper-background-secondary {{ section.settings.info_background_color }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} {% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}">
                 <product-info
-                  id="ProductInfo-{{ section.id }}-{{ product.id }}"
+                  id="ProductInfo-{{ featured_product_section_id }}"
                   class="product__info-container{% if section.settings.info_background_color != "none" %} info-background-secondary{% endif %}"
-                  data-section="{{ section.id }}-{{ product.id }}"
+                  data-section="{{ featured_product_section_id }}"
                   data-original-section="{{ section.id }}"
                   data-url="{{ product.url }}"
                 >
-                  {%- assign product_form_id = 'product-form-'
-                    | append: section.id
-                    | append: '-'
-                    | append: product.id
-                  -%}
-
                   <div class="elefant-custom-title-price" style="margin-bottom: 24px;">
-                    <h2 style="font-size: 42px; font-weight: 700; color: #111; line-height: 1.3; margin: 0 0 16px 0; font-family: inherit;">
+                    <h2
+                      class="elefant-product-title"
+                      style="font-size: 42px; font-weight: 700; color: #111; line-height: 1.3; margin: 0 0 16px 0; font-family: inherit;"
+                    >
                       {%- if product.title != blank -%}
                         {{ product.title | escape }}
                       {%- else -%}
@@ -238,7 +269,10 @@
                     </h2>
 
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px;">
-                      <span style="font-size: 54px; font-weight: 700; color: #EB7943; line-height: 1;">
+                      <span
+                        class="elefant-product-price"
+                        style="font-size: 54px; font-weight: 700; color: #EB7943; line-height: 1;"
+                      >
                         {%- if product != blank -%}
                           {{
                             product.price
@@ -252,7 +286,10 @@
                         {%- endif -%}
                       </span>
                       {% if product.compare_at_price > product.price %}
-                        <s style="font-size: 32px; color: #999; text-decoration-thickness: 1px;">
+                        <s
+                          class="elefant-product-compare-price"
+                          style="font-size: 32px; color: #999; text-decoration-thickness: 1px;"
+                        >
                           {{
                             product.compare_at_price
                             | money_without_trailing_zeros
@@ -273,7 +310,11 @@
                           }}
                         </span>
                       {% elsif product == blank %}
-                        <s style="font-size: 32px; color: #999; text-decoration-thickness: 1px;">₹2,499</s>
+                        <s
+                          class="elefant-product-compare-price"
+                          style="font-size: 32px; color: #999; text-decoration-thickness: 1px;"
+                          >₹2,499</s
+                        >
                         <span style="background-color: #6D28D9; color: #F9F8F8; padding: 6px 14px; border-radius: 20px; font-size: 14px; font-weight: 600;"
                           >Save ₹1,000</span
                         >
@@ -286,7 +327,7 @@
 
                   <div
                     class="no-js-hidden"
-                    id="price-{{ section.id }}-{{ product.id }}"
+                    id="price-{{ featured_product_section_id }}"
                     role="status"
                     style="display:none;"
                   ></div>
@@ -315,7 +356,7 @@
                       {%- when 'sku' -%}
                         <p
                           class="product__sku no-js-hidden{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"
-                          id="Sku-{{ section.id }}-{{ product.id }}"
+                          id="Sku-{{ featured_product_section_id }}"
                           role="status"
                           {{ block.shopify_attributes }}
                         >
@@ -378,7 +419,7 @@
                         <p
                           class="product__inventory {{ block.settings.heading_size }} text-weight-{{ block.settings.heading_weight }} no-js-hidden{% if product.selected_or_first_available_variant.inventory_management != 'shopify' %} visibility-hidden{% endif %}{% if block.settings.show_inventory_progress %} inventory-progress{% endif %}"
                           {{ block.shopify_attributes }}
-                          id="Inventory-{{ section.id }}-{{ product.id }}"
+                          id="Inventory-{{ featured_product_section_id }}"
                           role="status"
                         >
                           {%- if product.selected_or_first_available_variant.inventory_management == 'shopify' -%}
@@ -608,6 +649,9 @@
                           product: product,
                           block: block,
                           product_form_id: product_form_id,
+                          section_id: featured_product_section_id,
+                          original_section_id: section.id,
+                          force_first_variant: true,
                           label_size: block.settings.label_size,
                           update_url: false
                         -%}
@@ -616,7 +660,7 @@
                         {%- render 'countdown-bar',
                           block: block,
                           style: block.settings.coundown_style,
-                          section_id: section.id
+                          section_id: featured_product_section_id
                         -%}
 
                       {%- when 'buy_buttons' -%}
@@ -626,7 +670,8 @@
                             block: block,
                             product: product,
                             product_form_id: product_form_id,
-                            section_id: product_form_id,
+                            section_id: featured_product_section_id,
+                            force_first_variant: true,
                             show_pickup_availability: block.settings.show_availability,
                             show_quantity: block.settings.hide_quantity,
                             full_width: block.settings.full_width
@@ -685,23 +730,23 @@
                     <div class="product__media-container">
                   {%- endif -%}
 
-                  {% render 'product-media-gallery', variant_images: variant_images, product: product %}
+                  {% render 'product-media-gallery',
+                    variant_images: variant_images,
+                    product: product,
+                    section_id: featured_product_section_id
+                  %}
 
                   {%- for block in section.blocks -%}
                     {%- case block.type -%}
                       {%- when 'buy_buttons' -%}
                         {% render 'buy-button-styles', block: block, id: section.id %}
                         {% if block.settings.block_position == 'under_media' %}
-                          {%- assign product_form_id = 'product-form-'
-                            | append: section.id
-                            | append: '-'
-                            | append: product.id
-                          -%}
                           {%- render 'buy-buttons',
                             block: block,
                             product: product,
                             product_form_id: product_form_id,
-                            section_id: product_form_id,
+                            section_id: featured_product_section_id,
+                            force_first_variant: true,
                             classes: section.settings.secondary_background_color,
                             show_pickup_availability: block.settings.show_availability,
                             show_quantity: block.settings.hide_quantity,
@@ -748,7 +793,11 @@
               {%- endfor -%}
             {% endif %}
 
-            {% render 'product-media-modal', variant_images: variant_images, product: product %}
+            {% render 'product-media-modal',
+              variant_images: variant_images,
+              product: product,
+              section_id: featured_product_section_id
+            %}
             {% if section.settings.secondary_background_color != 'none' %}
               </div>
             {% endif %}
@@ -803,7 +852,59 @@
       <script>
         (function () {
           var sectionId = '{{ section.id }}';
-          
+          var sectionSelector = '#shopify-section-' + sectionId;
+          var debugEnabled = window.__FEATURED_PRODUCT_DEBUG__ !== false;
+
+          function debugLog() {
+            if (!debugEnabled || !window.console || !console.log) return;
+            var args = Array.prototype.slice.call(arguments);
+            args.unshift('[FeaturedProduct:' + sectionId + ']');
+            console.log.apply(console, args);
+          }
+
+          function getSlides(slider) {
+            return Array.prototype.slice.call(slider.querySelectorAll(':scope > .product-list__item'));
+          }
+
+          function setActiveDot(dots, index) {
+            for (var i = 0; i < dots.length; i++) {
+              dots[i].classList.toggle('slider-dot--active', i === index);
+            }
+          }
+
+          function bindDebugListenersOnce() {
+            var sectionEl = document.querySelector(sectionSelector);
+            if (!sectionEl || sectionEl.dataset.featuredProductDebugBound === 'true') return;
+
+            sectionEl.dataset.featuredProductDebugBound = 'true';
+
+            sectionEl.addEventListener(
+              'submit',
+              function (event) {
+                var form = event.target;
+                if (!form || form.getAttribute('data-type') !== 'add-to-cart-form') return;
+                var variantInput = form.querySelector('input[name="id"]');
+                var qtyInput = form.querySelector('input[name="quantity"]');
+                debugLog('ATC submit', {
+                  formId: form.id || '(no-id)',
+                  variantId: variantInput ? variantInput.value : '(missing)',
+                  quantity: qtyInput ? qtyInput.value : '(missing)',
+                });
+              },
+              true
+            );
+
+            sectionEl.addEventListener('click', function (event) {
+              var thumbButton = event.target.closest('.thumbnail-list__item[data-target] .thumbnail');
+              if (thumbButton) {
+                var thumbItem = thumbButton.closest('.thumbnail-list__item[data-target]');
+                debugLog('Thumbnail click', {
+                  targetMedia: thumbItem ? thumbItem.getAttribute('data-target') : '(missing)',
+                });
+              }
+            });
+          }
+
           function initSlider() {
             var slider = document.getElementById('Slider-' + sectionId);
             var dotsContainer = document.getElementById('SliderDots-' + sectionId);
@@ -811,56 +912,64 @@
             if (!slider || !dotsContainer) return;
 
             var dots = dotsContainer.querySelectorAll('.slider-dot');
-            var slides = slider.querySelectorAll('.slider__slide');
-            
-            if (!dots.length || !slides.length) return;
+            var slides = getSlides(slider);
 
-            // Update dots based on intersection
-            var observerOptions = {
-              root: slider,
-              threshold: 0.6 // Card must be 60% visible to trigger dot change
-            };
+            if (!dots.length || !slides.length) {
+              debugLog('Slider init skipped', { dots: dots.length, slides: slides.length });
+              return;
+            }
 
-            var observer = new IntersectionObserver(function(entries) {
-              entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                  // Find index of the intersecting slide
-                  var index = -1;
-                  for (var i = 0; i < slides.length; i++) {
-                    if (slides[i] === entry.target) {
-                      index = i;
-                      break;
-                    }
-                  }
+            debugLog('Slider init', { dots: dots.length, slides: slides.length });
 
-                  if (index !== -1) {
-                    for (var j = 0; j < dots.length; j++) {
-                      dots[j].classList.toggle('slider-dot--active', j === index);
-                    }
-                  }
+            bindDebugListenersOnce();
+
+            function updateActiveFromScroll() {
+              var sliderCenter = slider.scrollLeft + slider.clientWidth / 2;
+              var activeIndex = 0;
+              var minDistance = Number.POSITIVE_INFINITY;
+
+              for (var i = 0; i < slides.length; i++) {
+                var slideCenter = slides[i].offsetLeft + slides[i].offsetWidth / 2;
+                var distance = Math.abs(sliderCenter - slideCenter);
+                if (distance < minDistance) {
+                  minDistance = distance;
+                  activeIndex = i;
                 }
-              });
-            }, observerOptions);
+              }
 
-            // Start observing slides
-            for (var k = 0; k < slides.length; k++) {
-              observer.observe(slides[k]);
+              setActiveDot(dots, activeIndex);
             }
 
-            // Click handling using native scrollIntoView
-            for (var l = 0; l < dots.length; l++) {
-              (function(index) {
-                dots[index].addEventListener('click', function() {
-                  if (slides[index]) {
-                    slides[index].scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'nearest',
-                      inline: 'start'
-                    });
-                  }
-                });
-              })(l);
+            if (slider.dataset.featuredDotsBound !== 'true') {
+              slider.dataset.featuredDotsBound = 'true';
+
+              var isTicking = false;
+              slider.addEventListener(
+                'scroll',
+                function () {
+                  if (isTicking) return;
+                  isTicking = true;
+                  window.requestAnimationFrame(function () {
+                    updateActiveFromScroll();
+                    isTicking = false;
+                  });
+                },
+                { passive: true }
+              );
+
+              for (var l = 0; l < dots.length; l++) {
+                (function (index) {
+                  dots[index].addEventListener('click', function () {
+                    if (slides[index]) {
+                      slider.scrollTo({ left: slides[index].offsetLeft, behavior: 'smooth' });
+                      debugLog('Dot click', { index: index, targetLeft: slides[index].offsetLeft });
+                    }
+                  });
+                })(l);
+              }
             }
+
+            updateActiveFromScroll();
           }
 
           // Resilient initialization
@@ -869,7 +978,7 @@
           } else {
             initSlider();
           }
-          
+
           // Final fallback for dynamic content
           window.addEventListener('load', initSlider);
         })();
@@ -991,7 +1100,7 @@
   });
 </script>
 
-{% if product.media.size > 0 %}
+{% if featured_has_media %}
   <script src="{{ 'product-modal.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'media-gallery.js' | asset_url }}" defer="defer"></script>
 {% endif %}

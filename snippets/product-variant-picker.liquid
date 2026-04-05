@@ -1,12 +1,36 @@
+{%- liquid
+  assign variant_section_id = section_id | default: section.id
+  assign variant_original_section_id = original_section_id | default: ''
+  assign variant_force_first = force_first_variant | default: false
+  assign selected_variant_for_picker = product.selected_or_first_available_variant
+
+  if variant_force_first and product.variants.size > 0
+    assign selected_variant_for_picker = product.variants.first
+    if selected_variant_for_picker.available == false
+      assign selected_variant_for_picker = product.selected_or_first_available_variant
+    endif
+  endif
+-%}
+
 {%- unless product.has_only_default_variant -%}
   {% liquid 
     assign choose_variant = block.settings.choose_variant | escape | downcase
   %}
   {%- if block.settings.picker_type == 'button' -%}
-    <variant-radios id="variant-radios-{{ section.id }}" class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}" {% if update_url == false %} data-update-url="false" {% endif %} {{ block.shopify_attributes }}>
+    <variant-radios id="variant-radios-{{ variant_section_id }}" class="no-js-hidden" data-section="{{ variant_section_id }}" data-url="{{ product.url }}" {% if variant_original_section_id != blank %}data-original-section="{{ variant_original_section_id }}"{% endif %} {% if update_url == false %} data-update-url="false" {% endif %} {{ block.shopify_attributes }}>
 
       {%- for option in product.options_with_values -%}
         {% liquid 
+          assign selected_option_value = option.selected_value
+          case option.position
+            when 1
+              assign selected_option_value = selected_variant_for_picker.option1
+            when 2
+              assign selected_option_value = selected_variant_for_picker.option2
+            when 3
+              assign selected_option_value = selected_variant_for_picker.option3
+          endcase
+
           assign variant_name = option.name | escape | downcase
           assign variant_color_swatch = settings.swatches_variant | escape | downcase
           assign swatches_variant = false
@@ -24,13 +48,21 @@
 						<div class="product-form__options-wrapper">
           {% endif %}
 					<legend class="form__label {% if label_size %} text-body--{{ label_size }}{% endif %}">
-            {{ option.name }}{% if swatches_variant == true %} (<span class="selected-option">{{ option.selected_value | escape }}</span>){% endif %}
+            {{ option.name }}{% if swatches_variant == true %} (<span class="selected-option">{{ selected_option_value | escape }}</span>){% endif %}
           </legend>
 					{% if settings.mood_type == 'mood4' %}
 						<div class="product-form__options">
           {% endif %}
 
-          {% render 'product-variant-options', product: product, option: option, block: block, swatches_variant: swatches_variant %}
+          {% render 'product-variant-options',
+            product: product,
+            option: option,
+            block: block,
+            swatches_variant: swatches_variant,
+            section_id: variant_section_id,
+            product_form_id: product_form_id,
+            selected_variant: selected_variant_for_picker
+          %}
 					
 					{% if settings.mood_type == 'mood4' %}
 						</div>
@@ -69,17 +101,24 @@
       </script>
     </variant-radios>
   {%- else -%}
-    <variant-selects id="variant-selects-{{ section.id }}" class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}"
+    <variant-selects id="variant-selects-{{ variant_section_id }}" class="no-js-hidden" data-section="{{ variant_section_id }}" data-url="{{ product.url }}" {% if variant_original_section_id != blank %}data-original-section="{{ variant_original_section_id }}"{% endif %}
       {% if update_url == false %} data-update-url="false"{% endif %} {{ block.shopify_attributes }}>
 
       {%- for option in product.options_with_values -%}
         <div class="product-form__input product-form__input--dropdown">
-          <label class="form__label {% if label_size %} text-body--{{ label_size }}{% endif %}" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+          <label class="form__label {% if label_size %} text-body--{{ label_size }}{% endif %}" for="Option-{{ variant_section_id }}-{{ forloop.index0 }}">
             {{ option.name }}
           </label>
           <div class="select">
-            <select id="Option-{{ section.id }}-{{ forloop.index0 }}" class="select__select" name="options[{{ option.name | escape }}]" form="{{ product_form_id }}">
-              {% render 'product-variant-options', product: product, option: option, block: block %}
+            <select id="Option-{{ variant_section_id }}-{{ forloop.index0 }}" class="select__select" name="options[{{ option.name | escape }}]" form="{{ product_form_id }}">
+              {% render 'product-variant-options',
+                product: product,
+                option: option,
+                block: block,
+                section_id: variant_section_id,
+                product_form_id: product_form_id,
+                selected_variant: selected_variant_for_picker
+              %}
             </select>
             {% render 'icon-caret' %}
           </div>
@@ -128,15 +167,15 @@
   {%- endif -%}
 {%- endunless -%}
 
-<noscript class="product-form__noscript-wrapper-{{ section.id }}">
+<noscript class="product-form__noscript-wrapper-{{ variant_section_id }}">
   <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
-    <label class="form__label {% if label_size %} text-body--{{ label_size }}{% endif %}" for="Variants-{{ section.id }}">
+    <label class="form__label {% if label_size %} text-body--{{ label_size }}{% endif %}" for="Variants-{{ variant_section_id }}">
       {{- 'products.product.product_variants' | t -}}
     </label>
     <div class="select">
-      <select name="id" id="Variants-{{ section.id }}" class="select__select" form="{{ product_form_id }}">
+      <select name="id" id="Variants-{{ variant_section_id }}" class="select__select" form="{{ product_form_id }}">
         {%- for variant in product.variants -%}
-          <option {% if variant == product.selected_or_first_available_variant %} selected="selected"{% endif %}
+          <option {% if variant == selected_variant_for_picker %} selected="selected"{% endif %}
             {% if variant.available == false %} disabled{% endif %} value="{{ variant.id }}">
             {%- liquid
               echo variant.title

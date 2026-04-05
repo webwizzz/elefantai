@@ -1,0 +1,253 @@
+{% schema %}
+{
+  "name": "Get Started Card",
+  "settings": [
+    {
+      "type": "color_background",
+      "id": "section_bg",
+      "label": "Section Background",
+      "default": "linear-gradient(90deg, #F8F8F8 0%, #FCEAF1 100%)",
+      "info": "Gradient or solid color for the entire section behind the card."
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Card Design Settings"
+    },
+    {
+      "type": "color_background",
+      "id": "card_bg_gradient",
+      "label": "Card Background Gradient",
+      "default": "linear-gradient(135deg, #9865B6 0%, #E96CA1 100%)",
+      "info": "The primary background color/gradient of the card."
+    },
+    {
+      "type": "image_picker",
+      "id": "card_bg_image",
+      "label": "Card Background Image",
+      "info": "Adds an image over the gradient (useful for the background shapes/graphics shown in the design). Set opacity below if needed."
+    },
+    {
+      "type": "range",
+      "id": "card_image_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Image Opacity",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Corner Radius",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Card Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Join 10,000+ Happy Families"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Start saving money on toys today while giving your kids the best play experiences"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Label",
+      "default": "Get Started Now"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "btn_bg_color",
+      "label": "Button Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "btn_text_color",
+      "label": "Button Text Color",
+      "default": "#8B52A1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Get Started Card"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  .get-started-section-{{ section.id }} {
+    background: {{ section.settings.section_bg }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sag-semibold;
+  }
+
+  .get-started-container-{{ section.id }} {
+    width: 100%;
+    max-width: 1080px;
+    padding: 0 20px;
+  }
+
+  .get-started-card-{{ section.id }} {
+    position: relative;
+    border-radius: {{ section.settings.card_radius }}px;
+    background: {{ section.settings.card_bg_gradient }};
+    padding: 70px 40px;
+    text-align: center;
+    color: #FFFFFF;
+    /* Soft shadow behind the card to match design */
+    box-shadow: 0px 15px 45px rgba(0, 0, 0, 0.08), 0px 5px 15px rgba(0, 0, 0, 0.04);
+    border: 3px solid #FFFFFF;
+    overflow: hidden;
+  }
+
+  {% if section.settings.card_bg_image %}
+  .get-started-card-bg-{{ section.id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('{{ section.settings.card_bg_image | image_url: width: 1200 }}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: {{ section.settings.card_image_opacity | divided_by: 100.0 }};
+    z-index: 1;
+    pointer-events: none;
+  }
+  {% endif %}
+
+  .get-started-card-content-{{ section.id }} {
+    position: relative;
+    z-index: 2;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .get-started-title-{{ section.id }} {
+    font-size: 62px;
+    font-weight: 500;
+    margin: 0 0 16px 0;
+    color: #FFFFFF;
+    letter-spacing: 0.5px;
+    line-height: 70px;
+    font-family: sag-semibold !important;
+  }
+
+  .get-started-subtitle-{{ section.id }} {
+    font-size: 17px;
+    line-height: 30px;
+    margin: 0 0 30px 0;
+    color: #FFFFFF;
+    opacity: 0.95;
+    font-weight: 500;
+  }
+
+  .get-started-btn-{{ section.id }} {
+    display: inline-block;
+    background-color: {{ section.settings.btn_bg_color }};
+    color: {{ section.settings.btn_text_color }};
+    font-size: 22px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 14px 34px;
+    border-radius: 50px;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.12);
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .get-started-btn-{{ section.id }}:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.18);
+  }
+
+  @media screen and (max-width: 900px) {
+    .get-started-title-{{ section.id }} {
+      font-size: 42px;
+      line-height: 48px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .get-started-card-{{ section.id }} {
+      padding: 50px 20px;
+      border: 2px solid #FFFFFF;
+    }
+    .get-started-title-{{ section.id }} {
+      font-size: 34px;
+    }
+    .get-started-subtitle-{{ section.id }} {
+      font-size: 15px;
+      margin: 0 0 30px 0;
+    }
+    .get-started-btn-{{ section.id }} {
+      font-size: 18px;
+      padding: 14px 36px;
+    }
+  }
+</style>
+
+<div class="get-started-section-{{ section.id }}">
+  <div class="get-started-container-{{ section.id }}">
+    <div class="get-started-card-{{ section.id }}">
+      {% if section.settings.card_bg_image %}
+        <div class="get-started-card-bg-{{ section.id }}"></div>
+      {% endif %}
+
+      <div class="get-started-card-content-{{ section.id }}">
+        <h2 class="get-started-title-{{ section.id }}">{{ section.settings.title }}</h2>
+        <p class="get-started-subtitle-{{ section.id }}">{{ section.settings.subtitle | newline_to_br }}</p>
+
+        {% if section.settings.btn_text != blank %}
+          <a href="{{ section.settings.btn_link | default: '#' }}" class="get-started-btn-{{ section.id }}">
+            {{ section.settings.btn_text }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
