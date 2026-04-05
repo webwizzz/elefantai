@@ -11,6 +11,7 @@
     --card-desc-mobile: {{ section.settings.card_desc_mobile }}px;
     --card-bottom-desktop: {{ section.settings.card_bottom_desktop }}px;
     --card-bottom-mobile: {{ section.settings.card_bottom_mobile }}px;
+    --mobile-banner-offset: {% if section.settings.banner_left != blank or section.settings.banner_right != blank %}92px{% else %}0px{% endif %};
 
     background-color: {{ section.settings.background_color }};
     padding: 60px 0 80px 0;
@@ -178,11 +179,41 @@
   }
 
   @media (max-width: 768px) {
-    #WhatThisMeans-{{ section.id }} {
-      padding: 40px 0 60px 0;
+    #shopify-section-{{ section.id }} {
+      margin-top: 0 !important;
     }
-    .wtm-container {
+
+    #WhatThisMeans-{{ section.id }} {
+      padding: 0 0 60px 0;
+    }
+
+    .wtm-banners {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
       padding: 0 20px;
+      margin: 0;
+      line-height: 0;
+      overflow: visible;
+      z-index: 3;
+    }
+
+    .wtm-banner-l,
+    .wtm-banner-r {
+      position: static;
+      display: block;
+      width: min(34vw, 120px);
+      max-width: none;
+      transform: translateY(-36%);
+    }
+
+    .wtm-container {
+      padding: var(--mobile-banner-offset) 20px 0;
     }
     .wtm-title {
       font-size: var(--heading-size-mobile);

@@ -958,7 +958,7 @@ a.product__text {
 
 @media screen and (max-width: 749px) {
 
-  .product .price__container .price-item--sale{
+  .product .price__container .price-item--sale {
     font-size: 24px;
   }
 
@@ -2264,7 +2264,7 @@ variant-selects .product-popup-modal__opener {
    font-size: 10px !important; 
   }
 
-  
+
 }
 
 @media screen and (min-width: 750px) {
@@ -3028,11 +3028,12 @@ variant-selects .product-popup-modal__opener {
   .product .product__media-wrapper .buy-buttons.under-media {
     display: none;
   }
+
   .delivery-pickup-heading {
     font-size: 13px;
   }
 
-  .delivery-pickup-description{
+  .delivery-pickup-description {
     font-size: 11px;
   }
 
