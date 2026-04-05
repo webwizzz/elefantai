@@ -394,8 +394,8 @@
         "coundown_bar_UkPkyh": {
           "type": "coundownBar",
           "settings": {
-            "coundown_date": "Apr 31, 2024",
-            "coundown_end": "disable_buttons",
+            "coundown_date": "Apr 31, 2026",
+            "coundown_end": "hide_coundown",
             "coundown_style": "defaut",
             "contdown_label": "Hurry Up! Sale Ends In",
             "contdown_label_size": "h5",
@@ -434,10 +434,18 @@
           "settings": {
             "show_dynamic_checkout": true,
             "show_gift_card_recipient": false,
-            "block_position": "sidebar",
             "hide_quantity": true,
             "full_width": true,
-            "show_availability": true
+            "show_availability": true,
+            "block_position": "sidebar",
+            "atc_bg_color": "#6e4b7e",
+            "atc_text_color": "#ffffff",
+            "atc_border_color": "#f1dfff",
+            "bin_bg_color": "#ebb64e",
+            "bin_text_color": "#000000",
+            "bin_border_color": "#fdf2d0",
+            "button_font_size": 32,
+            "button_border_radius": 100
           }
         }
       },

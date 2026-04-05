@@ -16,6 +16,7 @@
 <div class="buy-buttons {{ classes }}" {{ block.shopify_attributes }}>
   {%- if product != blank -%}
     {%- liquid
+      assign buy_buttons_section_id = section_id | default: section.id
       assign gift_card_recipient_feature_active = false
       if block.settings.show_gift_card_recipient and product.gift_card?
         assign gift_card_recipient_feature_active = true
@@ -57,7 +58,7 @@
 
         <div class="product-form__buttons  {% if full_width != true %} not-full {% endif %}">
 
-          <div id="Quantity-Form-{{ section.id }}" class="product-form__input product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} product-form__quantity-top{% endif %} {% if show_quantity %}hide-quantity{% endif %}" {{ block.shopify_attributes }}>
+          <div id="Quantity-Form-{{ buy_buttons_section_id }}" class="product-form__input product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} product-form__quantity-top{% endif %} {% if show_quantity %}hide-quantity{% endif %}" {{ block.shopify_attributes }}>
 
             {% # theme-check-disable %}
             {%- assign cart_qty = cart
@@ -71,7 +72,7 @@
               {% assign quantity_inside = true %}
             {% endif %}
 
-            <label class="quantity__label form__label {% if quantity_inside == true %} medium-hide large-up-hide {% endif %}" for="Quantity-{{ section.id }}">
+            <label class="quantity__label form__label {% if quantity_inside == true %} medium-hide large-up-hide {% endif %}" for="Quantity-{{ buy_buttons_section_id }}">
               {{ 'products.product.quantity.label' | t }}
               <span class="quantity__rules-cart no-js-hidden {% if cart_qty == 0 %} hidden{% endif %}">
                 <span>
@@ -81,7 +82,7 @@
             </label>
 
             <quantity-input class="quantity ">
-              <label class="quantity__label form__label {% if quantity_inside == false %} medium-hide large-up-hide {% endif %} small-hide" for="Quantity-{{ section.id }}">
+              <label class="quantity__label form__label {% if quantity_inside == false %} medium-hide large-up-hide {% endif %} small-hide" for="Quantity-{{ buy_buttons_section_id }}">
                 {{ 'products.product.quantity.label' | t }}
               </label>
 
@@ -92,7 +93,7 @@
                 {% render 'icon-minus' %}
               </button>
 
-              <input type="number" class="quantity__input" id="Quantity-{{ section.id }}"
+              <input type="number" class="quantity__input" id="Quantity-{{ buy_buttons_section_id }}"
                 name="quantity"
                 data-cart-quantity="{{ cart_qty }}"
                 data-min="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
@@ -142,7 +143,7 @@
             endif
           -%}
 
-          <button id = "ProductSubmitButton-{{ section_id }}" type="submit" name="add" class="product-form__submit button button-primary" {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %} disabled{% endif %}>
+          <button id = "ProductSubmitButton-{{ buy_buttons_section_id }}" type="submit" name="add" class="product-form__submit button button-primary" {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %} disabled{% endif %}>
             <span>
               {%- if product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
                 {{ 'products.product.sold_out' | t }}
@@ -165,11 +166,12 @@
       {%- endform -%}
     </product-form>
   {%- else -%}
+    {%- assign buy_buttons_section_id = section_id | default: section.id -%}
     <div class="product-form">
       <div class="product-form__buttons form">
-        <div id="Quantity-Form-{{ section.id }}" class="product-form__input product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} product-form__quantity-top{% endif %} " {{ block.shopify_attributes }}>
+        <div id="Quantity-Form-{{ buy_buttons_section_id }}" class="product-form__input product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} product-form__quantity-top{% endif %} " {{ block.shopify_attributes }}>
           <quantity-input class="quantity">
-            <label class="quantity__label form__label {% if quantity_inside == false %} medium-hide large-up-hide {% endif %} small-hide" for="Quantity-{{ section.id }}">
+            <label class="quantity__label form__label {% if quantity_inside == false %} medium-hide large-up-hide {% endif %} small-hide" for="Quantity-{{ buy_buttons_section_id }}">
               {{ 'products.product.quantity.label' | t }}
             </label>
 
@@ -180,7 +182,7 @@
               {% render 'icon-minus' %}
             </button>
 
-            <input type="number" class="quantity__input" id="Quantity-{{ section.id }}"
+            <input type="number" class="quantity__input" id="Quantity-{{ buy_buttons_section_id }}"
               name="quantity"
               data-cart-quantity="{{ cart_qty }}"
               data-min="1"
