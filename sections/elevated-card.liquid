@@ -60,8 +60,9 @@
 
   /* Typography Dynamic Binding */
   .ec-title {
-    font-size: {{ section.settings.heading_size }}px;
-    font-weight: {{ section.settings.heading_weight }};
+    font-size: 62px;
+    font-weight: 500;
+    font-family: sag-semibold !important;
     color: {{ section.settings.title_color }};
     margin: 0 0 24px 0;
     line-height: 70px;
@@ -70,7 +71,7 @@
   .ec-title strong,
   .ec-title b {
     color: {{ section.settings.highlight_color }};
-    font-weight: 800;
+    font-weight: inherit;
   }
 
   .ec-desc {
@@ -123,11 +124,14 @@
 
   /* Auto-scaling big text down explicitly on mobile */
   @media (max-width: 900px) {
-    .ec-title { font-size: calc({{ section.settings.heading_size }}px * 0.7); }
+    .ec-title { 
+      font-size: 42px;
+      line-height: 48px;
+    }
     .ec-desc { font-size: calc({{ section.settings.subtitle_size }}px * 0.85); }
   }
   @media (max-width: 480px) {
-    .ec-title { font-size: calc({{ section.settings.heading_size }}px * 0.55); }
+    .ec-title { font-size: 34px; }
   }
 {%- endstyle -%}
 
@@ -289,28 +293,7 @@
       "label": "Heading Highlight Color (for Bold text)",
       "default": "#FDC64A"
     },
-    {
-      "type": "range",
-      "id": "heading_size",
-      "min": 20,
-      "max": 80,
-      "step": 1,
-      "unit": "px",
-      "label": "Heading Font Size",
-      "default": 45
-    },
-    {
-      "type": "select",
-      "id": "heading_weight",
-      "label": "Heading Font Weight",
-      "options": [
-        { "value": "400", "label": "Normal" },
-        { "value": "600", "label": "Semi-Bold" },
-        { "value": "700", "label": "Bold" },
-        { "value": "800", "label": "Extra Bold" }
-      ],
-      "default": "700"
-    },
+
 
     {
       "type": "textarea",

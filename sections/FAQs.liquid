@@ -1,0 +1,412 @@
+{% schema %}
+{
+  "name": "FAQs Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image",
+      "info": "Upload the background graphics (like the clouds, stars, and characters)"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "Frequently Asked <em>Questions</em>",
+      "info": "Use italic text to apply the purple highlight color."
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Everything you need to know about EleFant"
+    },
+    {
+      "type": "header",
+      "content": "Accordion Styling"
+    },
+    {
+      "type": "color",
+      "id": "accordion_active_border",
+      "label": "Active Border Color",
+      "default": "#FAEEFF"
+    },
+    {
+      "type": "header",
+      "content": "Contact Card Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_contact_card",
+      "label": "Show Contact Card",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "contact_title",
+      "label": "Contact Title",
+      "default": "Still have questions?"
+    },
+    {
+      "type": "text",
+      "id": "contact_text",
+      "label": "Contact Text",
+      "default": "Our friendly team is here to help!"
+    },
+    {
+      "type": "text",
+      "id": "contact_btn_label",
+      "label": "Button Label",
+      "default": "Contact Support"
+    },
+    {
+      "type": "url",
+      "id": "contact_btn_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "contact_bg",
+      "label": "Contact Card Background",
+      "default": "#6C5082"
+    },
+    {
+      "type": "color",
+      "id": "contact_text_color",
+      "label": "Contact Text Color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "How does the buy back system works?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>When you buy a toy, we guarantee to buy it back at the stated percentage (up to 60%) within the buyback period. The value depends on the toy's condition when returned. Simply request a return, ship it back with our prepaid label, and receive your credit or cash refund.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQs Section",
+      "blocks": [{ "type": "faq" }, { "type": "faq" }, { "type": "faq" }, { "type": "faq" }, { "type": "faq" }]
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  .faqs-section-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    {% if section.settings.background_image %}
+      background-image: url('{{ section.settings.background_image | image_url: width: 2000 }}');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    {% endif %}
+    padding: 80px 20px;
+    position: relative;
+    font-family: inherit;
+    overflow: hidden;
+  }
+
+  .faqs-container-{{ section.id }} {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .faqs-header-{{ section.id }} {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .faqs-title-{{ section.id }} {
+    font-size: 52px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 16px 0;
+    line-height: 70px;
+    letter-spacing: 0.5px;
+  }
+
+  .faqs-title-{{ section.id }} em {
+    color: #6E4B7E; /* Purple color */
+    font-style: inherit;
+  }
+
+  .faqs-subtitle-{{ section.id }} {
+    font-size: 22px;
+    color: #606060;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .faqs-list-{{ section.id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  /* Accordion Item Styling */
+  .faq-item-{{ section.id }} {
+    background: #FDFBFF;
+    border-radius: 32px;
+    /* Inactive State Shadow */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04);
+    border: 4px solid transparent;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+
+  /* Active State Accordion */
+  .faq-item-{{ section.id }}.is-active {
+    border-color: {{ section.settings.accordion_active_border }};
+    /* Pronounced shadow with a hint of purple, per the reference */
+    box-shadow: 0px 8px 24px rgba(108, 80, 130, 0.08);
+  }
+
+  .faq-question-{{ section.id }} {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 24px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-size: 28px;
+    font-weight: 600;
+    color: #000;
+    font-family: inherit;
+    line-height: 1.4;
+    transition: padding 0.3s ease;
+  }
+
+  .faq-icon-{{ section.id }} {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+    margin-left: 15px;
+    border-radius: 50%;
+  }
+
+  .faq-item-{{ section.id }}.is-active .faq-icon-{{ section.id }} {
+    transform: rotate(180deg);
+  }
+
+  .faq-icon-{{ section.id }} svg {
+    width: 14px;
+    height: auto;
+    stroke: #777777;
+  }
+
+  .faq-answer-wrapper-{{ section.id }} {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .faq-answer-{{ section.id }} {
+    padding: 0 24px 24px 24px;
+    font-size: 22px;
+    color: #606060;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  .faq-answer-{{ section.id }} p {
+    margin: 0;
+  }
+
+  /* Contact Card Styling */
+  .faq-contact-card-{{ section.id }} {
+    background: {{ section.settings.contact_bg }};
+    border-radius: 24px;
+    padding: 40px;
+    text-align: center;
+    color: {{ section.settings.contact_text_color }};
+    /* Shadow underneath the bottom block */
+    box-shadow: 0px 10px 30px rgba(108, 80, 130, 0.25);
+    margin-top: 20px;
+  }
+
+  .faq-contact-title-{{ section.id }} {
+    font-size: 42px;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+    color: #fff;
+  }
+
+  .faq-contact-text-{{ section.id }} {
+    font-size: 22px;
+    margin: 0 0 30px 0;
+    font-weight: 500;
+  }
+
+  .faq-contact-btn-{{ section.id }} {
+    display: inline-block;
+    background: #ffffff;
+    color: {{ section.settings.contact_bg }};
+    text-decoration: none;
+    padding: 14px 40px;
+    border-radius: 40px;
+    font-weight: 500;
+    font-size: 22px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .faq-contact-btn-{{ section.id }}:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  }
+
+  @media (max-width: 768px) {
+    .faqs-section-{{ section.id }} {
+      padding: 50px 15px;
+    }
+    .faqs-title-{{ section.id }} {
+      font-size: 32px;
+    }
+    .faq-question-{{ section.id }} {
+      padding: 20px;
+      font-size: 16px;
+    }
+    .faq-answer-{{ section.id }} {
+      padding: 0 20px 20px 20px;
+      font-size: 14px;
+    }
+    .faq-contact-card-{{ section.id }} {
+      padding: 30px 20px;
+    }
+    .faq-contact-title-{{ section.id }} {
+      font-size: 24px;
+    }
+  }
+</style>
+
+<div class="faqs-section-{{ section.id }}">
+  <div class="faqs-container-{{ section.id }}">
+    <div class="faqs-header-{{ section.id }}">
+      <h2 class="faqs-title-{{ section.id }}">
+        {{ section.settings.title }}
+      </h2>
+      {% if section.settings.subtitle != blank %}
+        <p class="faqs-subtitle-{{ section.id }}">{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    <div class="faqs-list-{{ section.id }}">
+      {% for block in section.blocks %}
+        <div
+          class="faq-item-{{ section.id }} {% if forloop.first %}is-active{% endif %}"
+          {{ block.shopify_attributes }}
+        >
+          <button
+            class="faq-question-{{ section.id }}"
+            aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}"
+          >
+            {{ block.settings.question }}
+            <span class="faq-icon-{{ section.id }}">
+              <svg viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L7 7L13 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-answer-wrapper-{{ section.id }}">
+            <div class="faq-answer-{{ section.id }}">
+              {{ block.settings.answer }}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.show_contact_card %}
+      <div class="faq-contact-card-{{ section.id }}">
+        <h3 class="faq-contact-title-{{ section.id }}">{{ section.settings.contact_title }}</h3>
+        <p class="faq-contact-text-{{ section.id }}">{{ section.settings.contact_text }}</p>
+        {% if section.settings.contact_btn_label != blank %}
+          <a href="{{ section.settings.contact_btn_link | default: '#' }}" class="faq-contact-btn-{{ section.id }}">
+            {{ section.settings.contact_btn_label }}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const faqItems = document.querySelectorAll('.faq-item-{{ section.id }}');
+
+    faqItems.forEach((item) => {
+      const button = item.querySelector('.faq-question-{{ section.id }}');
+      const answerWrapper = item.querySelector('.faq-answer-wrapper-{{ section.id }}');
+      const answerInner = item.querySelector('.faq-answer-{{ section.id }}');
+
+      // Initialize heights
+      if (item.classList.contains('is-active')) {
+        answerWrapper.style.maxHeight = answerInner.offsetHeight + 'px';
+      }
+
+      button.addEventListener('click', () => {
+        const isActive = item.classList.contains('is-active');
+
+        // Optional: Accordion behavior (closes others when one opens)
+        /*
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item && otherItem.classList.contains('is-active')) {
+            otherItem.classList.remove('is-active');
+            otherItem.querySelector('.faq-answer-wrapper-{{ section.id }}').style.maxHeight = null;
+            otherItem.querySelector('.faq-question-{{ section.id }}').setAttribute('aria-expanded', 'false');
+          }
+        });
+        */
+
+        if (!isActive) {
+          item.classList.add('is-active');
+          answerWrapper.style.maxHeight = answerInner.offsetHeight + 'px';
+          button.setAttribute('aria-expanded', 'true');
+        } else {
+          item.classList.remove('is-active');
+          answerWrapper.style.maxHeight = null;
+          button.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    // Handle resize
+    window.addEventListener('resize', () => {
+      document.querySelectorAll('.faq-item-{{ section.id }}.is-active').forEach((item) => {
+        const wrapper = item.querySelector('.faq-answer-wrapper-{{ section.id }}');
+        const inner = item.querySelector('.faq-answer-{{ section.id }}');
+        wrapper.style.maxHeight = inner.offsetHeight + 'px';
+      });
+    });
+  });
+</script>

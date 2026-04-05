@@ -46,6 +46,20 @@
             "social_color_hover": "heading"
           }
         },
+        "buyback_CTtRCe": {
+          "type": "buyback",
+          "settings": {
+            "percent": "60%",
+            "title_main": "Buyback",
+            "title_emphasis": "Guarantee",
+            "description": "Eligible toys receive condition-based buyback: 60% cash refund or full membership use.",
+            "accent_color": "#ff6a00",
+            "title_color": "#ff6a00",
+            "emphasis_color": "#000000",
+            "background_color": "#ffffff",
+            "block_position": "default"
+          }
+        },
         "description_3GT8yD": {
           "type": "description",
           "settings": {
@@ -90,17 +104,6 @@
             "inventory_threshold_start": 200
           }
         },
-        "buy_buttons": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": false,
-            "block_position": "sidebar",
-            "hide_quantity": false,
-            "full_width": true,
-            "show_availability": true
-          }
-        },
         "54271896-8c87-41aa-8788-341687752aa1": {
           "type": "crossell_product",
           "settings": {
@@ -113,6 +116,17 @@
             "crossell_product_type": "Yes please",
             "product_type_color": "",
             "price_color": "#da3c24"
+          }
+        },
+        "buy_buttons_deLbPX": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false,
+            "block_position": "sidebar",
+            "hide_quantity": false,
+            "full_width": true,
+            "show_availability": true
           }
         },
         "ca1a9e3e-8740-4219-87ee-8a26036e96f0": {
@@ -149,21 +163,55 @@
             "delivery_text": "Order within 3 hours for delivery by tomorrow. Standard delivery: 2-4 business days",
             "show_pickup_availability": true
           }
+        },
+        "product_meta_tabs_MybfXq": {
+          "type": "product_meta_tabs",
+          "settings": {
+            "description_tab_label": "Description",
+            "specification_tab_label": "Specification",
+            "buyback_tab_label": "Buy Back Process",
+            "about_heading": "About This Product",
+            "key_features_heading": "Key Features",
+            "why_kids_heading": "Why Kids Love It",
+            "buyback_heading_line_1": "Play. Return.",
+            "buyback_heading_line_2": "Earn Back",
+            "buyback_subtitle": "The smart way to buy toys. Play, return when done, and get money back.",
+            "stack_1_icon_color": "#5f9de2",
+            "stack_1_title": "Order Delivered",
+            "stack_1_description": "Once the order is marked as Delivered, the user becomes eligible to initiate a return/sellback.",
+            "stack_2_icon_color": "#ebb84a",
+            "stack_2_title": "Raise Sellback Request",
+            "stack_2_description": "User can raise a request directly from their account.",
+            "stack_3_icon_color": "#e477af",
+            "stack_3_title": "Condition Check",
+            "stack_3_description": "Toy condition, missing parts, and final eligibility are reviewed.",
+            "stack_4_icon_color": "#9770bd",
+            "stack_4_title": "Cash Back Calculation",
+            "stack_4_description": "Based on the condition, the final sellback amount is calculated.",
+            "stack_5_icon_color": "#ef7f35",
+            "stack_5_title": "Get your Money Back",
+            "stack_5_description": "Wallet credit, direct payout, or membership conversion.",
+            "stack_6_icon_color": "#8a8f98",
+            "stack_6_title": "",
+            "stack_6_description": ""
+          }
         }
       },
       "block_order": [
         "breadcrumb_WBMM3F",
         "title",
         "bb95e0db-baa1-4796-bc47-fd3d9e8820ce",
+        "buyback_CTtRCe",
         "description_3GT8yD",
         "price",
         "skills_learned_UG4wAX",
         "variant_picker",
         "c652140f-d2b2-42d5-b88b-2f636b5f4875",
-        "buy_buttons",
         "54271896-8c87-41aa-8788-341687752aa1",
+        "buy_buttons_deLbPX",
         "ca1a9e3e-8740-4219-87ee-8a26036e96f0",
-        "delivery_date_pickup_REq3Gf"
+        "delivery_date_pickup_REq3Gf",
+        "product_meta_tabs_MybfXq"
       ],
       "settings": {
         "enable_sticky_info": true,
@@ -181,7 +229,7 @@
         "info_background_color": "color-main-bg",
         "background_color": "--colors-background-main",
         "colors_background_section_gradient": "",
-        "padding_top": 0,
+        "padding_top": 20,
         "padding_bottom": 0
       }
     },
@@ -294,9 +342,7 @@
       "name": "Understand Sellback Value",
       "settings": {
         "bg_color": "linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(79, 152, 222, 1) 100%)",
-        "bottom_left_image": "shopify://shop_images/Isolation_Mode_ee3f1b44-74f4-4bbc-940d-4e5ed2051966.svg",
         "bottom_left_width": 200,
-        "bottom_right_image": "shopify://shop_images/Group-14.svg",
         "bottom_right_width": 200,
         "heading_1": "Understanding",
         "highlight_text": "Sellback",

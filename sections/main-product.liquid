@@ -308,6 +308,7 @@
 			class="product__info-container{% if section.settings.info_background_color != "none" %} info-background-secondary{% endif %}">
 
 				{%- assign product_form_id = 'product-form-' | append: section.id -%}
+				{%- assign product_meta_tabs_markup = '' -%}
 
 				{%- for block in section.blocks -%}
 					{%- case block.type -%}
@@ -367,6 +368,22 @@
                   {% endif %}
                 </div>
               {% endif %}
+
+
+						{%- when 'buyback' -%}
+							{{ 'component-buyback.css' | asset_url | stylesheet_tag }}
+							<div class="product-buyback {{ block.settings.block_position }}" style="--buyback-accent: {{ block.settings.accent_color }}; --buyback-bg: {{ block.settings.background_color }}; --buyback-title-color: {{ block.settings.title_color }}; --buyback-emphasis-color: {{ block.settings.emphasis_color }};" {{ block.shopify_attributes }}>
+								<div class="product-buyback__left">{{ block.settings.percent }}</div>
+								<div class="product-buyback__text">
+									<div class="product-buyback__titles">
+										<div class="product-buyback__title">{{ block.settings.title_main }}</div>
+										<div class="product-buyback__emphasis">{{ block.settings.title_emphasis }}</div>
+									</div>
+									{% if block.settings.description != blank %}
+										<div class="product-buyback__desc">{{ block.settings.description }}</div>
+									{% endif %}
+								</div>
+							</div>
 
 						{%- when 'price' -%}
 							<div class="no-js-hidden price-wrapp" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
@@ -566,7 +583,198 @@
 								{%- endif -%}
 
 							</p>
+						{%- when 'tags' -%}
+												{%- if product.metafields and product.metafields.custom and product.metafields.custom.tags != blank -%}
+													{{ 'component-tags.css' | asset_url | stylesheet_tag }}
+													<div class="product__tags" {{ block.shopify_attributes }}>
+														{%- assign features_content = product.metafields.custom.tags.value -%}
+														{%- if features_content.children -%}
+															{%- for list in features_content.children -%}
+																{%- if list.listType == 'unordered' and list.children -%}
+																	{%- for item in list.children -%}
+																		{%- if item.children -%}
+																			{%- for text_node in item.children -%}
+																				{%- if text_node.value -%}
+																					<span class="product-tag">{{ text_node.value }}</span>
+																				{%- endif -%}
+																			{%- endfor -%}
+																		{%- endif -%}
+																	{%- endfor -%}
+																{%- endif -%}
+															{%- endfor -%}
+														{%- endif -%}
+													</div>
+												{%- endif -%}
+						{%- when 'product_meta_tabs' -%}
+							{% capture product_meta_tabs_markup %}
+							{{ 'component-product-meta-tabs.css' | asset_url | stylesheet_tag }}
+							<script src="{{ 'product-meta-tabs.js' | asset_url }}" defer="defer"></script>
 
+							{% assign about_content = product.metafields.custom.about_this_product %}
+							{% assign key_features = product.metafields.custom.key_features.value %}
+							{% assign why_kids_love_it = product.metafields.custom.why_kids_love_it.value %}
+							{% assign specifications = product.metafields.custom.specifications.value %}
+							{% assign tabs_id = 'ProductMetaTabs-' | append: section.id | append: '-' | append: block.id %}
+
+							{% capture description_tab_content %}
+								{% if block.settings.about_heading != blank %}
+									<h3 class="product-meta-tabs__section-title">{{ block.settings.about_heading }}</h3>
+								{% endif %}
+
+								{% if about_content != blank %}
+									<div class="product-meta-tabs__about rte">{{ about_content | metafield_tag }}</div>
+								{% endif %}
+
+								<div class="product-meta-tabs__grid">
+									{% if key_features != blank %}
+										<div class="product-meta-tabs__group">
+											{% if block.settings.key_features_heading != blank %}
+												<h4 class="product-meta-tabs__group-title">{{ block.settings.key_features_heading }}</h4>
+											{% endif %}
+											<ul class="product-meta-tabs__list" role="list">
+												{% for feature_item in key_features %}
+													{% assign feature_text = feature_item.feature.value | default: feature_item.feature %}
+													{% assign feature_icon = feature_item.icon.value | default: feature_item.icon %}
+													{% if feature_text != blank %}
+														<li class="product-meta-tabs__item">
+															<span class="product-meta-tabs__item-icon-wrap">
+																{% if feature_icon != blank %}
+																	{{ feature_icon | image_url: width: 32 | image_tag: class: 'product-meta-tabs__item-icon', alt: feature_text }}
+																{% else %}
+																	<span class="product-meta-tabs__item-icon-fallback">&#10003;</span>
+																{% endif %}
+															</span>
+															<span>{{ feature_text }}</span>
+														</li>
+													{% endif %}
+												{% endfor %}
+											</ul>
+										</div>
+									{% endif %}
+
+									{% if why_kids_love_it != blank %}
+										<div class="product-meta-tabs__group">
+											{% if block.settings.why_kids_heading != blank %}
+												<h4 class="product-meta-tabs__group-title">{{ block.settings.why_kids_heading }}</h4>
+											{% endif %}
+											<ul class="product-meta-tabs__list" role="list">
+												{% for feature_item in why_kids_love_it %}
+													{% assign feature_text = feature_item.feature.value | default: feature_item.feature %}
+													{% assign feature_icon = feature_item.icon.value | default: feature_item.icon %}
+													{% if feature_text != blank %}
+														<li class="product-meta-tabs__item">
+															<span class="product-meta-tabs__item-icon-wrap product-meta-tabs__item-icon-wrap--star">
+																{% if feature_icon != blank %}
+																	{{ feature_icon | image_url: width: 32 | image_tag: class: 'product-meta-tabs__item-icon', alt: feature_text }}
+																{% else %}
+																	<span class="product-meta-tabs__item-icon-fallback product-meta-tabs__item-icon-fallback--star">&#9733;</span>
+																{% endif %}
+															</span>
+															<span>{{ feature_text }}</span>
+														</li>
+													{% endif %}
+												{% endfor %}
+											</ul>
+										</div>
+									{% endif %}
+								</div>
+							{% endcapture %}
+
+							{% capture specifications_tab_content %}
+								<div class="product-meta-tabs__spec-card">
+									<ul class="product-meta-tabs__spec-list" role="list">
+										{% if specifications != blank %}
+											{% for specification in specifications %}
+												{% assign specification_title = specification.title.value | default: specification.title %}
+												{% assign specification_description = specification.description.value | default: specification.description %}
+												{% if specification_title != blank or specification_description != blank %}
+													<li class="product-meta-tabs__spec-row">
+														<span class="product-meta-tabs__spec-title">{{ specification_title }}</span>
+														<span class="product-meta-tabs__spec-value">{{ specification_description }}</span>
+													</li>
+												{% endif %}
+											{% endfor %}
+										{% endif %}
+									</ul>
+								</div>
+							{% endcapture %}
+
+							{% capture buyback_tab_content %}
+								<div class="product-meta-tabs__buyback">
+									<h3 class="product-meta-tabs__buyback-title">{{ block.settings.buyback_heading_line_1 }} <span>{{ block.settings.buyback_heading_line_2 }}</span></h3>
+									{% if block.settings.buyback_subtitle != blank %}
+										<p class="product-meta-tabs__buyback-subtitle">{{ block.settings.buyback_subtitle }}</p>
+									{% endif %}
+
+									<ul class="product-meta-tabs__stacks" role="list">
+										{% for i in (1..6) %}
+											{% assign stack_title_key = 'stack_' | append: i | append: '_title' %}
+											{% assign stack_description_key = 'stack_' | append: i | append: '_description' %}
+											{% assign stack_icon_key = 'stack_' | append: i | append: '_icon' %}
+											{% assign stack_color_key = 'stack_' | append: i | append: '_icon_color' %}
+
+											{% assign stack_title = block.settings[stack_title_key] %}
+											{% assign stack_description = block.settings[stack_description_key] %}
+											{% assign stack_icon = block.settings[stack_icon_key] %}
+											{% assign stack_color = block.settings[stack_color_key] %}
+
+											{% if stack_title != blank %}
+												<li class="product-meta-tabs__stack">
+													<div class="product-meta-tabs__stack-icon" style="--stack-color: {{ stack_color }};">
+														{% if stack_icon != blank %}
+															{{ stack_icon | image_url: width: 56 | image_tag: class: 'product-meta-tabs__stack-icon-image', alt: stack_title }}
+														{% else %}
+															<span class="product-meta-tabs__stack-icon-fallback">{{ i }}</span>
+														{% endif %}
+													</div>
+													<div>
+														<h4 class="product-meta-tabs__stack-title">{{ stack_title }}</h4>
+														{% if stack_description != blank %}
+															<p class="product-meta-tabs__stack-description">{{ stack_description }}</p>
+														{% endif %}
+													</div>
+												</li>
+											{% endif %}
+										{% endfor %}
+									</ul>
+								</div>
+							{% endcapture %}
+
+							<div id="{{ tabs_id }}" class="product-meta-tabs quick-add-hidden" data-product-meta-tabs {{ block.shopify_attributes }}>
+								<div class="product-meta-tabs__desktop">
+									<div class="product-meta-tabs__nav" role="tablist" aria-label="{{ block.settings.description_tab_label }} {{ block.settings.specification_tab_label }} {{ block.settings.buyback_tab_label }}">
+										<button id="{{ tabs_id }}-tab-description" type="button" class="product-meta-tabs__tab is-active" role="tab" aria-selected="true" aria-controls="{{ tabs_id }}-panel-description" data-target="#{{ tabs_id }}-panel-description">{{ block.settings.description_tab_label }}</button>
+										<button id="{{ tabs_id }}-tab-specification" type="button" class="product-meta-tabs__tab" role="tab" aria-selected="false" aria-controls="{{ tabs_id }}-panel-specification" data-target="#{{ tabs_id }}-panel-specification">{{ block.settings.specification_tab_label }}</button>
+										<button id="{{ tabs_id }}-tab-buyback" type="button" class="product-meta-tabs__tab" role="tab" aria-selected="false" aria-controls="{{ tabs_id }}-panel-buyback" data-target="#{{ tabs_id }}-panel-buyback">{{ block.settings.buyback_tab_label }}</button>
+									</div>
+
+									<div id="{{ tabs_id }}-panel-description" class="product-meta-tabs__panel is-active" role="tabpanel" aria-labelledby="{{ tabs_id }}-tab-description">
+										{{ description_tab_content }}
+									</div>
+									<div id="{{ tabs_id }}-panel-specification" class="product-meta-tabs__panel" role="tabpanel" aria-labelledby="{{ tabs_id }}-tab-specification">
+										{{ specifications_tab_content }}
+									</div>
+									<div id="{{ tabs_id }}-panel-buyback" class="product-meta-tabs__panel" role="tabpanel" aria-labelledby="{{ tabs_id }}-tab-buyback">
+										{{ buyback_tab_content }}
+									</div>
+								</div>
+
+								<div class="product-meta-tabs__mobile">
+									<details class="product-meta-tabs__mobile-item" open>
+										<summary>{{ block.settings.description_tab_label }}</summary>
+										<div class="product-meta-tabs__mobile-body">{{ description_tab_content }}</div>
+									</details>
+									<details class="product-meta-tabs__mobile-item">
+										<summary>{{ block.settings.specification_tab_label }}</summary>
+										<div class="product-meta-tabs__mobile-body">{{ specifications_tab_content }}</div>
+									</details>
+									<details class="product-meta-tabs__mobile-item">
+										<summary>{{ block.settings.buyback_tab_label }}</summary>
+										<div class="product-meta-tabs__mobile-body">{{ buyback_tab_content }}</div>
+									</details>
+								</div>
+							</div>
+							{% endcapture %}
 						{%- when 'description' -%}
 							{%- if product.description != blank -%}
 								<div class="product__description rte quick-add-hidden {% if block.settings.show_only_table %}show-table{% endif %}" {{ block.shopify_attributes }}>
@@ -1126,8 +1334,7 @@
 										{% for skill in skills %}
 											{% assign skill_title = skill.title.value | default: skill.title %}
 											{% assign skill_icon = skill.icon.value | default: skill.icon %}
-											{% assign skill_bg = skill['bg-color'].value | default: skill['bg-color'] | default: '#f2f4f7' %}
-
+											{% assign skill_bg = skill.bg_color | default: skill['bg-color'] | default: skill['bg_color'] | default: skill['bg-color'].value | default: '#f2f4f7' %}
 											<li class="product-skills-learned__item" style="--skill-bg: {{ skill_bg }};">
 												{% if skill_icon != blank %}
 													<span class="product-skills-learned__icon-wrap">
@@ -1400,6 +1607,10 @@
 		{% endif %}
 
 	</div>
+
+	{% if product_meta_tabs_markup != blank %}
+		{{ product_meta_tabs_markup }}
+	{% endif %}
 
 	{% if product.media.size > 0 %}
 		{%- for block in section.blocks -%}
@@ -1774,6 +1985,72 @@
 				"default": "heading",
 				"label": "Breadcrumbs color hover",
 				"info": "t:sections.all.colors.has_cards_info"
+			}
+		]
+	},
+	{
+		"type": "buyback",
+		"name": "Buyback Guarantee",
+		"limit": 1,
+		"settings": [
+			{
+				"type": "text",
+				"id": "percent",
+				"label": "Percent",
+				"default": "60%"
+			},
+			{
+				"type": "text",
+				"id": "title_main",
+				"label": "Title main",
+				"default": "Buyback"
+			},
+			{
+				"type": "text",
+				"id": "title_emphasis",
+				"label": "Title emphasis",
+				"default": "Guarantee"
+			},
+			{
+				"type": "textarea",
+				"id": "description",
+				"label": "Description",
+				"default": "Eligible toys receive condition-based buyback: 60% cash refund or full membership use."
+			},
+			{
+				"type": "color",
+				"id": "accent_color",
+				"label": "Accent color",
+				"default": "#ff6a00"
+			},
+			{
+				"type": "color",
+				"id": "title_color",
+				"label": "Title color",
+				"default": "#ff6a00"
+			},
+			{
+				"type": "color",
+				"id": "emphasis_color",
+				"label": "Emphasis color",
+				"default": "#000000"
+			},
+			{
+				"type": "color",
+				"id": "background_color",
+				"label": "Background color",
+				"default": "#ffffff"
+			},
+			{
+				"type": "select",
+				"id": "block_position",
+				"label": "Block position",
+				"options": [
+					{ "value": "default", "label": "Default" },
+					{ "value": "sidebar", "label": "Sidebar" },
+					{ "value": "under_media", "label": "Under media" }
+				],
+				"default": "default"
 			}
 		]
 	},
@@ -4786,6 +5063,262 @@
 				"id": "heading",
 				"label": "Heading",
 				"default": "Skills learned"
+			}
+		]
+	}
+	,
+	{
+		"type": "tags",
+		"name": "Product tags",
+		"limit": 1,
+		"settings": [
+			{
+				"type": "text",
+				"id": "heading",
+				"label": "Heading",
+				"default": "Age & Attributes"
+			},
+			{
+				"type": "color",
+				"id": "pill_color",
+				"label": "Pill color",
+				"default": "#ff6a00"
+			},
+			{
+				"type": "select",
+				"id": "position",
+				"label": "Block position",
+				"options": [
+					{ "value": "sidebar", "label": "Sidebar" },
+					{ "value": "under_media", "label": "Under media" },
+					{ "value": "default", "label": "Default" }
+				],
+				"default": "default"
+			}
+		]
+	},
+	{
+		"type": "product_meta_tabs",
+		"name": "Product meta tabs",
+		"limit": 1,
+		"settings": [
+			{
+				"type": "text",
+				"id": "description_tab_label",
+				"label": "Description tab label",
+				"default": "Description"
+			},
+			{
+				"type": "text",
+				"id": "specification_tab_label",
+				"label": "Specification tab label",
+				"default": "Specification"
+			},
+			{
+				"type": "text",
+				"id": "buyback_tab_label",
+				"label": "Buyback tab label",
+				"default": "Buy Back Process"
+			},
+			{
+				"type": "text",
+				"id": "about_heading",
+				"label": "About heading",
+				"default": "About This Product"
+			},
+			{
+				"type": "text",
+				"id": "key_features_heading",
+				"label": "Key features heading",
+				"default": "Key Features"
+			},
+			{
+				"type": "text",
+				"id": "why_kids_heading",
+				"label": "Why kids love it heading",
+				"default": "Why Kids Love It"
+			},
+			{
+				"type": "header",
+				"content": "Buyback content"
+			},
+			{
+				"type": "text",
+				"id": "buyback_heading_line_1",
+				"label": "Buyback heading line 1",
+				"default": "Play. Return."
+			},
+			{
+				"type": "text",
+				"id": "buyback_heading_line_2",
+				"label": "Buyback heading line 2",
+				"default": "Earn Back"
+			},
+			{
+				"type": "textarea",
+				"id": "buyback_subtitle",
+				"label": "Buyback subtitle",
+				"default": "The smart way to buy toys. Play, return when done, and get money back."
+			},
+			{
+				"type": "header",
+				"content": "Stack 1"
+			},
+			{
+				"type": "image_picker",
+				"id": "stack_1_icon",
+				"label": "Stack 1 icon"
+			},
+			{
+				"type": "color",
+				"id": "stack_1_icon_color",
+				"label": "Stack 1 icon background",
+				"default": "#5f9de2"
+			},
+			{
+				"type": "text",
+				"id": "stack_1_title",
+				"label": "Stack 1 title",
+				"default": "Order Delivered"
+			},
+			{
+				"type": "textarea",
+				"id": "stack_1_description",
+				"label": "Stack 1 description",
+				"default": "Once the order is marked as Delivered, the user becomes eligible to initiate a return/sellback."
+			},
+			{
+				"type": "header",
+				"content": "Stack 2"
+			},
+			{
+				"type": "image_picker",
+				"id": "stack_2_icon",
+				"label": "Stack 2 icon"
+			},
+			{
+				"type": "color",
+				"id": "stack_2_icon_color",
+				"label": "Stack 2 icon background",
+				"default": "#ebb84a"
+			},
+			{
+				"type": "text",
+				"id": "stack_2_title",
+				"label": "Stack 2 title",
+				"default": "Raise Sellback Request"
+			},
+			{
+				"type": "textarea",
+				"id": "stack_2_description",
+				"label": "Stack 2 description",
+				"default": "User can raise a request directly from their account."
+			},
+			{
+				"type": "header",
+				"content": "Stack 3"
+			},
+			{
+				"type": "image_picker",
+				"id": "stack_3_icon",
+				"label": "Stack 3 icon"
+			},
+			{
+				"type": "color",
+				"id": "stack_3_icon_color",
+				"label": "Stack 3 icon background",
+				"default": "#e477af"
+			},
+			{
+				"type": "text",
+				"id": "stack_3_title",
+				"label": "Stack 3 title",
+				"default": "Condition Check"
+			},
+			{
+				"type": "textarea",
+				"id": "stack_3_description",
+				"label": "Stack 3 description",
+				"default": "Toy condition, missing parts, and final eligibility are reviewed."
+			},
+			{
+				"type": "header",
+				"content": "Stack 4"
+			},
+			{
+				"type": "image_picker",
+				"id": "stack_4_icon",
+				"label": "Stack 4 icon"
+			},
+			{
+				"type": "color",
+				"id": "stack_4_icon_color",
+				"label": "Stack 4 icon background",
+				"default": "#9770bd"
+			},
+			{
+				"type": "text",
+				"id": "stack_4_title",
+				"label": "Stack 4 title",
+				"default": "Cash Back Calculation"
+			},
+			{
+				"type": "textarea",
+				"id": "stack_4_description",
+				"label": "Stack 4 description",
+				"default": "Based on the condition, the final sellback amount is calculated."
+			},
+			{
+				"type": "header",
+				"content": "Stack 5"
+			},
+			{
+				"type": "image_picker",
+				"id": "stack_5_icon",
+				"label": "Stack 5 icon"
+			},
+			{
+				"type": "color",
+				"id": "stack_5_icon_color",
+				"label": "Stack 5 icon background",
+				"default": "#ef7f35"
+			},
+			{
+				"type": "text",
+				"id": "stack_5_title",
+				"label": "Stack 5 title",
+				"default": "Get your Money Back"
+			},
+			{
+				"type": "textarea",
+				"id": "stack_5_description",
+				"label": "Stack 5 description",
+				"default": "Wallet credit, direct payout, or membership conversion."
+			},
+			{
+				"type": "header",
+				"content": "Stack 6"
+			},
+			{
+				"type": "image_picker",
+				"id": "stack_6_icon",
+				"label": "Stack 6 icon"
+			},
+			{
+				"type": "color",
+				"id": "stack_6_icon_color",
+				"label": "Stack 6 icon background",
+				"default": "#8a8f98"
+			},
+			{
+				"type": "text",
+				"id": "stack_6_title",
+				"label": "Stack 6 title"
+			},
+			{
+				"type": "textarea",
+				"id": "stack_6_description",
+				"label": "Stack 6 description"
 			}
 		]
 	}

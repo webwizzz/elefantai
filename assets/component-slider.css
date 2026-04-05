@@ -47,7 +47,7 @@ slider-component.slider-component-full-width {
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     margin-bottom: 0;
-    align-items: flex-start;
+    align-items: center;
   }
 
   .slider.slider--mobile:not(.product__media-list) .slider__slide {

@@ -113,18 +113,32 @@
     position: relative;
   }
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   @media (max-width: 1400px) {
-    .fc-grid-container { grid-template-columns: repeat(4, 1fr); }
+    .fc-grid-container {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
   @media (max-width: 1100px) {
-    .fc-grid-container { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .fc-grid-container {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
   }
   @media (max-width: 900px) {
-    .fc-grid-container { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .fc-grid-container {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
   }
   @media (max-width: 768px) {
     .fc-grid-container {
@@ -139,8 +153,8 @@
       gap: 16px;
       align-items: stretch;
     }
-    .fc-grid-container::-webkit-scrollbar { 
-      display: none !important; 
+    .fc-grid-container::-webkit-scrollbar {
+      display: none !important;
       width: 0 !important;
       height: 0 !important;
     }
@@ -157,7 +171,9 @@
     margin-top: 24px;
   }
   @media (max-width: 768px) {
-    .fc-dots-container { display: flex; }
+    .fc-dots-container {
+      display: flex;
+    }
   }
   .fc-dot {
     width: 8px;
@@ -440,85 +456,122 @@
         {{ block.shopify_attributes }}
       >
         <div class="fc-grid-container" id="FC-grid-{{ block.id }}">
-        {% if collection.products.size > 0 %}
-          {% for product in collection.products limit: 5 %}
-            {%- comment -%} Determine Badge Class securely based on loop index to imitate image {%- endcomment -%}
-            {% assign badge_class = 'badge-main' %}
-            {% assign badge_text = 'Most Loved' %}
-            {% assign modulo = forloop.index | modulo: 5 %}
-            {% if modulo == 2 %}
-              {% assign badge_class = 'badge-main best-seller' %}
-              {% assign badge_text = 'Best Seller' %}
-            {% elsif modulo == 3 %}
-              {% assign badge_class = 'badge-main top-pick' %}
-              {% assign badge_text = 'Top Pick' %}
-            {% elsif modulo == 4 %}
-              {% assign badge_class = 'badge-main eco-choice' %}
-              {% assign badge_text = 'Eco Choice' %}
-            {% elsif modulo == 0 %}
-              {% assign badge_class = 'badge-main editors-pick' %}
-              {% assign badge_text = 'Editor Choice' %}
-            {% endif %}
+          {% if collection.products.size > 0 %}
+            {% for product in collection.products limit: 5 %}
+              {%- comment -%} Determine Badge Class securely based on loop index to imitate image {%- endcomment -%}
+              {% assign badge_class = 'badge-main' %}
+              {% assign badge_text = 'Most Loved' %}
+              {% assign modulo = forloop.index | modulo: 5 %}
+              {% if modulo == 2 %}
+                {% assign badge_class = 'badge-main best-seller' %}
+                {% assign badge_text = 'Best Seller' %}
+              {% elsif modulo == 3 %}
+                {% assign badge_class = 'badge-main top-pick' %}
+                {% assign badge_text = 'Top Pick' %}
+              {% elsif modulo == 4 %}
+                {% assign badge_class = 'badge-main eco-choice' %}
+                {% assign badge_text = 'Eco Choice' %}
+              {% elsif modulo == 0 %}
+                {% assign badge_class = 'badge-main editors-pick' %}
+                {% assign badge_text = 'Editor Choice' %}
+              {% endif %}
 
-            <div class="fc-card">
-              <div class="fc-card-img-wrap">
-                <div class="fc-card-badges">
-                  <span class="{{ badge_class }}">{{ badge_text }}</span>
-                  <span class="badge-new">New</span>
+              <div class="fc-card">
+                <div class="fc-card-img-wrap">
+                  <div class="fc-card-badges">
+                    <span class="{{ badge_class }}">{{ badge_text }}</span>
+                    <span class="badge-new">New</span>
+                  </div>
+                  {% if product.featured_image %}
+                    <img
+                      src="{{ product.featured_image | image_url: width: 400 }}"
+                      alt="{{ product.title | escape }}"
+                      loading="lazy"
+                      width="{{ product.featured_image.width }}"
+                      height="{{ product.featured_image.height }}"
+                    >
+                  {% else %}
+                    {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {% endif %}
+                  <div class="fc-card-heart">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                  </div>
                 </div>
-                {% if product.featured_image %}
-                  <img
-                    src="{{ product.featured_image | image_url: width: 400 }}"
-                    alt="{{ product.title | escape }}"
-                    loading="lazy"
-                    width="{{ product.featured_image.width }}"
-                    height="{{ product.featured_image.height }}"
-                  >
-                {% else %}
-                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
-                {% endif %}
-                <div class="fc-card-heart">
+
+                <div class="fc-card-category">
+                  {% if product.type != blank %}{{ product.type }}{% else %}CREATIVITY{% endif %}
+                  <span>2-4 Years</span>
+                </div>
+
+                <h3 class="fc-card-title">{{ product.title }}</h3>
+
+                <div class="fc-card-reviews">
                   <svg viewBox="0 0 24 24">
-                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
                   </svg>
+                  4.8 <span>(234 Reviews)</span>
                 </div>
+
+                <div class="fc-card-price">
+                  {% if product.price_varies %}From {% endif -%}
+                  {{- product.price | money }}
+                  {% if product.compare_at_price > product.price %}
+                    <s>{{ product.compare_at_price | money }}</s>
+                  {% endif %}
+                </div>
+
+                <div class="fc-card-buyback">
+                  BUY BACK {% assign bb = product.price | times: 0.6 | round: 0 -%}
+                  {{- bb | money }} ON THIS ORDER
+                </div>
+
+                <form method="post" action="/cart/add" style="margin-top: auto;">
+                  <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                  <button type="submit" class="fc-card-btn">Add to Cart</button>
+                </form>
               </div>
-
-              <div class="fc-card-category">
-                {% if product.type != blank %}{{ product.type }}{% else %}CREATIVITY{% endif %}
-                <span>2-4 Years</span>
+            {% endfor %}
+          {% else %}
+            {%- comment -%} Blank placeholders if empty collection {%- endcomment -%}
+            {% for i in (1..5) %}
+              <div class="fc-card">
+                <div class="fc-card-img-wrap">
+                  <div class="fc-card-badges">
+                    <span class="badge-main top-pick">Top Pick</span>
+                    <span class="badge-new">New</span>
+                  </div>
+                  {{ 'product-' | append: i | placeholder_svg_tag: 'placeholder-svg' }}
+                  <div class="fc-card-heart">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="fc-card-category">CREATIVITY <span>2-4 Years</span></div>
+                <h3 class="fc-card-title">Educational Building Blocks Set {{ i }}</h3>
+                <div class="fc-card-reviews">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                  </svg>
+                  4.8 <span>(234 Reviews)</span>
+                </div>
+                <div class="fc-card-price">Rs. 4,454.00 <s>Rs. 5,454.00</s></div>
+                <div class="fc-card-buyback">BUY BACK Rs. 2,672.40 ON THIS ORDER</div>
+                <button class="fc-card-btn" disabled>Add to Cart</button>
               </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+        <div class="fc-dots-container" id="FC-dots-{{ block.id }}"></div>
+      </div>
+    {% endfor %}
 
-              <h3 class="fc-card-title">{{ product.title }}</h3>
-
-              <div class="fc-card-reviews">
-                <svg viewBox="0 0 24 24">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                </svg>
-                4.8 <span>(234 Reviews)</span>
-              </div>
-
-              <div class="fc-card-price">
-                {% if product.price_varies %}From {% endif -%}
-                {{- product.price | money }}
-                {% if product.compare_at_price > product.price %}
-                  <s>{{ product.compare_at_price | money }}</s>
-                {% endif %}
-              </div>
-
-              <div class="fc-card-buyback">
-                BUY BACK {% assign bb = product.price | times: 0.6 | round: 0 -%}
-                {{- bb | money }} ON THIS ORDER
-              </div>
-
-              <form method="post" action="/cart/add" style="margin-top: auto;">
-                <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-                <button type="submit" class="fc-card-btn">Add to Cart</button>
-              </form>
-            </div>
-          {% endfor %}
-        {% else %}
-          {%- comment -%} Blank placeholders if empty collection {%- endcomment -%}
+    {%- comment -%} Default placeholder if strictly 0 blocks {%- endcomment -%}
+    {% if section.blocks.size == 0 %}
+      <div class="fc-slider-wrapper active" id="FC-wrapper-placeholder">
+        <div class="fc-grid-container" id="FC-grid-placeholder">
           {% for i in (1..5) %}
             <div class="fc-card">
               <div class="fc-card-img-wrap">
@@ -541,48 +594,11 @@
                 </svg>
                 4.8 <span>(234 Reviews)</span>
               </div>
-              <div class="fc-card-price">Rs. 4,454.00 <s>Rs. 5,454.00</s></div>
-              <div class="fc-card-buyback">BUY BACK Rs. 2,672.40 ON THIS ORDER</div>
+              <div class="fc-card-price">₹4,454 <s>₹5,454</s></div>
+              <div class="fc-card-buyback">BUY BACK ₹2,672 ON THIS ORDER</div>
               <button class="fc-card-btn" disabled>Add to Cart</button>
             </div>
           {% endfor %}
-        {% endif %}
-        </div>
-        <div class="fc-dots-container" id="FC-dots-{{ block.id }}"></div>
-      </div>
-    {% endfor %}
-
-    {%- comment -%} Default placeholder if strictly 0 blocks {%- endcomment -%}
-    {% if section.blocks.size == 0 %}
-      <div class="fc-slider-wrapper active" id="FC-wrapper-placeholder">
-        <div class="fc-grid-container" id="FC-grid-placeholder">
-        {% for i in (1..5) %}
-          <div class="fc-card">
-            <div class="fc-card-img-wrap">
-              <div class="fc-card-badges">
-                <span class="badge-main top-pick">Top Pick</span>
-                <span class="badge-new">New</span>
-              </div>
-              {{ 'product-' | append: i | placeholder_svg_tag: 'placeholder-svg' }}
-              <div class="fc-card-heart">
-                <svg viewBox="0 0 24 24">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                </svg>
-              </div>
-            </div>
-            <div class="fc-card-category">CREATIVITY <span>2-4 Years</span></div>
-            <h3 class="fc-card-title">Educational Building Blocks Set {{ i }}</h3>
-            <div class="fc-card-reviews">
-              <svg viewBox="0 0 24 24">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-              </svg>
-              4.8 <span>(234 Reviews)</span>
-            </div>
-            <div class="fc-card-price">₹4,454 <s>₹5,454</s></div>
-            <div class="fc-card-buyback">BUY BACK ₹2,672 ON THIS ORDER</div>
-            <button class="fc-card-btn" disabled>Add to Cart</button>
-          </div>
-        {% endfor %}
         </div>
         <div class="fc-dots-container" id="FC-dots-placeholder"></div>
       </div>
@@ -624,11 +640,11 @@
     });
 
     // Mobile Carousel Dot logic - runs for all wrappers
-    wrappers.forEach(wrapper => {
+    wrappers.forEach((wrapper) => {
       const grid = wrapper.querySelector('.fc-grid-container');
       const dotsContainer = wrapper.querySelector('.fc-dots-container');
       if (!grid || !dotsContainer) return;
-      
+
       const cards = grid.querySelectorAll('.fc-card');
       if (cards.length === 0) return;
 
@@ -656,7 +672,10 @@
         cards.forEach((card, index) => {
           const cardCenter = card.offsetLeft + card.offsetWidth / 2;
           const dist = Math.abs(gridCenter - cardCenter);
-          if (dist < minDist) { minDist = dist; closestIndex = index; }
+          if (dist < minDist) {
+            minDist = dist;
+            closestIndex = index;
+          }
         });
         setActiveDot(closestIndex);
       };
@@ -683,7 +702,7 @@
 
 {% schema %}
 {
-  "name": "Featured Products Tabs",
+  "name": "ucts Tabs",
   "tag": "section",
   "class": "section",
   "settings": [

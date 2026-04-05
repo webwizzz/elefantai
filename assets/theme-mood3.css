@@ -201,7 +201,8 @@ padding: 1rem 0 0;
 .mood3-mood .product-skills-learned__heading {
   margin: 0 0 1.6rem;
   color: #111827;
-  font-size: 4.2rem;
+  font-size: 14px;
+  font-family: 'ballo' !important;
   line-height: 1.1;
 }
 
@@ -209,8 +210,6 @@ padding: 1rem 0 0;
   margin: 0;
   padding: 0;
   display: flex;
-  flex-wrap: wrap;
-  gap: 1.2rem;
 }
 
 .mood3-mood .product-skills-learned__item {
@@ -229,6 +228,7 @@ padding: 1rem 0 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid white
 }
 
 .mood3-mood .product-skills-learned__icon {
@@ -240,10 +240,9 @@ padding: 1rem 0 0;
 
 .mood3-mood .product-skills-learned__title {
   color: #344054;
-  font-size: 1.5rem;
+  font-size: 12px;
   line-height: 1.3;
   font-weight: 500;
-  width: 70%;
   white-space: pre-wrap;
   text-align: center;
 }
@@ -253,8 +252,12 @@ padding: 1rem 0 0;
     margin-top: 3rem;
   }
 
+  .mood3-mood .product-skills-learned__title {
+  font-size: 10px;
+}
+
   .mood3-mood .product-skills-learned__heading {
-    font-size: 3rem;
+    font-size: 12px;
   }
 }
 
@@ -1262,7 +1265,7 @@ media-gallery + .buy-buttons .product-form__quantity .form__label {
 }
 
 @media screen and (max-width: 1024px) {
-  .mood3-mood .multicolumn-card,
+  /* .mood3-mood .multicolumn-card,
   .mood3-mood .with-bg.faq-item[open],
   .mood3-mood .with-bg.faq-item.active,
   .mood3-mood .newsletter .field__input,
@@ -1287,7 +1290,7 @@ media-gallery + .buy-buttons .product-form__quantity .form__label {
   .mood3-mood .product-banner-slider .slider-product {
     box-shadow: -4px 4px 0 0 rgb(var(--button-color-layer-3));
     -webkit-box-shadow: -4px 4px 0 0 rgb(var(--button-color-layer-3));
-  }
+  } */
   .mood3-mood .slider-arrow-prev:hover {
     box-shadow: 4px -4px 0 0 rgb(var(--button-color-layer-3));
     -webkit-box-shadow: 4px -4px 0 0 rgb(var(--button-color-layer-3));
