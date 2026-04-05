@@ -30,20 +30,12 @@
             "title_product_type": false
           }
         },
-        "bb95e0db-baa1-4796-bc47-fd3d9e8820ce": {
-          "type": "share",
-          "disabled": true,
+        "tags_b9YKGF": {
+          "type": "tags",
           "settings": {
-            "share_label": "",
-            "show_linkedin_share": false,
-            "show_fb_share": false,
-            "show_twitter_share": false,
-            "show_pinterest_share": false,
-            "show_telegram_share": false,
-            "show_snapchat_share": false,
-            "show_tumblr_share": false,
-            "social_color": "main",
-            "social_color_hover": "heading"
+            "heading": "Age & Attributes",
+            "pill_color": "#ff6a00",
+            "position": "sidebar"
           }
         },
         "buyback_CTtRCe": {
@@ -200,7 +192,7 @@
       "block_order": [
         "breadcrumb_WBMM3F",
         "title",
-        "bb95e0db-baa1-4796-bc47-fd3d9e8820ce",
+        "tags_b9YKGF",
         "buyback_CTtRCe",
         "description_3GT8yD",
         "price",

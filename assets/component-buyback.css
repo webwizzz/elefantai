@@ -51,10 +51,14 @@
   margin-top: 6px;
 }
 
-@media (max-width: 1030px) {
+@media (max-width: 1245px) {
   .product-buyback {
-    padding: 6px;
+    padding: 10px;
     gap: 4px;
+  }
+
+  .product-buyback__desc{
+    font-size: 10px;
   }
 
   .product-buyback {
@@ -69,11 +73,11 @@
   }
 
   .product-buyback__left {
-    font-size: 40px;
+    font-size: 50px;
   }
 
   .product-buyback__titles {
     gap: 0px;
-    font-size: 16px;
+    font-size: 26px;
   }
 }
