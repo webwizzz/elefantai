@@ -32,6 +32,12 @@ if (!customElements.get('media-gallery')) {
 
       setActiveMedia(mediaId, prepend) {
         const activeMedia = this.elements.viewer.querySelector(`[data-media-id="${mediaId}"]`);
+        if (!activeMedia) {
+          if (window.__FEATURED_PRODUCT_DEBUG__ !== false) {
+            console.warn('[MediaGallery] Active media not found for id:', mediaId, this);
+          }
+          return;
+        }
         this.elements.viewer.querySelectorAll('[data-media-id]').forEach((element) => {
           element.classList.remove('is-active');
         });
@@ -41,7 +47,9 @@ if (!customElements.get('media-gallery')) {
           activeMedia.parentElement.prepend(activeMedia);
           if (this.elements.thumbnails) {
             const activeThumbnail = this.elements.thumbnails.querySelector(`[data-target="${mediaId}"]`);
-            activeThumbnail.parentElement.prepend(activeThumbnail);
+            if (activeThumbnail && activeThumbnail.parentElement) {
+              activeThumbnail.parentElement.prepend(activeThumbnail);
+            }
           }
           if (this.elements.viewer.slider) this.elements.viewer.resetPages();
         }
@@ -64,6 +72,7 @@ if (!customElements.get('media-gallery')) {
 
         if (!this.elements.thumbnails) return;
         const activeThumbnail = this.elements.thumbnails.querySelector(`[data-target="${mediaId}"]`);
+        if (!activeThumbnail) return;
         this.setActiveThumbnail(activeThumbnail);
         this.announceLiveRegion(activeMedia, activeThumbnail.dataset.mediaPosition);
       }
@@ -75,9 +84,11 @@ if (!customElements.get('media-gallery')) {
 
         thumbnail.querySelector('button').setAttribute('aria-current', true);
 
-        this.elements.thumbnails.slider.scrollTo({ 
-          left: thumbnail.offsetLeft 
-        });
+        if (this.elements.thumbnails.slider) {
+          this.elements.thumbnails.slider.scrollTo({ 
+            left: thumbnail.offsetLeft 
+          });
+        }
       }
 
       announceLiveRegion(activeItem, position) {
