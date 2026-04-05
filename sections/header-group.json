@@ -25,8 +25,8 @@
         "show_mm_image": true,
         "mega_menu_image": "shopify://shop_images/WhatsAppImage2026-03-27at19.16.50.jpg",
         "image_ratio": "landscape",
-        "mm_image_shape": false,
-        "mm_collection": "",
+        "mm_image_shape": true,
+        "mm_collection": "premium-toys-from-all-big-brands",
         "dm_custom": "",
         "dm_product": "",
         "enable_search": true,
@@ -42,8 +42,8 @@
         "burger_color": "",
         "margin_bottom": 0,
         "background_color": "color-main-bg",
-        "padding_top": 14,
-        "padding_bottom": 14
+        "padding_top": 28,
+        "padding_bottom": 28
       }
     }
   },
