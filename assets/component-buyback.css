@@ -11,9 +11,10 @@
 }
 
 .product-buyback__left {
-  font-size: 50px;
-  line-height: 1;
-  font-weight: 800;
+  font-size: 75px;
+  line-height: 40px;
+  font-weight: 1000;
+  font-family: 'sag-bold';
   color: var(--buyback-accent, #ff6a00);
   flex: 0 0 auto;
 }
@@ -27,9 +28,10 @@
 
 .product-buyback__titles {
   display: flex;
-    flex-direction: column;
+  flex-direction: column;
   align-items: baseline;
-  font-size: 20px;
+  font-size: 30px;
+  line-height: 28px;
 }
 
 .product-buyback__title {
@@ -50,17 +52,28 @@
 }
 
 @media (max-width: 1030px) {
-    .product-buyback{
-        padding: 10px;
-        gap: 8px;
-    }
-  .product-buyback { flex-direction: row;  }
-  .product-buyback__text{
+  .product-buyback {
+    padding: 6px;
+    gap: 4px;
+  }
+
+  .product-buyback {
+    flex-direction: row;
+  }
+
+  .product-buyback__text {
     display: flex;
     flex-direction: column;
     align-items: baseline;
     gap: 0;
   }
-  .product-buyback__left { font-size: 40px; }
-  .product-buyback__titles { gap: 0px; font-size: 16px;}
+
+  .product-buyback__left {
+    font-size: 40px;
+  }
+
+  .product-buyback__titles {
+    gap: 0px;
+    font-size: 16px;
+  }
 }
