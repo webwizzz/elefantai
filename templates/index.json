@@ -1114,6 +1114,91 @@
         "padding_bottom": 60
       }
     },
+    "community_9YA3Le": {
+      "type": "community",
+      "blocks": {
+        "image_card_UHKwRK": {
+          "type": "image_card",
+          "settings": {
+            "image": "shopify://shop_images/how-many-toys-do-kids-really-need-1280x960_1.png",
+            "alt_text": "Community image"
+          }
+        },
+        "image_card_7h6dik": {
+          "type": "image_card",
+          "settings": {
+            "image": "shopify://shop_images/toy-image-17589530994531.png",
+            "alt_text": "Community image"
+          }
+        },
+        "image_card_jVwRNx": {
+          "type": "image_card",
+          "settings": {
+            "image": "shopify://shop_images/toy-image-17663390463812.jpg",
+            "alt_text": "Community image"
+          }
+        },
+        "image_card_dKGb39": {
+          "type": "image_card",
+          "settings": {
+            "image": "shopify://shop_images/IMG_2404-scaled_1-2.png",
+            "alt_text": "Community image"
+          }
+        },
+        "image_card_xc6KgE": {
+          "type": "image_card",
+          "settings": {
+            "image": "shopify://shop_images/toy-image-17606828227913.png",
+            "alt_text": "Community image"
+          }
+        },
+        "image_card_WwadgV": {
+          "type": "image_card",
+          "settings": {
+            "image": "shopify://shop_images/how-many-toys-do-kids-really-need-1280x960_1.png",
+            "alt_text": "Community image"
+          }
+        },
+        "image_card_mRXxMw": {
+          "type": "image_card",
+          "settings": {
+            "alt_text": "Community image"
+          }
+        },
+        "image_card_L3KLAx": {
+          "type": "image_card",
+          "settings": {
+            "alt_text": "Community image"
+          }
+        }
+      },
+      "block_order": [
+        "image_card_UHKwRK",
+        "image_card_7h6dik",
+        "image_card_jVwRNx",
+        "image_card_dKGb39",
+        "image_card_xc6KgE",
+        "image_card_WwadgV",
+        "image_card_mRXxMw",
+        "image_card_L3KLAx"
+      ],
+      "name": "Community",
+      "settings": {
+        "heading": "@*Elefant.ai*",
+        "subtitle": "Join our community for updates and inspiration and a closer look at our creations",
+        "heading_size": 52,
+        "subtitle_size": 22,
+        "heading_highlight_color": "#6E4B7E",
+        "floating_ball": "shopify://shop_images/Group-2.svg",
+        "floating_ball_size": 102,
+        "background_color": "#F1F1F2",
+        "background_accent_color": "#F2E7EE",
+        "card_border_color": "#ffffff",
+        "card_border_width": 2,
+        "dot_color": "#C0C0C0",
+        "dot_active_color": "#8F8F8F"
+      }
+    },
     "get_started_card_nb49mw": {
       "type": "get-started-card",
       "name": "Get Started Card",
@@ -1211,6 +1296,7 @@
     "elevated_card_hNVmQ8",
     "solves_EcadUB",
     "eco_raxapP",
+    "community_9YA3Le",
     "get_started_card_nb49mw",
     "fa_qs_GQgVaC"
   ]
