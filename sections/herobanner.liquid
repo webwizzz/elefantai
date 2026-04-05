@@ -23,13 +23,14 @@
   @media screen and (max-width: 749px) {
     .elevated-hero-card {
       align-items: flex-start; /* Move content higher on mobile */
+      padding: 15px;
     }
     .elevated-hero-content {
       margin-bottom: 6rem; /* space for arrows */
     }
      .elevated-hero-banner {
 
-    padding: 60px 10px 20px;
+    padding: 20px 10px 20px;
 
   }
   }
@@ -48,13 +49,14 @@
   }
 
   .elevated-hero-heading {
-    font-size: 42px;
+    font-size: 35px;
     line-height: 42px;
     font-weight: 700;
     margin-top: 0;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
     font-family: inherit !important;
   }
+
 
   @media screen and (min-width: 750px) {
     .elevated-hero-heading {
@@ -68,7 +70,7 @@
   }
 
   .elevated-hero-text {
-    font-size: 18px;
+    font-size: 14px;
     line-height: 26px;
     margin-bottom: 3.5rem;
     max-width: 480px;
@@ -88,11 +90,18 @@
     align-items: center;
   }
 
+  @media screen and (max-width: 749px) {
+    .elevated-hero-buttons {
+      align-items: start;
+    flex-direction: column;
+    }
+  }
+
   .hero-btn {
     display: inline-block;
-    padding: 1.4rem 2.8rem;
+    padding: 10px;
     border-radius: 50px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
     text-decoration: none;
     transition: all 0.3s ease;

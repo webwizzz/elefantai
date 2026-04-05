@@ -266,15 +266,19 @@
     .us-card-label { font-size: {{ section.settings.tc_title_size_m }}px; }
     .us-card-price { font-size: {{ section.settings.tc_price_size_m }}px; }
     .us-card-subtext { font-size: {{ section.settings.tc_subtext_size_m }}px; }
-    .us-bc-label { font-size: {{ section.settings.bc_title_size_m }}px; }
+    .us-bc-label { font-size: {{ section.settings.bc_title_size_m }}px; margin: 0 0 5px 0;}
     .us-bc-mainprice { font-size: {{ section.settings.bc_price_size_m }}px; }
     .us-bc-strikethrough { font-size: calc({{ section.settings.bc_price_size_m }}px * 0.45); }
     .us-bc-pill { font-size: {{ section.settings.bc_pill_size_m }}px; }
   }
 
   @media (max-width: 480px) {
-    .us-bc-prices { flex-direction: column; align-items: center; gap: 5px; margin-bottom: 20px; }
+    .us-bc-prices { flex-direction: row; align-items: center; gap: 25px; margin-bottom: 0px; }
     .us-bc-pill { padding: 10px 20px; }
+    .us-bottom-card{
+      min-height: auto;
+      padding: 15px;
+    }
   }
 {%- endstyle -%}
 

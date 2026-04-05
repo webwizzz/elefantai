@@ -69,11 +69,17 @@
      border-radius: 10px;
      padding:10px;
      overflow: hidden;
+     row-gap: 0;
    }
 
    @media screen and (max-width: 749px) {
      #shopify-section-{{ section.id }} .elefant-product-title {
-       font-size: 34px !important;
+       font-size: 24px !important;
+     }
+
+     .product__info-wrapper{
+        padding: 10px !important;
+        border-radius: 0 !important;
      }
      #shopify-section-{{ section.id }} .elefant-product-price {
        font-size: 22px !important;
@@ -259,7 +265,7 @@
                   <div class="elefant-custom-title-price" style="margin-bottom: 24px;">
                     <h2
                       class="elefant-product-title"
-                      style="font-size: 42px; font-weight: 700; color: #111; line-height: 1.3; margin: 0 0 16px 0; font-family: inherit;"
+                      style="font-size: 42px; font-family: ballo !important; font-weight: 700; color: #111; line-height: 1.3; margin: 0 0 16px 0; font-family: inherit;"
                     >
                       {%- if product.title != blank -%}
                         {{ product.title | escape }}
@@ -1853,7 +1859,7 @@
         {
           "type": "range",
           "id": "coundown_number_size_mb",
-          "min": 16,
+          "min": 14,
           "max": 100,
           "step": 1,
           "unit": "px",
