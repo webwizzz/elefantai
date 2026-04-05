@@ -22,9 +22,11 @@ if (!customElements.get('product-info')) {
           this.cartUpdateUnsubscriber = subscribe(PUB_SUB_EVENTS.cartUpdate, this.fetchQuantityRules.bind(this));
         }
         this.variantChangeUnsubscriber = subscribe(PUB_SUB_EVENTS.variantChange, (event) => {
-          const sectionId = this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section;
-          if (event.data.sectionId !== sectionId) return;
-          this.updateQuantityRules(event.data.sectionId, event.data.html);
+          if (!event || !event.data) return;
+          const targetSectionId = this.dataset.section;
+          if (event.data.sectionId !== targetSectionId) return;
+          const sourceSectionId = event.data.sourceSectionId || targetSectionId;
+          this.updateQuantityRules(sourceSectionId, event.data.html);
           this.setQuantityBoundries();
         });
       }
@@ -87,6 +89,7 @@ if (!customElements.get('product-info')) {
       updateQuantityRules(sectionId, html) {
         const actualSectionId = this.dataset.section;
         const quantityFormUpdated = html.getElementById(`Quantity-Form-${actualSectionId}`) || html.getElementById(`Quantity-Form-${sectionId}`);
+        if (!quantityFormUpdated) return;
         const selectors = ['.quantity__input', '.quantity__rules', '.quantity__label'];
         for (let selector of selectors) {
           const current = this.quantityForm.querySelector(selector);

@@ -198,6 +198,7 @@
                             product: product,
                             product_form_id: product_form_id,
                             section_id: featured_product_section_id,
+                            force_first_variant: true,
                             classes: section.settings.secondary_background_color,
                             show_pickup_availability: block.settings.show_availability,
                             show_quantity: block.settings.hide_quantity,
@@ -617,6 +618,7 @@
                           product_form_id: product_form_id,
                           section_id: featured_product_section_id,
                           original_section_id: section.id,
+                            force_first_variant: true,
                           label_size: block.settings.label_size,
                           update_url: false
                         -%}
@@ -625,7 +627,7 @@
                         {%- render 'countdown-bar',
                           block: block,
                           style: block.settings.coundown_style,
-                          section_id: section.id
+                            section_id: featured_product_section_id
                         -%}
 
                       {%- when 'buy_buttons' -%}
@@ -636,6 +638,7 @@
                             product: product,
                             product_form_id: product_form_id,
                             section_id: featured_product_section_id,
+                            force_first_variant: true,
                             show_pickup_availability: block.settings.show_availability,
                             show_quantity: block.settings.hide_quantity,
                             full_width: block.settings.full_width
@@ -706,6 +709,7 @@
                             product: product,
                             product_form_id: product_form_id,
                             section_id: featured_product_section_id,
+                            force_first_variant: true,
                             classes: section.settings.secondary_background_color,
                             show_pickup_availability: block.settings.show_availability,
                             show_quantity: block.settings.hide_quantity,

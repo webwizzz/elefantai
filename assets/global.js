@@ -1291,7 +1291,11 @@ function getFocusableElements(container) {
 			this.updateStickyAddToCartPrice(priceHtml);
 		  }
   
-		  if (inventoryDestination) inventoryDestination.classList.toggle('hidden', inventorySource.innerText === '');
+		  if (inventoryDestination && inventorySource) {
+			inventoryDestination.classList.toggle('hidden', inventorySource.innerText === '');
+		  } else if (inventoryDestination && !inventorySource) {
+			inventoryDestination.classList.add('hidden');
+		  }
   
 		  const addButtonUpdated =
 			html.getElementById(`ProductSubmitButton-${actualSectionId}`) ||
@@ -1303,7 +1307,8 @@ function getFocusableElements(container) {
   
 		  publish(PUB_SUB_EVENTS.variantChange, {
 			data: {
-			  sectionId,
+			  sectionId: actualSectionId,
+			  sourceSectionId: sectionId,
 			  html,
 			  variant: this.currentVariant,
 			},
