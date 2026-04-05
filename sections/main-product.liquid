@@ -560,347 +560,398 @@
                           </svg>
                         {% endif %}
 
-                        {%- if block.settings.show_inventory_quantity -%}
-                          {{-
-                            'products.product.inventory_in_stock_show_count'
-                            | t: quantity: product.selected_or_first_available_variant.inventory_quantity
-                          -}}
-                        {%- else -%}
-                          {{- 'products.product.inventory_in_stock' | t -}}
-                        {%- endif -%}
+												{%- if block.settings.show_inventory_quantity -%}
+													{{- 'products.product.inventory_in_stock_show_count' | t: quantity: product.selected_or_first_available_variant.inventory_quantity -}}
+												{%- else -%}
+														{{- 'products.product.inventory_in_stock' | t -}}
+												{%- endif -%}
 
-                        {% if block.settings.show_inventory_progress %}
-                          {% assign percentage_remaining = product.selected_or_first_available_variant.inventory_quantity
-                            | times: 100
-                            | divided_by: block.settings.inventory_threshold_start
-                          %}
-                          <span class="inventory_progress_bar">
-                            <span style="width: {{ percentage_remaining }}%; max-width: 100%; min-width: 0;"></span>
-                          </span>
-                        {% endif %}
-                      {%- endif -%}
+												{% if block.settings.show_inventory_progress %}
+													{% assign percentage_remaining = product.selected_or_first_available_variant.inventory_quantity | times: 100 | divided_by: block.settings.inventory_threshold_start %}
+													<span class="inventory_progress_bar">
+														<span style="width: {{ percentage_remaining }}%; max-width: 100%; min-width: 0;"></span>
+													</span>
+												{% endif %}
+											{%- endif -%}
 
-                    {%- else -%}
-                      {%- if product.selected_or_first_available_variant.inventory_policy == 'continue' -%}
-                        {% if block.settings.inventory_icon != blank %}
-                          {{
-                            block.settings.inventory_icon
-                            | image_url: width: 20
-                            | image_tag:
-                              loading: 'lazy',
-                              sizes: '20px',
-                              widths: '20',
-                              alt: block.settings.inventory_icon.alt
-                          }}
-                        {%- else -%}
-                          <svg width="15" height="15" aria-hidden="true">
-                            <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(62,214,96, 0.3)"/>
-                            <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(62,214,96)"/>
-                          </svg>
-                        {%- endif -%}
-                        {{- 'products.product.inventory_out_of_stock_continue_selling' | t -}}
-                      {%- else -%}
-                        {% if block.settings.inventory_icon != blank %}
-                          {{
-                            block.settings.inventory_icon
-                            | image_url: width: 20
-                            | image_tag:
-                              loading: 'lazy',
-                              sizes: '20px',
-                              widths: '20',
-                              alt: block.settings.inventory_icon.alt
-                          }}
-                        {%- else -%}
-                          <svg width="15" height="15" aria-hidden="true">
-                            <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(200,200,200, 0.3)"/>
-                            <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(200,200,200)"/>
-                          </svg>
-                        {%- endif -%}
-                        {{- 'products.product.inventory_out_of_stock' | t -}}
-                      {%- endif -%}
-                    {%- endif -%}
-                  {%- elsif block.settings.show_inventory_low == false -%}
-                    {%- if product.selected_or_first_available_variant.inventory_quantity > 0 -%}
-                      {%- if product.selected_or_first_available_variant.inventory_quantity
-                          <= block.settings.inventory_threshold
-                      -%}
-                        {% if block.settings.inventory_icon != blank %}
-                          {{
-                            block.settings.inventory_icon
-                            | image_url: width: 20
-                            | image_tag:
-                              loading: 'lazy',
-                              sizes: '20px',
-                              widths: '20',
-                              alt: block.settings.inventory_icon.alt
-                          }}
-                        {%- else -%}
-                          <svg width="15" height="15" aria-hidden="true">
-                            <circle cx="7.5" cy="7.5" r="7.5" fill="rgba(207, 46, 38, 0.3)"/>
-                            <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="#CF2E26"/>
-                          </svg>
-                        {% endif %}
-                        {%- if block.settings.show_inventory_quantity -%}
-                          {{-
-                            'products.product.inventory_low_stock_show_count'
-                            | t: quantity: product.selected_or_first_available_variant.inventory_quantity
-                          -}}
-                        {%- else -%}
-                          {{- 'products.product.inventory_low_stock' | t -}}
-                        {%- endif -%}
-                        {% if block.settings.show_inventory_progress %}
-                          {% assign percentage_remaining = product.selected_or_first_available_variant.inventory_quantity
-                            | times: 100
-                            | divided_by: block.settings.inventory_threshold_start
-                          %}
-                          <span class="inventory_progress_bar low">
-                            <span style="width: {{ percentage_remaining }}%; max-width: 100%; min-width: 0;"></span>
-                          </span>
-                        {% endif %}
-                      {%- else -%}
-                        {% if block.settings.inventory_icon != blank %}
-                          {{
-                            block.settings.inventory_icon
-                            | image_url: width: 20
-                            | image_tag:
-                              loading: 'lazy',
-                              sizes: '20px',
-                              widths: '20',
-                              alt: block.settings.inventory_icon.alt
-                          }}
-                        {%- else -%}
-                          <svg width="15" height="15" aria-hidden="true">
-                            <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(62,214,96, 0.3)"/>
-                            <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(62,214,96)"/>
-                          </svg>
-                        {% endif %}
-                        {%- if block.settings.show_inventory_quantity -%}
-                          {{-
-                            'products.product.inventory_in_stock_show_count'
-                            | t: quantity: product.selected_or_first_available_variant.inventory_quantity
-                          -}}
-                        {%- else -%}
-                          {{- 'products.product.inventory_in_stock' | t -}}
-                        {%- endif -%}
-                        {% if block.settings.show_inventory_progress %}
-                          {% assign percentage_remaining = product.selected_or_first_available_variant.inventory_quantity
-                            | times: 100
-                            | divided_by: block.settings.inventory_threshold_start
-                          %}
-                          <span class="inventory_progress_bar">
-                            <span style="width: {{ percentage_remaining }}%; max-width: 100%; min-width: 0;"></span>
-                          </span>
-                        {% endif %}
-                      {%- endif -%}
-                    {%- else -%}
-                      {%- if product.selected_or_first_available_variant.inventory_policy == 'continue' -%}
-                        <svg width="15" height="15" aria-hidden="true">
-                          <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(62,214,96, 0.3)"/>
-                          <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(62,214,96)"/>
-                        </svg>
-                        {{- 'products.product.inventory_out_of_stock_continue_selling' | t -}}
-                      {%- else -%}
-                        <svg width="15" height="15" aria-hidden="true">
-                          <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(200,200,200, 0.3)"/>
-                          <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(200,200,200)"/>
-                        </svg>
-                        {{- 'products.product.inventory_out_of_stock' | t -}}
-                      {%- endif -%}
-                    {%- endif -%}
-                  {%- endif -%}
-                {%- endif -%}
-              </p>
-            {%- when 'tags' -%}
-              {%- if product.metafields and product.metafields.custom and product.metafields.custom.tags != blank -%}
-                {{ 'component-tags.css' | asset_url | stylesheet_tag }}
-                <div class="product__tags" {{ block.shopify_attributes }}>
-                  {%- assign features_content = product.metafields.custom.tags.value -%}
-                  {%- if features_content.children -%}
-                    {%- for list in features_content.children -%}
-                      {%- if list.listType == 'unordered' and list.children -%}
-                        {%- for item in list.children -%}
-                          {%- if item.children -%}
-                            {%- for text_node in item.children -%}
-                              {%- if text_node.value -%}
-                                <span class="product-tag">{{ text_node.value }}</span>
-                              {%- endif -%}
-                            {%- endfor -%}
-                          {%- endif -%}
-                        {%- endfor -%}
-                      {%- endif -%}
-                    {%- endfor -%}
-                  {%- endif -%}
-                </div>
-              {%- endif -%}
-            {%- when 'product_meta_tabs' -%}
-              {% capture product_meta_tabs_markup %}
-							{{ 'component-product-meta-tabs.css' | asset_url | stylesheet_tag }}
-							<script src="{{ 'product-meta-tabs.js' | asset_url }}" defer="defer"></script>
+										{%- else -%}
 
+											{%- if product.selected_or_first_available_variant.inventory_policy == 'continue' -%}
+												{% if block.settings.inventory_icon != blank %}
+													{{
+														block.settings.inventory_icon
+														| image_url: width: 20
+														| image_tag: loading: 'lazy', sizes: '20px', widths: '20', alt: block.settings.inventory_icon.alt
+													}}
+												{%- else -%}
+													<svg width="15" height="15" aria-hidden="true">
+														<circle cx="7.5" cy="7.5" r="7.5" fill="rgb(62,214,96, 0.3)"/>
+														<circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(62,214,96)"/>
+													</svg>
+												{%- endif -%}
+												{{- 'products.product.inventory_out_of_stock_continue_selling' | t -}}
+											{%- else -%}
+												{% if block.settings.inventory_icon != blank %}
+														{{
+															block.settings.inventory_icon
+															| image_url: width: 20
+															| image_tag: loading: 'lazy', sizes: '20px', widths: '20', alt: block.settings.inventory_icon.alt
+														}}
+												{%- else -%}
+													<svg width="15" height="15" aria-hidden="true">
+														<circle cx="7.5" cy="7.5" r="7.5" fill="rgb(200,200,200, 0.3)"/>
+														<circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(200,200,200)"/>
+													</svg>
+												{%- endif -%}
+												{{- 'products.product.inventory_out_of_stock' | t -}}
+											{%- endif -%}
+										{%- endif -%}
+									{%- elsif block.settings.show_inventory_low == false -%}
+										{%- if product.selected_or_first_available_variant.inventory_quantity > 0 -%}
+											{%- if product.selected_or_first_available_variant.inventory_quantity <= block.settings.inventory_threshold -%}
+												{% if block.settings.inventory_icon != blank %}
+													{{
+														block.settings.inventory_icon
+														| image_url: width: 20
+														| image_tag: loading: 'lazy', sizes: '20px', widths: '20', alt: block.settings.inventory_icon.alt
+													}}
+												{%- else -%}
+													<svg width="15" height="15" aria-hidden="true">
+														<circle cx="7.5" cy="7.5" r="7.5" fill="rgba(207, 46, 38, 0.3)"/>
+														<circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="#CF2E26"/>
+													</svg>
+												{% endif %}
+												{%- if block.settings.show_inventory_quantity -%}
+													{{- 'products.product.inventory_low_stock_show_count' | t: quantity: product.selected_or_first_available_variant.inventory_quantity -}}
+												{%- else -%}
+													{{- 'products.product.inventory_low_stock' | t -}}
+												{%- endif -%}
+												{% if block.settings.show_inventory_progress %}
+													{% assign percentage_remaining = product.selected_or_first_available_variant.inventory_quantity | times: 100 | divided_by: block.settings.inventory_threshold_start %}
+													<span class="inventory_progress_bar low">
+														<span style="width: {{ percentage_remaining }}%; max-width: 100%; min-width: 0;"></span>
+													</span>
+												{% endif %}
+											{%- else -%}
+												{% if block.settings.inventory_icon != blank %}
+													{{
+														block.settings.inventory_icon
+														| image_url: width: 20
+														| image_tag: loading: 'lazy', sizes: '20px', widths: '20', alt: block.settings.inventory_icon.alt
+													}}
+												{%- else -%}
+													<svg width="15" height="15" aria-hidden="true">
+														<circle cx="7.5" cy="7.5" r="7.5" fill="rgb(62,214,96, 0.3)"/>
+														<circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(62,214,96)"/>
+													</svg>
+												{% endif %}
+												{%- if block.settings.show_inventory_quantity -%}
+													{{- 'products.product.inventory_in_stock_show_count' | t: quantity: product.selected_or_first_available_variant.inventory_quantity -}}
+												{%- else -%}
+														{{- 'products.product.inventory_in_stock' | t -}}
+												{%- endif -%}
+												{% if block.settings.show_inventory_progress %}
+													{% assign percentage_remaining = product.selected_or_first_available_variant.inventory_quantity | times: 100 | divided_by: block.settings.inventory_threshold_start %}
+													<span class="inventory_progress_bar">
+														<span style="width: {{ percentage_remaining }}%; max-width: 100%; min-width: 0;"></span>
+													</span>
+												{% endif %}
+											{%- endif -%}
+										{%- else -%}
+											{%- if product.selected_or_first_available_variant.inventory_policy == 'continue' -%}
+												<svg width="15" height="15" aria-hidden="true">
+													<circle cx="7.5" cy="7.5" r="7.5" fill="rgb(62,214,96, 0.3)"/>
+													<circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(62,214,96)"/>
+												</svg>
+												{{- 'products.product.inventory_out_of_stock_continue_selling' | t -}}
+											{%- else -%}
+												<svg width="15" height="15" aria-hidden="true">
+													<circle cx="7.5" cy="7.5" r="7.5" fill="rgb(200,200,200, 0.3)"/>
+													<circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(200,200,200)"/>
+												</svg>
+												{{- 'products.product.inventory_out_of_stock' | t -}}
+											{%- endif -%}
+										{%- endif -%}
+									{%- endif -%}
+								{%- endif -%}
+
+							</p>
+						{%- when 'tags' -%}
+												{%- if product.metafields and product.metafields.custom and product.metafields.custom.tags != blank -%}
+													{{ 'component-tags.css' | asset_url | stylesheet_tag }}
+													<div class="product__tags" {{ block.shopify_attributes }}>
+														{%- assign features_content = product.metafields.custom.tags.value -%}
+														{%- if features_content.children -%}
+															{%- for list in features_content.children -%}
+																{%- if list.listType == 'unordered' and list.children -%}
+																	{%- for item in list.children -%}
+																		{%- if item.children -%}
+																			{%- for text_node in item.children -%}
+																				{%- if text_node.value -%}
+																					<span class="product-tag">{{ text_node.value }}</span>
+																				{%- endif -%}
+																			{%- endfor -%}
+																		{%- endif -%}
+																	{%- endfor -%}
+																{%- endif -%}
+															{%- endfor -%}
+														{%- endif -%}
+													</div>
+												{%- endif -%}
+						{%- when 'product_meta_tabs' -%}
+							{% capture product_meta_tabs_markup %}
 							{% assign about_content = product.metafields.custom.about_this_product %}
 							{% assign key_features = product.metafields.custom.key_features.value %}
 							{% assign why_kids_love_it = product.metafields.custom.why_kids_love_it.value %}
 							{% assign specifications = product.metafields.custom.specifications.value %}
 							{% assign tabs_id = 'ProductMetaTabs-' | append: section.id | append: '-' | append: block.id %}
 
-							{% capture description_tab_content %}
-								{% if block.settings.about_heading != blank %}
-									<h3 class="product-meta-tabs__section-title">{{ block.settings.about_heading }}</h3>
-								{% endif %}
-
-								{% if about_content != blank %}
-									<div class="product-meta-tabs__about rte">{{ about_content | metafield_tag }}</div>
-								{% endif %}
-
-								<div class="product-meta-tabs__grid">
-									{% if key_features != blank %}
-										<div class="product-meta-tabs__group">
-											{% if block.settings.key_features_heading != blank %}
-												<h4 class="product-meta-tabs__group-title">{{ block.settings.key_features_heading }}</h4>
-											{% endif %}
-											<ul class="product-meta-tabs__list" role="list">
-												{% for feature_item in key_features %}
-													{% assign feature_text = feature_item.feature.value | default: feature_item.feature %}
-													{% assign feature_icon = feature_item.icon.value | default: feature_item.icon %}
-													{% if feature_text != blank %}
-														<li class="product-meta-tabs__item">
-															<span class="product-meta-tabs__item-icon-wrap">
-																{% if feature_icon != blank %}
-																	{{ feature_icon | image_url: width: 32 | image_tag: class: 'product-meta-tabs__item-icon', alt: feature_text }}
-																{% else %}
-																	<span class="product-meta-tabs__item-icon-fallback">&#10003;</span>
-																{% endif %}
-															</span>
-															<span>{{ feature_text }}</span>
-														</li>
+							{% capture key_features_items %}
+								{% if key_features != blank %}
+									{% for feature_item in key_features %}
+										{% assign feature_text = feature_item.feature.value | default: feature_item.feature %}
+										{% assign feature_icon = feature_item.icon.value | default: feature_item.icon %}
+										{% if feature_text != blank %}
+											<li class="product-meta-tabs__item">
+												<span class="product-meta-tabs__item-icon-wrap">
+													{% if feature_icon != blank %}
+														{{ feature_icon | image_url: width: 32 | image_tag: class: 'product-meta-tabs__item-icon', alt: feature_text }}
+													{% else %}
+														<span class="product-meta-tabs__item-icon-fallback">&#10003;</span>
 													{% endif %}
-												{% endfor %}
-											</ul>
-										</div>
-									{% endif %}
-
-									{% if why_kids_love_it != blank %}
-										<div class="product-meta-tabs__group">
-											{% if block.settings.why_kids_heading != blank %}
-												<h4 class="product-meta-tabs__group-title">{{ block.settings.why_kids_heading }}</h4>
-											{% endif %}
-											<ul class="product-meta-tabs__list" role="list">
-												{% for feature_item in why_kids_love_it %}
-													{% assign feature_text = feature_item.feature.value | default: feature_item.feature %}
-													{% assign feature_icon = feature_item.icon.value | default: feature_item.icon %}
-													{% if feature_text != blank %}
-														<li class="product-meta-tabs__item">
-															<span class="product-meta-tabs__item-icon-wrap product-meta-tabs__item-icon-wrap--star">
-																{% if feature_icon != blank %}
-																	{{ feature_icon | image_url: width: 32 | image_tag: class: 'product-meta-tabs__item-icon', alt: feature_text }}
-																{% else %}
-																	<span class="product-meta-tabs__item-icon-fallback product-meta-tabs__item-icon-fallback--star">&#9733;</span>
-																{% endif %}
-															</span>
-															<span>{{ feature_text }}</span>
-														</li>
-													{% endif %}
-												{% endfor %}
-											</ul>
-										</div>
-									{% endif %}
-								</div>
-							{% endcapture %}
-
-							{% capture specifications_tab_content %}
-								<div class="product-meta-tabs__spec-card">
-									<ul class="product-meta-tabs__spec-list" role="list">
-										{% if specifications != blank %}
-											{% for specification in specifications %}
-												{% assign specification_title = specification.title.value | default: specification.title %}
-												{% assign specification_description = specification.description.value | default: specification.description %}
-												{% if specification_title != blank or specification_description != blank %}
-													<li class="product-meta-tabs__spec-row">
-														<span class="product-meta-tabs__spec-title">{{ specification_title }}</span>
-														<span class="product-meta-tabs__spec-value">{{ specification_description }}</span>
-													</li>
-												{% endif %}
-											{% endfor %}
+												</span>
+												<span>{{ feature_text }}</span>
+											</li>
 										{% endif %}
-									</ul>
-								</div>
+									{% endfor %}
+								{% endif %}
 							{% endcapture %}
+							{% assign key_features_items = key_features_items | strip %}
 
-							{% capture buyback_tab_content %}
-								<div class="product-meta-tabs__buyback">
-									<h3 class="product-meta-tabs__buyback-title">{{ block.settings.buyback_heading_line_1 }} <span>{{ block.settings.buyback_heading_line_2 }}</span></h3>
-									{% if block.settings.buyback_subtitle != blank %}
-										<p class="product-meta-tabs__buyback-subtitle">{{ block.settings.buyback_subtitle }}</p>
+							{% capture why_kids_items %}
+								{% if why_kids_love_it != blank %}
+									{% for feature_item in why_kids_love_it %}
+										{% assign feature_text = feature_item.feature.value | default: feature_item.feature %}
+										{% assign feature_icon = feature_item.icon.value | default: feature_item.icon %}
+										{% if feature_text != blank %}
+											<li class="product-meta-tabs__item">
+												<span class="product-meta-tabs__item-icon-wrap product-meta-tabs__item-icon-wrap--star">
+													{% if feature_icon != blank %}
+														{{ feature_icon | image_url: width: 32 | image_tag: class: 'product-meta-tabs__item-icon', alt: feature_text }}
+													{% else %}
+														<span class="product-meta-tabs__item-icon-fallback product-meta-tabs__item-icon-fallback--star">&#9733;</span>
+													{% endif %}
+												</span>
+												<span>{{ feature_text }}</span>
+											</li>
+										{% endif %}
+									{% endfor %}
+								{% endif %}
+							{% endcapture %}
+							{% assign why_kids_items = why_kids_items | strip %}
+
+							{% capture specifications_rows %}
+								{% if specifications != blank %}
+									{% for specification in specifications %}
+										{% assign specification_title = specification.title.value | default: specification.title %}
+										{% assign specification_description = specification.description.value | default: specification.description %}
+										{% if specification_title != blank or specification_description != blank %}
+											<li class="product-meta-tabs__spec-row">
+												<span class="product-meta-tabs__spec-title">{{ specification_title }}</span>
+												<span class="product-meta-tabs__spec-value">{{ specification_description }}</span>
+											</li>
+										{% endif %}
+									{% endfor %}
+								{% endif %}
+							{% endcapture %}
+							{% assign specifications_rows = specifications_rows | strip %}
+
+							{% capture buyback_stacks %}
+								{% for i in (1..6) %}
+									{% assign stack_title_key = 'stack_' | append: i | append: '_title' %}
+									{% assign stack_description_key = 'stack_' | append: i | append: '_description' %}
+									{% assign stack_icon_key = 'stack_' | append: i | append: '_icon' %}
+									{% assign stack_color_key = 'stack_' | append: i | append: '_icon_color' %}
+
+									{% assign stack_title = block.settings[stack_title_key] %}
+									{% assign stack_description = block.settings[stack_description_key] %}
+									{% assign stack_icon = block.settings[stack_icon_key] %}
+									{% assign stack_color = block.settings[stack_color_key] %}
+
+									{% if stack_title != blank %}
+										<li class="product-meta-tabs__stack">
+											<div class="product-meta-tabs__stack-icon" style="--stack-color: {{ stack_color }};">
+												{% if stack_icon != blank %}
+													{{ stack_icon | image_url: width: 56 | image_tag: class: 'product-meta-tabs__stack-icon-image', alt: stack_title }}
+												{% else %}
+													<span class="product-meta-tabs__stack-icon-fallback">{{ i }}</span>
+												{% endif %}
+											</div>
+											<div>
+												<h4 class="product-meta-tabs__stack-title">{{ stack_title }}</h4>
+												{% if stack_description != blank %}
+													<p class="product-meta-tabs__stack-description">{{ stack_description }}</p>
+												{% endif %}
+											</div>
+										</li>
+									{% endif %}
+								{% endfor %}
+							{% endcapture %}
+							{% assign buyback_stacks = buyback_stacks | strip %}
+
+							{% assign description_has_data = false %}
+							{% if about_content != blank or key_features_items != blank or why_kids_items != blank %}
+								{% assign description_has_data = true %}
+							{% endif %}
+
+							{% assign specifications_has_data = false %}
+							{% if specifications_rows != blank %}
+								{% assign specifications_has_data = true %}
+							{% endif %}
+
+							{% assign buyback_has_data = false %}
+							{% if buyback_stacks != blank
+								or block.settings.buyback_subtitle != blank
+								or block.settings.buyback_heading_line_1 != blank
+								or block.settings.buyback_heading_line_2 != blank
+							%}
+								{% assign buyback_has_data = true %}
+							{% endif %}
+
+							{% assign has_any_tabs = false %}
+							{% if description_has_data or specifications_has_data or buyback_has_data %}
+								{% assign has_any_tabs = true %}
+							{% endif %}
+
+							{% if has_any_tabs %}
+								{{ 'component-product-meta-tabs.css' | asset_url | stylesheet_tag }}
+								<script src="{{ 'product-meta-tabs.js' | asset_url }}" defer="defer"></script>
+
+								{% assign first_visible_tab = '' %}
+								{% if description_has_data %}
+									{% assign first_visible_tab = 'description' %}
+								{% elsif specifications_has_data %}
+									{% assign first_visible_tab = 'specification' %}
+								{% elsif buyback_has_data %}
+									{% assign first_visible_tab = 'buyback' %}
+								{% endif %}
+
+								{% capture description_tab_content %}
+									{% if block.settings.about_heading != blank %}
+										<h3 class="product-meta-tabs__section-title">{{ block.settings.about_heading }}</h3>
 									{% endif %}
 
-									<ul class="product-meta-tabs__stacks" role="list">
-										{% for i in (1..6) %}
-											{% assign stack_title_key = 'stack_' | append: i | append: '_title' %}
-											{% assign stack_description_key = 'stack_' | append: i | append: '_description' %}
-											{% assign stack_icon_key = 'stack_' | append: i | append: '_icon' %}
-											{% assign stack_color_key = 'stack_' | append: i | append: '_icon_color' %}
+									{% if about_content != blank %}
+										<div class="product-meta-tabs__about rte">{{ about_content | metafield_tag }}</div>
+									{% endif %}
 
-											{% assign stack_title = block.settings[stack_title_key] %}
-											{% assign stack_description = block.settings[stack_description_key] %}
-											{% assign stack_icon = block.settings[stack_icon_key] %}
-											{% assign stack_color = block.settings[stack_color_key] %}
-
-											{% if stack_title != blank %}
-												<li class="product-meta-tabs__stack">
-													<div class="product-meta-tabs__stack-icon" style="--stack-color: {{ stack_color }};">
-														{% if stack_icon != blank %}
-															{{ stack_icon | image_url: width: 56 | image_tag: class: 'product-meta-tabs__stack-icon-image', alt: stack_title }}
-														{% else %}
-															<span class="product-meta-tabs__stack-icon-fallback">{{ i }}</span>
-														{% endif %}
-													</div>
-													<div>
-														<h4 class="product-meta-tabs__stack-title">{{ stack_title }}</h4>
-														{% if stack_description != blank %}
-															<p class="product-meta-tabs__stack-description">{{ stack_description }}</p>
-														{% endif %}
-													</div>
-												</li>
+									{% if key_features_items != blank or why_kids_items != blank %}
+										<div class="product-meta-tabs__grid">
+											{% if key_features_items != blank %}
+												<div class="product-meta-tabs__group">
+													{% if block.settings.key_features_heading != blank %}
+														<h4 class="product-meta-tabs__group-title">{{ block.settings.key_features_heading }}</h4>
+													{% endif %}
+													<ul class="product-meta-tabs__list" role="list">
+														{{ key_features_items }}
+													</ul>
+												</div>
 											{% endif %}
-										{% endfor %}
-									</ul>
-								</div>
-							{% endcapture %}
 
-							<div id="{{ tabs_id }}" class="product-meta-tabs quick-add-hidden" data-product-meta-tabs {{ block.shopify_attributes }}>
-								<div class="product-meta-tabs__desktop">
-									<div class="product-meta-tabs__nav" role="tablist" aria-label="{{ block.settings.description_tab_label }} {{ block.settings.specification_tab_label }} {{ block.settings.buyback_tab_label }}">
-										<button id="{{ tabs_id }}-tab-description" type="button" class="product-meta-tabs__tab is-active" role="tab" aria-selected="true" aria-controls="{{ tabs_id }}-panel-description" data-target="#{{ tabs_id }}-panel-description">{{ block.settings.description_tab_label }}</button>
-										<button id="{{ tabs_id }}-tab-specification" type="button" class="product-meta-tabs__tab" role="tab" aria-selected="false" aria-controls="{{ tabs_id }}-panel-specification" data-target="#{{ tabs_id }}-panel-specification">{{ block.settings.specification_tab_label }}</button>
-										<button id="{{ tabs_id }}-tab-buyback" type="button" class="product-meta-tabs__tab" role="tab" aria-selected="false" aria-controls="{{ tabs_id }}-panel-buyback" data-target="#{{ tabs_id }}-panel-buyback">{{ block.settings.buyback_tab_label }}</button>
+											{% if why_kids_items != blank %}
+												<div class="product-meta-tabs__group">
+													{% if block.settings.why_kids_heading != blank %}
+														<h4 class="product-meta-tabs__group-title">{{ block.settings.why_kids_heading }}</h4>
+													{% endif %}
+													<ul class="product-meta-tabs__list" role="list">
+														{{ why_kids_items }}
+													</ul>
+												</div>
+											{% endif %}
+										</div>
+									{% endif %}
+								{% endcapture %}
+
+								{% capture specifications_tab_content %}
+									<div class="product-meta-tabs__spec-card">
+										<ul class="product-meta-tabs__spec-list" role="list">
+											{{ specifications_rows }}
+										</ul>
+									</div>
+								{% endcapture %}
+
+								{% capture buyback_tab_content %}
+									<div class="product-meta-tabs__buyback">
+										{% if block.settings.buyback_heading_line_1 != blank or block.settings.buyback_heading_line_2 != blank %}
+											<h3 class="product-meta-tabs__buyback-title">{{ block.settings.buyback_heading_line_1 }} <span>{{ block.settings.buyback_heading_line_2 }}</span></h3>
+										{% endif %}
+										{% if block.settings.buyback_subtitle != blank %}
+											<p class="product-meta-tabs__buyback-subtitle">{{ block.settings.buyback_subtitle }}</p>
+										{% endif %}
+
+										{% if buyback_stacks != blank %}
+											<ul class="product-meta-tabs__stacks" role="list">
+												{{ buyback_stacks }}
+											</ul>
+										{% endif %}
+									</div>
+								{% endcapture %}
+
+								<div id="{{ tabs_id }}" class="product-meta-tabs quick-add-hidden" data-product-meta-tabs {{ block.shopify_attributes }}>
+									<div class="product-meta-tabs__desktop">
+										<div class="product-meta-tabs__nav" role="tablist" aria-label="{% if description_has_data %}{{ block.settings.description_tab_label }} {% endif %}{% if specifications_has_data %}{{ block.settings.specification_tab_label }} {% endif %}{% if buyback_has_data %}{{ block.settings.buyback_tab_label }}{% endif %}">
+											{% if description_has_data %}
+												<button id="{{ tabs_id }}-tab-description" type="button" class="product-meta-tabs__tab{% if first_visible_tab == 'description' %} is-active{% endif %}" role="tab" aria-selected="{% if first_visible_tab == 'description' %}true{% else %}false{% endif %}" aria-controls="{{ tabs_id }}-panel-description" data-target="#{{ tabs_id }}-panel-description">{{ block.settings.description_tab_label }}</button>
+											{% endif %}
+											{% if specifications_has_data %}
+												<button id="{{ tabs_id }}-tab-specification" type="button" class="product-meta-tabs__tab{% if first_visible_tab == 'specification' %} is-active{% endif %}" role="tab" aria-selected="{% if first_visible_tab == 'specification' %}true{% else %}false{% endif %}" aria-controls="{{ tabs_id }}-panel-specification" data-target="#{{ tabs_id }}-panel-specification">{{ block.settings.specification_tab_label }}</button>
+											{% endif %}
+											{% if buyback_has_data %}
+												<button id="{{ tabs_id }}-tab-buyback" type="button" class="product-meta-tabs__tab{% if first_visible_tab == 'buyback' %} is-active{% endif %}" role="tab" aria-selected="{% if first_visible_tab == 'buyback' %}true{% else %}false{% endif %}" aria-controls="{{ tabs_id }}-panel-buyback" data-target="#{{ tabs_id }}-panel-buyback">{{ block.settings.buyback_tab_label }}</button>
+											{% endif %}
+										</div>
+
+										<div class="product-meta-tabs__panel-stage">
+											{% if description_has_data %}
+												<div id="{{ tabs_id }}-panel-description" class="product-meta-tabs__panel{% if first_visible_tab == 'description' %} is-active{% endif %}" role="tabpanel" aria-labelledby="{{ tabs_id }}-tab-description">
+													{{ description_tab_content }}
+												</div>
+											{% endif %}
+											{% if specifications_has_data %}
+												<div id="{{ tabs_id }}-panel-specification" class="product-meta-tabs__panel{% if first_visible_tab == 'specification' %} is-active{% endif %}" role="tabpanel" aria-labelledby="{{ tabs_id }}-tab-specification">
+													{{ specifications_tab_content }}
+												</div>
+											{% endif %}
+											{% if buyback_has_data %}
+												<div id="{{ tabs_id }}-panel-buyback" class="product-meta-tabs__panel{% if first_visible_tab == 'buyback' %} is-active{% endif %}" role="tabpanel" aria-labelledby="{{ tabs_id }}-tab-buyback">
+													{{ buyback_tab_content }}
+												</div>
+											{% endif %}
+										</div>
 									</div>
 
-									<div id="{{ tabs_id }}-panel-description" class="product-meta-tabs__panel is-active" role="tabpanel" aria-labelledby="{{ tabs_id }}-tab-description">
-										{{ description_tab_content }}
-									</div>
-									<div id="{{ tabs_id }}-panel-specification" class="product-meta-tabs__panel" role="tabpanel" aria-labelledby="{{ tabs_id }}-tab-specification">
-										{{ specifications_tab_content }}
-									</div>
-									<div id="{{ tabs_id }}-panel-buyback" class="product-meta-tabs__panel" role="tabpanel" aria-labelledby="{{ tabs_id }}-tab-buyback">
-										{{ buyback_tab_content }}
+									<div class="product-meta-tabs__mobile">
+										{% if description_has_data %}
+											<details class="product-meta-tabs__mobile-item"{% if first_visible_tab == 'description' %} open{% endif %}>
+												<summary>{{ block.settings.description_tab_label }}</summary>
+												<div class="product-meta-tabs__mobile-body">{{ description_tab_content }}</div>
+											</details>
+										{% endif %}
+										{% if specifications_has_data %}
+											<details class="product-meta-tabs__mobile-item"{% if first_visible_tab == 'specification' %} open{% endif %}>
+												<summary>{{ block.settings.specification_tab_label }}</summary>
+												<div class="product-meta-tabs__mobile-body">{{ specifications_tab_content }}</div>
+											</details>
+										{% endif %}
+										{% if buyback_has_data %}
+											<details class="product-meta-tabs__mobile-item"{% if first_visible_tab == 'buyback' %} open{% endif %}>
+												<summary>{{ block.settings.buyback_tab_label }}</summary>
+												<div class="product-meta-tabs__mobile-body">{{ buyback_tab_content }}</div>
+											</details>
+										{% endif %}
 									</div>
 								</div>
-
-								<div class="product-meta-tabs__mobile">
-									<details class="product-meta-tabs__mobile-item" open>
-										<summary>{{ block.settings.description_tab_label }}</summary>
-										<div class="product-meta-tabs__mobile-body">{{ description_tab_content }}</div>
-									</details>
-									<details class="product-meta-tabs__mobile-item">
-										<summary>{{ block.settings.specification_tab_label }}</summary>
-										<div class="product-meta-tabs__mobile-body">{{ specifications_tab_content }}</div>
-									</details>
-									<details class="product-meta-tabs__mobile-item">
-										<summary>{{ block.settings.buyback_tab_label }}</summary>
-										<div class="product-meta-tabs__mobile-body">{{ buyback_tab_content }}</div>
-									</details>
-								</div>
-							</div>
+							{% endif %}
 							{% endcapture %}
             {%- when 'description' -%}
               {%- if product.description != blank -%}
