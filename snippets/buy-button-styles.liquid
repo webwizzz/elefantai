@@ -60,25 +60,3 @@
   }
 </style>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var section = document.getElementById('shopify-section-{{ id }}');
-    if (!section) return;
-    
-    section.querySelectorAll('product-form').forEach(function(pf) {
-      var form = pf.querySelector('form');
-      if (!form) return;
-      
-      var variantInput = form.querySelector('[name=id]');
-      if (variantInput) {
-        variantInput.disabled = false;
-      }
-      
-      var submitBtn = pf.querySelector('[type="submit"]');
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.removeAttribute('aria-disabled');
-      }
-    });
-  });
-</script>

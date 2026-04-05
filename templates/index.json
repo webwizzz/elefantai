@@ -418,35 +418,26 @@
             "coundown_title_weight": "400"
           }
         },
-        "variant_picker_KTCrxx": {
+        "variant_picker_pJ3wGY": {
           "type": "variant_picker",
-          "disabled": true,
           "settings": {
             "picker_type": "button",
             "label_size": "medium",
-            "enable_size_chart": false,
+            "enable_size_chart": true,
             "choose_variant": "Size",
             "popup_label": "Size Chart",
             "page": ""
           }
         },
-        "buy_buttons_GckP6D": {
+        "buy_buttons_hTQF3C": {
           "type": "buy_buttons",
           "settings": {
             "show_dynamic_checkout": true,
             "show_gift_card_recipient": false,
+            "block_position": "sidebar",
             "hide_quantity": true,
             "full_width": true,
-            "show_availability": true,
-            "block_position": "sidebar",
-            "atc_bg_color": "#6e4b7e",
-            "atc_text_color": "#ffffff",
-            "atc_border_color": "#f1dfff",
-            "bin_bg_color": "#ebb64e",
-            "bin_text_color": "#000000",
-            "bin_border_color": "#fdf2d0",
-            "button_font_size": 32,
-            "button_border_radius": 100
+            "show_availability": true
           }
         }
       },
@@ -455,8 +446,8 @@
         "price_T7TGtr",
         "inventory_aFkmxt",
         "coundown_bar_UkPkyh",
-        "variant_picker_KTCrxx",
-        "buy_buttons_GckP6D"
+        "variant_picker_pJ3wGY",
+        "buy_buttons_hTQF3C"
       ],
       "name": "t:sections.featured-product.presets.name",
       "settings": {
@@ -469,9 +460,12 @@
         "heading_align": "center",
         "enable_sticky_info": true,
         "product_list": [
-          "scooter-pink",
           "mini-bike-yellow",
-          "super-bike-red"
+          "super-bike-red",
+          "2-seater-scooter",
+          "6-in-1-live-band",
+          "atv-bike",
+          "scooter-pink"
         ],
         "media_size": "large",
         "global_media_position": "left",
@@ -929,8 +923,6 @@
         "heading": "Smart parents <strong>save an average of ₹15,000 annually</strong> by using EleFant Wallet credit!",
         "title_color": "#ffffff",
         "highlight_color": "#fdc64a",
-        "heading_size": 62,
-        "heading_weight": "800",
         "description": "The better the condition of the toy when you return it, the higher the buyback value you receive!",
         "desc_color": "#ffffff",
         "subtitle_size": 22,
@@ -942,6 +934,71 @@
         "button_label_2": "Learn How it Works",
         "button_link_2": "",
         "btn_2_text": "#ffffff"
+      }
+    },
+    "solves_EcadUB": {
+      "type": "solves",
+      "blocks": {
+        "feature_iFHHrU": {
+          "type": "feature",
+          "settings": {
+            "text": "Buy guilt-free knowing you'll get money back"
+          }
+        },
+        "feature_KzdGYY": {
+          "type": "feature",
+          "settings": {
+            "text": "Declutter easily while recovering your investment"
+          }
+        },
+        "feature_CGnejh": {
+          "type": "feature",
+          "settings": {
+            "text": "Keep rotating fresh toys without breaking the bank"
+          }
+        },
+        "feature_kaAwcJ": {
+          "type": "feature",
+          "settings": {
+            "text": "Support sustainability by keeping toys in circulation"
+          }
+        }
+      },
+      "block_order": [
+        "feature_iFHHrU",
+        "feature_KzdGYY",
+        "feature_CGnejh",
+        "feature_kaAwcJ"
+      ],
+      "name": "Features Solves Layout",
+      "settings": {
+        "bg_color": "#ffffff",
+        "row_max_width": 1100,
+        "flip_layout": false,
+        "character_size": 280,
+        "heading": "EleFant <strong>Solves</strong> All of This!",
+        "title_color": "#111111",
+        "highlight_color": "#6e4b7e",
+        "heading_size": 52,
+        "heading_weight": "700",
+        "subtitle": "A circular toy economy that works for your family and your wallet",
+        "subtitle_color": "#606060",
+        "subtitle_size": 22,
+        "subtitle_weight": "500",
+        "main_image": "shopify://shop_images/how-many-toys-do-kids-really-need-1280x960_1.png",
+        "image_radius": 32,
+        "show_white_border": true,
+        "icon_bg": "#d7f6ca",
+        "icon_check_color": "#048a5f",
+        "list_text_color": "#111111",
+        "list_font_size": 22,
+        "list_font_weight": "500",
+        "btn_label": "Join Thousands of Happy Parents",
+        "btn_link": "",
+        "btn_bg": "#6e4b7e",
+        "btn_text": "#ffffff",
+        "btn_font_size": 22,
+        "btn_font_weight": "600"
       }
     },
     "eco_raxapP": {
@@ -1047,6 +1104,86 @@
         "padding_top": 60,
         "padding_bottom": 60
       }
+    },
+    "get_started_card_nb49mw": {
+      "type": "get-started-card",
+      "name": "Get Started Card",
+      "settings": {
+        "section_bg": "linear-gradient(90deg, rgba(248, 248, 248, 1), rgba(252, 234, 241, 1) 100%)",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "card_bg_gradient": "linear-gradient(48deg, rgba(152, 101, 182, 1), rgba(233, 108, 161, 1) 100%)",
+        "card_image_opacity": 100,
+        "card_radius": 24,
+        "title": "Join 10,000+ Happy Families",
+        "subtitle": "Start saving money on toys today while giving your kids the best play experiences",
+        "btn_text": "Get Started Now",
+        "btn_link": "",
+        "btn_bg_color": "#ffffff",
+        "btn_text_color": "#8b52a1"
+      }
+    },
+    "fa_qs_GQgVaC": {
+      "type": "FAQs",
+      "blocks": {
+        "faq_4X8X8a": {
+          "type": "faq",
+          "settings": {
+            "question": "How does the buy back system works?",
+            "answer": "<p>When you buy a toy, we guarantee to buy it back at the stated percentage (up to 60%) within the buyback period. The value depends on the toy's condition when returned. Simply request a return, ship it back with our prepaid label, and receive your credit or cash refund.</p>"
+          }
+        },
+        "faq_YAPywG": {
+          "type": "faq",
+          "settings": {
+            "question": "How does the buy back system works?",
+            "answer": "<p>When you buy a toy, we guarantee to buy it back at the stated percentage (up to 60%) within the buyback period. The value depends on the toy's condition when returned. Simply request a return, ship it back with our prepaid label, and receive your credit or cash refund.</p>"
+          }
+        },
+        "faq_7Hf7XC": {
+          "type": "faq",
+          "settings": {
+            "question": "How does the buy back system works?",
+            "answer": "<p>When you buy a toy, we guarantee to buy it back at the stated percentage (up to 60%) within the buyback period. The value depends on the toy's condition when returned. Simply request a return, ship it back with our prepaid label, and receive your credit or cash refund.</p>"
+          }
+        },
+        "faq_kQEaMz": {
+          "type": "faq",
+          "settings": {
+            "question": "How does the buy back system works?",
+            "answer": "<p>When you buy a toy, we guarantee to buy it back at the stated percentage (up to 60%) within the buyback period. The value depends on the toy's condition when returned. Simply request a return, ship it back with our prepaid label, and receive your credit or cash refund.</p>"
+          }
+        },
+        "faq_dwd473": {
+          "type": "faq",
+          "settings": {
+            "question": "How does the buy back system works?",
+            "answer": "<p>When you buy a toy, we guarantee to buy it back at the stated percentage (up to 60%) within the buyback period. The value depends on the toy's condition when returned. Simply request a return, ship it back with our prepaid label, and receive your credit or cash refund.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_4X8X8a",
+        "faq_YAPywG",
+        "faq_7Hf7XC",
+        "faq_kQEaMz",
+        "faq_dwd473"
+      ],
+      "name": "FAQs Section",
+      "settings": {
+        "background_image": "shopify://shop_images/Desktop_-_26.png",
+        "bg_color": "#ffffff",
+        "title": "Frequently Asked <em>Questions</em>",
+        "subtitle": "Everything you need to know about EleFant",
+        "accordion_active_border": "#faeeff",
+        "show_contact_card": true,
+        "contact_title": "Still have questions?",
+        "contact_text": "Our friendly team is here to help!",
+        "contact_btn_label": "Contact Support",
+        "contact_btn_link": "",
+        "contact_bg": "#6c5082",
+        "contact_text_color": "#ffffff"
+      }
     }
   },
   "order": [
@@ -1063,6 +1200,9 @@
     "play_return_r6F4gN",
     "understand_sellback_QYfiY9",
     "elevated_card_hNVmQ8",
-    "eco_raxapP"
+    "solves_EcadUB",
+    "eco_raxapP",
+    "get_started_card_nb49mw",
+    "fa_qs_GQgVaC"
   ]
 }
