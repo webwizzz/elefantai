@@ -36,29 +36,22 @@
     "featuredproducts_cw8znJ": {
       "type": "featuredproducts",
       "blocks": {
-        "collection_7RyBRc": {
-          "type": "collection",
-          "settings": {
-            "collection": ""
-          }
-        },
-        "collection_wQpBQq": {
-          "type": "collection",
-          "settings": {
-            "collection": ""
-          }
-        },
         "collection_KHQzfa": {
           "type": "collection",
           "settings": {
             "collection": "5-8-years"
           }
+        },
+        "collection_cp8Qjb": {
+          "type": "collection",
+          "settings": {
+            "collection": "1-3-years"
+          }
         }
       },
       "block_order": [
-        "collection_7RyBRc",
-        "collection_wQpBQq",
-        "collection_KHQzfa"
+        "collection_KHQzfa",
+        "collection_cp8Qjb"
       ],
       "name": "Featured Products Tabs",
       "settings": {
@@ -221,7 +214,7 @@
         "bc_price_size_m": 40,
         "bc_price_weight": "800",
         "bc_pill_size": 18,
-        "bc_pill_size_m": 13,
+        "bc_pill_size_m": 12,
         "bc_pill_weight": "700",
         "card_1_bg": "#f5f5f5",
         "card_1_icon": "shopify://shop_images/SVGRepo_iconCarrier-4.svg",
@@ -278,10 +271,6 @@
           "settings": {
             "logo": "shopify://shop_images/download_4.png"
           }
-        },
-        "logo_9NNcGN": {
-          "type": "logo",
-          "settings": {}
         }
       },
       "block_order": [
@@ -289,8 +278,7 @@
         "logo_4wrCRh",
         "logo_KHrign",
         "logo_9YY4KW",
-        "logo_yUF8HM",
-        "logo_9NNcGN"
+        "logo_yUF8HM"
       ],
       "name": "Trusted Brands Scroller",
       "settings": {

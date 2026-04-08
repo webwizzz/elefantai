@@ -227,6 +227,7 @@
     align-items: baseline;
     justify-content: center;
     gap: 16px;
+    white-space:nowrap;
   }
   .us-bc-strikethrough {
     font-size: calc({{ section.settings.bc_price_size }}px * 0.45);
@@ -273,7 +274,7 @@
   }
 
   @media (max-width: 480px) {
-    .us-bc-prices { flex-direction: row; align-items: center; gap: 25px; margin-bottom: 0px; }
+    .us-bc-prices { flex-direction: row; align-items: center; gap: 10px; white-space:nowrap; margin-bottom: 0px; }
     .us-bc-pill { padding: 10px 20px; }
     .us-bottom-card{
       min-height: auto;

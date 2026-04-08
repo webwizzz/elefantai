@@ -44,6 +44,11 @@ menu-drawer > details[open] > summary::before {
   overflow-x: hidden;
 }
 
+/* .menu-drawer-container > summary {
+  position: relative;
+  z-index: 4;
+} */
+
 @media screen and (max-width: 749px) {
   .menu-drawer {
     max-width: 100%;

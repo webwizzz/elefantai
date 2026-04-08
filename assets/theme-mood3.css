@@ -194,10 +194,6 @@ padding: 1rem 0 0;
 
 /* main product skills learned */
 
-.mood3-mood .product-skills-learned {
-  margin-top: 4rem;
-}
-
 .mood3-mood .product-skills-learned__heading {
   margin: 0 0 1.6rem;
   color: #000;
@@ -249,9 +245,6 @@ padding: 1rem 0 0;
 }
 
 @media screen and (max-width: 749px) {
-  .mood3-mood .product-skills-learned {
-    margin-top: 3rem;
-  }
 
   .mood3-mood .product-skills-learned__title {
   font-size: 10px;
@@ -435,6 +428,7 @@ padding: 1rem 0 0;
 
 .mood3-mood .header__menu-item {
   padding: 1.2rem 1.6rem;
+  white-space: nowrap;
 }
 
 .mood3-mood summary.list-menu__item {
@@ -831,7 +825,7 @@ padding: 1rem 0 0;
 .mood3-mood .product--thumbnail .thumbnail-list__item:hover, 
 .mood3-mood .product--thumbnail_slider .thumbnail-list__item:hover,
 .mood3-mood .thumbnail[aria-current] {
-  border: var(--variant-pills-border-width) solid rgba(var(--color-base-text), 1);
+  border: 3px solid #6E4B7E;;
 }
 
 .mood3-mood .product__accordion details[open] summary:before,
@@ -1083,6 +1077,10 @@ padding: 1rem 0 0;
     row-gap: 2rem;
   }
 
+  .mood3-mood .product--thumbnail_slider .thumbnail-slider{
+    margin-top: 1rem;
+  }
+
   .mood3-mood .collection-grid .grid-navigation {
     order: 1;
   }
@@ -1206,7 +1204,8 @@ media-gallery + .buy-buttons .product-form__quantity .form__label {
   height: 5rem;
 }
 .mood3-mood .thumbnail {
-  border: 0.1rem solid rgb(var(--color-base-text), 0.2);
+  border: 3px solid white;
+  box-shadow: 0 4px 6px -1px #0000001a, 0 2px 4px -2px #0000001a;
 }
 
 

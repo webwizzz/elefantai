@@ -17,6 +17,19 @@
     	--padding-bottom: {{ section.settings.padding_bottom }}px;
     }
 
+    #shopify-section-{{ section.id }} .product__divider {
+      width: 100%;
+      line-height: 0;
+    }
+
+    #shopify-section-{{ section.id }} .product__divider-line {
+      margin: 0;
+      border: 0;
+      border-top-style: solid;
+      border-top-width: var(--divider-thickness, 1px);
+      border-top-color: var(--divider-color, rgba(var(--color-base-text), 0.15));
+    }
+
     {% if section.settings.colors_background_section_gradient != blank %}
     	#shopify-section-{{ section.id }} {
     		background: {{ section.settings.colors_background_section_gradient }};
@@ -351,6 +364,55 @@
             {%- when 'image' -%}
               {% if block.settings.block_position == 'under_media' %}
                 {%- render 'block-image', block: block, forloop: forloop, section_id: section.id -%}
+              {% endif %}
+
+            {%- when 'divider' -%}
+              {% if block.settings.block_position == 'under_media' %}
+                <div
+                  class="product__divider quick-add-hidden"
+                  style="--divider-color: {{ block.settings.divider_color }}; --divider-thickness: {{ block.settings.divider_thickness }}px;"
+                  {{ block.shopify_attributes }}
+                >
+                  <hr class="product__divider-line">
+                </div>
+              {% endif %}
+
+            {%- when 'effective_price_cta' -%}
+              {% if block.settings.block_position == 'under_media' %}
+                {%- liquid
+                  assign base_price = product.selected_or_first_available_variant.price
+                  assign buyback_percent = block.settings.buyback_percent | default: 60
+                  assign remaining_percent = 100 | minus: buyback_percent
+                  assign effective_price = base_price | times: remaining_percent | divided_by: 100
+                -%}
+                <div
+                  id="EffectivePrice-{{ block.id }}-{{ section.id }}"
+                  class="product-effective-price quick-add-hidden"
+                  data-effective-price-section="{{ section.id }}"
+                  data-effective-price-block-id="{{ block.id }}"
+                  {{ block.shopify_attributes }}
+                >
+                  <div class="product-effective-price__text-wrap">
+                    <p class="product-effective-price__value">
+                      {{ block.settings.price_prefix }} <span data-effective-price-value>{{ effective_price | money_without_trailing_zeros }}</span>
+                    </p>
+                    {% if block.settings.caption != blank %}
+                      <p class="product-effective-price__caption">{{ block.settings.caption }}</p>
+                    {% endif %}
+                  </div>
+
+                  {% if block.settings.button_label != blank %}
+                    {% if block.settings.button_link != blank %}
+                      <a href="{{ block.settings.button_link }}" class="product-effective-price__button">
+                        {{ block.settings.button_label }}
+                      </a>
+                    {% else %}
+                      <span class="product-effective-price__button" role="button" aria-disabled="true">
+                        {{ block.settings.button_label }}
+                      </span>
+                    {% endif %}
+                  {% endif %}
+                </div>
               {% endif %}
           {%- endcase -%}
         {%- endfor -%}
@@ -1622,6 +1684,55 @@
               {% if block.settings.block_position == 'sidebar' %}
                 {%- render 'block-image', block: block, forloop: forloop, section_id: section.id -%}
               {% endif %}
+
+            {%- when 'divider' -%}
+              {% if block.settings.block_position == 'sidebar' or product.media.size <= 0 %}
+                <div
+                  class="product__divider"
+                  style="--divider-color: {{ block.settings.divider_color }}; --divider-thickness: {{ block.settings.divider_thickness }}px;"
+                  {{ block.shopify_attributes }}
+                >
+                  <hr class="product__divider-line">
+                </div>
+              {% endif %}
+
+            {%- when 'effective_price_cta' -%}
+              {% if block.settings.block_position == 'sidebar' or product.media.size <= 0 %}
+                {%- liquid
+                  assign base_price = product.selected_or_first_available_variant.price
+                  assign buyback_percent = block.settings.buyback_percent | default: 60
+                  assign remaining_percent = 100 | minus: buyback_percent
+                  assign effective_price = base_price | times: remaining_percent | divided_by: 100
+                -%}
+                <div
+                  id="EffectivePrice-{{ block.id }}-{{ section.id }}"
+                  class="product-effective-price"
+                  data-effective-price-section="{{ section.id }}"
+                  data-effective-price-block-id="{{ block.id }}"
+                  {{ block.shopify_attributes }}
+                >
+                  <div class="product-effective-price__text-wrap">
+                    <p class="product-effective-price__value">
+                      {{ block.settings.price_prefix }} <span data-effective-price-value>{{ effective_price | money_without_trailing_zeros }}</span>
+                    </p>
+                    {% if block.settings.caption != blank %}
+                      <p class="product-effective-price__caption">{{ block.settings.caption }}</p>
+                    {% endif %}
+                  </div>
+
+                  {% if block.settings.button_label != blank %}
+                    {% if block.settings.button_link != blank %}
+                      <a href="{{ block.settings.button_link }}" class="product-effective-price__button">
+                        {{ block.settings.button_label }}
+                      </a>
+                    {% else %}
+                      <span class="product-effective-price__button" role="button" aria-disabled="true">
+                        {{ block.settings.button_label }}
+                      </span>
+                    {% endif %}
+                  {% endif %}
+                </div>
+              {% endif %}
           {%- endcase -%}
         {%- endfor -%}
       </product-info>
@@ -1892,6 +2003,55 @@
               {% if block.settings.block_position == 'under_media' %}
                 {%- render 'block-image', block: block, forloop: forloop, section_id: section.id -%}
               {% endif %}
+
+            {%- when 'divider' -%}
+              {% if block.settings.block_position == 'under_media' %}
+                <div
+                  class="product__divider quick-add-hidden"
+                  style="--divider-color: {{ block.settings.divider_color }}; --divider-thickness: {{ block.settings.divider_thickness }}px;"
+                  {{ block.shopify_attributes }}
+                >
+                  <hr class="product__divider-line">
+                </div>
+              {% endif %}
+
+            {%- when 'effective_price_cta' -%}
+              {% if block.settings.block_position == 'under_media' %}
+                {%- liquid
+                  assign base_price = product.selected_or_first_available_variant.price
+                  assign buyback_percent = block.settings.buyback_percent | default: 60
+                  assign remaining_percent = 100 | minus: buyback_percent
+                  assign effective_price = base_price | times: remaining_percent | divided_by: 100
+                -%}
+                <div
+                  id="EffectivePrice-{{ block.id }}-{{ section.id }}"
+                  class="product-effective-price quick-add-hidden"
+                  data-effective-price-section="{{ section.id }}"
+                  data-effective-price-block-id="{{ block.id }}"
+                  {{ block.shopify_attributes }}
+                >
+                  <div class="product-effective-price__text-wrap">
+                    <p class="product-effective-price__value">
+                      {{ block.settings.price_prefix }} <span data-effective-price-value>{{ effective_price | money_without_trailing_zeros }}</span>
+                    </p>
+                    {% if block.settings.caption != blank %}
+                      <p class="product-effective-price__caption">{{ block.settings.caption }}</p>
+                    {% endif %}
+                  </div>
+
+                  {% if block.settings.button_label != blank %}
+                    {% if block.settings.button_link != blank %}
+                      <a href="{{ block.settings.button_link }}" class="product-effective-price__button">
+                        {{ block.settings.button_label }}
+                      </a>
+                    {% else %}
+                      <span class="product-effective-price__button" role="button" aria-disabled="true">
+                        {{ block.settings.button_label }}
+                      </span>
+                    {% endif %}
+                  {% endif %}
+                </div>
+              {% endif %}
           {%- endcase -%}
         {%- endfor -%}
       </div>
@@ -2136,6 +2296,67 @@
 
             {%- render 'block-video', block: block, forloop: forloop, classes: classes, section_id: section.id -%}
           {% endif %}
+
+        {%- when 'divider' -%}
+          {% if block.settings.block_position != 'sidebar' %}
+            {% if block.settings.block_position == 'under_media' %}
+              {% assign divider_classes = 'medium-hide large-up-hide quick-add-hidden' %}
+            {% else %}
+              {% assign divider_classes = '' %}
+            {% endif %}
+
+            <div
+              class="product__divider {{ divider_classes }}"
+              style="--divider-color: {{ block.settings.divider_color }}; --divider-thickness: {{ block.settings.divider_thickness }}px;"
+              {{ block.shopify_attributes }}
+            >
+              <hr class="product__divider-line">
+            </div>
+          {% endif %}
+
+        {%- when 'effective_price_cta' -%}
+          {% if block.settings.block_position != 'sidebar' %}
+            {% if block.settings.block_position == 'under_media' %}
+              {% assign effective_price_classes = 'medium-hide large-up-hide quick-add-hidden' %}
+            {% else %}
+              {% assign effective_price_classes = '' %}
+            {% endif %}
+
+            {%- liquid
+              assign base_price = product.selected_or_first_available_variant.price
+              assign buyback_percent = block.settings.buyback_percent | default: 60
+              assign remaining_percent = 100 | minus: buyback_percent
+              assign effective_price = base_price | times: remaining_percent | divided_by: 100
+            -%}
+            <div
+              id="EffectivePrice-{{ block.id }}-{{ section.id }}"
+              class="product-effective-price {{ effective_price_classes }}"
+              data-effective-price-section="{{ section.id }}"
+              data-effective-price-block-id="{{ block.id }}"
+              {{ block.shopify_attributes }}
+            >
+              <div class="product-effective-price__text-wrap">
+                <p class="product-effective-price__value">
+                  {{ block.settings.price_prefix }} <span data-effective-price-value>{{ effective_price | money_without_trailing_zeros }}</span>
+                </p>
+                {% if block.settings.caption != blank %}
+                  <p class="product-effective-price__caption">{{ block.settings.caption }}</p>
+                {% endif %}
+              </div>
+
+              {% if block.settings.button_label != blank %}
+                {% if block.settings.button_link != blank %}
+                  <a href="{{ block.settings.button_link }}" class="product-effective-price__button">
+                    {{ block.settings.button_label }}
+                  </a>
+                {% else %}
+                  <span class="product-effective-price__button" role="button" aria-disabled="true">
+                    {{ block.settings.button_label }}
+                  </span>
+                {% endif %}
+              {% endif %}
+            </div>
+          {% endif %}
       {%- endcase -%}
     {%- endfor -%}
   {% endif %}
@@ -2206,6 +2427,31 @@
 
       document.querySelector('#Variants-{{ section.id }}').addEventListener('change', function (event) {
         hiddenInput.value = event.currentTarget.value;
+      });
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (typeof subscribe !== 'function' || typeof PUB_SUB_EVENTS === 'undefined') return;
+
+      const sectionId = '{{ section.id }}';
+
+      subscribe(PUB_SUB_EVENTS.variantChange, function (event) {
+        if (!event || !event.data || event.data.sectionId !== sectionId || !event.data.html) return;
+
+        const blocks = document.querySelectorAll(`[data-effective-price-section="${sectionId}"]`);
+        blocks.forEach(function (block) {
+          const blockId = block.getAttribute('data-effective-price-block-id');
+          const sourceBlock = event.data.html.getElementById(`EffectivePrice-${blockId}-${sectionId}`);
+          if (!sourceBlock) return;
+
+          const sourceValue = sourceBlock.querySelector('[data-effective-price-value]');
+          const destinationValue = block.querySelector('[data-effective-price-value]');
+          if (sourceValue && destinationValue) {
+            destinationValue.textContent = sourceValue.textContent;
+          }
+        });
       });
     });
   </script>
@@ -2559,6 +2805,107 @@
             }
           ],
           "default": "sidebar",
+          "label": "Block position"
+        }
+      ]
+    },
+    {
+      "type": "divider",
+      "name": "Divider",
+      "settings": [
+        {
+          "type": "color",
+          "id": "divider_color",
+          "label": "Divider color",
+          "default": "#d9d9d9"
+        },
+        {
+          "type": "range",
+          "id": "divider_thickness",
+          "min": 1,
+          "max": 12,
+          "step": 1,
+          "unit": "px",
+          "label": "Divider thickness",
+          "default": 1
+        },
+        {
+          "type": "select",
+          "id": "block_position",
+          "options": [
+            {
+              "value": "sidebar",
+              "label": "In sidebar"
+            },
+            {
+              "value": "under_media",
+              "label": "Under media"
+            },
+            {
+              "value": "under",
+              "label": "Under product"
+            }
+          ],
+          "default": "under",
+          "label": "Block position"
+        }
+      ]
+    },
+    {
+      "type": "effective_price_cta",
+      "name": "Effective price CTA",
+      "settings": [
+        {
+          "type": "text",
+          "id": "price_prefix",
+          "label": "Price prefix",
+          "default": "or"
+        },
+        {
+          "type": "range",
+          "id": "buyback_percent",
+          "min": 1,
+          "max": 99,
+          "step": 1,
+          "unit": "%",
+          "label": "Buyback percent",
+          "default": 60
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption",
+          "default": "Lorem ipsum"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Learn How it Works"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "select",
+          "id": "block_position",
+          "options": [
+            {
+              "value": "sidebar",
+              "label": "In sidebar"
+            },
+            {
+              "value": "under_media",
+              "label": "Under media"
+            },
+            {
+              "value": "under",
+              "label": "Under product"
+            }
+          ],
+          "default": "under",
           "label": "Block position"
         }
       ]

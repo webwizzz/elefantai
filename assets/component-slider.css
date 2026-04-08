@@ -48,6 +48,9 @@ slider-component.slider-component-full-width {
     -webkit-overflow-scrolling: touch;
     margin-bottom: 0;
     align-items: center;
+    /* box-shadow: 0 4px 6px -1px var(--tw-shadow-color, #0000001a), 0 2px 4px -2px var(--tw-shadow-color, #0000001a);
+    border: 2px solid white;
+    border-radius: 22px; */
   }
 
   .slider.slider--mobile:not(.product__media-list) .slider__slide {
