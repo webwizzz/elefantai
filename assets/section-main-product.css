@@ -128,7 +128,10 @@
 
   .product--large:not(.product--no-media) .product__info-wrapper {
     max-width: 40%;
-    width: calc(40% - var(--column-gap)/ 2);
+    width: calc(40% - var(--column-gap) / 2);
+    height: 100%;
+    padding: 23px;
+    border-radius: 0;
   }
 
   /* media medium */
@@ -907,7 +910,7 @@ a.product__text {
 .product .price__container .price-item--sale {
   font-size: 40px;
   font-weight: 700;
-  color: #f2783f;
+  color: #000;
   line-height: 1;
   white-space: nowrap;
 }
@@ -922,7 +925,7 @@ a.product__text {
 .product .price__regular .price-item--regular {
   font-size: 40px;
   font-weight: 600;
-  color: #f2783f;
+  color: #000;
 }
 
 
@@ -1030,7 +1033,7 @@ a.product__text {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-end;
-  row-gap: 2rem;
+  row-gap: 1rem;
   column-gap: 1rem;
 }
 

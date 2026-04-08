@@ -64,7 +64,11 @@
     line-height: 1.6;
   }
   @media (max-width: 768px) {
-    .hiw-subtitle { font-size: 16px; }
+    .hiw-subtitle { font-size: 14px; }
+
+    .hiw-header{
+      margin-bottom: 20px;
+    }
   }
 
   .hiw-steps-grid {
@@ -158,11 +162,11 @@
     margin: 0 0 8px 0;
   }
   @media (max-width: 768px) {
-    .hiw-step-title { font-size: 18px; }
+    .hiw-step-title { font-size: 16px; }
   }
   .hiw-step-desc {
     font-size: 18px;
-    color: #8C8C8C;
+    color: #606060;
     margin: 0;
     line-height: 1.4;
     max-width: 180px;
@@ -170,7 +174,7 @@
   }
   @media (max-width: 768px) {
     .hiw-step-desc {
-      font-size: 16px;
+      font-size: 14px;
       max-width: unset;
       padding: 0 4px;
     }
@@ -190,6 +194,15 @@
     transition: all 0.3s ease;
     background: transparent;
   }
+
+  @media (max-width: 768px){
+    .hiw-btn {
+      padding: 10px;
+      font-size: 16px;
+    }
+  }
+
+
 
   /* Dynamic Colored Elements */
   #HIW-{{ section.id }} .hiw-title .highlight {

@@ -112,6 +112,7 @@
     gap: 20px;
     position: relative;
   }
+
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -135,9 +136,22 @@
     }
   }
   @media (max-width: 900px) {
-    .fc-grid-container {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+   .fc-grid-container {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 20px;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .fc-card {
+      scroll-snap-align: center;
+      flex-shrink: 0;
     }
   }
   @media (max-width: 768px) {
@@ -161,6 +175,7 @@
     .fc-card {
       flex: 0 0 85%;
       scroll-snap-align: center;
+      flex-shrink: 0;
     }
   }
   .fc-dots-container {
@@ -208,18 +223,21 @@
   .fc-card-img-wrap {
     background: #fcfcfc;
     border-radius: 14px;
-    aspect-ratio: 1;
+    aspect-ratio: 1 / 1;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     margin-bottom: 16px;
-    padding: 10px;
+    overflow: hidden;
   }
   .fc-card-img-wrap img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
+    object-position: center;
+    display: block;
     mix-blend-mode: multiply; /* Helps white background merge cleanly */
   }
   .fc-card-badges {
@@ -404,6 +422,14 @@
       font-size: 16px;
       padding: 10px 30px;
     }
+
+    .fc-card-btn{
+      font-size: 16px;
+      padding: 10px;
+    }
+    .fc-footer{
+      margin-top: 5px;
+    }
   }
   .fc-view-all:hover {
     background: rgba(108, 76, 135, 0.05);
@@ -515,7 +541,7 @@
                 </div>
 
                 <div class="fc-card-price">
-                  {% if product.price_varies %}From {% endif -%}
+                  {% if product.price_varies %} {% endif -%}
                   {{- product.price | money }}
                   {% if product.compare_at_price > product.price %}
                     <s>{{ product.compare_at_price | money }}</s>
@@ -527,7 +553,7 @@
                   {{- bb | money }} ON THIS ORDER
                 </div>
 
-                <form method="post" action="/cart/add" style="margin-top: auto;">
+                <form method="post" action="{{ routes.cart_add_url }}" style="margin-top: auto;">
                   <input type="hidden" name="id" value="{{ product.variants.first.id }}">
                   <button type="submit" class="fc-card-btn">Add to Cart</button>
                 </form>

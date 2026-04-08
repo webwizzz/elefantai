@@ -8,6 +8,19 @@
   --gradient-background: var(--gradient-base-background-1);
 }
 
+.gradient-text {
+  background: linear-gradient(
+    90deg,
+    hsla(209, 68%, 59%, 1) 0%,
+    hsla(281, 25%, 39%, 1) 100%
+  );
+  
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
 .color-background-2 {
   --color-foreground: var(--color-base-text);
   --color-background: var(--color-base-background-2);
