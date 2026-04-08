@@ -17,17 +17,17 @@
         "fallback_bg_color": "#fffaf0",
         "overlay_color": "#000000",
         "overlay_opacity": 0,
-        "heading": "Buy Toys Today,",
-        "highlight_text": "Get 60% Back",
-        "text": "The smart way to buy toys. Play, return when done, and get money back. It's that simple!",
+        "heading": "Bought Today. Bored Tomorrow?",
+        "highlight_text": "Get 60% Back Anyway.",
+        "text": "Kids outgrow toys fast. Keep them while the fun lasts, then trade them in for up to 60% of your money.",
         "heading_color": "#4a90e2",
         "highlight_color": "#f5a623",
         "text_color": "#4a4a4a",
-        "button_label_1": "Start Shopping",
+        "button_label_1": "Start Browsing",
         "button_link_1": "shopify://collections/all",
         "btn_primary_bg": "#9b63b8",
         "btn_primary_text": "#ffffff",
-        "button_label_2": "Learn How it Works",
+        "button_label_2": "How Buyback Works",
         "button_link_2": "shopify://pages/about-funlearn",
         "btn_secondary_color": "#9b63b8",
         "show_arrows": true
@@ -78,8 +78,8 @@
           "settings": {
             "bg_color": "#f1bd56",
             "icon": "shopify://shop_images/SVGRepo_iconCarrier.svg",
-            "title": "Buy",
-            "description": "Choose quality toys for your child"
+            "title": "Shop the Best",
+            "description": "Browse our curated collection of premium, skill-building toys from global brands. No cheap plastics. Just quality play."
           }
         },
         "step_hyP8U4": {
@@ -87,12 +87,13 @@
           "settings": {
             "bg_color": "#5699dc",
             "icon": "shopify://shop_images/SVGRepo_iconCarrier-2.svg",
-            "title": "Play",
-            "description": "Enjoy for weeks or months"
+            "title": "Let Them Play",
+            "description": "Keep the toy for as long as it holds their attention. A week? A month? It’s completely up to you."
           }
         },
         "step_JzQqa4": {
           "type": "step",
+          "disabled": true,
           "settings": {
             "bg_color": "#ed719e",
             "icon": "shopify://shop_images/Shopicon.svg",
@@ -105,8 +106,8 @@
           "settings": {
             "bg_color": "#9169a3",
             "icon": "shopify://shop_images/SVGRepo_iconCarrier-3.svg",
-            "title": "Get Credit",
-            "description": "Receive 60% back"
+            "title": "Sell It Back",
+            "description": "Bored of it? Outgrown it? Send it back. We buy it from you so you can clear shelf space and fund their next obsession."
           }
         }
       },
@@ -122,12 +123,12 @@
         "top_left_image": "shopify://shop_images/Vector.svg",
         "bottom_right_image": "shopify://shop_images/Isolation_Mode.svg",
         "heading_1": "The",
-        "highlight_text": "Circular",
-        "heading_2": "Toy Economy!",
+        "highlight_text": "Smartest Way",
+        "heading_2": "of Toy You’ll Ever Own",
         "highlight_color": "#8c6f9c",
         "subtitle": "The smart way to buy toys. Play, return when done, and get money back.",
         "button_label": "Learn How it Works",
-        "button_link": ""
+        "button_link": "shopify://pages/about-funlearn"
       }
     },
     "understand_sellback_QYfiY9": {
@@ -183,12 +184,12 @@
         "bottom_left_width": 200,
         "bottom_right_image": "shopify://shop_images/Group-14.svg",
         "bottom_right_width": 200,
-        "heading_1": "Understanding",
-        "highlight_text": "Sellback",
-        "heading_2": "Value",
+        "heading_1": "Premium Play.",
+        "highlight_text": "Fraction",
+        "heading_2": "of the Price.",
         "title_color": "#111111",
         "title_highlight_color": "#8a67a8",
-        "subtitle": "See how much you actually save with EleFant's buyback guarantee",
+        "subtitle": "Don’t pay full price for toys they’ll outgrow in six months. Here is exactly how our buyback guarantee flips the script.",
         "subtitle_color": "#555555",
         "arrow_color": "#4c9fef",
         "top_cards_width": 260,
@@ -225,22 +226,22 @@
         "card_1_bg": "#f5f5f5",
         "card_1_icon": "shopify://shop_images/SVGRepo_iconCarrier-4.svg",
         "card_1_icon_bg": "#ffecc2",
-        "card_1_title": "You Buy Toys",
+        "card_1_title": "Premium Toys Cost",
         "card_1_price": "₹10,000",
         "card_1_subtext": "Total Purchase",
         "card_2_bg": "#f5f5f5",
         "card_2_icon": "shopify://shop_images/Group-12.svg",
         "card_2_icon_bg": "#ead3fd",
-        "card_2_title": "You Get Back",
+        "card_2_title": "BuyBack in Your Pocket",
         "card_2_price": "₹6,000",
         "card_2_subtext": "Sellback Value (60%)",
         "card_3_bg": "linear-gradient(73deg, rgba(236, 108, 154, 1), rgba(199, 136, 228, 1) 100%)",
         "card_3_text_color": "#ffffff",
-        "card_3_title": "Your <strong>Effective</strong> Cost",
+        "card_3_title": "What You <em><strong>Actually</strong></em> Paid",
         "card_3_highlight_color": "#f2bb4f",
         "card_3_strikethrough": "₹10,000",
         "card_3_price": "₹4,000",
-        "pill_text": "You Save 60% of Original Cost!",
+        "pill_text": "You keep the memories, we take the clutter!",
         "pill_bg": "#f2bb4f",
         "pill_text_color": "#111111"
       }
@@ -641,24 +642,24 @@
           "type": "card",
           "settings": {
             "icon": "shopify://shop_images/Frame_1430103512.svg",
-            "title": "Toys Are Expensive",
-            "text": "Quality toys cost ₹2,000-₹5,000 each, and kids need new ones constantly."
+            "title": " The Burden of 'The Best'",
+            "text": "Give them the best toys without the financial guilt. Quality play, less stress."
           }
         },
         "card_qpLRmw": {
           "type": "card",
           "settings": {
             "icon": "shopify://shop_images/Frame_1430103512-2.svg",
-            "title": "Kids Get Bored Quickly",
-            "text": "That expensive toy they cried for? It's gathering dust after 2 weeks."
+            "title": "Growing Brains Move Fast",
+            "text": "They aren't bored - they mastered it. Let their toys evolve as fast as they do."
           }
         },
         "card_UyRMMN": {
           "type": "card",
           "settings": {
             "icon": "shopify://shop_images/Frame_1430103512-3.svg",
-            "title": "Homes Get Cluttered",
-            "text": "Unused toys pile up, taking over your living space and creating chaos."
+            "title": "Peace (and Space) Restored",
+            "text": "Clear the floor, clear your mind. Return toys to save space and the planet."
           }
         }
       },
@@ -669,8 +670,8 @@
       ],
       "name": "Why EleFant Exists",
       "settings": {
-        "heading": "Why EleFant *Exists*",
-        "description": "We understand the challenges every parent faces",
+        "heading": "We’ve Been There, *Too*",
+        "description": "Parenting is beautiful, but the \"toy trap\" is exhausting. Raise curious kids without compromising your peace, wallet, or the planet.",
         "button_label": "Learn How it Works",
         "button_link": "shopify://pages/about-funlearn",
         "kite_image": "shopify://shop_images/Frame-2.svg",
@@ -801,13 +802,15 @@
         "category_card_K8RiGn": {
           "type": "category_card",
           "settings": {
-            "overlay_gradient": "linear-gradient(0deg, rgba(142,75,98,0.9) 0%, rgba(142,75,98,0) 100%)",
+            "image": "shopify://shop_images/IMG_2404-scaled_1-3.png",
+            "overlay_image": "shopify://shop_images/Rectangle_3.svg",
+            "overlay_gradient": "linear-gradient(0deg, rgba(142, 75, 98, 0.9), rgba(142, 75, 98, 0) 100%)",
             "badge": "4-6 Years",
             "title": "School Age",
             "desc": "Sensory toys, rattles, and soft blocks for early development",
             "btn_label": "Explore",
             "btn_text_color": "#8e4b62",
-            "btn_link": ""
+            "btn_link": "shopify://collections/8-12-years"
           }
         }
       },
@@ -844,8 +847,8 @@
           "settings": {
             "icon_bg_color": "#4f98de",
             "icon": "shopify://shop_images/SVGRepo_iconCarrier.svg",
-            "title": "Order Delivered",
-            "desc": "<p>Once the order is marked as Delivered, the user becomes eligible to initiate a return/sellback.</p>"
+            "title": "Let Them Play",
+            "desc": "<p>Your premium toys arrive fresh and ready. The moment you unbox, your buyback guarantee is officially locked in.</p>"
           }
         },
         "feature_card_mchfga": {
@@ -853,8 +856,8 @@
           "settings": {
             "icon_bg_color": "#f2bb4f",
             "icon": "shopify://shop_images/Shopicon.svg",
-            "title": "Raise Sellback Request",
-            "desc": "<p>User can raise a request directly from their account.</p>"
+            "title": "Click to Sellback",
+            "desc": "<p>Outgrown it? Just tap 'Sellback' in your account. No stressful forms, no hunting for shipping labels.</p>"
           }
         },
         "feature_card_bniC47": {
@@ -862,8 +865,8 @@
           "settings": {
             "icon_bg_color": "#ec6c9a",
             "icon": "shopify://shop_images/icon.svg",
-            "title": "Condition Check",
-            "desc": "<p>Our Ops team connects with the user to verify:<br/>• Toy condition / damage<br/>• Missing parts (if any)<br/>• Final eligibility</p>"
+            "title": " The Quick Check",
+            "desc": "<p>We do a quick friendly check to assess the toy. And don't worry - we know kids are kids. Normal wear and tear is expected!</p>"
           }
         },
         "feature_card_64tc84": {
@@ -871,8 +874,8 @@
           "settings": {
             "icon_bg_color": "#8a5a9c",
             "icon": "shopify://shop_images/Group-11.svg",
-            "title": "Cashback Calculation",
-            "desc": "<p>Based on the condition, the final sellback amount is calculated.</p>"
+            "title": "Transparent Value",
+            "desc": "<p>Based on the toy's condition, we instantly return 60% value in your account. No hidden deductions, just honest math.</p>"
           }
         },
         "feature_card_X6MHBd": {
@@ -880,8 +883,8 @@
           "settings": {
             "icon_bg_color": "#f37845",
             "icon": "shopify://shop_images/SVGRepo_iconCarrier-3.svg",
-            "title": "Get Your Money Back",
-            "desc": "<p>User can choose how they want the cashback:<br/>• Wallet credit<br/>• Direct payout<br/>• Membership conversion</p>"
+            "title": "Choose Your Reward",
+            "desc": "<p>Take cash straight to your bank, grab wallet credit for their next favorite toy, or upgrade to a Funlearn membership.</p>"
           }
         }
       },
@@ -894,8 +897,8 @@
       ],
       "name": "Play Return Earn Back",
       "settings": {
-        "heading": "Play. Return. *Earn Back.*",
-        "subtitle": "The smart way to buy toys. Play, return when done, and get money back.",
+        "heading": " *The Easiest Goodbye* You’ll Ever Say. ",
+        "subtitle": "5 simple steps from unboxing to buyback. We handle the heavy lifting so you can focus on the playtime.",
         "bg_gradient": "linear-gradient(88deg, rgba(242, 187, 79, 1) 45%, rgba(241, 122, 62, 1) 100%)",
         "heading_color": "#000000",
         "subtitle_color": "#606060",
@@ -929,18 +932,18 @@
         "card_height": 480,
         "card_padding": 80,
         "card_radius": 36,
-        "heading": "Smart parents <strong>save an average of ₹15,000 annually</strong> by using EleFant Wallet credit!",
+        "heading": "Smart parents <strong>save an average of ₹72,000 annually</strong> by using EleFant Wallet credit!",
         "title_color": "#ffffff",
         "highlight_color": "#fdc64a",
-        "description": "The better the condition of the toy when you return it, the higher the buyback value you receive!",
+        "description": "Stop stressing over minor scratches. Return the toy in decent, working condition and lock in a guaranteed, flat 60% buyback value.",
         "desc_color": "#ffffff",
         "subtitle_size": 22,
         "subtitle_weight": "500",
-        "button_label_1": "Start Shopping",
-        "button_link_1": "",
+        "button_label_1": "Explore Toys Category only",
+        "button_link_1": "shopify://collections/all",
         "btn_1_bg": "#ffffff",
         "btn_1_text": "#71507c",
-        "button_label_2": "Learn How it Works",
+        "button_label_2": "",
         "button_link_2": "",
         "btn_2_text": "#ffffff"
       }
@@ -951,46 +954,47 @@
         "feature_iFHHrU": {
           "type": "feature",
           "settings": {
-            "text": "Buy guilt-free knowing you'll get money back"
+            "text": "Invest in premium play knowing you’re never stuck with the full bill."
           }
         },
         "feature_KzdGYY": {
           "type": "feature",
           "settings": {
-            "text": "Declutter easily while recovering your investment"
+            "text": "Breathe easier in a home free from outgrown, dusty toys."
           }
         },
-        "feature_CGnejh": {
+        "feature_hdA8Vq": {
           "type": "feature",
           "settings": {
-            "text": "Keep rotating fresh toys without breaking the bank"
+            "text": "Seamlessly introduce fresh challenges as your child’s brilliant mind grows."
           }
         },
         "feature_kaAwcJ": {
           "type": "feature",
           "settings": {
-            "text": "Support sustainability by keeping toys in circulation"
+            "text": "Every toy you return is a shared joy and a step toward a greener planet."
           }
         }
       },
       "block_order": [
         "feature_iFHHrU",
         "feature_KzdGYY",
-        "feature_CGnejh",
+        "feature_hdA8Vq",
         "feature_kaAwcJ"
       ],
       "name": "Features Solves Layout",
       "settings": {
         "bg_color": "#ffffff",
+        "bg_image": "shopify://shop_images/Desktop_-_27.png",
         "row_max_width": 1100,
         "flip_layout": false,
         "character_size": 280,
-        "heading": "EleFant <strong>Solves</strong> All of This!",
+        "heading": "A <strong>Better Way to Play.</strong> A Lighter Way to Live.",
         "title_color": "#111111",
         "highlight_color": "#6e4b7e",
         "heading_size": 52,
         "heading_weight": "700",
-        "subtitle": "A circular toy economy that works for your family and your wallet",
+        "subtitle": "We built the EleFant to bring the joy back to playtime - without the guilt, the clutter, or the waste.",
         "subtitle_color": "#606060",
         "subtitle_size": 22,
         "subtitle_weight": "500",
@@ -1002,8 +1006,8 @@
         "list_text_color": "#111111",
         "list_font_size": 22,
         "list_font_weight": "500",
-        "btn_label": "Join Thousands of Happy Parents",
-        "btn_link": "",
+        "btn_label": "Join the Mindful Play Movement",
+        "btn_link": "shopify://collections/all",
         "btn_bg": "#6e4b7e",
         "btn_text": "#ffffff",
         "btn_font_size": 22,
@@ -1042,7 +1046,7 @@
             "icon_bg_color": "#d7c9e3",
             "icon_color": "#715392",
             "button_label": "Explore Library Plans",
-            "button_link": "",
+            "button_link": "https://www.theelefant.ai",
             "button_bg": "#ffffff",
             "button_color": "#715392",
             "button_fs_d": 18,
@@ -1078,7 +1082,7 @@
             "icon_bg_color": "#fce3b8",
             "icon_color": "#e39c2f",
             "button_label": "Start Shopping Now",
-            "button_link": "",
+            "button_link": "shopify://collections/all",
             "button_bg": "#ffffff",
             "button_color": "#e39c2f",
             "button_fs_d": 18,
@@ -1111,7 +1115,7 @@
         "card_padding_d": 40,
         "card_padding_m": 24,
         "padding_top": 60,
-        "padding_bottom": 60
+        "padding_bottom": 0
       }
     },
     "community_9YA3Le": {
@@ -1182,21 +1186,22 @@
         "image_card_mRXxMw",
         "image_card_L3KLAx"
       ],
+      "disabled": true,
       "name": "Community",
       "settings": {
         "heading": "@*Elefant.ai*",
         "subtitle": "Join our community for updates and inspiration and a closer look at our creations",
         "heading_size": 52,
         "subtitle_size": 22,
-        "heading_highlight_color": "#6E4B7E",
+        "heading_highlight_color": "#6e4b7e",
         "floating_ball": "shopify://shop_images/Group-2.svg",
         "floating_ball_size": 102,
-        "background_color": "#F1F1F2",
-        "background_accent_color": "#F2E7EE",
+        "background_color": "#f1f1f2",
+        "background_accent_color": "#f2e7ee",
         "card_border_color": "#ffffff",
         "card_border_width": 2,
-        "dot_color": "#C0C0C0",
-        "dot_active_color": "#8F8F8F"
+        "dot_color": "#c0c0c0",
+        "dot_active_color": "#8f8f8f"
       }
     },
     "get_started_card_nb49mw": {
@@ -1217,24 +1222,177 @@
         "btn_text_color": "#8b52a1"
       }
     },
+    "17754262507120698c": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_cards_carousel_fLeTE9": {
+          "type": "shopify://apps/judge-me-reviews/blocks/cards_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "show_sample_reviews": true,
+            "reviews_selection": "all",
+            "products": [],
+            "star_rating": "all",
+            "show_review_media": true,
+            "display_order": "media_first",
+            "no_image_fallback": "review_text_only",
+            "max_reviews": 20,
+            "review_length": "medium",
+            "text_size": "medium",
+            "image_ratio": "1",
+            "reviews_shown": 4,
+            "show_reviewer_name": true,
+            "show_product_name": true,
+            "hide_arrows_mobile": true,
+            "arrows_position": "sides",
+            "max_width": 1600,
+            "corner_styling": "round",
+            "header_text_color": "#000000",
+            "text_color": "#000000",
+            "card_color": "#f9f9f9",
+            "stars_color": "",
+            "arrows_color": "#000000",
+            "transition_speed": 5,
+            "header_text": "Customers are saying",
+            "show_average_rating": true
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_cards_carousel_fLeTE9"
+      ],
+      "settings": {
+        "include_margins": true,
+        "background_color": "color-main-bg",
+        "colors_background_section_gradient": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "rich_text_TJpCRL": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_AQNWpb": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>@Elefant.ai</strong>",
+            "heading_size": "h2",
+            "text_color": "heading"
+          }
+        },
+        "text_KxgcdX": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Join our community for updates and inspiration and a closer look at our creations</p>",
+            "text_color": "main",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_AQNWpb",
+        "text_KxgcdX"
+      ],
+      "name": "Rich text",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "full_width": true,
+        "image_overlay_width": 10,
+        "image_overlay_vertical": 20,
+        "image_overlay_horizontal": 20,
+        "image_overlay_width_mobile": 10,
+        "image_overlay_vertical_mobile": 20,
+        "image_overlay_horizontal_mobile": 20,
+        "image_overlay_animation": "none",
+        "image_overlay_width_2": 10,
+        "image_overlay_vertical_2": 20,
+        "image_overlay_horizontal_2": 20,
+        "image_overlay_width_2_mobile": 10,
+        "image_overlay_vertical_2_mobile": 20,
+        "image_overlay_horizontal_2_mobile": 20,
+        "image_overlay_animation_2": "none",
+        "image_overlay_width_3": 10,
+        "image_overlay_vertical_3": 20,
+        "image_overlay_horizontal_3": 20,
+        "image_overlay_width_3_mobile": 10,
+        "image_overlay_vertical_3_mobile": 20,
+        "image_overlay_horizontal_3_mobile": 20,
+        "image_overlay_animation_3": "none",
+        "shape_position": "top",
+        "shape_type": "none",
+        "shape_color": "#ffffff",
+        "shape_width": 100,
+        "background_color": "color-bg-5",
+        "colors_background_section_gradient": "",
+        "padding_top": 30,
+        "padding_bottom": 42
+      }
+    },
+    "177554358714d059fd": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_MadphJ": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "",
+            "title_color": "#6e4b7e",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 0,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": false,
+            "link_alignment": "left",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_MadphJ"
+      ],
+      "settings": {
+        "include_margins": true,
+        "background_color": "color-bg-5",
+        "colors_background_section_gradient": "",
+        "padding_top": 0,
+        "padding_bottom": 54
+      }
+    },
     "fa_qs_GQgVaC": {
       "type": "FAQs",
       "blocks": {
         "faq_4X8X8a": {
           "type": "faq",
           "settings": {
-            "question": "How does the buy back system works?",
-            "answer": "<p>When you buy a toy, we guarantee to buy it back at the stated percentage (up to 60%) within the buyback period. The value depends on the toy's condition when returned. Simply request a return, ship it back with our prepaid label, and receive your credit or cash refund.</p>"
+            "question": "What is the EleFant?",
+            "answer": "<p><strong>the EleFant </strong>is a membership to play. Instead of buying new toys every time and accumulating them endlessly, we propose that you subscribe to them. Like a library. The system is very simple: you subscribe, order, change when you or your kid gets bored. At the EleFant we’re here to make parenting easier and playtime exciting & unlimited!</p>"
           }
         },
         "faq_YAPywG": {
           "type": "faq",
           "settings": {
-            "question": "How does the buy back system works?",
-            "answer": "<p>When you buy a toy, we guarantee to buy it back at the stated percentage (up to 60%) within the buyback period. The value depends on the toy's condition when returned. Simply request a return, ship it back with our prepaid label, and receive your credit or cash refund.</p>"
+            "question": "How does the EleFant toy library work?",
+            "answer": "<p><strong>1. You subscribe.</strong></p><p>Then you select the toys and books you want.</p><p><strong>2. You play as much as you want.</strong></p><p>No limits, no worries, and no return deadlines or penalties for accidental damage. You decide when it's time for something new.</p><p>3. <strong>Change when you want</strong></p><p>You can place a new order at any time. The exchange is super simple. the EleFant delivery partner gives you the new box and takes the old one</p>"
+          }
+        },
+        "faq_baQYNB": {
+          "type": "faq",
+          "settings": {
+            "question": "How many times can I order in a month?",
+            "answer": "<p>You can order whenever you want. If ordered before 2pm we deliver with-in the next 48 hours, and if ordered post 2pm you get the box a day later (72 hours)</p><p>💡 Pro tip: Our Annual plans gives you unlimited delivery, do make the most of it, and keep the play time truly unlimited!</p>"
           }
         },
         "faq_7Hf7XC": {
+          "type": "faq",
+          "settings": {
+            "question": "How long can I keep what I ordered?",
+            "answer": "<p>There is no pressure to return the the EleFant toys. Use the EleFant games, toys and books as long as you see your child enjoying them or have not got the entire learning from the game ordered. The only condition is that you have an active membership.</p>"
+          }
+        },
+        "faq_q8xgbr": {
           "type": "faq",
           "settings": {
             "question": "How does the buy back system works?",
@@ -1244,24 +1402,98 @@
         "faq_kQEaMz": {
           "type": "faq",
           "settings": {
-            "question": "How does the buy back system works?",
-            "answer": "<p>When you buy a toy, we guarantee to buy it back at the stated percentage (up to 60%) within the buyback period. The value depends on the toy's condition when returned. Simply request a return, ship it back with our prepaid label, and receive your credit or cash refund.</p>"
+            "question": "What is cancel any time and what are the charges?",
+            "answer": "<p>We’ll definitely miss you and we would like to know your preferences, what you are looking for and how we can do better. But if it’s not the right fit, you’re free to cancel anytime.</p><p>⚠️<strong>Full Refund:</strong>Refund requests must be submitted within 14 days from the date of activation for a full refund.</p><p></p><p>Refund requests must be submitted within 14 days from the date of activation for a full refund.</p><p><strong>After 14 Days</strong>:</p><p><strong>Play Time Starter Plan (Quarter Plan)</strong>: The entire amount of ₹3,999 will be deducted, and the plan will remain active for the full quarter.</p><p><strong>Ultimate Playtime Plan:</strong> If a member decides to cancel their Annual Plan, charges will be calculated at ₹1,333 per month for the quarters used (based on the Quarterly Plan price of ₹3,999). The remaining amount will be refunded. Members can choose to continue using the service until the end of the current quarter or opt for an immediate cancellation, with the applicable deductions made.</p><p>This ensures flexibility while making the most of your plan! 😊</p><p>For unconsumed membership periods, <strong>refunds are not possible</strong> .</p>"
           }
         },
         "faq_dwd473": {
           "type": "faq",
           "settings": {
-            "question": "How does the buy back system works?",
-            "answer": "<p>When you buy a toy, we guarantee to buy it back at the stated percentage (up to 60%) within the buyback period. The value depends on the toy's condition when returned. Simply request a return, ship it back with our prepaid label, and receive your credit or cash refund.</p>"
+            "question": "How to cancel my membership?",
+            "answer": "<p>To cancel the membership, kindly reach to us out via call +91 22 4618 4888 or drop an email at </p><p><a href=\"mailto:support@theelefant.ai\">support@theelefant.ai</a> from your <strong>registered phone number </strong>or <strong>registered email id</strong>. You can raise the request 72hrs before the current plan expiry date. We’ll get back to you in 24hrs.</p><p>Things to note:</p><ul><li>All toys currently in holding needs to be returned for the security deposit to be refunded back.</li><li>The membership of the current plan cannot be canceled before its validity expires (cancellation policy applies).</li></ul>"
+          }
+        },
+        "faq_PxtCd3": {
+          "type": "faq",
+          "settings": {
+            "question": "What if I want to change the registered mobile number?",
+            "answer": "<p>Since mobile numbers are the primary key of the account, the number change requests need to be raised via email. Drop in a request from your registered email id to </p><p><a href=\"mailto:support@theelefant.com\">support@theelefant.com</a>. Phone number change may take upto 3 days.</p><p></p><p><strong>Note: Numbers can be changed only once.</strong></p>"
+          }
+        },
+        "faq_cGXRJp": {
+          "type": "faq",
+          "settings": {
+            "question": "What if I’m relocating? Can I still use the EleFant?",
+            "answer": "<p>Of course! If we’re in your new city, we’d love to stay part of your family’s journey.</p><p></p><p>First, return any toys you have.</p><p></p><p></p><p>In the app, go to Profile → Address Details → Edit, enter the new address, and request the update.We’ll approve the new address in 3 days, after which you can place orders again. Double-check that your new address is updated before placing an order!</p>"
+          }
+        },
+        "faq_wMkKJi": {
+          "type": "faq",
+          "settings": {
+            "question": "How can I reach out to support?",
+            "answer": "<p>Our dedicated Member Support Team is here to help with all your questions, guide you through the process, and resolve any issues.</p><p>You can:</p><p>- Call us at <strong>+91</strong> <strong>022 4618 4888</strong></p><p>- Use the <strong>in-app chat</strong> option! Ele, our AI Member Delight Officer, is ready to assist with the basics and will seamlessly pass your query to our team when needed. You can also choose to connect with our team directly.</p><p>- You can also email to us on </p><p><a href=\"mailto:support@theelefant.ai\">support@theelefant.ai</a></p>"
+          }
+        },
+        "faq_WLDxgL": {
+          "type": "faq",
+          "settings": {
+            "question": "Are you worried that the toys won't be clean?",
+            "answer": "<p>Nothing is more frustrating than receiving a product that doesn't meet your expectations. We pay close attention to the quality and safety of our toys before we ship them to you.</p><p>We take this <strong>very</strong> seriously. Your child’s safety is always our top priority. We deliver 100% sanitised toys.</p>"
+          }
+        },
+        "faq_4mqibe": {
+          "type": "faq",
+          "settings": {
+            "question": "Are you concerned that you will be penalized if toys break or pieces are lost?",
+            "answer": "<p>“Oofff… he broke it again…” – stay calm and don’t worry. <strong>Our “damage waiver” warranties also cover accidental damage and even lost removable parts</strong>. Wear and tear is normal and you don’t need to take any extra precautions when using the EleFant toys. We will make sure to only offer toys made from solid, well-assembled and durable materials. Not being a toy rental, you don’t have to worry about return deadlines either. With the EleFant you have maximum fun and minimum stress.</p><p>Losing manuals, parts or small figurines is not serious, you don't have to do anything.</p><p>What happens if a toy or game breaks? If the damage is the result of normal use or a minor accident (e.g. scratches, accidental drop or stepping on a toy), we will cover any replacement or repair costs, so you don't have to worry.</p><p>♻️ We do not require any guarantees for the borrowed toys. We rely on the care and common sense of the families. It’s a shared toy that spreads joy to not just one, but many children, just like yours. 💕</p>"
+          }
+        },
+        "faq_Mf3RJh": {
+          "type": "faq",
+          "settings": {
+            "question": "When will the toys and books I want be back in stock?",
+            "answer": "<p>Members periodically borrow and exchange toys, games and books. The stock is very dynamic and there is a very good chance that the toys you are looking for will return very quickly. We recommend that you create a wishlist and periodically follow the movements of your favorite toys there.</p>"
+          }
+        },
+        "faq_6YDKtm": {
+          "type": "faq",
+          "settings": {
+            "question": "When do I receive the toys?",
+            "answer": "<p>Delivery is fast and reliable! Here’s what to expect:</p><p>Orders before 2 PM arrive<strong> within </strong>48 hours, and orders after 2 PM arrive in 72 hours.</p><p>In case of National/Regional holidays, deliveries might take an additional 1-2 days.</p><p><strong>All orders are delivered between 10 AM-7.30 PM</strong></p><p><strong>No Deliveries on Sunday</strong></p>"
+          }
+        },
+        "faq_nkTxJA": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I exchange only some of the toys? (\" I want to keep some of the toys/books we use now and exchange the rest for new ones \" )",
+            "answer": "<p>Absolutely, we are very flexible around this. You can return the toys you’d like to exchange and place a new order. However, our experts and the experts around the world recommend letting your child play with a toy at least 6-8 times over 4-6 days, as like everything it takes time for the child to fully explore it.</p><p>For partial returns, just make sure you have the same number of toys as your plan allows at any given time.</p>"
+          }
+        },
+        "faq_i3LBQz": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I delete my account and delete my Data?",
+            "answer": "<p><strong>Profile &gt; Manage Account &gt; Delete Account</strong></p><p>Please make sure you return all the toys before Deleting your account.You will lose your subscription, in case you Delete your account.</p>"
           }
         }
       },
       "block_order": [
         "faq_4X8X8a",
         "faq_YAPywG",
+        "faq_baQYNB",
         "faq_7Hf7XC",
+        "faq_q8xgbr",
         "faq_kQEaMz",
-        "faq_dwd473"
+        "faq_dwd473",
+        "faq_PxtCd3",
+        "faq_cGXRJp",
+        "faq_wMkKJi",
+        "faq_WLDxgL",
+        "faq_4mqibe",
+        "faq_Mf3RJh",
+        "faq_6YDKtm",
+        "faq_nkTxJA",
+        "faq_i3LBQz"
       ],
       "name": "FAQs Section",
       "settings": {
@@ -1274,7 +1506,7 @@
         "contact_title": "Still have questions?",
         "contact_text": "Our friendly team is here to help!",
         "contact_btn_label": "Contact Support",
-        "contact_btn_link": "",
+        "contact_btn_link": "shopify://pages/contact",
         "contact_bg": "#6c5082",
         "contact_text_color": "#ffffff"
       }
@@ -1298,6 +1530,9 @@
     "eco_raxapP",
     "community_9YA3Le",
     "get_started_card_nb49mw",
+    "17754262507120698c",
+    "rich_text_TJpCRL",
+    "177554358714d059fd",
     "fa_qs_GQgVaC"
   ]
 }

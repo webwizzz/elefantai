@@ -40,7 +40,7 @@
         "columns_desktop": 4,
         "grid_style": "grid",
         "grid_navigation": true,
-        "image_ratio": "landscape",
+        "image_ratio": "square",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,

@@ -910,7 +910,7 @@ a.product__text {
 .product .price__container .price-item--sale {
   font-size: 40px;
   font-weight: 700;
-  color: #f2783f;
+  color: #000;
   line-height: 1;
   white-space: nowrap;
 }
@@ -925,7 +925,7 @@ a.product__text {
 .product .price__regular .price-item--regular {
   font-size: 40px;
   font-weight: 600;
-  color: #f2783f;
+  color: #000;
 }
 
 

@@ -289,7 +289,7 @@
 
 @media screen and (max-width: 749px) {
   .product-grid.grid--2-col-tablet-down .card--card > .card__content {
-    padding: 1rem 1rem;
+    padding: 10px;
   }
 }
 
@@ -617,6 +617,15 @@
 .card-information {
   width: 100%;
   margin-top: 2rem;
+}
+
+@media screen and (max-width: 990px){
+  .card-information{
+    width: 100%;
+    margin-top: 0rem;
+  }
+
+
 }
 
 .card-information > * {

@@ -138,29 +138,30 @@
         "padding_bottom": 160
       }
     },
-    "how_it_works_4N9wTC": {
+    "how_it_works_TFgPfU": {
       "type": "how-it-works",
       "blocks": {
-        "step_j8UVDX": {
+        "step_3PGMVg": {
           "type": "step",
           "settings": {
             "bg_color": "#f1bd56",
             "icon": "shopify://shop_images/SVGRepo_iconCarrier.svg",
-            "title": "Buy",
-            "description": "Choose quality toys for your child"
+            "title": "Shop the Best",
+            "description": "Browse our curated collection of premium, skill-building toys from global brands. No cheap plastics. Just quality play."
           }
         },
-        "step_8q4VWR": {
+        "step_gyGYFw": {
           "type": "step",
           "settings": {
             "bg_color": "#5699dc",
             "icon": "shopify://shop_images/SVGRepo_iconCarrier-2.svg",
-            "title": "Play",
-            "description": "Enjoy for weeks or months"
+            "title": "Let Them Play",
+            "description": "Keep the toy for as long as it holds their attention. A week? A month? It’s completely up to you."
           }
         },
-        "step_tt3kXJ": {
+        "step_4eJHED": {
           "type": "step",
+          "disabled": true,
           "settings": {
             "bg_color": "#ed719e",
             "icon": "shopify://shop_images/Shopicon.svg",
@@ -168,29 +169,31 @@
             "description": "Send back when done playing"
           }
         },
-        "step_b6tCiB": {
+        "step_FVW4wP": {
           "type": "step",
           "settings": {
             "bg_color": "#9169a3",
             "icon": "shopify://shop_images/SVGRepo_iconCarrier-3.svg",
-            "title": "Get Credit",
-            "description": "Receive 60% back"
+            "title": "Sell It Back",
+            "description": "Bored of it? Outgrown it? Send it back. We buy it from you so you can clear shelf space and fund their next obsession."
           }
         }
       },
       "block_order": [
-        "step_j8UVDX",
-        "step_8q4VWR",
-        "step_tt3kXJ",
-        "step_b6tCiB"
+        "step_3PGMVg",
+        "step_gyGYFw",
+        "step_4eJHED",
+        "step_FVW4wP"
       ],
       "name": "How It Works",
       "settings": {
-        "bg_color": "#fef7e6",
+        "bg_color": "#f9f8f8",
+        "top_left_image": "shopify://shop_images/Vector.svg",
+        "bottom_right_image": "shopify://shop_images/Isolation_Mode.svg",
         "heading_1": "The",
-        "highlight_text": "Circular",
-        "heading_2": "Toy Economy!",
-        "highlight_color": "#8C6F9C",
+        "highlight_text": "Smartest Way",
+        "heading_2": "of Toy You’ll Ever Own",
+        "highlight_color": "#8c6f9c",
         "subtitle": "The smart way to buy toys. Play, return when done, and get money back.",
         "button_label": "Learn How it Works",
         "button_link": ""
@@ -591,7 +594,7 @@
   "order": [
     "main",
     "ed031781-7986-41b3-8f11-c6f15128fa79",
-    "how_it_works_4N9wTC",
+    "how_it_works_TFgPfU",
     "749865e6-2139-4bb7-a898-c28c3c1b2bfd",
     "multicolumn",
     "showcase",

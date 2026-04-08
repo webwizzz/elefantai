@@ -10,6 +10,76 @@
   "page": [],
   "product": [
     {
+      "key": "color-pattern",
+      "namespace": "shopify",
+      "name": "Color",
+      "description": "Defines the primary color or pattern, such as blue or striped",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "hair-styling-tool-features",
+      "namespace": "shopify",
+      "name": "Hair styling tool features",
+      "description": "Identifies special characteristics of hair styling tools, like adjustable thermostat or auto power-off",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "heat-settings",
+      "namespace": "shopify",
+      "name": "Heat settings",
+      "description": "Specifies the temperature control levels of a product, e.g low, medium, high",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "hair-dryer-motor-type",
+      "namespace": "shopify",
+      "name": "Hair dryer motor type",
+      "description": "Specifies the kind of motor used in the hair dryer, impacting durability, noise level, and airflow power",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "specifications",
+      "namespace": "custom",
+      "name": "Specifications",
+      "description": "",
+      "type": {
+        "name": "rich_text_field",
+        "category": "TEXT"
+      }
+    },
+    {
+      "key": "about_this_item",
+      "namespace": "custom",
+      "name": "what's in the box",
+      "description": "",
+      "type": {
+        "name": "rich_text_field",
+        "category": "TEXT"
+      }
+    },
+    {
+      "key": "features",
+      "namespace": "custom",
+      "name": "Features",
+      "description": "",
+      "type": {
+        "name": "rich_text_field",
+        "category": "TEXT"
+      }
+    },
+    {
       "key": "queries",
       "namespace": "shopify--discovery--product_search_boost",
       "name": "Search product boosts",
@@ -46,146 +116,6 @@
       "description": "List of complementary products",
       "type": {
         "name": "list.product_reference",
-        "category": "REFERENCE"
-      }
-    },
-    {
-      "key": "color-pattern",
-      "namespace": "shopify",
-      "name": "Color",
-      "description": "Defines the primary color or pattern, such as blue or striped",
-      "type": {
-        "name": "list.metaobject_reference",
-        "category": "REFERENCE"
-      }
-    },
-    {
-      "key": "recommended-age-group",
-      "namespace": "shopify",
-      "name": "Recommended age group",
-      "description": "Identifies the suitable age range for a product, typically toys and games; e.g. babies, teens",
-      "type": {
-        "name": "list.metaobject_reference",
-        "category": "REFERENCE"
-      }
-    },
-    {
-      "key": "toy-game-material",
-      "namespace": "shopify",
-      "name": "Toy/Game material",
-      "description": "Identifies the main material used in a toy or game, such as plastic or wood",
-      "type": {
-        "name": "list.metaobject_reference",
-        "category": "REFERENCE"
-      }
-    },
-    {
-      "key": "riding-toy-propulsion-type",
-      "namespace": "shopify",
-      "name": "Riding toy propulsion type",
-      "description": "Identifies how a riding toy is propelled, such as electric or pedal",
-      "type": {
-        "name": "list.metaobject_reference",
-        "category": "REFERENCE"
-      }
-    },
-    {
-      "key": "skills",
-      "namespace": "custom",
-      "name": "skills",
-      "description": "",
-      "type": {
-        "name": "list.mixed_reference",
-        "category": "REFERENCE"
-      }
-    },
-    {
-      "key": "express_delivery",
-      "namespace": "custom",
-      "name": "express delivery",
-      "description": "Turn on for the products that have express delivery",
-      "type": {
-        "name": "boolean",
-        "category": "TRUE_FALSE"
-      }
-    },
-    {
-      "key": "about_this_product",
-      "namespace": "custom",
-      "name": "about this product",
-      "description": "",
-      "type": {
-        "name": "rich_text_field",
-        "category": "TEXT"
-      }
-    },
-    {
-      "key": "key_features",
-      "namespace": "custom",
-      "name": "Key Features",
-      "description": "",
-      "type": {
-        "name": "list.metaobject_reference",
-        "category": "REFERENCE"
-      }
-    },
-    {
-      "key": "why_kids_love_it",
-      "namespace": "custom",
-      "name": "Why kids love it",
-      "description": "",
-      "type": {
-        "name": "list.metaobject_reference",
-        "category": "REFERENCE"
-      }
-    },
-    {
-      "key": "specifications",
-      "namespace": "custom",
-      "name": "specifications",
-      "description": "",
-      "type": {
-        "name": "list.metaobject_reference",
-        "category": "REFERENCE"
-      }
-    },
-    {
-      "key": "tags",
-      "namespace": "custom",
-      "name": "tags",
-      "description": "",
-      "type": {
-        "name": "list.single_line_text_field",
-        "category": "TEXT"
-      }
-    },
-    {
-      "key": "portability",
-      "namespace": "shopify",
-      "name": "Portability",
-      "description": "Specifies the ease of moving or carrying a product, typically for breast pumps; e.g. portable, compact size",
-      "type": {
-        "name": "list.metaobject_reference",
-        "category": "REFERENCE"
-      }
-    },
-    {
-      "key": "infant-age-group",
-      "namespace": "shopify",
-      "name": "Infant age group",
-      "description": "Classifies products suitable for specific infant age ranges, e.g. newborn, 0-6 months",
-      "type": {
-        "name": "list.metaobject_reference",
-        "category": "REFERENCE"
-      }
-    },
-    {
-      "key": "developmental-features",
-      "namespace": "shopify",
-      "name": "Developmental features",
-      "description": "Highlights the developmental benefits of a product, such as language development or emotional & social growth",
-      "type": {
-        "name": "list.metaobject_reference",
         "category": "REFERENCE"
       }
     }
