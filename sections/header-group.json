@@ -18,7 +18,7 @@
         "menu": "main-menu",
         "sticky_header_type": "always",
         "highlight_last_menu_item_gradient": true,
-        "show_line_separator": true,
+        "show_line_separator": false,
         "separator_line_color": "#101010",
         "text_color": "main",
         "text_color_hover": "heading",
@@ -27,7 +27,7 @@
         "mega_menu_image": "shopify://shop_images/WhatsAppImage2026-03-27at19.16.50.jpg",
         "image_ratio": "landscape",
         "mm_image_shape": false,
-        "mm_collection": "premium-toys-from-all-big-brands",
+        "mm_collection": "0-to-1-year",
         "dm_custom": "",
         "dm_product": "",
         "enable_search": true,
@@ -45,8 +45,8 @@
         "burger_color": "#6e4b7e",
         "margin_bottom": 0,
         "background_color": "color-main-bg",
-        "padding_top": 28,
-        "padding_bottom": 28
+        "padding_top": 10,
+        "padding_bottom": 10
       }
     }
   },

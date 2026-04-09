@@ -8,6 +8,14 @@
   --gradient-background: var(--gradient-base-background-1);
 }
 
+.swym-atw-btn-wrapper.product_title_left-position, .swym-atw-btn-wrapper.product_title_right-position{
+  justify-content: space-between !important;
+  align-items: start !important;
+}
+
+.related-products-heading strong{
+  color:#9264A8 !important;
+}
 
 .color-background-2 {
   --color-foreground: var(--color-base-text);
@@ -244,8 +252,8 @@ body:has(.section-header .drawer-menu) .announcement-bar-section slideshow-compo
 
 @media screen and (min-width: 990px) {
   .header:not(.drawer-menu).page-width {
-    padding-left: 5rem;
-    padding-right: 5rem;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .page-width--narrow {
@@ -2855,16 +2863,16 @@ product-info .loading-overlay:not(.hidden) ~ *,
 .cart-count-bubble {
   position: absolute;
   color: rgba(var(--button-color-text), 1);
-  background-color: rgba(var(--button-color-bg), 1);
+  background-color: #6E4B7E;
   min-height: 1.3rem;
   min-width: 1.3rem;
-  border-radius: 100%;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 0.7rem;
   line-height: 1;
-  top: 0.9rem;
+  top: 4px;
   left: auto;
   bottom: auto;
   right: 0.8rem;
@@ -2872,6 +2880,8 @@ product-info .loading-overlay:not(.hidden) ~ *,
 
 .cart-count-bubble span {
   line-height: 1;
+  font-size: 12px !important;
+  color: #fff; 
   padding: 0.3rem;
   display: inline-block;
   color: rgb(var(--button-color-text)) !important;
@@ -3159,6 +3169,7 @@ product-info .loading-overlay:not(.hidden) ~ *,
   align-items: center;
   justify-content: center;
   color: white;
+  font-size: 22px;
 }
 
 .header__icon {
@@ -3623,6 +3634,7 @@ details[open] > .header__submenu {
 
 .header__menu-item span {
   position: relative;
+  color: #493254;
 }
 
 .header__menu-item span:after {

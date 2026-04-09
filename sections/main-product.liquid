@@ -384,6 +384,20 @@
                   assign buyback_percent = block.settings.buyback_percent | default: 60
                   assign remaining_percent = 100 | minus: buyback_percent
                   assign effective_price = base_price | times: remaining_percent | divided_by: 100
+                  assign effective_price_cta_link = block.settings.button_link | strip
+                  assign effective_price_cta_first_char = effective_price_cta_link | slice: 0, 1
+
+                  if effective_price_cta_link == '#selback_value' or effective_price_cta_link == '#sellback-value'
+                    assign effective_price_cta_link = '#selback-value'
+                  endif
+
+                  if product != blank
+                    if effective_price_cta_link == blank
+                      assign effective_price_cta_link = product.url | append: '#selback-value'
+                    elsif effective_price_cta_first_char == '#'
+                      assign effective_price_cta_link = product.url | append: effective_price_cta_link
+                    endif
+                  endif
                 -%}
                 <div
                   id="EffectivePrice-{{ block.id }}-{{ section.id }}"
@@ -402,8 +416,8 @@
                   </div>
 
                   {% if block.settings.button_label != blank %}
-                    {% if block.settings.button_link != blank %}
-                      <a href="{{ block.settings.button_link }}" class="product-effective-price__button">
+                    {% if effective_price_cta_link != blank %}
+                      <a href="{{ effective_price_cta_link }}" class="product-effective-price__button">
                         {{ block.settings.button_label }}
                       </a>
                     {% else %}
@@ -1703,6 +1717,20 @@
                   assign buyback_percent = block.settings.buyback_percent | default: 60
                   assign remaining_percent = 100 | minus: buyback_percent
                   assign effective_price = base_price | times: remaining_percent | divided_by: 100
+                  assign effective_price_cta_link = block.settings.button_link | strip
+                  assign effective_price_cta_first_char = effective_price_cta_link | slice: 0, 1
+
+                  if effective_price_cta_link == '#selback_value' or effective_price_cta_link == '#sellback-value'
+                    assign effective_price_cta_link = '#selback-value'
+                  endif
+
+                  if product != blank
+                    if effective_price_cta_link == blank
+                      assign effective_price_cta_link = product.url | append: '#selback-value'
+                    elsif effective_price_cta_first_char == '#'
+                      assign effective_price_cta_link = product.url | append: effective_price_cta_link
+                    endif
+                  endif
                 -%}
                 <div
                   id="EffectivePrice-{{ block.id }}-{{ section.id }}"
@@ -1721,8 +1749,8 @@
                   </div>
 
                   {% if block.settings.button_label != blank %}
-                    {% if block.settings.button_link != blank %}
-                      <a href="{{ block.settings.button_link }}" class="product-effective-price__button">
+                    {% if effective_price_cta_link != blank %}
+                      <a href="{{ effective_price_cta_link }}" class="product-effective-price__button">
                         {{ block.settings.button_label }}
                       </a>
                     {% else %}
@@ -2022,6 +2050,20 @@
                   assign buyback_percent = block.settings.buyback_percent | default: 60
                   assign remaining_percent = 100 | minus: buyback_percent
                   assign effective_price = base_price | times: remaining_percent | divided_by: 100
+                  assign effective_price_cta_link = block.settings.button_link | strip
+                  assign effective_price_cta_first_char = effective_price_cta_link | slice: 0, 1
+
+                  if effective_price_cta_link == '#selback_value' or effective_price_cta_link == '#sellback-value'
+                    assign effective_price_cta_link = '#selback-value'
+                  endif
+
+                  if product != blank
+                    if effective_price_cta_link == blank
+                      assign effective_price_cta_link = product.url | append: '#selback-value'
+                    elsif effective_price_cta_first_char == '#'
+                      assign effective_price_cta_link = product.url | append: effective_price_cta_link
+                    endif
+                  endif
                 -%}
                 <div
                   id="EffectivePrice-{{ block.id }}-{{ section.id }}"
@@ -2040,8 +2082,8 @@
                   </div>
 
                   {% if block.settings.button_label != blank %}
-                    {% if block.settings.button_link != blank %}
-                      <a href="{{ block.settings.button_link }}" class="product-effective-price__button">
+                    {% if effective_price_cta_link != blank %}
+                      <a href="{{ effective_price_cta_link }}" class="product-effective-price__button">
                         {{ block.settings.button_label }}
                       </a>
                     {% else %}
@@ -2327,6 +2369,20 @@
               assign buyback_percent = block.settings.buyback_percent | default: 60
               assign remaining_percent = 100 | minus: buyback_percent
               assign effective_price = base_price | times: remaining_percent | divided_by: 100
+              assign effective_price_cta_link = block.settings.button_link | strip
+              assign effective_price_cta_first_char = effective_price_cta_link | slice: 0, 1
+
+              if effective_price_cta_link == '#selback_value' or effective_price_cta_link == '#sellback-value'
+                assign effective_price_cta_link = '#selback-value'
+              endif
+
+              if product != blank
+                if effective_price_cta_link == blank
+                  assign effective_price_cta_link = product.url | append: '#selback-value'
+                elsif effective_price_cta_first_char == '#'
+                  assign effective_price_cta_link = product.url | append: effective_price_cta_link
+                endif
+              endif
             -%}
             <div
               id="EffectivePrice-{{ block.id }}-{{ section.id }}"
@@ -2345,8 +2401,8 @@
               </div>
 
               {% if block.settings.button_label != blank %}
-                {% if block.settings.button_link != blank %}
-                  <a href="{{ block.settings.button_link }}" class="product-effective-price__button">
+                {% if effective_price_cta_link != blank %}
+                  <a href="{{ effective_price_cta_link }}" class="product-effective-price__button">
                     {{ block.settings.button_label }}
                   </a>
                 {% else %}
@@ -2886,7 +2942,8 @@
         {
           "type": "url",
           "id": "button_link",
-          "label": "Button link"
+          "label": "Button link",
+          "info": "Leave empty to auto-link current product to #selback-value."
         },
         {
           "type": "select",

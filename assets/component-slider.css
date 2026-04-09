@@ -222,6 +222,7 @@ slider-component.slider-component-full-width {
   scrollbar-color: rgb(var(--color-base-text)) rgba(var(--color-base-text), 0.04);
   -ms-overflow-style: none;
   scrollbar-width: none;
+  color: transparent;
 }
 
 .slider::-webkit-scrollbar {

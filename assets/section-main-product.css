@@ -618,6 +618,7 @@ fieldset.product-form__input.color-swatches .form__label {
     padding-top: 1rem;
     padding-bottom: 1rem;
     font-size: 32px;
+    width: 100%;
 }
 
 @media screen and (max-width: 749px) {
@@ -2142,6 +2143,8 @@ variant-selects .product-popup-modal__opener {
 
 .product__inventory.inventory-progress {
   padding-bottom: 1rem;
+  font-size: 16px;
+  color: black;
 }
 
 .product__inventory.inventory-progress .inventory_progress_bar {
@@ -2751,7 +2754,7 @@ variant-selects .product-popup-modal__opener {
 }
 
 .product-wrapp>*+* {
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 
 .quick-add-modal__content .product-wrapp .product {
@@ -2796,7 +2799,7 @@ variant-selects .product-popup-modal__opener {
 
   .product-background-secondary .product.grid,
   .product.grid.media-position-right {
-    column-gap: var(--column-gap);
+    column-gap: 20px;
   }
 }
 

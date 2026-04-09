@@ -45,6 +45,10 @@
     .eco-heading {
       font-size: {{ section.settings.heading_fs_d }}px;
     }
+
+    .eco-heading span {  
+      font-family: 'sag' !important;
+    }
     .eco-description {
       font-size: {{ section.settings.description_fs_d }}px;
     }
@@ -264,7 +268,7 @@
   <div class="eco-header">
     <h2 class="eco-heading">
       {% if section.settings.heading_highlight != blank %}
-        {% assign highlight_style = '<span style="color: '
+        {% assign highlight_style = '<span style="color:'
           | append: section.settings.heading_highlight_color
           | append: ';">'
           | append: section.settings.heading_highlight

@@ -115,9 +115,9 @@
           "settings": {
             "price_prefix": "or",
             "buyback_percent": 60,
-            "caption": "Lorem ipsum",
+            "caption": "through our buyback system",
             "button_label": "Learn How it Works",
-            "button_link": "",
+            "button_link": "#selback_value",
             "block_position": "sidebar"
           }
         },
@@ -302,7 +302,7 @@
         "info_background_color": "color-main-bg",
         "background_color": "--colors-background-section-5",
         "colors_background_section_gradient": "",
-        "padding_top": 20,
+        "padding_top": 10,
         "padding_bottom": 0
       }
     },
@@ -414,7 +414,8 @@
       ],
       "name": "Understand Sellback Value",
       "settings": {
-        "bg_color": "linear-gradient(180deg, rgba(242, 247, 255, 1), rgba(166, 203, 243, 1) 100%)",
+        "anchor_id": "selback-value",
+        "bg_color": "linear-gradient(180deg, rgba(249, 248, 248, 1) 5%, rgba(166, 203, 243, 1) 100%)",
         "bottom_left_width": 200,
         "bottom_right_width": 200,
         "heading_1": "Understanding",
@@ -536,16 +537,16 @@
     "related-products": {
       "type": "related-products",
       "settings": {
-        "heading": "<strong>You May also Like</strong>",
+        "heading": "You May also<strong> Like !</strong>",
         "heading_size": "h2",
-        "heading_color": "heading",
+        "heading_color": "main",
         "text": "",
         "text_body_size": "text-body--large",
         "description_color": "main",
         "show_header_button": false,
         "header_button_label": "SHOP ALL PRODUCTS",
         "header_button_url": "",
-        "heading_align": "left",
+        "heading_align": "center",
         "text_bottom_space": "",
         "products_to_show": 4,
         "columns_desktop": 4,
@@ -581,8 +582,8 @@
         "shape_width": 100,
         "background_color": "color-bg-4",
         "colors_background_section_gradient": "",
-        "padding_top": 160,
-        "padding_bottom": 160
+        "padding_top": 52,
+        "padding_bottom": 20
       }
     }
   },

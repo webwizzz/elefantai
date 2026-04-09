@@ -11,6 +11,10 @@
   }
 }
 
+.related-products-heading strong{
+  color: #9264A8;
+}
+
 .collection .loading-overlay {
   top: 0;
   right: 0;

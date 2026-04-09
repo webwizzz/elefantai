@@ -65,6 +65,7 @@
     "card_style": "card",
     "card_text_alignment": "center",
     "product_card_heading_size": "h6",
+    "enable_quick_add": false,
     "card_corner_radius": 8,
     "quick_add_text": "#101010",
     "quick_add_background": "#fef7e6",

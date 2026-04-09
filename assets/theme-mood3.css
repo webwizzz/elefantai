@@ -1228,7 +1228,7 @@ media-gallery + .buy-buttons .product-form__quantity .form__label {
     -webkit-box-shadow: -6px 6px 0 0 rgb(var(--button-color-layer-3));
   }
 
-  /* .customer.activate button:hover,
+  .customer.activate button:hover,
   .button:hover,
   .shopify-payment-button__button:hover,
   .main-cart-wrap.columns cart-items.is-empty,
@@ -1237,7 +1237,6 @@ media-gallery + .buy-buttons .product-form__quantity .form__label {
   .mood3-mood .header-wrapper[data-sticky-type="cover-logo-size"]:has(.header__search details[open]),
   .js .header-wrapper details > .menu-drawer,
   .mood3-mood .header-wrapper[data-sticky-type="cover-logo-size"]:has(.mega-menu[open]),
-  .mood3-mood .product-background-secondary .product-wrapp,
   .mood3-mood .mega-menu__content,
   .mood3-mood .hotspot-bubble,
   .mood3-mood .multicolumn-card,
@@ -1253,7 +1252,7 @@ media-gallery + .buy-buttons .product-form__quantity .form__label {
   .mood3-mood .product-banner-slider .slider-arrow:hover {
     box-shadow: -8px 8px 0 0 rgb(var(--button-color-layer-3));
     -webkit-box-shadow: -8px 8px 0 0 rgb(var(--button-color-layer-3));
-  } */
+  }
 
   .mood3-mood .product-banner-slider .slider-arrow-prev:hover {
     box-shadow: 8px -8px 0 0 rgb(var(--button-color-layer-3));
@@ -1275,7 +1274,7 @@ media-gallery + .buy-buttons .product-form__quantity .form__label {
 }
 
 @media screen and (max-width: 1024px) {
-  /* .mood3-mood .multicolumn-card,
+  .mood3-mood .multicolumn-card,
   .mood3-mood .with-bg.faq-item[open],
   .mood3-mood .with-bg.faq-item.active,
   .mood3-mood .newsletter .field__input,
@@ -1292,7 +1291,6 @@ media-gallery + .buy-buttons .product-form__quantity .form__label {
   .mood3-mood .header-wrapper[data-sticky-type="cover-logo-size"]:has(.header__search details[open]),
   .mood3-mood .header-wrapper[data-sticky-type="cover-logo-size"]:has(.mega-menu[open]),
   .main-cart-wrap.columns cart-items.is-empty,
-  .mood3-mood .product-background-secondary .product-wrapp,
   .mood3-mood .mega-menu__content,
   .mood3-mood .slider-arrow:hover,
   .mood3-mood .article-card-wrapper:hover .card--card,
@@ -1300,7 +1298,7 @@ media-gallery + .buy-buttons .product-form__quantity .form__label {
   .mood3-mood .product-banner-slider .slider-product {
     box-shadow: -4px 4px 0 0 rgb(var(--button-color-layer-3));
     -webkit-box-shadow: -4px 4px 0 0 rgb(var(--button-color-layer-3));
-  } */
+  }
   .mood3-mood .slider-arrow-prev:hover {
     box-shadow: 4px -4px 0 0 rgb(var(--button-color-layer-3));
     -webkit-box-shadow: 4px -4px 0 0 rgb(var(--button-color-layer-3));
