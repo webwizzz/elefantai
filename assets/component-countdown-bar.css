@@ -86,6 +86,14 @@
   height: 2.6rem;
 }
 
+.countdown-bar__items{
+  display: flex;
+  gap: 2px;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
 .countdown-bar__item {
   display: flex;
   flex-direction: column;
@@ -163,6 +171,9 @@
 @media screen and (min-width: 950px) {
   .countdown-bar__item {
     padding: 2rem;
+  }
+  .countdown-bar__items{
+    gap: 1.3rem;
   }
 
   .product--large .countdown-bar__item {

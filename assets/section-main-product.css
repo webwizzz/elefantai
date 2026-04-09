@@ -6,6 +6,66 @@
   margin: 0;
 }
 
+.product-effective-price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.product-effective-price__text-wrap {
+  min-width: 0;
+}
+
+.product-effective-price__value {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.1;
+  font-weight: 600;
+  color: #6E4B7E;
+}
+
+.product-effective-price__caption {
+  margin: 0.6rem 0 0;
+  font-size: 1.3rem;
+  line-height: 1.4;
+  color: rgba(var(--color-base-text), 0.7);
+}
+
+.product-effective-price__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid #6e4b7e;
+  color: #6e4b7e;
+  border-radius: 4rem;
+  padding: 1.2rem 2.8rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1;
+  background: transparent;
+  white-space: nowrap;
+}
+
+.product-effective-price__button[aria-disabled='true'] {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 749px) {
+
+  .product-effective-price__value {
+    font-size: 16px;
+  }
+
+  .product-effective-price__button {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
 .product.grid {
   --column-gap: 5rem;
   column-gap: var(--column-gap);
@@ -40,6 +100,12 @@
   .product__media-wrapper>.product__accordion,
   .product__media-wrapper>.product__text {
     display: none;
+  }
+
+  .product__info-wrapper{
+    padding: 10px !important;
+    border: 3px solid white;
+    box-shadow: 0 4px 6px -1px #0000001a, 0 2px 4px -2px #0000001a;
   }
 }
 
@@ -131,8 +197,10 @@
     width: calc(40% - var(--column-gap) / 2);
     height: 100%;
     padding: 23px;
-    border-radius: 0;
+    border-radius: 22px;
   }
+
+
 
   /* media medium */
 
@@ -453,7 +521,7 @@ fieldset.product-form__input.color-swatches .form__label {
 }
 
 .product-form__input input[type='radio']:checked+label {
-  background-color: #F17A3E;
+  background-color: #fb5400;
   border-color: rgb(var(--button-color-border));
   color: #fff
 }
@@ -550,6 +618,7 @@ fieldset.product-form__input.color-swatches .form__label {
     padding-top: 1rem;
     padding-bottom: 1rem;
     font-size: 32px;
+    width: 100%;
 }
 
 @media screen and (max-width: 749px) {
@@ -910,7 +979,7 @@ a.product__text {
 .product .price__container .price-item--sale {
   font-size: 40px;
   font-weight: 700;
-  color: #f2783f;
+  color: #000;
   line-height: 1;
   white-space: nowrap;
 }
@@ -925,7 +994,7 @@ a.product__text {
 .product .price__regular .price-item--regular {
   font-size: 40px;
   font-weight: 600;
-  color: #f2783f;
+  color: #000;
 }
 
 
@@ -1308,6 +1377,10 @@ a.product__text {
   .product:not(.product--columns) .product__media-list .product__media-item--full {
     width: 100%;
     max-width: 100%;
+    box-shadow: 0 4px 6px -1px var(--tw-shadow-color, #0000001a), 0 2px 4px -2px var(--tw-shadow-color, #0000001a);
+    border: 2px solid white;
+    /* padding: 10px; */
+    border-radius: 22px;
   }
 }
 
@@ -1895,7 +1968,7 @@ variant-selects .product-popup-modal__opener {
 }
 
 .thumbnail[aria-current] {
-  border: .1rem solid rgb(var(--color-base-text));
+  border: 3px solid #6E4B7E;
 }
 
 .image-magnify-full-size {
@@ -2232,7 +2305,7 @@ variant-selects .product-popup-modal__opener {
 
 .product-media-container.constrain-height.media-fit-contain {
   --contained-width: calc(var(--constrained-height) * var(--aspect-ratio));
-  width: min(var(--contained-width), 100%);
+  /* width: min(var(--contained-width), 100%); */
 }
 
 .product-media-container .media {
@@ -2259,12 +2332,12 @@ variant-selects .product-popup-modal__opener {
   }
 
   .icon-with-text__item span {
-    font-size: 12px;
+    font-size: 10px;
     white-space: nowrap;
   }
 
   .icon-with-text__description{
-   font-size: 10px !important; 
+   font-size: 8px !important; 
   }
 
 
@@ -2679,7 +2752,7 @@ variant-selects .product-popup-modal__opener {
 }
 
 .product-wrapp>*+* {
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 
 .quick-add-modal__content .product-wrapp .product {
@@ -2724,7 +2797,7 @@ variant-selects .product-popup-modal__opener {
 
   .product-background-secondary .product.grid,
   .product.grid.media-position-right {
-    column-gap: var(--column-gap);
+    column-gap: 20px;
   }
 }
 

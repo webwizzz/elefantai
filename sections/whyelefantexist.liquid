@@ -14,7 +14,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     position: relative;
   }
   .why-elefant-header-left {
@@ -39,13 +39,15 @@
     font-size: 22px;
     color: #606060;
     margin: 0;
+    width: 50%;
   }
+
   .why-elefant-kite {
     position: absolute;
     top: -50px;
     right: 35%;
     width: 150px;
-    z-index: 10;
+    z-index: 1;
     pointer-events: none;
   }
   .why-elefant-kite img {
@@ -83,13 +85,14 @@
     flex-direction: column;
     width: 100%;
     max-width: 439px;
-    height: 323px;
+    height: auto;
     border: 3px solid #fff;
     margin: 0 auto;
   }
   .why-elefant-card-image {
     width: 120px;
     height: 120px;
+    flex-shrink: 0;
     margin-bottom: 30px;
     border-radius: 16px;
     overflow: hidden;
@@ -133,6 +136,7 @@
     .why-elefant-header {
       flex-direction: column;
       align-items: flex-start;
+      margin-bottom: 30px;
     }
     .why-elefant-header-left {
       max-width: 100%;
@@ -148,6 +152,14 @@
     .hide-on-mobile {
       display: none !important;
     }
+    .why-elefant-subtitle{
+      font-size: 18px;
+      width: 100%;
+    }
+
+    .why-elefant-cta-btn{
+    font-size: 16px;
+  }
     .why-elefant-cards {
       display: flex;
       overflow-x: auto;
@@ -158,7 +170,7 @@
       -ms-overflow-style: none;
     }
     .why-elefant-card {
-      min-width: 288px;
+      min-width: 270px;
       width: 288px;
       height: 214px;
       scroll-snap-align: center;
@@ -175,6 +187,7 @@
     }
     .why-elefant-card p {
       font-size: 14px;
+      line-height: normal;
     }
     .why-elefant-slider-dots {
       display: flex;
@@ -197,7 +210,7 @@
     .why-elefant-mobile-cta {
       display: flex;
       justify-content: center;
-      margin-top: 30px;
+      margin-top: 10px;
     }
   }
 

@@ -1,3 +1,10 @@
+{%- liquid
+  assign section_anchor_id = section.settings.anchor_id | strip | handleize
+  if section_anchor_id == blank
+    assign section_anchor_id = 'selback-value'
+  endif
+-%}
+
 {%- style -%}
   #US-{{ section.id }} {
     position: relative;
@@ -63,6 +70,16 @@
     z-index: 2;
     max-width: 1000px;
     margin: 0 auto;
+  }
+
+  .us-anchor-target {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    transform: translateY(calc(-1 * var(--header-height, 0px) - 1rem));
+    pointer-events: none;
   }
 
   .us-header {
@@ -227,6 +244,7 @@
     align-items: baseline;
     justify-content: center;
     gap: 16px;
+    white-space:nowrap;
   }
   .us-bc-strikethrough {
     font-size: calc({{ section.settings.bc_price_size }}px * 0.45);
@@ -273,8 +291,8 @@
   }
 
   @media (max-width: 480px) {
-    .us-bc-prices { flex-direction: row; align-items: center; gap: 25px; margin-bottom: 0px; }
-    .us-bc-pill { padding: 10px; }
+    .us-bc-prices { flex-direction: row; align-items: center; gap: 10px; white-space:nowrap; margin-bottom: 0px; }
+    .us-bc-pill { padding: 10px 20px; }
     .us-bottom-card{
       min-height: auto;
       padding: 15px;
@@ -282,7 +300,26 @@
   }
 {%- endstyle -%}
 
+{%- liquid
+  assign base_price = blank
+
+  if product != blank
+    if product.selected_or_first_available_variant != blank
+      assign base_price = product.selected_or_first_available_variant.price
+    elsif product.price != blank
+      assign base_price = product.price
+    endif
+  endif
+
+  if base_price != blank
+    assign buyback_price = base_price | times: 60 | divided_by: 100
+    assign effective_price = base_price | minus: buyback_price
+  endif
+-%}
+
 <div id="US-{{ section.id }}">
+  <span id="{{ section_anchor_id }}" class="us-anchor-target" aria-hidden="true"></span>
+
   {%- comment -%} Dynamically scattered background icons from Customize blocks {%- endcomment -%}
   {% for block in section.blocks %}
     {% if block.type == 'icon' and block.settings.image != blank %}
@@ -354,7 +391,13 @@
           {% endif %}
         </div>
         <h3 class="us-card-label">{{ section.settings.card_1_title }}</h3>
-        <p class="us-card-price">{{ section.settings.card_1_price }}</p>
+        <p class="us-card-price" data-us-buy-price>
+          {% if base_price != blank %}
+            {{ base_price | money | replace: 'Rs.', '₹' | replace: 'Rs', '₹' }}
+          {% else %}
+            {{ section.settings.card_1_price | replace: 'Rs.', '₹' | replace: 'Rs', '₹' }}
+          {% endif %}
+        </p>
         <p class="us-card-subtext">{{ section.settings.card_1_subtext }}</p>
       </div>
 
@@ -383,7 +426,13 @@
           {% endif %}
         </div>
         <h3 class="us-card-label">{{ section.settings.card_2_title }}</h3>
-        <p class="us-card-price">{{ section.settings.card_2_price }}</p>
+        <p class="us-card-price" data-us-buyback-price>
+          {% if buyback_price != blank %}
+            {{ buyback_price | money | replace: 'Rs.', '₹' | replace: 'Rs', '₹' }}
+          {% else %}
+            {{ section.settings.card_2_price | replace: 'Rs.', '₹' | replace: 'Rs', '₹' }}
+          {% endif %}
+        </p>
         <p class="us-card-subtext">{{ section.settings.card_2_subtext }}</p>
       </div>
     </div>
@@ -393,10 +442,22 @@
       <p class="us-bc-label">{{ section.settings.card_3_title }}</p>
 
       <div class="us-bc-prices">
-        {% if section.settings.card_3_strikethrough != blank %}
-          <div class="us-bc-strikethrough">{{ section.settings.card_3_strikethrough }}</div>
+        {% if base_price != blank %}
+          <div class="us-bc-strikethrough" data-us-effective-strikethrough>
+            {{ base_price | money | replace: 'Rs.', '₹' | replace: 'Rs', '₹' }}
+          </div>
+        {% elsif section.settings.card_3_strikethrough != blank %}
+          <div class="us-bc-strikethrough" data-us-effective-strikethrough>
+            {{ section.settings.card_3_strikethrough | replace: 'Rs.', '₹' | replace: 'Rs', '₹' }}
+          </div>
         {% endif %}
-        <div class="us-bc-mainprice">{{ section.settings.card_3_price }}</div>
+        <div class="us-bc-mainprice" data-us-effective-price>
+          {% if effective_price != blank %}
+            {{ effective_price | money | replace: 'Rs.', '₹' | replace: 'Rs', '₹' }}
+          {% else %}
+            {{ section.settings.card_3_price | replace: 'Rs.', '₹' | replace: 'Rs', '₹' }}
+          {% endif %}
+        </div>
       </div>
 
       {% if section.settings.pill_text != blank %}
@@ -408,6 +469,140 @@
   </div>
 </div>
 
+{% if product != blank %}
+  <script>
+    (() => {
+      const root = document.getElementById('US-{{ section.id }}');
+      if (!root) return;
+
+      const buyPriceEl = root.querySelector('[data-us-buy-price]');
+      const buybackPriceEl = root.querySelector('[data-us-buyback-price]');
+      const effectiveStrikeEl = root.querySelector('[data-us-effective-strikethrough]');
+      const effectivePriceEl = root.querySelector('[data-us-effective-price]');
+
+      const variantIds = {{ product.variants | map: 'id' | json }};
+      const variantIdSet = new Set(variantIds.map((id) => Number(id)));
+      const moneyFormat = String({{ shop.money_format | json }} || '')
+        .replace(/Rs\.?/gi, '₹')
+        .replace(/INR/gi, '₹')
+        .replace(/&#8377;/gi, '₹');
+      const buybackPercent = 60;
+
+      const formatWithDelimiters = (number, precision = 2, thousands = ',', decimal = '.') => {
+        const centsNumber = Number(number);
+        if (Number.isNaN(centsNumber) || centsNumber === null) return '0';
+
+        const rounded = (centsNumber / 100).toFixed(precision);
+        const [wholePart, decimalPart] = rounded.split('.');
+        const withThousands = wholePart.replace(/\B(?=(\d{3})+(?!\d))/g, thousands);
+
+        if (!decimalPart) return withThousands;
+        return `${withThousands}${decimal}${decimalPart}`;
+      };
+
+      const ensureRupeeSymbol = (formattedValue) => {
+        const sanitizedValue = String(formattedValue || '')
+          .replace(/Rs\.?\s*/gi, '₹')
+          .replace(/INR\s*/gi, '₹')
+          .replace(/&#8377;/gi, '₹')
+          .trim();
+
+        if (!sanitizedValue) return '₹0';
+        if (sanitizedValue.includes('₹')) return sanitizedValue;
+        return `₹${sanitizedValue}`;
+      };
+
+      const formatMoney = (cents, format) => {
+        const placeholderRegex = /\{\{\s*(\w+)\s*\}\}/;
+        const formatString = String(format || '');
+        const match = formatString.match(placeholderRegex);
+
+        if (!match) return ensureRupeeSymbol(formatWithDelimiters(cents, 2, ',', '.'));
+
+        let value = '';
+        switch (match[1]) {
+          case 'amount':
+            value = formatWithDelimiters(cents, 2, ',', '.');
+            break;
+          case 'amount_no_decimals':
+            value = formatWithDelimiters(cents, 0, ',', '.');
+            break;
+          case 'amount_with_comma_separator':
+            value = formatWithDelimiters(cents, 2, '.', ',');
+            break;
+          case 'amount_no_decimals_with_comma_separator':
+            value = formatWithDelimiters(cents, 0, '.', ',');
+            break;
+          case 'amount_with_apostrophe_separator':
+            value = formatWithDelimiters(cents, 2, "'", '.');
+            break;
+          default:
+            value = formatWithDelimiters(cents, 2, ',', '.');
+        }
+
+        return ensureRupeeSymbol(formatString.replace(placeholderRegex, value));
+      };
+
+      const updatePrices = (basePriceInCents) => {
+        const basePrice = Number(basePriceInCents);
+        if (Number.isNaN(basePrice)) return;
+
+        const buybackPrice = Math.floor((basePrice * buybackPercent) / 100);
+        const effectivePrice = basePrice - buybackPrice;
+
+        if (buyPriceEl) buyPriceEl.textContent = formatMoney(basePrice, moneyFormat);
+        if (buybackPriceEl) buybackPriceEl.textContent = formatMoney(buybackPrice, moneyFormat);
+        if (effectiveStrikeEl) effectiveStrikeEl.textContent = formatMoney(basePrice, moneyFormat);
+        if (effectivePriceEl) effectivePriceEl.textContent = formatMoney(effectivePrice, moneyFormat);
+      };
+
+      const onVariantChange = (event) => {
+        const variant = event && event.data ? event.data.variant : null;
+        if (!variant || typeof variant.id === 'undefined' || typeof variant.price === 'undefined') return;
+
+        const variantId = Number(variant.id);
+        if (variantIdSet.size && !variantIdSet.has(variantId)) return;
+
+        updatePrices(variant.price);
+      };
+
+      const bindVariantChange = () => {
+        if (typeof subscribe !== 'function' || typeof PUB_SUB_EVENTS === 'undefined' || !PUB_SUB_EVENTS.variantChange) {
+          return false;
+        }
+
+        if (typeof root.__usVariantPriceUnsubscribe === 'function') {
+          root.__usVariantPriceUnsubscribe();
+        }
+
+        root.__usVariantPriceUnsubscribe = subscribe(PUB_SUB_EVENTS.variantChange, onVariantChange);
+        return true;
+      };
+
+      if (!bindVariantChange()) {
+        document.addEventListener(
+          'DOMContentLoaded',
+          () => {
+            bindVariantChange();
+          },
+          { once: true }
+        );
+      }
+
+      document.addEventListener(
+        'shopify:section:unload',
+        (event) => {
+          if (!event || !event.detail || event.detail.sectionId !== '{{ section.id }}') return;
+          if (typeof root.__usVariantPriceUnsubscribe === 'function') {
+            root.__usVariantPriceUnsubscribe();
+          }
+        },
+        { once: true }
+      );
+    })();
+  </script>
+{% endif %}
+
 {% schema %}
 {
   "name": "Understand Sellback Value",
@@ -417,6 +612,13 @@
     {
       "type": "header",
       "content": "Overall Section Theme"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Section anchor id",
+      "default": "selback-value",
+      "info": "Use in links as #selback-value"
     },
     {
       "type": "color_background",

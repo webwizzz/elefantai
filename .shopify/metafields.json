@@ -188,6 +188,26 @@
         "name": "list.metaobject_reference",
         "category": "REFERENCE"
       }
+    },
+    {
+      "key": "wheel-type",
+      "namespace": "shopify",
+      "name": "Wheel type",
+      "description": "Specifies the kind of wheel for cycling products, such as inflatable or solid",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "features",
+      "namespace": "shopify",
+      "name": "Features",
+      "description": "Describes additional qualities or characteristics of a product, such as lightweight or foldable",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
     }
   ],
   "variant": [],
