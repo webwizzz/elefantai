@@ -1,3 +1,10 @@
+{%- liquid
+  assign section_anchor_id = section.settings.anchor_id | strip | handleize
+  if section_anchor_id == blank
+    assign section_anchor_id = 'selback-value'
+  endif
+-%}
+
 {%- style -%}
   #US-{{ section.id }} {
     position: relative;
@@ -63,6 +70,16 @@
     z-index: 2;
     max-width: 1000px;
     margin: 0 auto;
+  }
+
+  .us-anchor-target {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    transform: translateY(calc(-1 * var(--header-height, 0px) - 1rem));
+    pointer-events: none;
   }
 
   .us-header {
@@ -227,6 +244,7 @@
     align-items: baseline;
     justify-content: center;
     gap: 16px;
+    white-space:nowrap;
   }
   .us-bc-strikethrough {
     font-size: calc({{ section.settings.bc_price_size }}px * 0.45);
@@ -273,7 +291,7 @@
   }
 
   @media (max-width: 480px) {
-    .us-bc-prices { flex-direction: row; align-items: center; gap: 25px; margin-bottom: 0px; }
+    .us-bc-prices { flex-direction: row; align-items: center; gap: 10px; white-space:nowrap; margin-bottom: 0px; }
     .us-bc-pill { padding: 10px 20px; }
     .us-bottom-card{
       min-height: auto;
@@ -300,6 +318,8 @@
 -%}
 
 <div id="US-{{ section.id }}">
+  <span id="{{ section_anchor_id }}" class="us-anchor-target" aria-hidden="true"></span>
+
   {%- comment -%} Dynamically scattered background icons from Customize blocks {%- endcomment -%}
   {% for block in section.blocks %}
     {% if block.type == 'icon' and block.settings.image != blank %}
@@ -592,6 +612,13 @@
     {
       "type": "header",
       "content": "Overall Section Theme"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Section anchor id",
+      "default": "selback-value",
+      "info": "Use in links as #selback-value"
     },
     {
       "type": "color_background",

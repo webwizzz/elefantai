@@ -14,7 +14,7 @@
       "name": "Elevated Herobanner",
       "settings": {
         "image": "shopify://shop_images/Group-7.svg",
-        "fallback_bg_color": "#fffaf0",
+        "fallback_bg_color": "#f9f8f8",
         "overlay_color": "#000000",
         "overlay_opacity": 0,
         "heading": "Bought Today. Bored Tomorrow?",
@@ -23,12 +23,12 @@
         "heading_color": "#4a90e2",
         "highlight_color": "#f5a623",
         "text_color": "#4a4a4a",
-        "button_label_1": "Start Browsing",
-        "button_link_1": "shopify://collections/all",
+        "button_label_1": "How Buyback Works",
+        "button_link_1": "shopify://pages/about-funlearn",
         "btn_primary_bg": "#9b63b8",
         "btn_primary_text": "#ffffff",
-        "button_label_2": "How Buyback Works",
-        "button_link_2": "shopify://pages/about-funlearn",
+        "button_label_2": "Start browsing",
+        "button_link_2": "shopify://collections/all",
         "btn_secondary_color": "#9b63b8",
         "show_arrows": true
       }
@@ -36,29 +36,22 @@
     "featuredproducts_cw8znJ": {
       "type": "featuredproducts",
       "blocks": {
-        "collection_7RyBRc": {
-          "type": "collection",
-          "settings": {
-            "collection": ""
-          }
-        },
-        "collection_wQpBQq": {
-          "type": "collection",
-          "settings": {
-            "collection": ""
-          }
-        },
         "collection_KHQzfa": {
           "type": "collection",
           "settings": {
             "collection": "5-8-years"
           }
+        },
+        "collection_cp8Qjb": {
+          "type": "collection",
+          "settings": {
+            "collection": "1-3-years"
+          }
         }
       },
       "block_order": [
-        "collection_7RyBRc",
-        "collection_wQpBQq",
-        "collection_KHQzfa"
+        "collection_KHQzfa",
+        "collection_cp8Qjb"
       ],
       "name": "Featured Products Tabs",
       "settings": {
@@ -221,7 +214,7 @@
         "bc_price_size_m": 40,
         "bc_price_weight": "800",
         "bc_pill_size": 18,
-        "bc_pill_size_m": 13,
+        "bc_pill_size_m": 12,
         "bc_pill_weight": "700",
         "card_1_bg": "#f5f5f5",
         "card_1_icon": "shopify://shop_images/SVGRepo_iconCarrier-4.svg",
@@ -278,10 +271,6 @@
           "settings": {
             "logo": "shopify://shop_images/download_4.png"
           }
-        },
-        "logo_9NNcGN": {
-          "type": "logo",
-          "settings": {}
         }
       },
       "block_order": [
@@ -289,8 +278,7 @@
         "logo_4wrCRh",
         "logo_KHrign",
         "logo_9YY4KW",
-        "logo_yUF8HM",
-        "logo_9NNcGN"
+        "logo_yUF8HM"
       ],
       "name": "Trusted Brands Scroller",
       "settings": {
@@ -406,6 +394,7 @@
         "pallet_Am9Y4M",
         "pallet_78ADc7"
       ],
+      "disabled": true,
       "name": "Multipalette",
       "settings": {
         "heading": "",
@@ -469,6 +458,91 @@
         "button_link_2": "shopify://pages/about-funlearn",
         "btn_2_text": "#ffffff",
         "image": "shopify://shop_images/toy-image-17323502458014_1.png"
+      }
+    },
+    "shopby_section_bJKwzX": {
+      "type": "shopby-section",
+      "blocks": {
+        "category_card_DmYgLq": {
+          "type": "category_card",
+          "settings": {
+            "image": "shopify://shop_images/IMG_2404-scaled_1.jpg",
+            "overlay_image": "shopify://shop_images/Rectangle_3.png",
+            "overlay_gradient": "linear-gradient(0deg, rgba(236, 108, 154, 1), rgba(204, 113, 135, 0) 100%)",
+            "badge": "0-12 Months",
+            "title": "Newborn & Infant",
+            "desc": "Sensory toys, rattles, and soft blocks for early development",
+            "btn_label": "Explore",
+            "btn_text_color": "#cc7187",
+            "btn_link": "shopify://collections/0-to-1-year"
+          }
+        },
+        "category_card_byt79K": {
+          "type": "category_card",
+          "settings": {
+            "image": "shopify://shop_images/IMG_2404-scaled_1.png",
+            "overlay_image": "shopify://shop_images/Rectangle_3-2.png",
+            "overlay_gradient": "linear-gradient(0deg, rgba(0, 0, 0, 0.9), rgba(82, 143, 195, 0) 100%)",
+            "badge": "1-2 Years",
+            "title": "Toddler",
+            "desc": "Sensory toys, rattles, and soft blocks for early development",
+            "btn_label": "Explore",
+            "btn_text_color": "#528fc3",
+            "btn_link": "shopify://collections/1-3-years"
+          }
+        },
+        "category_card_znGtmd": {
+          "type": "category_card",
+          "settings": {
+            "image": "shopify://shop_images/IMG_2404-scaled_1-2.png",
+            "overlay_image": "shopify://shop_images/Rectangle_3-3.png",
+            "overlay_gradient": "linear-gradient(0deg, rgba(0, 0, 0, 1), rgba(205, 152, 43, 0) 100%)",
+            "badge": "2-4 Years",
+            "title": "Pre-school",
+            "desc": "Sensory toys, rattles, and soft blocks for early development",
+            "btn_label": "Explore",
+            "btn_text_color": "#cd982b",
+            "btn_link": "shopify://collections/3-5-years"
+          }
+        },
+        "category_card_K8RiGn": {
+          "type": "category_card",
+          "settings": {
+            "image": "shopify://shop_images/IMG_2404-scaled_1-3.png",
+            "overlay_image": "shopify://shop_images/Rectangle_3.svg",
+            "overlay_gradient": "linear-gradient(0deg, rgba(142, 75, 98, 0.9), rgba(142, 75, 98, 0) 100%)",
+            "badge": "4-6 Years",
+            "title": "School Age",
+            "desc": "Sensory toys, rattles, and soft blocks for early development",
+            "btn_label": "Explore",
+            "btn_text_color": "#8e4b62",
+            "btn_link": "shopify://collections/8-12-years"
+          }
+        }
+      },
+      "block_order": [
+        "category_card_DmYgLq",
+        "category_card_byt79K",
+        "category_card_znGtmd",
+        "category_card_K8RiGn"
+      ],
+      "name": "Shop By Age",
+      "settings": {
+        "heading": "Shop by *Age*",
+        "subtitle": "Find the perfect toys for your child's developmental stage",
+        "deco_image": "shopify://shop_images/Group-2.svg",
+        "bg_image": "shopify://shop_images/Desktop_-_11.png",
+        "bg_gradient": "radial-gradient(rgba(242, 240, 245, 1), rgba(242, 240, 245, 0.9882) 100%)",
+        "main_btn_label": "Browse all Categories",
+        "main_btn_link": "shopify://collections/all",
+        "heading_size_desktop": 44,
+        "subtitle_size_desktop": 18,
+        "card_title_desktop": 20,
+        "card_desc_desktop": 14,
+        "heading_size_mobile": 32,
+        "subtitle_size_mobile": 15,
+        "card_title_mobile": 18,
+        "card_desc_mobile": 13
       }
     },
     "featured_product_mTRXnC": {
@@ -536,7 +610,6 @@
         },
         "variant_picker_pJ3wGY": {
           "type": "variant_picker",
-          "disabled": true,
           "settings": {
             "picker_type": "button",
             "label_size": "medium",
@@ -754,91 +827,6 @@
         "card_bottom_mobile": 18
       }
     },
-    "shopby_section_bJKwzX": {
-      "type": "shopby-section",
-      "blocks": {
-        "category_card_DmYgLq": {
-          "type": "category_card",
-          "settings": {
-            "image": "shopify://shop_images/IMG_2404-scaled_1.jpg",
-            "overlay_image": "shopify://shop_images/Rectangle_3.png",
-            "overlay_gradient": "linear-gradient(0deg, rgba(236, 108, 154, 1), rgba(204, 113, 135, 0) 100%)",
-            "badge": "0-12 Months",
-            "title": "Newborn & Infant",
-            "desc": "Sensory toys, rattles, and soft blocks for early development",
-            "btn_label": "Explore",
-            "btn_text_color": "#cc7187",
-            "btn_link": ""
-          }
-        },
-        "category_card_byt79K": {
-          "type": "category_card",
-          "settings": {
-            "image": "shopify://shop_images/IMG_2404-scaled_1.png",
-            "overlay_image": "shopify://shop_images/Rectangle_3-2.png",
-            "overlay_gradient": "linear-gradient(0deg, rgba(0, 0, 0, 0.9), rgba(82, 143, 195, 0) 100%)",
-            "badge": "1-2 Years",
-            "title": "Toddler",
-            "desc": "Sensory toys, rattles, and soft blocks for early development",
-            "btn_label": "Explore",
-            "btn_text_color": "#528fc3",
-            "btn_link": ""
-          }
-        },
-        "category_card_znGtmd": {
-          "type": "category_card",
-          "settings": {
-            "image": "shopify://shop_images/IMG_2404-scaled_1-2.png",
-            "overlay_image": "shopify://shop_images/Rectangle_3-3.png",
-            "overlay_gradient": "linear-gradient(0deg, rgba(0, 0, 0, 1), rgba(205, 152, 43, 0) 100%)",
-            "badge": "2-4 Years",
-            "title": "Pre-school",
-            "desc": "Sensory toys, rattles, and soft blocks for early development",
-            "btn_label": "Explore",
-            "btn_text_color": "#cd982b",
-            "btn_link": ""
-          }
-        },
-        "category_card_K8RiGn": {
-          "type": "category_card",
-          "settings": {
-            "image": "shopify://shop_images/IMG_2404-scaled_1-3.png",
-            "overlay_image": "shopify://shop_images/Rectangle_3.svg",
-            "overlay_gradient": "linear-gradient(0deg, rgba(142, 75, 98, 0.9), rgba(142, 75, 98, 0) 100%)",
-            "badge": "4-6 Years",
-            "title": "School Age",
-            "desc": "Sensory toys, rattles, and soft blocks for early development",
-            "btn_label": "Explore",
-            "btn_text_color": "#8e4b62",
-            "btn_link": "shopify://collections/8-12-years"
-          }
-        }
-      },
-      "block_order": [
-        "category_card_DmYgLq",
-        "category_card_byt79K",
-        "category_card_znGtmd",
-        "category_card_K8RiGn"
-      ],
-      "name": "Shop By Age",
-      "settings": {
-        "heading": "Shop by *Age*",
-        "subtitle": "Find the perfect toys for your child's developmental stage",
-        "deco_image": "shopify://shop_images/Group-2.svg",
-        "bg_image": "shopify://shop_images/Desktop_-_11.png",
-        "bg_gradient": "radial-gradient(rgba(242, 240, 245, 1), rgba(242, 240, 245, 0.9882) 100%)",
-        "main_btn_label": "Browse all Categories",
-        "main_btn_link": "",
-        "heading_size_desktop": 44,
-        "subtitle_size_desktop": 18,
-        "card_title_desktop": 20,
-        "card_desc_desktop": 14,
-        "heading_size_mobile": 32,
-        "subtitle_size_mobile": 15,
-        "card_title_mobile": 18,
-        "card_desc_mobile": 13
-      }
-    },
     "play_return_r6F4gN": {
       "type": "play-return",
       "blocks": {
@@ -985,7 +973,7 @@
       "name": "Features Solves Layout",
       "settings": {
         "bg_color": "#ffffff",
-        "bg_image": "shopify://shop_images/Desktop_-_27.png",
+        "bg_image": "shopify://shop_images/Desktop_-_28.png",
         "row_max_width": 1100,
         "flip_layout": false,
         "character_size": 280,
@@ -1518,12 +1506,12 @@
     "how_it_works_dzJUai",
     "understand_sellback_QYfiY9",
     "brand_DEffTN",
+    "shopby_section_bJKwzX",
     "multi_pallete_3f66Mn",
     "text_image_card_p9QVHG",
     "featured_product_mTRXnC",
     "whyelefantexist_kiEd6F",
     "what_this_mean_6d7UUR",
-    "shopby_section_bJKwzX",
     "play_return_r6F4gN",
     "elevated_card_hNVmQ8",
     "solves_EcadUB",

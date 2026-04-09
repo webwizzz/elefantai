@@ -55,24 +55,24 @@
         "arrow_style": "arrow",
         "arrows_btn_color": "#ffffff",
         "arrows_btn_color_hover": "#ffffff",
-        "arrows_btn_bg_color": "#da3c24",
-        "arrows_btn_bg_color_hover": "#da3c24"
+        "arrows_btn_bg_color": "#6e4b7e",
+        "arrows_btn_bg_color_hover": "#6e4b7e"
       }
     },
     "promo-popup": {
       "type": "promo-popup",
       "settings": {
-        "enable_promo_popup": false,
+        "enable_promo_popup": true,
         "enable_in_customizer": false,
-        "popup_type": "popup_subscribe",
+        "popup_type": "popup_discount",
         "popup_heading": "<h2><strong>Welcome to EleFant!</strong></h2><p>Be the first to see New Arrivals, Exclusive Deals & much more.</p>",
         "text_color": "main",
         "popup_description": "<h4><strong>Get 10% Off on Your First Purchase</strong></h4>",
         "description_color": "main",
         "text_alignment": "left",
         "popup_tag": "Discount code.",
-        "popup_timeout": 12,
-        "popup_times": 5,
+        "popup_timeout": 1,
+        "popup_times": 1,
         "background_color": "#fef7e6",
         "discount_popup_heading": "<h3><strong>Congratulations! You’ve Successfully Joined Our List</strong></h3>",
         "promo_text_color": "main",
@@ -95,7 +95,7 @@
         "heading_weight": "600",
         "text": "<p>Welcome Discount</p><h3><strong>Get 10% Off</strong></h3>",
         "text_color": "main",
-        "text_color_2": "#da3c24",
+        "text_color_2": "#6e4b7e",
         "text_2": "Get 10% Off",
         "text_alignment": "center",
         "timeout": 5,
@@ -108,7 +108,7 @@
         "popup_text_color": "heading",
         "popup_text_alignment": "center",
         "popup_tag": "Discount code.",
-        "popup_background_color": "#ffd265",
+        "popup_background_color": "#fef7e6",
         "subscribe_popup_shape": true
       }
     }
