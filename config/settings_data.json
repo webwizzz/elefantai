@@ -230,7 +230,7 @@
       "main-password-header": {
         "type": "main-password-header",
         "settings": {
-          "background_color": "color-bg-3",
+          "background_color": "color-main-bg",
           "text_color": "main",
           "text_color_hover": "heading-secondary"
         }
@@ -238,7 +238,7 @@
       "main-password-footer": {
         "type": "main-password-footer",
         "settings": {
-          "background_color": "color-bg-3",
+          "background_color": "color-bg-2",
           "text_color": "main",
           "text_color_hover": "heading-secondary"
         }
