@@ -4,6 +4,10 @@
     padding: 60px 40px;
     font-family: inherit;
   }
+
+  .featured-collections-wrapper .swym-wishlist-collections-v2-container{
+    z-index: 2;
+  }
   .fc-header {
     display: flex;
     justify-content: space-between;
@@ -45,6 +49,7 @@
   }
   .fc-title .highlight {
     color: #6c4c87; /* purple */
+    font-family: 'sag' !important; /* Curly font for highlight */
   }
   .fc-subtitle {
     font-size: 22px;
@@ -107,13 +112,26 @@
     animation: fadeIn 0.4s ease-in-out;
   }
   .fc-grid-container {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    display: flex;
+    flex-wrap: nowrap;
+    scroll-snap-type: x mandatory;
     gap: 20px;
     position: relative;
     overflow-x: auto;
     scrollbar-width: none;
+    overflow-x: auto;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    -webkit-overflow-scrolling: touch;
+    align-items: stretch;
+    padding-bottom: 20px;
   }
+  .fc-grid-container::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
 
   @keyframes fadeIn {
     from {
@@ -128,56 +146,46 @@
 
   @media (max-width: 1400px) {
     .fc-grid-container {
-      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
     }
   }
   @media (max-width: 1100px) {
     .fc-grid-container {
-      grid-template-columns: repeat(3, 1fr);
       gap: 16px;
     }
   }
-  @media (max-width: 900px) {
-   .fc-grid-container {
-      display: flex;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none !important;
-      -ms-overflow-style: none !important;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 20px;
-      gap: 16px;
-      align-items: stretch;
-    }
 
+  .fc-card {
+    flex: 0 0 calc((100% - 80px) / 5);
+    scroll-snap-align: center;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 1400px) {
     .fc-card {
-      scroll-snap-align: center;
-      flex-shrink: 0;
+      flex-basis: calc((100% - 48px) / 4);
     }
   }
+
+  @media (max-width: 1100px) {
+    .fc-card {
+      flex-basis: calc((100% - 32px) / 3);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .fc-card {
+      flex-basis: calc((100% - 16px) / 2);
+    }
+  }
+
   @media (max-width: 768px) {
     .fc-grid-container {
-      display: flex;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none !important;
-      -ms-overflow-style: none !important;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 20px;
       gap: 16px;
-      align-items: stretch;
-    }
-    .fc-grid-container::-webkit-scrollbar {
-      display: none !important;
-      width: 0 !important;
-      height: 0 !important;
+      padding-bottom: 0px;
     }
     .fc-card {
       flex: 0 0 85%;
-      scroll-snap-align: center;
-      flex-shrink: 0;
     }
   }
   .fc-dots-container {
@@ -210,46 +218,74 @@
   .fc-card {
     background: #fff;
     border-radius: 20px;
-    padding: 16px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    padding: 0;
     display: flex;
     flex-direction: column;
     position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .fc-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
   }
 
   .fc-card-img-wrap {
     background: #fcfcfc;
-    border-radius: 14px;
+    border-radius: 20px 20px 0 0;
     aspect-ratio: 1 / 1;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    margin-bottom: 16px;
+    margin-bottom: 0;
     overflow: hidden;
   }
-  .fc-card-img-wrap img {
+
+  .fc-card-img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: contain;
     object-position: center;
     display: block;
+    box-sizing: border-box;
     mix-blend-mode: multiply; /* Helps white background merge cleanly */
+    transition: opacity 0.25s ease;
+    z-index: 1;
   }
+
+  .fc-card-img--secondary {
+    opacity: 0;
+  }
+
+  .fc-card-img-wrap:hover .fc-card-img--secondary {
+    opacity: 1;
+  }
+
+  .fc-card-img-wrap:hover .fc-card-img--primary {
+    opacity: 0;
+  }
+
+  .fc-card-img-wrap .placeholder-svg {
+    max-width: 100%;
+    max-height: 100%;
+    z-index: 1;
+  }
+
+  .fc-card-bottom {
+    padding: 10px;
+  }
+
   .fc-card-badges {
     position: absolute;
     top: 10px;
     left: 10px;
     right: 10px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 8px;
+    flex-wrap: wrap;
     align-items: flex-start;
+    z-index: 2;
   }
   .badge-main {
     background: #f28eaa;
@@ -270,44 +306,6 @@
   }
   .badge-main.editors-pick {
     background: #42b883;
-  }
-
-  .badge-new {
-    background: #fff;
-    color: #333;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 1rem;
-    font-weight: 700;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  .fc-card-heart {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    width: 32px;
-    height: 32px;
-    background: #fff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    color: #666;
-    transition: color 0.2s;
-  }
-  .fc-card-heart:hover {
-    color: #e74c3c;
-  }
-  .fc-card-heart svg {
-    width: 16px;
-    height: 16px;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 2;
-    margin-top: 1px;
   }
 
   .fc-card-category {
@@ -382,6 +380,21 @@
     letter-spacing: 0.5px;
   }
 
+  .fc-card-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .fc-card:hover .fc-card-link {
+    color: inherit;
+  }
+
+  .fc-card form {
+    margin-top: auto;
+    padding: 0 10px 10px;
+  }
+
   .fc-card-btn {
     display: block;
     width: 100%;
@@ -423,6 +436,7 @@
     .fc-view-all {
       font-size: 16px;
       padding: 10px 30px;
+      width: 100%;
     }
 
     .fc-card-btn{
@@ -443,9 +457,24 @@
     max-height: 100px;
     fill: #ccc;
   }
+
+  .fc-empty-state {
+    background: #fff;
+    border-radius: 16px;
+    padding: 16px;
+    color: #666;
+    font-size: 16px;
+  }
+
+  .fc-app-blocks {
+    margin-top: 20px;
+  }
 {%- endstyle -%}
 
 <div class="featured-collections-wrapper" id="FC-{{ section.id }}">
+  {% assign has_collection_tabs = false %}
+  {% assign first_collection_url = routes.all_products_collection_url %}
+
   <div class="fc-header">
     <div class="fc-title-area">
       <h2 class="fc-title">
@@ -457,191 +486,237 @@
     </div>
 
     <div class="fc-tabs">
+      {% assign collection_tab_index = 0 %}
+      {% assign first_collection_tab_rendered = false %}
       {% for block in section.blocks %}
-        {% assign collection = collections[block.settings.collection] %}
-        {% if collection.title != blank %}
-          <button class="fc-tab-btn {% if forloop.first %}active{% endif %}" data-target="FC-wrapper-{{ block.id }}">
-            {{ collection.title }}
-          </button>
-        {% else %}
-          <button class="fc-tab-btn {% if forloop.first %}active{% endif %}" data-target="FC-wrapper-{{ block.id }}">
-            Collection {{ forloop.index }}
-          </button>
+        {% if block.type == 'collection' %}
+          {% assign collection = collections[block.settings.collection] %}
+          {% if collection != blank %}
+            {% assign collection_tab_index = collection_tab_index | plus: 1 %}
+            {% assign has_collection_tabs = true %}
+            {% if first_collection_tab_rendered == false %}
+              {% assign first_collection_url = collection.url %}
+            {% endif %}
+
+            <button
+              class="fc-tab-btn {% if first_collection_tab_rendered == false %}active{% endif %}"
+              data-target="FC-wrapper-{{ block.id }}"
+              data-collection-url="{{ collection.url }}"
+            >
+              {% if collection.title != blank %}
+                {{ collection.title }}
+              {% else %}
+                Collection {{ collection_tab_index }}
+              {% endif %}
+            </button>
+
+            {% if first_collection_tab_rendered == false %}
+              {% assign first_collection_tab_rendered = true %}
+            {% endif %}
+          {% endif %}
         {% endif %}
       {% endfor %}
-      {% if section.blocks.size == 0 %}
-        <button class="fc-tab-btn active">Example Collection</button>
-      {% endif %}
     </div>
   </div>
 
   <div class="fc-grids">
+    {% assign first_collection_wrapper_rendered = false %}
     {% for block in section.blocks %}
-      {% assign collection = collections[block.settings.collection] %}
-      <div
-        class="fc-slider-wrapper {% if forloop.first %}active{% endif %}"
-        id="FC-wrapper-{{ block.id }}"
-        {{ block.shopify_attributes }}
-      >
-        <div class="fc-grid-container" id="FC-grid-{{ block.id }}">
-          {% if collection.products.size > 0 %}
-            {% for product in collection.products limit: 5 %}
-              {%- comment -%} Determine Badge Class securely based on loop index to imitate image {%- endcomment -%}
-              {% assign badge_class = 'badge-main' %}
-              {% assign badge_text = 'Most Loved' %}
-              {% assign modulo = forloop.index | modulo: 5 %}
-              {% if modulo == 2 %}
-                {% assign badge_class = 'badge-main best-seller' %}
-                {% assign badge_text = 'Best Seller' %}
-              {% elsif modulo == 3 %}
-                {% assign badge_class = 'badge-main top-pick' %}
-                {% assign badge_text = 'Top Pick' %}
-              {% elsif modulo == 4 %}
-                {% assign badge_class = 'badge-main eco-choice' %}
-                {% assign badge_text = 'Eco Choice' %}
-              {% elsif modulo == 0 %}
-                {% assign badge_class = 'badge-main editors-pick' %}
-                {% assign badge_text = 'Editor Choice' %}
+      {% if block.type == 'collection' %}
+        {% assign collection = collections[block.settings.collection] %}
+        {% if collection != blank %}
+          <div
+            class="fc-slider-wrapper {% if first_collection_wrapper_rendered == false %}active{% endif %}"
+            id="FC-wrapper-{{ block.id }}"
+            {{ block.shopify_attributes }}
+          >
+            <div class="fc-grid-container" id="FC-grid-{{ block.id }}">
+              {% if collection.products.size > 0 %}
+                {% for product in collection.products limit: 5 %}
+                  {% assign product_url = product.url | within: collection %}
+                  {% assign current_variant = product.selected_or_first_available_variant %}
+                  {% assign secondary_image = blank %}
+                  {% if product.images.size > 1 %}
+                    {% assign secondary_image = product.images[1] %}
+                  {% endif %}
+                  <div class="fc-card">
+                    <a href="{{ product_url }}" class="fc-card-link" aria-label="{{ product.title | escape }}">
+                      <div class="fc-card-img-wrap">
+                        {% if product.metafields.custom.tags != blank %}
+                          <div class="fc-card-badges">
+                            {% assign badges_shown = 0 %}
+                            {% if product.metafields.custom.tags.type contains 'list.' %}
+                              {% assign badge_items = product.metafields.custom.tags.value %}
+                              {% for badge_item in badge_items %}
+                                {% if badges_shown < 2 %}
+                                  {% assign badge_text = badge_item.label | default: badge_item.name | default: badge_item.title | default: badge_item.value | default: badge_item | strip %}
+                                  {% if badge_text != blank %}
+                                    {% assign badge_class = 'badge-main' %}
+                                    {% assign badge_key = badge_text | downcase | replace: '-', ' ' %}
+                                    {% if badge_key contains 'best seller' %}
+                                      {% assign badge_class = 'badge-main best-seller' %}
+                                    {% elsif badge_key contains 'top pick' %}
+                                      {% assign badge_class = 'badge-main top-pick' %}
+                                    {% elsif badge_key contains 'eco' %}
+                                      {% assign badge_class = 'badge-main eco-choice' %}
+                                    {% elsif badge_key contains 'editor' %}
+                                      {% assign badge_class = 'badge-main editors-pick' %}
+                                    {% endif %}
+                                    <span class="{{ badge_class }}">{{ badge_text }}</span>
+                                    {% assign badges_shown = badges_shown | plus: 1 %}
+                                  {% endif %}
+                                {% endif %}
+                              {% endfor %}
+                            {% else %}
+                              {% assign badge_items = product.metafields.custom.tags.value | default: product.metafields.custom.tags | split: ',' %}
+                              {% for badge_item in badge_items limit: 2 %}
+                                {% assign badge_text = badge_item | strip %}
+                                {% if badge_text != blank %}
+                                  {% assign badge_class = 'badge-main' %}
+                                  {% assign badge_key = badge_text | downcase | replace: '-', ' ' %}
+                                  {% if badge_key contains 'best seller' %}
+                                    {% assign badge_class = 'badge-main best-seller' %}
+                                  {% elsif badge_key contains 'top pick' %}
+                                    {% assign badge_class = 'badge-main top-pick' %}
+                                  {% elsif badge_key contains 'eco' %}
+                                    {% assign badge_class = 'badge-main eco-choice' %}
+                                  {% elsif badge_key contains 'editor' %}
+                                    {% assign badge_class = 'badge-main editors-pick' %}
+                                  {% endif %}
+                                  <span class="{{ badge_class }}">{{ badge_text }}</span>
+                                {% endif %}
+                              {% endfor %}
+                            {% endif %}
+                          </div>
+                        {% endif %}
+
+                        {% if product.featured_image %}
+                          <img
+                            class="fc-card-img fc-card-img--primary"
+                            src="{{ product.featured_image | image_url: width: 400 }}"
+                            alt="{{ product.title | escape }}"
+                            loading="lazy"
+                            width="{{ product.featured_image.width }}"
+                            height="{{ product.featured_image.height }}"
+                          >
+
+                          {% if secondary_image != blank %}
+                            <img
+                              class="fc-card-img fc-card-img--secondary"
+                              src="{{ secondary_image | image_url: width: 400 }}"
+                              alt="{{ product.title | escape }}"
+                              loading="lazy"
+                              width="{{ secondary_image.width }}"
+                              height="{{ secondary_image.height }}"
+                            >
+                          {% endif %}
+                        {% else %}
+                          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                        {% endif %}
+                      </div>
+
+                      {% assign card_primary = product.type | default: product.vendor %}
+                      {% assign card_secondary = blank %}
+                      {% if product.type != blank and product.vendor != blank and product.vendor != product.type %}
+                        {% assign card_secondary = product.vendor %}
+                      {% endif %}
+
+                      <div class="fc-card-bottom">
+                        {% if card_primary != blank %}
+                          <div class="fc-card-category">
+                            {{ card_primary }}
+                            {% if card_secondary != blank %}
+                              <span>{{ card_secondary }}</span>
+                            {% endif %}
+                          </div>
+                        {% endif %}
+
+                        <h3 class="fc-card-title">{{ product.title }}</h3>
+
+                        {% if product.metafields.reviews.rating.value != blank %}
+                          {% assign card_rating = product.metafields.reviews.rating.value.rating | default: product.metafields.reviews.rating.value %}
+                          {% assign card_rating_count = product.metafields.reviews.rating_count.value | default: product.metafields.reviews.rating_count | default: 0 %}
+                          <div class="fc-card-reviews">
+                            <svg viewBox="0 0 24 24">
+                              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                            </svg>
+                            {{ card_rating | round: 1 }} <span>({{ card_rating_count }} Reviews)</span>
+                          </div>
+                        {% endif %}
+
+                        <div class="fc-card-price">
+                          {{ product.price | money }}
+                          {% if product.compare_at_price > product.price %}
+                            <s>{{ product.compare_at_price | money }}</s>
+                          {% endif %}
+                        </div>
+
+                        {% assign bb = product.price | times: 60 | divided_by: 100 %}
+                        <div class="fc-card-buyback">BUY BACK {{ bb | money }} ON THIS ORDER</div>
+                      </div>
+                    </a>
+
+                    {% if current_variant != blank %}
+                      <form method="post" action="{{ routes.cart_add_url }}">
+                        <input type="hidden" name="id" value="{{ current_variant.id }}">
+                        <button type="submit" class="fc-card-btn" {% unless current_variant.available %}disabled{% endunless %}>
+                          {% if current_variant.available %}
+                            Add to Cart
+                          {% else %}
+                            Sold Out
+                          {% endif %}
+                        </button>
+                      </form>
+                    {% endif %}
+                  </div>
+                {% endfor %}
+              {% else %}
+                <p class="fc-empty-state">No products found in this collection.</p>
               {% endif %}
-
-              <div class="fc-card">
-                <div class="fc-card-img-wrap">
-                  <div class="fc-card-badges">
-                    <span class="{{ badge_class }}">{{ badge_text }}</span>
-                    <span class="badge-new">New</span>
-                  </div>
-                  {% if product.featured_image %}
-                    <img
-                      src="{{ product.featured_image | image_url: width: 400 }}"
-                      alt="{{ product.title | escape }}"
-                      loading="lazy"
-                      width="{{ product.featured_image.width }}"
-                      height="{{ product.featured_image.height }}"
-                    >
-                  {% else %}
-                    {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
-                  {% endif %}
-                  <div class="fc-card-heart">
-                    <svg viewBox="0 0 24 24">
-                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                    </svg>
-                  </div>
-                </div>
-
-                <div class="fc-card-category">
-                  {% if product.type != blank %}{{ product.type }}{% else %}CREATIVITY{% endif %}
-                  <span>2-4 Years</span>
-                </div>
-
-                <h3 class="fc-card-title">{{ product.title }}</h3>
-
-                <div class="fc-card-reviews">
-                  <svg viewBox="0 0 24 24">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                  </svg>
-                  4.8 <span>(234 Reviews)</span>
-                </div>
-
-                <div class="fc-card-price">
-                  {% if product.price_varies %} {% endif -%}
-                  {{- product.price | money }}
-                  {% if product.compare_at_price > product.price %}
-                    <s>{{ product.compare_at_price | money }}</s>
-                  {% endif %}
-                </div>
-
-                <div class="fc-card-buyback">
-                  BUY BACK {% assign bb = product.price | times: 0.6 | round: 0 -%}
-                  {{- bb | money }} ON THIS ORDER
-                </div>
-
-                <form method="post" action="{{ routes.cart_add_url }}" style="margin-top: auto;">
-                  <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-                  <button type="submit" class="fc-card-btn">Add to Cart</button>
-                </form>
-              </div>
-            {% endfor %}
-          {% else %}
-            {%- comment -%} Blank placeholders if empty collection {%- endcomment -%}
-            {% for i in (1..5) %}
-              <div class="fc-card">
-                <div class="fc-card-img-wrap">
-                  <div class="fc-card-badges">
-                    <span class="badge-main top-pick">Top Pick</span>
-                    <span class="badge-new">New</span>
-                  </div>
-                  {{ 'product-' | append: i | placeholder_svg_tag: 'placeholder-svg' }}
-                  <div class="fc-card-heart">
-                    <svg viewBox="0 0 24 24">
-                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                    </svg>
-                  </div>
-                </div>
-                <div class="fc-card-category">CREATIVITY <span>2-4 Years</span></div>
-                <h3 class="fc-card-title">Educational Building Blocks Set {{ i }}</h3>
-                <div class="fc-card-reviews">
-                  <svg viewBox="0 0 24 24">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                  </svg>
-                  4.8 <span>(234 Reviews)</span>
-                </div>
-                <div class="fc-card-price">Rs. 4,454.00 <s>Rs. 5,454.00</s></div>
-                <div class="fc-card-buyback">BUY BACK Rs. 2,672.40 ON THIS ORDER</div>
-                <button class="fc-card-btn" disabled>Add to Cart</button>
-              </div>
-            {% endfor %}
+            </div>
+            <div class="fc-dots-container" id="FC-dots-{{ block.id }}"></div>
+          </div>
+          {% if first_collection_wrapper_rendered == false %}
+            {% assign first_collection_wrapper_rendered = true %}
           {% endif %}
-        </div>
-        <div class="fc-dots-container" id="FC-dots-{{ block.id }}"></div>
-      </div>
+        {% endif %}
+      {% endif %}
     {% endfor %}
 
-    {%- comment -%} Default placeholder if strictly 0 blocks {%- endcomment -%}
-    {% if section.blocks.size == 0 %}
-      <div class="fc-slider-wrapper active" id="FC-wrapper-placeholder">
-        <div class="fc-grid-container" id="FC-grid-placeholder">
-          {% for i in (1..5) %}
-            <div class="fc-card">
-              <div class="fc-card-img-wrap">
-                <div class="fc-card-badges">
-                  <span class="badge-main top-pick">Top Pick</span>
-                  <span class="badge-new">New</span>
-                </div>
-                {{ 'product-' | append: i | placeholder_svg_tag: 'placeholder-svg' }}
-                <div class="fc-card-heart">
-                  <svg viewBox="0 0 24 24">
-                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                  </svg>
-                </div>
-              </div>
-              <div class="fc-card-category">CREATIVITY <span>2-4 Years</span></div>
-              <h3 class="fc-card-title">Educational Building Blocks Set {{ i }}</h3>
-              <div class="fc-card-reviews">
-                <svg viewBox="0 0 24 24">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                </svg>
-                4.8 <span>(234 Reviews)</span>
-              </div>
-              <div class="fc-card-price">₹4,454 <s>₹5,454</s></div>
-              <div class="fc-card-buyback">BUY BACK ₹2,672 ON THIS ORDER</div>
-              <button class="fc-card-btn" disabled>Add to Cart</button>
-            </div>
-          {% endfor %}
-        </div>
-        <div class="fc-dots-container" id="FC-dots-placeholder"></div>
-      </div>
-    {% endif %}
+    {% unless has_collection_tabs %}
+      <p class="fc-empty-state">No collection selected yet.</p>
+    {% endunless %}
   </div>
 
+  {% for block in section.blocks %}
+    {% if block.type == '@app' %}
+      <div class="fc-app-blocks" {{ block.shopify_attributes }}>
+        {% render block %}
+      </div>
+    {% endif %}
+  {% endfor %}
+
   <div class="fc-footer">
-    <a href="{{ section.settings.view_all_link }}" class="fc-view-all">{{ section.settings.view_all_text }}</a>
+    <a href="{{ first_collection_url }}" class="fc-view-all" id="FC-view-all-{{ section.id }}">{{ section.settings.view_all_text }}</a>
   </div>
 </div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const tabs = document.querySelectorAll('#FC-{{ section.id }} .fc-tab-btn');
-    const wrappers = document.querySelectorAll('#FC-{{ section.id }} .fc-slider-wrapper');
+    const root = document.getElementById('FC-{{ section.id }}');
+    if (!root) return;
+
+    const tabs = root.querySelectorAll('.fc-tab-btn[data-target]');
+    const wrappers = root.querySelectorAll('.fc-slider-wrapper');
+    const viewAllButton = root.querySelector('.fc-view-all');
+
+    const syncViewAllHref = (tab) => {
+      if (!viewAllButton || !tab) return;
+      const collectionUrl = tab.getAttribute('data-collection-url');
+      if (collectionUrl) {
+        viewAllButton.setAttribute('href', collectionUrl);
+      }
+    };
 
     tabs.forEach((tab) => {
       tab.addEventListener('click', function (e) {
@@ -649,6 +724,7 @@
 
         tabs.forEach((t) => t.classList.remove('active'));
         this.classList.add('active');
+        syncViewAllHref(this);
 
         wrappers.forEach((w) => w.classList.remove('active'));
 
@@ -666,6 +742,11 @@
         }
       });
     });
+
+    const activeTab = root.querySelector('.fc-tab-btn.active');
+    if (activeTab) {
+      syncViewAllHref(activeTab);
+    }
 
     // Mobile Carousel Dot logic - runs for all wrappers
     wrappers.forEach((wrapper) => {
@@ -763,14 +844,12 @@
       "id": "view_all_text",
       "label": "View All Button Text",
       "default": "View all Toys"
-    },
-    {
-      "type": "url",
-      "id": "view_all_link",
-      "label": "View All Button Link"
     }
   ],
   "blocks": [
+    {
+      "type": "@app"
+    },
     {
       "type": "collection",
       "name": "Collection Tab",

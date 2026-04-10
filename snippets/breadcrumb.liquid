@@ -123,13 +123,13 @@
           {%- endif -%}
         </div>
 
-        {% if product.collections[0].previous_product %}
+        {% comment %} {% if product.collections[0].previous_product %}
           {{ 'Previous' | link_to: product.collections[0].previous_product.url, 'Previous product' }}
         {% endif %}
         
         {% if product.collections[0].next_product %}
           {{ 'Next' | link_to: product.collections[0].next_product.url, 'Next product' }}
-        {% endif %}
+        {% endif %} {% endcomment %}
 
       {%- when 'article' -%}
         <div class="breadcrumbs-nav article">

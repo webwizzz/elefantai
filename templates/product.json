@@ -16,7 +16,8 @@
           "type": "breadcrumb",
           "settings": {
             "breadcrumb_color": "main",
-            "breadcrumb_color_hover": "heading"
+            "breadcrumb_color_hover": "heading",
+            "show_in_quick_add": false
           }
         },
         "title": {
@@ -82,7 +83,8 @@
         "description_3GT8yD": {
           "type": "description",
           "settings": {
-            "show_only_table": false
+            "show_only_table": false,
+            "show_in_quick_add": true
           }
         },
         "divider_AJifDg": {
@@ -90,7 +92,8 @@
           "settings": {
             "divider_color": "#d9d9d9",
             "divider_thickness": 1,
-            "block_position": "sidebar"
+            "block_position": "sidebar",
+            "show_in_quick_add": true
           }
         },
         "price": {
@@ -107,7 +110,8 @@
           "settings": {
             "divider_color": "#d9d9d9",
             "divider_thickness": 1,
-            "block_position": "sidebar"
+            "block_position": "sidebar",
+            "show_in_quick_add": true
           }
         },
         "effective_price_cta_QLYTre": {
@@ -118,7 +122,8 @@
             "caption": "through our buyback system",
             "button_label": "Learn How it Works",
             "button_link": "#selback_value",
-            "block_position": "sidebar"
+            "block_position": "sidebar",
+            "show_in_quick_add": true
           }
         },
         "divider_d3FtjA": {
@@ -126,13 +131,15 @@
           "settings": {
             "divider_color": "#d9d9d9",
             "divider_thickness": 1,
-            "block_position": "sidebar"
+            "block_position": "sidebar",
+            "show_in_quick_add": true
           }
         },
         "skills_learned_UG4wAX": {
           "type": "skills-learned",
           "settings": {
-            "heading": "Skills learned"
+            "heading": "Skills learned",
+            "show_in_quick_add": true
           }
         },
         "divider_q3E4TT": {
@@ -140,7 +147,8 @@
           "settings": {
             "divider_color": "#d9d9d9",
             "divider_thickness": 1,
-            "block_position": "sidebar"
+            "block_position": "sidebar",
+            "show_in_quick_add": true
           }
         },
         "variant_picker": {
@@ -223,7 +231,8 @@
             "delivery_max": 4,
             "delivery_heading": "Express Delivery Available",
             "delivery_text": "Order within 3 hours for delivery by tomorrow. Standard delivery: 2-4 business days",
-            "show_pickup_availability": true
+            "show_pickup_availability": true,
+            "show_in_quick_add": true
           }
         },
         "product_meta_tabs_MybfXq": {
@@ -260,7 +269,8 @@
             "stack_5_description": "User can choose how they want the cashback: \n• Wallet credit \n• Direct payout \n• Membership conversion",
             "stack_6_icon_color": "#8a8f98",
             "stack_6_title": "",
-            "stack_6_description": ""
+            "stack_6_description": "",
+            "show_in_quick_add": false
           }
         }
       },
@@ -583,7 +593,7 @@
         "background_color": "color-bg-4",
         "colors_background_section_gradient": "",
         "padding_top": 52,
-        "padding_bottom": 20
+        "padding_bottom": 50
       }
     }
   },

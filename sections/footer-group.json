@@ -17,7 +17,7 @@
         "contact_item_9UfUyG": {
           "type": "contact_item",
           "settings": {
-            "contact_logo": "shopify://shop_images/Frame_2018778201.png",
+            "contact_logo": "shopify://shop_images/mail-pencil-svgrepo-com.svg",
             "label": "Email",
             "value": "<p>hello@example.com</p>"
           }
@@ -25,7 +25,7 @@
         "contact_item_fMXkTQ": {
           "type": "contact_item",
           "settings": {
-            "contact_logo": "shopify://shop_images/Frame_2018778201.png",
+            "contact_logo": "shopify://shop_images/phone-alt-svgrepo-com.svg",
             "label": "Phone",
             "value": "<p>+91 1234567899</p>"
           }
@@ -33,25 +33,16 @@
         "contact_item_YX4bQG": {
           "type": "contact_item",
           "settings": {
-            "contact_logo": "shopify://shop_images/Frame_2018778201.png",
+            "contact_logo": "shopify://shop_images/address-book-svgrepo-com.svg",
             "label": "Address",
             "value": "<p>Mumbai, Maharashtra</p>"
-          }
-        },
-        "social_link_bTTEBB": {
-          "type": "social_link",
-          "settings": {
-            "icon": "shopify://shop_images/Frame_2018778201.png",
-            "link": "#",
-            "label": "Social"
           }
         }
       },
       "block_order": [
         "contact_item_9UfUyG",
         "contact_item_fMXkTQ",
-        "contact_item_YX4bQG",
-        "social_link_bTTEBB"
+        "contact_item_YX4bQG"
       ],
       "settings": {
         "intro_logo": "shopify://shop_images/Group_6.svg",

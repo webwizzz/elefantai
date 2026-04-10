@@ -2143,6 +2143,8 @@ variant-selects .product-popup-modal__opener {
 
 .product__inventory.inventory-progress {
   padding-bottom: 1rem;
+  font-size: 16px;
+  color: black;
 }
 
 .product__inventory.inventory-progress .inventory_progress_bar {
@@ -3137,5 +3139,6 @@ variant-selects .product-popup-modal__opener {
 
   .product__info-container>*:first-child {
     margin-top: 0;
+    padding: 10px;
   }
 }

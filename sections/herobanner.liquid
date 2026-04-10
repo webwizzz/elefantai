@@ -6,6 +6,30 @@
     background: #F9F8F8;
   }
 
+  .elevated-hero-slider {
+    position: relative;
+  }
+
+  .elevated-hero-card.elevated-hero-slide {
+    display: none;
+  }
+
+  .elevated-hero-card.elevated-hero-slide.is-active {
+    display: flex;
+    animation: heroSlideFade 0.4s ease;
+  }
+
+  @keyframes heroSlideFade {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .elevated-hero-card {
     position: relative;
     display: flex;
@@ -13,6 +37,8 @@
     border-radius: 32px;
     border: 3px solid #fff;
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12); /* Elevated shadow */
+    background-color: var(--hero-bg-color, #fffaf0);
+    background-image: var(--hero-bg-mobile, none);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -21,13 +47,22 @@
     padding: 3rem 2rem;
   }
 
+  @media screen and (min-width: 750px) {
+    .elevated-hero-card {
+      background-image: var(--hero-bg-desktop, var(--hero-bg-mobile, none));
+    }
+  }
+
   @media screen and (max-width: 749px) {
     .elevated-hero-card {
-      align-items: flex-start; /* Move content higher on mobile */
+      align-items: stretch;
       padding: 15px;
     }
     .elevated-hero-content {
-      margin-bottom: 6rem; /* space for arrows */
+      max-width: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
     }
      .elevated-hero-banner {
 
@@ -47,6 +82,7 @@
     position: relative;
     z-index: 2;
     max-width: 550px;
+    height: 100%;
   }
 
   .elevated-hero-heading {
@@ -67,6 +103,7 @@
   }
 
   .elevated-hero-heading .highlight-text {
+    font-family: 'sag' !important;
     /* Color handled via inline style but can adjust font-weight here if needed */
   }
 
@@ -94,7 +131,10 @@
   @media screen and (max-width: 749px) {
     .elevated-hero-buttons {
       align-items: start;
-    flex-direction: column;
+      flex-direction: column;
+      margin-top: auto;
+      padding-top: 1rem;
+      transform: translateY(20rem);
     }
   }
 
@@ -107,11 +147,14 @@
     text-decoration: none;
     transition: all 0.3s ease;
     cursor: pointer;
+    width: 100%;
+    text-align: center;
   }
 
   @media screen and (min-width: 750px) {
     .hero-btn {
       font-size: 22px;
+      width: auto;
     }
   }
 
@@ -145,9 +188,7 @@
 
   @media screen and (max-width: 749px) {
     .slider-controls {
-      bottom: 1.5rem;
-      right: 1.5rem;
-      gap: 1rem;
+      display: none;
     }
   }
 
@@ -191,101 +232,260 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: {{ section.settings.overlay_color }};
-    opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+    background: var(--hero-overlay-color, #000000);
+    opacity: var(--hero-overlay-opacity, 0);
     z-index: 1;
     border-radius: inherit;
     pointer-events: none;
   }
 {%- endstyle -%}
 
-<style>
-  #HeroCard-{{ section.id }} {
-    background-color: {{ section.settings.fallback_bg_color }};
-    {% if section.settings.image_mobile != blank %}
-      background-image: url('{{ section.settings.image_mobile | image_url: width: 800 }}');
-    {% elsif section.settings.image != blank %}
-      background-image: url('{{ section.settings.image | image_url: width: 800 }}');
-    {% endif %}
-  }
+{% assign slide_blocks = section.blocks | where: 'type', 'slide' %}
+{% assign total_slides = slide_blocks.size %}
+{% if total_slides == 0 %}
+  {% assign total_slides = 1 %}
+{% endif %}
 
-  @media screen and (min-width: 750px) {
-    #HeroCard-{{ section.id }} {
-      {% if section.settings.image != blank %}
-        background-image: url('{{ section.settings.image | image_url: width: 2400 }}');
-      {% endif %}
-    }
-  }
-</style>
+<div
+  class="elevated-hero-banner"
+  id="HeroBanner-{{ section.id }}"
+  data-autoplay-desktop="{{ section.settings.enable_autoplay_desktop }}"
+  data-autoplay-speed="{{ section.settings.auto_slide_speed | times: 1000 }}"
+>
+  <div class="elevated-hero-slider">
+    {% if slide_blocks.size > 0 %}
+      {% for block in slide_blocks %}
+        {% assign slide_image = block.settings.image | default: section.settings.image %}
+        {% assign slide_image_mobile = block.settings.image_mobile | default: section.settings.image_mobile | default: slide_image %}
+        {% assign slide_fallback_bg = block.settings.fallback_bg_color | default: section.settings.fallback_bg_color %}
+        {% assign slide_overlay_color = block.settings.overlay_color | default: section.settings.overlay_color %}
+        {% assign slide_overlay_opacity = block.settings.overlay_opacity | default: section.settings.overlay_opacity %}
+        {% assign slide_heading = block.settings.heading | default: section.settings.heading %}
+        {% assign slide_highlight = block.settings.highlight_text | default: section.settings.highlight_text %}
+        {% assign slide_text = block.settings.text | default: section.settings.text %}
+        {% assign slide_heading_color = block.settings.heading_color | default: section.settings.heading_color %}
+        {% assign slide_highlight_color = block.settings.highlight_color | default: section.settings.highlight_color %}
+        {% assign slide_text_color = block.settings.text_color | default: section.settings.text_color %}
+        {% assign slide_btn_label_1 = block.settings.button_label_1 | default: section.settings.button_label_1 %}
+        {% assign slide_btn_link_1 = block.settings.button_link_1 | default: section.settings.button_link_1 %}
+        {% assign slide_btn_primary_bg = block.settings.btn_primary_bg | default: section.settings.btn_primary_bg %}
+        {% assign slide_btn_primary_text = block.settings.btn_primary_text | default: section.settings.btn_primary_text %}
+        {% assign slide_btn_label_2 = block.settings.button_label_2 | default: section.settings.button_label_2 %}
+        {% assign slide_btn_link_2 = block.settings.button_link_2 | default: section.settings.button_link_2 %}
+        {% assign slide_btn_secondary_color = block.settings.btn_secondary_color | default: section.settings.btn_secondary_color %}
+        <div
+          class="elevated-hero-card elevated-hero-slide {% if forloop.first %}is-active{% endif %}"
+          style="
+            --hero-bg-color: {{ slide_fallback_bg }};
+            {% if slide_image_mobile != blank %}--hero-bg-mobile: url('{{ slide_image_mobile | image_url: width: 900 }}');{% else %}--hero-bg-mobile: none;{% endif %}
+            {% if slide_image != blank %}--hero-bg-desktop: url('{{ slide_image | image_url: width: 2400 }}');{% else %}--hero-bg-desktop: var(--hero-bg-mobile);{% endif %}
+            --hero-overlay-color: {{ slide_overlay_color }};
+            --hero-overlay-opacity: {{ slide_overlay_opacity | divided_by: 100.0 }};
+          "
+          {{ block.shopify_attributes }}
+          aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}"
+        >
+          <div class="elevated-hero-content">
+            <h2 class="elevated-hero-heading" style="color: {{ slide_heading_color }};">
+              {{ slide_heading }}
+              {% if slide_highlight != blank %}
+                <span class="highlight-text" style="color: {{ slide_highlight_color }};">
+                  {{- slide_highlight -}}
+                </span>
+              {% endif %}
+            </h2>
 
-<div class="elevated-hero-banner">
-  <div
-    class="elevated-hero-card"
-    id="HeroCard-{{ section.id }}"
-  >
-    <div class="elevated-hero-content">
-      <h2 class="elevated-hero-heading" style="color: {{ section.settings.heading_color }};">
-        {{ section.settings.heading }}
-        {% if section.settings.highlight_text != blank %}
-          <span class="highlight-text" style="color: {{ section.settings.highlight_color }};">
-            {{- section.settings.highlight_text -}}
-          </span>
-        {% endif %}
-      </h2>
+            {% if slide_text != blank %}
+              <div class="elevated-hero-text" style="color: {{ slide_text_color }};">
+                {{ slide_text }}
+              </div>
+            {% endif %}
 
-      {% if section.settings.text != blank %}
-        <div class="elevated-hero-text" style="color: {{ section.settings.text_color }};">
-          {{ section.settings.text }}
+            <div class="elevated-hero-buttons">
+              {% if slide_btn_label_1 != blank %}
+                <a
+                  {% if slide_btn_link_1 == blank %}
+                    role="link" aria-disabled="true"
+                  {% else %}
+                    href="{{ slide_btn_link_1 }}"
+                  {% endif %}
+                  class="hero-btn hero-btn-primary"
+                  style="background-color: {{ slide_btn_primary_bg }}; border-color: {{ slide_btn_primary_bg }}; color: {{ slide_btn_primary_text }};"
+                >
+                  {{ slide_btn_label_1 }}
+                </a>
+              {% endif %}
+
+              {% if slide_btn_label_2 != blank %}
+                <a
+                  {% if slide_btn_link_2 == blank %}
+                    role="link" aria-disabled="true"
+                  {% else %}
+                    href="{{ slide_btn_link_2 }}"
+                  {% endif %}
+                  class="hero-btn hero-btn-secondary"
+                  style="border-color: {{ slide_btn_secondary_color }}; color: {{ slide_btn_secondary_color }};"
+                >
+                  {{ slide_btn_label_2 }}
+                </a>
+              {% endif %}
+            </div>
+          </div>
         </div>
-      {% endif %}
-
-      <div class="elevated-hero-buttons">
-        {% if section.settings.button_label_1 != blank %}
-          <a
-            {% if section.settings.button_link_1 == blank %}
-              role="link" aria-disabled="true"
-            {% else %}
-              href="{{ section.settings.button_link_1 }}"
+      {% endfor %}
+    {% else %}
+      {% assign mobile_image = section.settings.image_mobile | default: section.settings.image %}
+      <div
+        class="elevated-hero-card elevated-hero-slide is-active"
+        style="
+          --hero-bg-color: {{ section.settings.fallback_bg_color }};
+          {% if mobile_image != blank %}--hero-bg-mobile: url('{{ mobile_image | image_url: width: 900 }}');{% else %}--hero-bg-mobile: none;{% endif %}
+          {% if section.settings.image != blank %}--hero-bg-desktop: url('{{ section.settings.image | image_url: width: 2400 }}');{% else %}--hero-bg-desktop: var(--hero-bg-mobile);{% endif %}
+          --hero-overlay-color: {{ section.settings.overlay_color }};
+          --hero-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+        "
+        aria-hidden="false"
+      >
+        <div class="elevated-hero-content">
+          <h2 class="elevated-hero-heading" style="color: {{ section.settings.heading_color }};">
+            {{ section.settings.heading }}
+            {% if section.settings.highlight_text != blank %}
+              <span class="highlight-text" style="color: {{ section.settings.highlight_color }};">
+                {{- section.settings.highlight_text -}}
+              </span>
             {% endif %}
-            class="hero-btn hero-btn-primary"
-            style="background-color: {{ section.settings.btn_primary_bg }}; border-color: {{ section.settings.btn_primary_bg }}; color: {{ section.settings.btn_primary_text }};"
-          >
-            {{ section.settings.button_label_1 }}
-          </a>
-        {% endif %}
+          </h2>
 
-        {% if section.settings.button_label_2 != blank %}
-          <a
-            {% if section.settings.button_link_2 == blank %}
-              role="link" aria-disabled="true"
-            {% else %}
-              href="{{ section.settings.button_link_2 }}"
+          {% if section.settings.text != blank %}
+            <div class="elevated-hero-text" style="color: {{ section.settings.text_color }};">
+              {{ section.settings.text }}
+            </div>
+          {% endif %}
+
+          <div class="elevated-hero-buttons">
+            {% if section.settings.button_label_1 != blank %}
+              <a
+                {% if section.settings.button_link_1 == blank %}
+                  role="link" aria-disabled="true"
+                {% else %}
+                  href="{{ section.settings.button_link_1 }}"
+                {% endif %}
+                class="hero-btn hero-btn-primary"
+                style="background-color: {{ section.settings.btn_primary_bg }}; border-color: {{ section.settings.btn_primary_bg }}; color: {{ section.settings.btn_primary_text }};"
+              >
+                {{ section.settings.button_label_1 }}
+              </a>
             {% endif %}
-            class="hero-btn hero-btn-secondary"
-            style="border-color: {{ section.settings.btn_secondary_color }}; color: {{ section.settings.btn_secondary_color }};"
-          >
-            {{ section.settings.button_label_2 }}
-          </a>
-        {% endif %}
+
+            {% if section.settings.button_label_2 != blank %}
+              <a
+                {% if section.settings.button_link_2 == blank %}
+                  role="link" aria-disabled="true"
+                {% else %}
+                  href="{{ section.settings.button_link_2 }}"
+                {% endif %}
+                class="hero-btn hero-btn-secondary"
+                style="border-color: {{ section.settings.btn_secondary_color }}; color: {{ section.settings.btn_secondary_color }};"
+              >
+                {{ section.settings.button_label_2 }}
+              </a>
+            {% endif %}
+          </div>
+        </div>
       </div>
-    </div>
+    {% endif %}
 
-    {% if section.settings.show_arrows %}
+    {% if section.settings.show_arrows and total_slides > 1 %}
       <div class="slider-controls">
-        <div class="slider-arrow">
+        <button class="slider-arrow" type="button" data-hero-prev aria-label="Previous slide">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15 18L9 12L15 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-        </div>
-        <div class="slider-arrow">
+        </button>
+        <button class="slider-arrow" type="button" data-hero-next aria-label="Next slide">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M9 18L15 12L9 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-        </div>
+        </button>
       </div>
     {% endif %}
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const root = document.getElementById('HeroBanner-{{ section.id }}');
+    if (!root) return;
+
+    const slides = Array.from(root.querySelectorAll('.elevated-hero-slide'));
+    if (slides.length <= 1) return;
+
+    const prevButton = root.querySelector('[data-hero-prev]');
+    const nextButton = root.querySelector('[data-hero-next]');
+    const autoplayDesktop = root.dataset.autoplayDesktop === 'true';
+    const autoplaySpeed = Number.parseInt(root.dataset.autoplaySpeed || '5000', 10);
+
+    let activeIndex = slides.findIndex((slide) => slide.classList.contains('is-active'));
+    if (activeIndex < 0) activeIndex = 0;
+
+    let autoplayTimer;
+
+    const isMobile = () => window.matchMedia('(max-width: 749px)').matches;
+    const shouldAutoplay = () => isMobile() || autoplayDesktop;
+
+    const setActiveSlide = (nextIndex) => {
+      const slideCount = slides.length;
+      activeIndex = ((nextIndex % slideCount) + slideCount) % slideCount;
+
+      slides.forEach((slide, index) => {
+        const isActive = index === activeIndex;
+        slide.classList.toggle('is-active', isActive);
+        slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+      });
+    };
+
+    const goNext = () => setActiveSlide(activeIndex + 1);
+    const goPrev = () => setActiveSlide(activeIndex - 1);
+
+    const stopAutoplay = () => {
+      if (autoplayTimer) {
+        clearInterval(autoplayTimer);
+        autoplayTimer = null;
+      }
+    };
+
+    const startAutoplay = () => {
+      stopAutoplay();
+      if (!shouldAutoplay()) return;
+      autoplayTimer = setInterval(goNext, Math.max(2500, autoplaySpeed));
+    };
+
+    if (prevButton) {
+      prevButton.addEventListener('click', () => {
+        goPrev();
+        startAutoplay();
+      });
+    }
+
+    if (nextButton) {
+      nextButton.addEventListener('click', () => {
+        goNext();
+        startAutoplay();
+      });
+    }
+
+    root.addEventListener('mouseenter', () => {
+      if (!isMobile()) stopAutoplay();
+    });
+
+    root.addEventListener('mouseleave', () => {
+      if (!isMobile()) startAutoplay();
+    });
+
+    window.addEventListener('resize', startAutoplay, { passive: true });
+    startAutoplay();
+  });
+</script>
 
 {% schema %}
 {
@@ -293,132 +493,6 @@
   "tag": "section",
   "class": "section",
   "settings": [
-    {
-      "type": "header",
-      "content": "Image & Background"
-    },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Background Image",
-      "info": "Upload the full banner image containing the characters/background."
-    },
-    {
-      "type": "image_picker",
-      "id": "image_mobile",
-      "label": "Mobile Background Image (Optional)",
-      "info": "Upload an alternative image for small screens. Falls back to desktop image if empty."
-    },
-    {
-      "type": "color",
-      "id": "fallback_bg_color",
-      "label": "Fallback/Solid Background Color",
-      "default": "#fffaf0"
-    },
-    {
-      "type": "color",
-      "id": "overlay_color",
-      "label": "Image Overlay Color",
-      "default": "#000000"
-    },
-    {
-      "type": "range",
-      "id": "overlay_opacity",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "label": "Image Overlay Opacity",
-      "default": 0
-    },
-    {
-      "type": "header",
-      "content": "Typography & Content"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading Part 1",
-      "default": "Buy Toys Today,<br>"
-    },
-    {
-      "type": "text",
-      "id": "highlight_text",
-      "label": "Highlighted Heading Part 2",
-      "default": "Get 60% Back"
-    },
-    {
-      "type": "textarea",
-      "id": "text",
-      "label": "Subheading/Paragraph",
-      "default": "The smart way to buy toys. Play, return when done, and get money back. It's that simple!"
-    },
-    {
-      "type": "color",
-      "id": "heading_color",
-      "label": "Heading Color",
-      "default": "#4A90E2"
-    },
-    {
-      "type": "color",
-      "id": "highlight_color",
-      "label": "Highlight Color",
-      "default": "#F5A623"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text Color",
-      "default": "#4A4A4A"
-    },
-    {
-      "type": "header",
-      "content": "Primary Button"
-    },
-    {
-      "type": "text",
-      "id": "button_label_1",
-      "label": "Button Label",
-      "default": "Start Shopping"
-    },
-    {
-      "type": "url",
-      "id": "button_link_1",
-      "label": "Button Link"
-    },
-    {
-      "type": "color",
-      "id": "btn_primary_bg",
-      "label": "Button Background Color",
-      "default": "#9B63B8"
-    },
-    {
-      "type": "color",
-      "id": "btn_primary_text",
-      "label": "Button Text Color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "header",
-      "content": "Secondary Button"
-    },
-    {
-      "type": "text",
-      "id": "button_label_2",
-      "label": "Button Label",
-      "default": "Learn How it Works"
-    },
-    {
-      "type": "url",
-      "id": "button_link_2",
-      "label": "Button Link"
-    },
-    {
-      "type": "color",
-      "id": "btn_secondary_color",
-      "label": "Button Border/Text Color",
-      "default": "#9B63B8"
-    },
     {
       "type": "header",
       "content": "Slider Arrows"
@@ -430,14 +504,170 @@
       "default": true
     },
     {
+      "type": "checkbox",
+      "id": "enable_autoplay_desktop",
+      "label": "Enable auto-slide on desktop",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "auto_slide_speed",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Auto-slide speed",
+      "default": 5
+    },
+    {
       "type": "header",
       "content": "No Layout Settings - Hardcoded 40px Full Width"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Image & Background"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Mobile Background Image (Optional)"
+        },
+        {
+          "type": "color",
+          "id": "fallback_bg_color",
+          "label": "Fallback/Solid Background Color",
+          "default": "#fffaf0"
+        },
+        {
+          "type": "color",
+          "id": "overlay_color",
+          "label": "Image Overlay Color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Image Overlay Opacity",
+          "default": 0
+        },
+        {
+          "type": "header",
+          "content": "Typography & Content"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading Part 1",
+          "default": "Buy Toys Today,<br>"
+        },
+        {
+          "type": "text",
+          "id": "highlight_text",
+          "label": "Highlighted Heading Part 2",
+          "default": "Get 60% Back"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Subheading/Paragraph",
+          "default": "The smart way to buy toys. Play, return when done, and get money back. It's that simple!"
+        },
+        {
+          "type": "color",
+          "id": "heading_color",
+          "label": "Heading Color",
+          "default": "#4A90E2"
+        },
+        {
+          "type": "color",
+          "id": "highlight_color",
+          "label": "Highlight Color",
+          "default": "#F5A623"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#4A4A4A"
+        },
+        {
+          "type": "header",
+          "content": "Primary Button"
+        },
+        {
+          "type": "text",
+          "id": "button_label_1",
+          "label": "Button Label",
+          "default": "Start Shopping"
+        },
+        {
+          "type": "url",
+          "id": "button_link_1",
+          "label": "Button Link"
+        },
+        {
+          "type": "color",
+          "id": "btn_primary_bg",
+          "label": "Button Background Color",
+          "default": "#9B63B8"
+        },
+        {
+          "type": "color",
+          "id": "btn_primary_text",
+          "label": "Button Text Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "header",
+          "content": "Secondary Button"
+        },
+        {
+          "type": "text",
+          "id": "button_label_2",
+          "label": "Button Label",
+          "default": "Learn How it Works"
+        },
+        {
+          "type": "url",
+          "id": "button_link_2",
+          "label": "Button Link"
+        },
+        {
+          "type": "color",
+          "id": "btn_secondary_color",
+          "label": "Button Border/Text Color",
+          "default": "#9B63B8"
+        }
+      ]
     }
   ],
   "presets": [
     {
       "name": "Elevated Herobanner",
-      "category": "Image"
+      "category": "Image",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
     }
   ]
 }
