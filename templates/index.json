@@ -11,26 +11,61 @@
   "sections": {
     "herobanner_Aq8rxV": {
       "type": "herobanner",
+      "blocks": {
+        "slide_G8Xr4R": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Group-7.svg",
+            "fallback_bg_color": "#fffaf0",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "heading": "Buy Toys Today,",
+            "highlight_text": "Get 60% Back",
+            "text": "The smart way to buy toys. Play, return when done, and get money back. It's that simple!",
+            "heading_color": "#4a90e2",
+            "highlight_color": "#f5a623",
+            "text_color": "#4a4a4a",
+            "button_label_1": "Learn How it Works",
+            "button_link_1": "shopify://pages/about-funlearn",
+            "btn_primary_bg": "#9b63b8",
+            "btn_primary_text": "#ffffff",
+            "button_label_2": "Start Browsing",
+            "button_link_2": "shopify://collections/all",
+            "btn_secondary_color": "#9b63b8"
+          }
+        },
+        "slide_WCQjUD": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/toy-image-17269977211152.jpg",
+            "fallback_bg_color": "#fffaf0",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "heading": "Buy Toys Today,",
+            "highlight_text": "Get 60% Back",
+            "text": "The smart way to buy toys. Play, return when done, and get money back. It's that simple!",
+            "heading_color": "#4a90e2",
+            "highlight_color": "#f5a623",
+            "text_color": "#4a4a4a",
+            "button_label_1": "Learn How it Works",
+            "button_link_1": "shopify://pages/about-us",
+            "btn_primary_bg": "#9b63b8",
+            "btn_primary_text": "#ffffff",
+            "button_label_2": "Start Browsing",
+            "button_link_2": "shopify://collections",
+            "btn_secondary_color": "#9b63b8"
+          }
+        }
+      },
+      "block_order": [
+        "slide_G8Xr4R",
+        "slide_WCQjUD"
+      ],
       "name": "Elevated Herobanner",
       "settings": {
-        "image": "shopify://shop_images/Group-7.svg",
-        "fallback_bg_color": "#f9f8f8",
-        "overlay_color": "#000000",
-        "overlay_opacity": 0,
-        "heading": "Bought Today. Bored Tomorrow?",
-        "highlight_text": "Get 60% Back Anyway.",
-        "text": "Kids outgrow toys fast. Keep them while the fun lasts, then trade them in for up to 60% of your money.",
-        "heading_color": "#4a90e2",
-        "highlight_color": "#f5a623",
-        "text_color": "#4a4a4a",
-        "button_label_1": "How Buyback Works",
-        "button_link_1": "shopify://pages/about-funlearn",
-        "btn_primary_bg": "#9b63b8",
-        "btn_primary_text": "#ffffff",
-        "button_label_2": "Start browsing",
-        "button_link_2": "shopify://collections/all",
-        "btn_secondary_color": "#9b63b8",
-        "show_arrows": true
+        "show_arrows": true,
+        "enable_autoplay_desktop": true,
+        "auto_slide_speed": 7
       }
     },
     "featuredproducts_cw8znJ": {
@@ -117,7 +152,7 @@
         "heading_1": "The",
         "highlight_text": "Smartest Way",
         "heading_2": "of Toy You’ll Ever Own",
-        "highlight_color": "#8c6f9c",
+        "highlight_color": "#6c4c87",
         "subtitle": "The smart way to buy toys. Play, return when done, and get money back.",
         "button_label": "Learn How it Works",
         "button_link": "shopify://pages/about-funlearn"
@@ -372,7 +407,7 @@
         "subtitle_size_desktop": 18,
         "card_title_desktop": 20,
         "card_desc_desktop": 14,
-        "heading_size_mobile": 32,
+        "heading_size_mobile": 30,
         "subtitle_size_mobile": 15,
         "card_title_mobile": 18,
         "card_desc_mobile": 13
@@ -562,10 +597,10 @@
         "price_T7TGtr": {
           "type": "price",
           "settings": {
-            "price_size": "h2",
+            "price_size": "h3",
             "price_weight": "700",
             "sale_price_weight": "700",
-            "price_badge": true
+            "price_badge": false
           }
         },
         "inventory_aFkmxt": {
@@ -648,6 +683,8 @@
       ],
       "name": "t:sections.featured-product.presets.name",
       "settings": {
+        "enable_autoscroll": true,
+        "autoscroll_delay": 5,
         "title": "",
         "heading_size": "h2",
         "heading_color": "heading",
@@ -660,7 +697,6 @@
           "mini-bike-yellow",
           "super-bike-red",
           "2-seater-scooter",
-          "6-in-1-live-band",
           "atv-bike",
           "scooter-pink"
         ],
@@ -819,7 +855,7 @@
         "card_title_desktop": 22,
         "card_desc_desktop": 18,
         "card_bottom_desktop": 18,
-        "heading_size_mobile": 32,
+        "heading_size_mobile": 30,
         "subtitle_size_mobile": 16,
         "card_title_mobile": 22,
         "card_desc_mobile": 18,
@@ -900,7 +936,7 @@
         "subtitle_size_desktop": 22,
         "card_title_desktop": 22,
         "card_desc_desktop": 18,
-        "heading_size_mobile": 32,
+        "heading_size_mobile": 30,
         "subtitle_size_mobile": 15,
         "card_title_mobile": 16,
         "card_desc_mobile": 13
@@ -1019,11 +1055,11 @@
             "subtitle": "Subscription-based borrowing",
             "subtitle_color": "#715392",
             "subtitle_fs_d": 22,
-            "subtitle_fs_m": 14,
+            "subtitle_fs_m": 16,
             "description": "Borrow toys on a monthly subscription. Perfect for parents who want variety without commitment.",
             "desc_color": "#4a4a4a",
             "desc_fs_d": 22,
-            "desc_fs_m": 14,
+            "desc_fs_m": 16,
             "list_item_1": "Unlimited swaps every month",
             "list_item_2": "Free delivery and pickup",
             "list_item_3": "Plans starting at ₹999/month",
@@ -1089,7 +1125,7 @@
         "heading_color": "#1a1a1a",
         "heading_highlight_color": "#715392",
         "heading_fs_d": 52,
-        "heading_fs_m": 32,
+        "heading_fs_m": 30,
         "description": "Making toys accessible and sustainable",
         "description_color": "#666666",
         "description_fs_d": 22,
@@ -1261,7 +1297,7 @@
         "heading_AQNWpb": {
           "type": "heading",
           "settings": {
-            "heading": "<strong>@Elefant.ai</strong>",
+            "heading": "<strong>@theElefant.ai</strong>",
             "heading_size": "h2",
             "text_color": "heading"
           }

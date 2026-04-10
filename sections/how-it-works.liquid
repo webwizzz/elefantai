@@ -32,8 +32,8 @@
   }
   @media (max-width: 768px) {
     .hiw-top-left { max-width: 150px; }
-    .hiw-bottom-right { max-width: 150px; opacity: 0.5; /* Fade out slightly on small mobile if it conflicts with text */ }
-    #HIW-{{ section.id }} { padding: 50px 15px; }
+    .hiw-bottom-right { max-width: 150px; opacity: 0.4; transform:translateY(80px); /* Fade out slightly on small mobile if it conflicts with text */ }
+    #HIW-{{ section.id }} { padding: 40px 15px; }
   }
 
   .hiw-content {
@@ -83,10 +83,9 @@
   }
   @media (max-width: 768px) {
     .hiw-steps-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;      
+      justify-content: center;
       gap: 24px 16px;
-      max-width: 360px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -175,7 +174,7 @@
   @media (max-width: 768px) {
     .hiw-step-desc {
       font-size: 12px;
-      max-width: unset;
+      max-width: 11pc;
       padding: 0 4px;
     }
   }
@@ -189,7 +188,7 @@
     border: 1px solid;
     border-radius: 50px;
     font-size: 22px;
-    font-weight: 500;
+    font-weight: 700;
     text-decoration: none;
     transition: all 0.3s ease;
     background: transparent;
@@ -199,6 +198,8 @@
     .hiw-btn {
       padding: 10px;
       font-size: 16px;
+      width: 100%;
+      text-align: center;
     }
   }
 
@@ -212,6 +213,7 @@
   #HIW-{{ section.id }} .hiw-btn {
     border-color: {{ section.settings.highlight_color }};
     color: {{ section.settings.highlight_color }};
+
   }
   #HIW-{{ section.id }} .hiw-btn:hover {
     background-color: {{ section.settings.highlight_color }};

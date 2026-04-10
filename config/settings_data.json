@@ -48,7 +48,7 @@
     "type_body_font": "asap_n4",
     "body_font_large": 30,
     "body_font_medium": 22,
-    "header_width": 1440,
+    "header_width": 1600,
     "page_width": 1440,
     "spacing_sections": 0,
     "spacing_grid_horizontal": 30,
@@ -71,7 +71,7 @@
     "enable_quick_add": true,
     "card_corner_radius": 6,
     "quick_add_text": "#101010",
-    "quick_add_background": "#fef7e6",
+    "quick_add_background": "#ffffff",
     "quick_add_border": "#101010",
     "quick_add_text_hover": "#ffffff",
     "quick_add_background_hover": "#6e4b7e",
@@ -426,6 +426,11 @@
           "swym_variant_selector_create_list_placeholder_text": "Enter wishlist name",
           "swym_variant_selector_create_list_title": "Name Your Wishlist"
         }
+      },
+      "1219337400145039034": {
+        "type": "shopify://apps/kwikpass/blocks/kp_login/603e209b-d585-47ff-8592-837a4faa325b",
+        "disabled": true,
+        "settings": {}
       }
     }
   },

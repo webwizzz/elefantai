@@ -180,6 +180,8 @@
       <ul
         class="product-list slider slider--everywhere"
         id="Slider-{{ section.id }}"
+        data-autoscroll="{{ section.settings.enable_autoscroll }}"
+        data-autoscroll-speed="{{ section.settings.autoscroll_delay | times: 1000 }}"
         role="list"
         style="margin-left:20px; padding: 20px 20px 20px 0; display: flex; flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x mandatory; gap: 2rem; -webkit-overflow-scrolling: touch;"
       >
@@ -274,14 +276,20 @@
                       {%- endif -%}
                     </h2>
 
+                    {%- assign display_variant = product.selected_or_first_available_variant -%}
+                    {%- if product != blank and product.variants.size > 0 -%}
+                      {%- assign display_variant = product.variants.first -%}
+                    {%- endif -%}
+
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px;">
                       <span
                         class="elefant-product-price"
+                        data-featured-price
                         style="font-size: 54px; font-weight: 700; color: #EB7943; line-height: 1;"
                       >
                         {%- if product != blank -%}
                           {{
-                            product.price
+                            display_variant.price
                             | money_without_trailing_zeros
                             | replace: 'Rs.', '₹'
                             | replace: 'Rs ', '₹'
@@ -291,24 +299,25 @@
                           ₹1,874
                         {%- endif -%}
                       </span>
-                      {% if product.compare_at_price > product.price %}
+                      {% if display_variant.compare_at_price > display_variant.price %}
                         <s
                           class="elefant-product-compare-price"
+                          data-featured-compare
                           style="font-size: 32px; color: #999; text-decoration-thickness: 1px;"
                         >
                           {{
-                            product.compare_at_price
+                            display_variant.compare_at_price
                             | money_without_trailing_zeros
                             | replace: 'Rs.', '₹'
                             | replace: 'Rs ', '₹'
                             | replace: 'Rs', '₹'
                           }}
                         </s>
-                        <span style="background-color: #6D28D9; color: #F9F8F8; padding: 6px 14px; border-radius: 20px; font-size: 14px; font-weight: 600;">
+                        <span data-featured-save style="background-color: #6D28D9; color: #F9F8F8; padding: 6px 14px; border-radius: 20px; font-size: 14px; font-weight: 600;">
                           Save
                           {{
-                            product.compare_at_price
-                            | minus: product.price
+                            display_variant.compare_at_price
+                            | minus: display_variant.price
                             | money_without_trailing_zeros
                             | replace: 'Rs.', '₹'
                             | replace: 'Rs ', '₹'
@@ -318,10 +327,11 @@
                       {% elsif product == blank %}
                         <s
                           class="elefant-product-compare-price"
+                          data-featured-compare
                           style="font-size: 32px; color: #999; text-decoration-thickness: 1px;"
                           >₹2,499</s
                         >
-                        <span style="background-color: #6D28D9; color: #F9F8F8; padding: 6px 14px; border-radius: 20px; font-size: 14px; font-weight: 600;"
+                        <span data-featured-save style="background-color: #6D28D9; color: #F9F8F8; padding: 6px 14px; border-radius: 20px; font-size: 14px; font-weight: 600;"
                           >Save ₹1,000</span
                         >
                       {% endif %}
@@ -329,6 +339,27 @@
                     {%- if cart.taxes_included or shop.shipping_policy.body != blank or true -%}
                       <div style="font-size: 12px; color: #999;">Inclusive of all taxes</div>
                     {%- endif -%}
+
+                    {%- comment -%} 60% buyback price (displayed just below the main price) {%- endcomment -%}
+                    {%- if product != blank -%}
+                      {%- assign buyback_price = display_variant.price | times: 60 | divided_by: 100 -%}
+                      <div class="elefant-buyback" data-featured-buyback style="font-size: 16px; color: #666; margin-top: 6px;">
+                        {{ buyback_price
+                          | money_without_trailing_zeros
+                          | replace: 'Rs.', '₹'
+                          | replace: 'Rs ', '₹'
+                          | replace: 'Rs', '₹' }}
+                          {{ 'through our Buyback ' }}
+                      </div>
+                    {%- endif -%}
+
+                    {%- if product != blank -%}
+                      <script type="application/json" id="FeaturedVariants-{{ featured_product_section_id }}">
+                        {{ product.variants | json }}
+                      </script>
+                    {%- endif -%}
+
+                    
                   </div>
 
                   <div
@@ -946,6 +977,62 @@
               setActiveDot(dots, activeIndex);
             }
 
+            /* Auto-scroll support when enabled via section setting */
+            var autoscrollEnabled = slider.dataset.autoscroll === 'true' || slider.dataset.autoscroll === 'True';
+            var autoscrollInterval = Number.parseInt(slider.dataset.autoscrollSpeed || '5000', 10);
+            var autoscrollTimer = null;
+            var autoscrollPaused = false;
+
+            function stopAutoscroll() {
+              if (autoscrollTimer) {
+                clearInterval(autoscrollTimer);
+                autoscrollTimer = null;
+              }
+            }
+
+            function startAutoscroll() {
+              if (!autoscrollEnabled || autoscrollPaused) return;
+              stopAutoscroll();
+              autoscrollTimer = setInterval(function () {
+                // determine current active index from active dot
+                var activeDot = dotsContainer.querySelector('.slider-dot--active');
+                var currentIndex = Array.prototype.indexOf.call(dots, activeDot);
+                var nextIndex = (currentIndex + 1) % slides.length;
+                if (slides[nextIndex]) {
+                  slider.scrollTo({ left: slides[nextIndex].offsetLeft, behavior: 'smooth' });
+                }
+              }, Math.max(2500, autoscrollInterval));
+            }
+
+            function pauseAutoscroll() {
+              if (!autoscrollEnabled) return;
+              autoscrollPaused = true;
+              stopAutoscroll();
+            }
+
+            function resumeAutoscroll() {
+              if (!autoscrollEnabled) return;
+              autoscrollPaused = false;
+              startAutoscroll();
+            }
+
+            // pause on user interaction
+            slider.addEventListener('mouseenter', pauseAutoscroll, { passive: true });
+            slider.addEventListener('pointerdown', pauseAutoscroll, { passive: true });
+            slider.addEventListener('touchstart', pauseAutoscroll, { passive: true });
+            slider.addEventListener('focusin', pauseAutoscroll);
+
+            slider.addEventListener('mouseleave', resumeAutoscroll, { passive: true });
+            slider.addEventListener('pointerleave', resumeAutoscroll, { passive: true });
+            slider.addEventListener('focusout', function (event) {
+              if (!slider.contains(event.relatedTarget)) {
+                resumeAutoscroll();
+              }
+            });
+
+            // start autoscroll if enabled
+            startAutoscroll();
+
             if (slider.dataset.featuredDotsBound !== 'true') {
               slider.dataset.featuredDotsBound = 'true';
 
@@ -998,6 +1085,225 @@
 {%- if section.settings.image_zoom == 'hover' -%}
   <script id="EnableZoomOnHover-featured" src="{{ 'magnify.js' | asset_url }}" defer="defer"></script>
 {%- endif %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var sectionRoot = document.getElementById('shopify-section-{{ section.id }}');
+    if (!sectionRoot) return;
+
+    var moneyFormat = {{ shop.money_format | json }};
+
+    function formatMoney(cents) {
+      if (window.Shopify && typeof window.Shopify.formatMoney === 'function') {
+        return window.Shopify.formatMoney(cents, moneyFormat)
+          .replace('Rs.', '₹')
+          .replace('Rs ', '₹')
+          .replace('Rs', '₹');
+      }
+
+      var rupees = (Number(cents) / 100).toFixed(2).replace(/\.00$/, '');
+      return '₹' + rupees;
+    }
+
+    function bindVariantPriceSync(infoContainer) {
+      var sectionKey = infoContainer.getAttribute('data-section');
+      if (!sectionKey) return;
+
+      var priceEl = infoContainer.querySelector('[data-featured-price]');
+      var compareEl = infoContainer.querySelector('[data-featured-compare]');
+      var saveEl = infoContainer.querySelector('[data-featured-save]');
+      var buybackEl = infoContainer.querySelector('[data-featured-buyback]');
+
+      if (!priceEl || !buybackEl) return;
+
+      var variantsScript = document.getElementById('FeaturedVariants-' + sectionKey);
+      if (!variantsScript) return;
+
+      var variants = [];
+      try {
+        variants = JSON.parse(variantsScript.textContent || '[]');
+      } catch (err) {
+        return;
+      }
+
+      if (!variants.length) return;
+
+      var productForm = document.getElementById('product-form-' + sectionKey);
+      var pickerRoot = sectionRoot.querySelector('variant-radios[data-section="' + sectionKey + '"], variant-selects[data-section="' + sectionKey + '"]');
+
+      function enforceFirstVisibleSelection() {
+        if (!pickerRoot || pickerRoot.tagName.toLowerCase() !== 'variant-radios') return;
+
+        var fieldsets = pickerRoot.querySelectorAll('fieldset');
+        for (var i = 0; i < fieldsets.length; i++) {
+          var checked = fieldsets[i].querySelector('input[type="radio"]:checked');
+          if (checked) continue;
+          var firstRadio = fieldsets[i].querySelector('input[type="radio"]');
+          if (firstRadio) {
+            firstRadio.checked = true;
+            firstRadio.dispatchEvent(new Event('change', { bubbles: true }));
+          }
+        }
+      }
+
+      function findCurrentVariant() {
+        var variantId = null;
+
+        if (productForm) {
+          var idInput = productForm.querySelector('input[name="id"]');
+          if (idInput && idInput.value) {
+            variantId = Number(idInput.value);
+          }
+        }
+
+        if (variantId) {
+          for (var i = 0; i < variants.length; i++) {
+            if (Number(variants[i].id) === variantId) {
+              return variants[i];
+            }
+          }
+        }
+
+        if (pickerRoot) {
+          var selectedValues = [];
+
+          if (pickerRoot.tagName.toLowerCase() === 'variant-radios') {
+            var radioFieldsets = pickerRoot.querySelectorAll('fieldset');
+            for (var r = 0; r < radioFieldsets.length; r++) {
+              var checkedRadio = radioFieldsets[r].querySelector('input[type="radio"]:checked');
+              selectedValues.push(checkedRadio ? checkedRadio.value : null);
+            }
+          } else {
+            var selects = pickerRoot.querySelectorAll('select.select__select');
+            for (var s = 0; s < selects.length; s++) {
+              selectedValues.push(selects[s].value || null);
+            }
+          }
+
+          for (var v = 0; v < variants.length; v++) {
+            var matchesOpt1 = !selectedValues[0] || variants[v].option1 === selectedValues[0];
+            var matchesOpt2 = !selectedValues[1] || variants[v].option2 === selectedValues[1];
+            var matchesOpt3 = !selectedValues[2] || variants[v].option3 === selectedValues[2];
+            if (matchesOpt1 && matchesOpt2 && matchesOpt3) {
+              return variants[v];
+            }
+          }
+        }
+
+        return variants[0];
+      }
+
+      function renderVariantPricing(variant) {
+        if (!variant) return;
+
+        var variantPrice = Number(variant.price || 0);
+        var variantCompare = Number(variant.compare_at_price || 0);
+        var buybackPrice = Math.round((variantPrice * 60) / 100);
+
+        priceEl.textContent = formatMoney(variantPrice);
+        buybackEl.textContent = formatMoney(buybackPrice) + ' through our Buyback ';
+
+        if (compareEl && saveEl) {
+          if (variantCompare > variantPrice) {
+            compareEl.style.display = '';
+            saveEl.style.display = '';
+            compareEl.textContent = formatMoney(variantCompare);
+            saveEl.textContent = 'Save ' + formatMoney(variantCompare - variantPrice);
+          } else {
+            compareEl.style.display = 'none';
+            saveEl.style.display = 'none';
+          }
+        }
+      }
+
+      function syncFromSelection() {
+        renderVariantPricing(findCurrentVariant());
+      }
+
+      enforceFirstVisibleSelection();
+      syncFromSelection();
+
+      if (pickerRoot) {
+        pickerRoot.addEventListener('change', function () {
+          window.requestAnimationFrame(syncFromSelection);
+        });
+      }
+
+      if (productForm) {
+        productForm.addEventListener('change', function () {
+          window.requestAnimationFrame(syncFromSelection);
+        });
+      }
+    }
+
+    var infoContainers = sectionRoot.querySelectorAll('.product__info-container[data-section]');
+    for (var i = 0; i < infoContainers.length; i++) {
+      bindVariantPriceSync(infoContainers[i]);
+    }
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var sectionRoot = document.getElementById('shopify-section-{{ section.id }}');
+    if (!sectionRoot) return;
+
+    var pickers = sectionRoot.querySelectorAll('variant-radios[data-section]');
+    for (var i = 0; i < pickers.length; i++) {
+      var picker = pickers[i];
+      var sectionKey = picker.getAttribute('data-section');
+      if (!sectionKey) continue;
+
+      var formId = 'product-form-' + sectionKey;
+      if (document.getElementById(formId)) {
+        var allRadios = picker.querySelectorAll('input[type="radio"]');
+        for (var r = 0; r < allRadios.length; r++) {
+          allRadios[r].setAttribute('form', formId);
+        }
+      }
+
+      var variantsScript = document.getElementById('FeaturedVariants-' + sectionKey);
+      var targetVariant = null;
+      if (variantsScript) {
+        try {
+          var variants = JSON.parse(variantsScript.textContent || '[]');
+          if (variants && variants.length) targetVariant = variants[0];
+        } catch (e) {
+          targetVariant = null;
+        }
+      }
+
+      var fieldsets = picker.querySelectorAll('fieldset');
+      var changedInput = null;
+      for (var f = 0; f < fieldsets.length; f++) {
+        var checked = fieldsets[f].querySelector('input[type="radio"]:checked');
+        if (checked) continue;
+
+        var radios = fieldsets[f].querySelectorAll('input[type="radio"]');
+        if (!radios.length) continue;
+
+        var desiredValue = targetVariant ? targetVariant['option' + (f + 1)] : null;
+        var match = null;
+        if (desiredValue !== null && desiredValue !== undefined) {
+          for (var m = 0; m < radios.length; m++) {
+            if (radios[m].value === desiredValue) {
+              match = radios[m];
+              break;
+            }
+          }
+        }
+
+        var selected = match || radios[0];
+        selected.checked = true;
+        if (!changedInput) changedInput = selected;
+      }
+
+      if (changedInput) {
+        changedInput.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    }
+  });
+</script>
 
 {%- if request.design_mode -%}
   <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
@@ -3168,6 +3474,22 @@
     }
   ],
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_autoscroll",
+      "label": "Enable auto-scroll",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoscroll_delay",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "unit": "s",
+      "label": "Auto-scroll delay",
+      "default": 5
+    },
     {
       "type": "inline_richtext",
       "id": "title",

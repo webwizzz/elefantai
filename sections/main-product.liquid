@@ -97,7 +97,7 @@
   {% assign breadcrumb_block = section.blocks | where: 'type', 'breadcrumb' | first %}
   {% if breadcrumb_block != blank %}
     <div
-      class="breadcrumb-section breadcrumb-section-product quick-add-hidden text-color-{{ breadcrumb_block.settings.breadcrumb_color }} text-color-{{ breadcrumb_block.settings.breadcrumb_color_hover }}-hover"
+      class="breadcrumb-section breadcrumb-section-product {% unless breadcrumb_block.settings.show_in_quick_add %}quick-add-hidden{% endunless %} text-color-{{ breadcrumb_block.settings.breadcrumb_color }} text-color-{{ breadcrumb_block.settings.breadcrumb_color_hover }}-hover"
       {{ breadcrumb_block.shopify_attributes }}
     >
       {% render 'breadcrumb', active_color: breadcrumb_block.settings.breadcrumb_color_hover %}
@@ -142,7 +142,7 @@
           {%- case block.type -%}
             {%- when 'collapsible_tab' -%}
               {% if block.settings.collapsible_row_position == 'under_media' %}
-                <div class="product__accordion accordion under-product quick-add-hidden" {{ block.shopify_attributes }}>
+                <div class="product__accordion accordion under-product {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}" {{ block.shopify_attributes }}>
                   <details
                     id="Details-{{ block.id }}-{{ section.id }}"
                     {% if block.settings.default_open %}
@@ -184,7 +184,7 @@
             {%- when 'complementary' -%}
               {% if block.settings.block_position == 'under_media' %}
                 <product-recommendations
-                  class="complementary-products quick-add-hidden no-js-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}"
+                  class="complementary-products {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %} no-js-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}"
                   data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ block.settings.product_list_limit }}&intent=complementary"
                   {{ block.shopify_attributes }}
                 >
@@ -336,7 +336,7 @@
             {%- when 'text' -%}
               {% if block.settings.block_position == 'under_media' %}
                 <div
-                  class="product__text rte quick-add-hidden text-color-{{ block.settings.text_color }} {{ block.settings.text_style }} text-weight-{{ block.settings.text_weight }}"
+                  class="product__text rte {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %} text-color-{{ block.settings.text_color }} {{ block.settings.text_style }} text-weight-{{ block.settings.text_weight }}"
                   {{ block.shopify_attributes }}
                 >
                   {{- block.settings.text -}}
@@ -353,10 +353,14 @@
 
             {%- when 'video' -%}
               {% if block.settings.block_position == 'under_media' %}
+                {%- assign video_classes = '' -%}
+                {%- unless block.settings.show_in_quick_add -%}
+                  {%- assign video_classes = 'quick-add-hidden' -%}
+                {%- endunless -%}
                 {%- render 'block-video',
                   block: block,
                   forloop: forloop,
-                  classes: 'quick-add-hidden',
+                  classes: video_classes,
                   section_id: section.id
                 -%}
               {% endif %}
@@ -369,7 +373,7 @@
             {%- when 'divider' -%}
               {% if block.settings.block_position == 'under_media' %}
                 <div
-                  class="product__divider quick-add-hidden"
+                  class="product__divider {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}"
                   style="--divider-color: {{ block.settings.divider_color }}; --divider-thickness: {{ block.settings.divider_thickness }}px;"
                   {{ block.shopify_attributes }}
                 >
@@ -401,7 +405,7 @@
                 -%}
                 <div
                   id="EffectivePrice-{{ block.id }}-{{ section.id }}"
-                  class="product-effective-price quick-add-hidden"
+                  class="product-effective-price {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}"
                   data-effective-price-section="{{ section.id }}"
                   data-effective-price-block-id="{{ block.id }}"
                   {{ block.shopify_attributes }}
@@ -973,7 +977,7 @@
 									</div>
 								{% endcapture %}
 
-								<div id="{{ tabs_id }}" class="product-meta-tabs quick-add-hidden" data-product-meta-tabs {{ block.shopify_attributes }}>
+                <div id="{{ tabs_id }}" class="product-meta-tabs {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}" data-product-meta-tabs {{ block.shopify_attributes }}>
 									<div class="product-meta-tabs__desktop">
 										<div class="product-meta-tabs__nav" role="tablist" aria-label="{% if description_has_data %}{{ block.settings.description_tab_label }} {% endif %}{% if specifications_has_data %}{{ block.settings.specification_tab_label }} {% endif %}{% if buyback_has_data %}{{ block.settings.buyback_tab_label }}{% endif %}">
 											{% if description_has_data %}
@@ -1032,7 +1036,7 @@
             {%- when 'description' -%}
               {%- if product.description != blank -%}
                 <div
-                  class="product__description rte quick-add-hidden {% if block.settings.show_only_table %}show-table{% endif %}"
+                  class="product__description rte {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %} {% if block.settings.show_only_table %}show-table{% endif %}"
                   {{ block.shopify_attributes }}
                 >
                   {{ product.description }}
@@ -1059,7 +1063,7 @@
                 and product.description != empty
               %}
                 <div
-                  class="collabsible_description {% if settings.mood_type == 'mood5' %}quick-add-hidden{% endif %}"
+                  class="collabsible_description {% if settings.mood_type == 'mood5' and block.settings.show_in_quick_add != true %}quick-add-hidden{% endif %}"
                   {{ block.shopify_attributes }}
                 >
                   <div class="collapsible_text">
@@ -1092,7 +1096,7 @@
 
             {%- when 'collapsible_tab' -%}
               {% if block.settings.collapsible_row_position == 'sidebar' or product.media.size <= 0 %}
-                <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
+                <div class="product__accordion accordion {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}" {{ block.shopify_attributes }}>
                   <details
                     id="Details-{{ block.id }}-{{ section.id }}"
                     {% if block.settings.default_open %}
@@ -1134,7 +1138,7 @@
 
             {%- when 'popup' -%}
               <modal-opener
-                class="product-popup-modal__opener no-js-hidden quick-add-hidden"
+                class="product-popup-modal__opener no-js-hidden {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}"
                 data-modal="#PopupModal-{{ block.id }}"
                 {{ block.shopify_attributes }}
               >
@@ -1202,7 +1206,7 @@
 
             {%- when 'delivery_date_pickup' -%}
               {% if product.selected_or_first_available_variant.available %}
-                <div class="delivery-pickup quick-add-hidden" {{ block.shopify_attributes }}>
+                <div class="delivery-pickup {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}" {{ block.shopify_attributes }}>
                   {% if block.settings.show_delivery_date %}
                     {% assign max_date = block.settings.delivery_max | times: 24 | times: 60 | times: 60 %}
                     <div class="delivery-pickup-date">
@@ -1236,7 +1240,7 @@
                       {{ 'component-pickup-availability.css' | asset_url | stylesheet_tag }}
 
                       <pickup-availability
-                        class="product__pickup-availabilities no-js-hidden quick-add-hidden"
+                        class="product__pickup-availabilities no-js-hidden {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}"
                         {% if product.selected_or_first_available_variant.available
                           and pick_up_availabilities.size > 0
                         %}
@@ -1303,7 +1307,7 @@
 
             {%- when 'note' -%}
               {%- if settings.show_cart_note -%}
-                <cart-note class="cart__note field {% if settings.mood_type == 'mood5' %}quick-add-hidden{% endif %}">
+                <cart-note class="cart__note field {% if settings.mood_type == 'mood5' and block.settings.show_in_quick_add != true %}quick-add-hidden{% endif %}">
                   <label for="Cart-note">
                     {{ 'sections.cart.note' | t }}
                   </label>
@@ -1501,7 +1505,7 @@
             {%- when 'complementary' -%}
               {% if block.settings.block_position == 'sidebar' or product.media.size <= 0 %}
                 <product-recommendations
-                  class="complementary-products quick-add-hidden no-js-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}"
+                  class="complementary-products {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %} no-js-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}"
                   data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ block.settings.product_list_limit }}&intent=complementary"
                   {{ block.shopify_attributes }}
                 >
@@ -1655,7 +1659,7 @@
             {%- when 'skills-learned' -%}
               {% assign skills = product.metafields.custom.skills.value %}
               {% if skills != blank %}
-                <div class="product-skills-learned quick-add-hidden" {{ block.shopify_attributes }}>
+                <div class="product-skills-learned {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}" {{ block.shopify_attributes }}>
                   {% if block.settings.heading != blank %}
                     <h2 class="product-skills-learned__heading">{{ block.settings.heading }}</h2>
                   {% endif %}
@@ -1803,7 +1807,7 @@
           {%- case block.type -%}
             {%- when 'collapsible_tab' -%}
               {% if block.settings.collapsible_row_position == 'under_media' %}
-                <div class="product__accordion accordion under-product quick-add-hidden" {{ block.shopify_attributes }}>
+                <div class="product__accordion accordion under-product {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}" {{ block.shopify_attributes }}>
                   <details
                     id="Details-{{ block.id }}-{{ section.id }}"
                     {% if block.settings.default_open %}
@@ -1846,7 +1850,7 @@
             {%- when 'complementary' -%}
               {% if block.settings.block_position == 'under_media' %}
                 <product-recommendations
-                  class="complementary-products quick-add-hidden no-js-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}"
+                  class="complementary-products {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %} no-js-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}"
                   data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ block.settings.product_list_limit }}&intent=complementary"
                   {{ block.shopify_attributes }}
                 >
@@ -2002,7 +2006,7 @@
             {%- when 'text' -%}
               {% if block.settings.block_position == 'under_media' %}
                 <div
-                  class="product__text rte quick-add-hidden text-color-{{ block.settings.text_color }} {{ block.settings.text_style }} text-weight-{{ block.settings.text_weight }}"
+                  class="product__text rte {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %} text-color-{{ block.settings.text_color }} {{ block.settings.text_style }} text-weight-{{ block.settings.text_weight }}"
                   {{ block.shopify_attributes }}
                 >
                   {{- block.settings.text -}}
@@ -2019,10 +2023,14 @@
 
             {%- when 'video' -%}
               {% if block.settings.block_position == 'under_media' %}
+                {%- assign video_classes = '' -%}
+                {%- unless block.settings.show_in_quick_add -%}
+                  {%- assign video_classes = 'quick-add-hidden' -%}
+                {%- endunless -%}
                 {%- render 'block-video',
                   block: block,
                   forloop: forloop,
-                  classes: 'quick-add-hidden',
+                  classes: video_classes,
                   section_id: section.id
                 -%}
               {% endif %}
@@ -2035,7 +2043,7 @@
             {%- when 'divider' -%}
               {% if block.settings.block_position == 'under_media' %}
                 <div
-                  class="product__divider quick-add-hidden"
+                  class="product__divider {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}"
                   style="--divider-color: {{ block.settings.divider_color }}; --divider-thickness: {{ block.settings.divider_thickness }}px;"
                   {{ block.shopify_attributes }}
                 >
@@ -2067,7 +2075,7 @@
                 -%}
                 <div
                   id="EffectivePrice-{{ block.id }}-{{ section.id }}"
-                  class="product-effective-price quick-add-hidden"
+                  class="product-effective-price {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}"
                   data-effective-price-section="{{ section.id }}"
                   data-effective-price-block-id="{{ block.id }}"
                   {{ block.shopify_attributes }}
@@ -2110,7 +2118,7 @@
         {%- when 'collapsible_tab' -%}
           {% if block.settings.collapsible_row_position != 'sidebar' %}
             <div
-              class="product__accordion accordion under-product quick-add-hidden{% if block.settings.collapsible_row_position == 'under_media' %} medium-hide large-up-hide{% endif %}"
+              class="product__accordion accordion under-product {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}{% if block.settings.collapsible_row_position == 'under_media' %} medium-hide large-up-hide{% endif %}"
               {{ block.shopify_attributes }}
             >
               <details
@@ -2154,7 +2162,7 @@
         {%- when 'complementary' -%}
           {% if block.settings.block_position != 'sidebar' %}
             <product-recommendations
-              class="complementary-products quick-add-hidden no-js-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}{% if block.settings.block_position == 'under_media' %} medium-hide large-up-hide{% endif %}"
+              class="complementary-products {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %} no-js-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}{% if block.settings.block_position == 'under_media' %} medium-hide large-up-hide{% endif %}"
               data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ block.settings.product_list_limit }}&intent=complementary"
               {{ block.shopify_attributes }}
             >
@@ -2305,7 +2313,10 @@
         {%- when 'text' -%}
           {% if block.settings.block_position != 'sidebar' %}
             {% if block.settings.block_position == 'under_media' %}
-              {% assign classes = 'medium-hide large-up-hide quick-add-hidden' %}
+              {% assign classes = 'medium-hide large-up-hide' %}
+              {% unless block.settings.show_in_quick_add %}
+                {% assign classes = classes | append: ' quick-add-hidden' %}
+              {% endunless %}
             {% else %}
               {% assign classes = ' ' %}
             {% endif %}
@@ -2331,7 +2342,10 @@
         {%- when 'video' -%}
           {% if block.settings.block_position != 'sidebar' %}
             {% if block.settings.block_position == 'under_media' %}
-              {% assign classes = 'medium-hide large-up-hide quick-add-hidden' %}
+              {% assign classes = 'medium-hide large-up-hide' %}
+              {% unless block.settings.show_in_quick_add %}
+                {% assign classes = classes | append: ' quick-add-hidden' %}
+              {% endunless %}
             {% else %}
               {% assign classes = ' ' %}
             {% endif %}
@@ -2342,7 +2356,10 @@
         {%- when 'divider' -%}
           {% if block.settings.block_position != 'sidebar' %}
             {% if block.settings.block_position == 'under_media' %}
-              {% assign divider_classes = 'medium-hide large-up-hide quick-add-hidden' %}
+              {% assign divider_classes = 'medium-hide large-up-hide' %}
+              {% unless block.settings.show_in_quick_add %}
+                {% assign divider_classes = divider_classes | append: ' quick-add-hidden' %}
+              {% endunless %}
             {% else %}
               {% assign divider_classes = '' %}
             {% endif %}
@@ -2359,7 +2376,10 @@
         {%- when 'effective_price_cta' -%}
           {% if block.settings.block_position != 'sidebar' %}
             {% if block.settings.block_position == 'under_media' %}
-              {% assign effective_price_classes = 'medium-hide large-up-hide quick-add-hidden' %}
+              {% assign effective_price_classes = 'medium-hide large-up-hide' %}
+              {% unless block.settings.show_in_quick_add %}
+                {% assign effective_price_classes = effective_price_classes | append: ' quick-add-hidden' %}
+              {% endunless %}
             {% else %}
               {% assign effective_price_classes = '' %}
             {% endif %}
@@ -2629,6 +2649,12 @@
           "default": "heading",
           "label": "Breadcrumbs color hover",
           "info": "t:sections.all.colors.has_cards_info"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
         }
       ]
     },
@@ -2862,6 +2888,12 @@
           ],
           "default": "sidebar",
           "label": "Block position"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
         }
       ]
     },
@@ -2904,6 +2936,12 @@
           ],
           "default": "under",
           "label": "Block position"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
         }
       ]
     },
@@ -2964,6 +3002,12 @@
           ],
           "default": "under",
           "label": "Block position"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
         }
       ]
     },
@@ -3808,13 +3852,27 @@
           "label": "Show table",
           "default": false,
           "info": "Displays only the table from the product description"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
         }
       ]
     },
     {
       "type": "note",
       "name": "Note",
-      "limit": 1
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
+        }
+      ]
     },
     {
       "type": "crossell_product",
@@ -4199,6 +4257,12 @@
           "id": "show_pickup_availability",
           "default": true,
           "label": "Show pickup availability"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
         }
       ]
     },
@@ -4222,6 +4286,12 @@
           "id": "collapsible_btn",
           "default": "Read More",
           "label": "Label button"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
         }
       ]
     },
@@ -4491,6 +4561,12 @@
           ],
           "default": "under",
           "label": "Block position"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
         }
       ]
     },
@@ -4566,6 +4642,12 @@
           ],
           "default": "under_media",
           "label": "Block position"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
         }
       ]
     },
@@ -4626,6 +4708,12 @@
           "id": "page",
           "type": "page",
           "label": "t:sections.main-product.blocks.popup.settings.page.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
         }
       ]
     },
@@ -5004,6 +5092,12 @@
           "default": "color-main-bg",
           "label": "t:settings_schema.colors.settings.background_colors.content",
           "info": "t:sections.all.colors.has_cards_info"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
         }
       ]
     },
@@ -5806,6 +5900,12 @@
           "id": "heading",
           "label": "Heading",
           "default": "Skills learned"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
         }
       ]
     },
@@ -6061,6 +6161,12 @@
           "type": "textarea",
           "id": "stack_6_description",
           "label": "Stack 6 description"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
         }
       ]
     }

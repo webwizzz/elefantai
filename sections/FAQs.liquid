@@ -118,8 +118,8 @@
     {% if section.settings.background_image %}
       background-image: url('{{ section.settings.background_image | image_url: width: 2000 }}');
       background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
+      background-position: top;
+      background-repeat: repeat;
     {% endif %}
     padding: 80px 20px;
     position: relative;

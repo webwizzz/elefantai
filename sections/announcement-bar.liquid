@@ -22,7 +22,15 @@
     }
   }
 
-	{% if section.settings.colors_background_section_gradient != blank %}
+	{% if section.settings.background_image != blank %}
+    #shopify-section-{{ section.id }} .announcement-bar {
+      background-color: transparent;
+      background-image: url({{ section.settings.background_image | image_url }});
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+	{% elsif section.settings.colors_background_section_gradient != blank %}
     #shopify-section-{{ section.id }} .announcement-bar {
       background: {{ section.settings.colors_background_section_gradient }};
     }
@@ -200,6 +208,12 @@
       "id": "background_color",
       "label": "t:sections.all.padding.background_color",
       "default": "#DA3C24"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image",
+      "info": "Optional background image; when set it overrides background color/gradient"
     },
     {
       "id": "colors_background_section_gradient",

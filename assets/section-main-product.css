@@ -3139,5 +3139,6 @@ variant-selects .product-popup-modal__opener {
 
   .product__info-container>*:first-child {
     margin-top: 0;
+    padding: 10px;
   }
 }

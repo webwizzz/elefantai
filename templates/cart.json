@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "cart-items": {
       "type": "main-cart-items",
@@ -66,7 +66,7 @@
         "mins_background_color": "color-main-bg",
         "secs_label": "Seconds",
         "secs_background_color": "color-main-bg",
-        "coundown_number_color": "#da3c24",
+        "coundown_number_color": "#6e4b7e",
         "coundown_number_size": 36,
         "coundown_number_size_mb": 36,
         "coundown_number_weight": "700",
@@ -79,14 +79,14 @@
         "text_color": "secondary",
         "show_continue": false,
         "custom_link": "",
-        "banner_background_color": "#da3c24",
+        "banner_background_color": "#6e4b7e",
         "full_width": true,
         "shape_position": "top",
         "shape_type": "none",
         "shape_color": "#fef7e6",
         "shape_width": 100,
-        "banner_padding_top": 180,
-        "banner_padding_bottom": 80,
+        "banner_padding_top": 80,
+        "banner_padding_bottom": 50,
         "show_breadcrumbs": false,
         "breadcrumb_color": "main",
         "breadcrumb_color_hover": "heading",
@@ -111,18 +111,18 @@
         "cart_collection_title": "Pair It With",
         "shape_content_position": "top",
         "shape_content_type": "curve",
-        "shape_content_color": "#da3c24",
+        "shape_content_color": "#6e4b7e",
         "shape_content_width": 100,
         "background_color": "--colors-background-main",
         "colors_background_section_gradient": "",
         "padding_top": 160,
-        "padding_bottom": 80
+        "padding_bottom": 50
       }
     },
     "featured-collection": {
       "type": "featured-collection",
       "settings": {
-        "collection": "",
+        "collection": "0-to-1-year",
         "title": "<strong>You May also Like</strong>",
         "heading_size": "h2",
         "heading_color": "heading",
@@ -221,7 +221,7 @@
             "heading": "<strong>Sign Up to the Newsletter</strong>",
             "heading_size": "h2",
             "heading_weight": "700",
-            "heading_color": "main"
+            "heading_color": "secondary"
           }
         },
         "template--18867160121647__newsletter-16830990270b07a601-1": {
@@ -230,7 +230,7 @@
             "text": "<p>Add descriptive text to invite your users to sign up for your newsletter.</p>",
             "text_style": "body",
             "text_size": "large",
-            "text_color": "main"
+            "text_color": "secondary"
           }
         },
         "template--18867160121647__newsletter-16830990270b07a601-2": {
@@ -274,8 +274,8 @@
         "image_overlay_horizontal_3_mobile": 94,
         "image_overlay_animation_3": "ambient",
         "shape_position": "top",
-        "shape_type": "waves",
-        "shape_color": "#fef7e6",
+        "shape_type": "curve",
+        "shape_color": "#ffffff",
         "shape_width": 100,
         "background_color_main": "color-bg-3",
         "color_background_main": "",

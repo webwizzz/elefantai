@@ -26,16 +26,16 @@
         "shape_width": 100,
         "background_color": "color-bg-3",
         "colors_background_section_gradient": "",
-        "padding_top": 180,
-        "padding_bottom": 90,
+        "padding_top": 80,
+        "padding_bottom": 40,
         "shape_content_position": "top",
         "shape_content_type": "curve",
         "shape_content_color": "#6e4b7e",
         "shape_content_width": 100,
         "content_background_color": "color-bg-3",
         "content_colors_background_section_gradient": "",
-        "content_padding_top": 100,
-        "content_padding_bottom": 100
+        "content_padding_top": 80,
+        "content_padding_bottom": 40
       }
     },
     "ed031781-7986-41b3-8f11-c6f15128fa79": {
