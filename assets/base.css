@@ -8,6 +8,10 @@
   --gradient-background: var(--gradient-base-background-1);
 }
 
+.drawer__cart-items-wrapper .swym-wishlist-collections-v2-container{
+  display: none !important;
+}
+
 .swym-atw-btn-wrapper.product_title_left-position, .swym-atw-btn-wrapper.product_title_right-position{
   justify-content: space-between !important;
   align-items: start !important;
