@@ -14,11 +14,18 @@
     "announcement_bar_e8p3AM": {
       "type": "announcement-bar",
       "blocks": {
+        "announcement_6ReBDi": {
+          "type": "announcement",
+          "settings": {
+            "text": "See out latest products",
+            "link": "shopify://collections"
+          }
+        },
         "announcement_NLEdgD": {
           "type": "announcement",
           "settings": {
             "text": "Welcome to our store",
-            "link": ""
+            "link": "shopify://collections"
           }
         },
         "freeshipping_wqg4Qh": {
@@ -31,6 +38,7 @@
         }
       },
       "block_order": [
+        "announcement_6ReBDi",
         "announcement_NLEdgD",
         "freeshipping_wqg4Qh"
       ],

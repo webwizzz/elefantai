@@ -8,15 +8,24 @@
 
   .elevated-hero-slider {
     position: relative;
+    display: grid;
   }
 
   .elevated-hero-card.elevated-hero-slide {
-    display: none;
+    grid-area: 1 / 1;
+    opacity: 0;
+    transform: translateY(6px);
+    pointer-events: none;
+    visibility: hidden;
+    transition: opacity 0.6s ease, transform 0.6s ease, visibility 0s linear 0.6s;
   }
 
   .elevated-hero-card.elevated-hero-slide.is-active {
-    display: flex;
-    animation: heroSlideFade 0.4s ease;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+    transition: opacity 0.6s ease, transform 0.6s ease;
   }
 
   @keyframes heroSlideFade {
@@ -108,7 +117,7 @@
   }
 
   .elevated-hero-text {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 26px;
     margin-bottom: 3.5rem;
     max-width: 480px;
@@ -134,7 +143,6 @@
       flex-direction: column;
       margin-top: auto;
       padding-top: 1rem;
-      transform: translateY(20rem);
     }
   }
 
@@ -232,11 +240,18 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: var(--hero-overlay-color, #000000);
-    opacity: var(--hero-overlay-opacity, 0);
+    background: var(--hero-overlay-color-mobile, var(--hero-overlay-color, #000000));
+    opacity: var(--hero-overlay-opacity-mobile, var(--hero-overlay-opacity, 0));
     z-index: 1;
     border-radius: inherit;
     pointer-events: none;
+  }
+
+  @media screen and (min-width: 750px) {
+    .elevated-hero-card::before {
+      background: var(--hero-overlay-color-desktop, var(--hero-overlay-color-mobile, var(--hero-overlay-color, #000000)));
+      opacity: var(--hero-overlay-opacity-desktop, var(--hero-overlay-opacity-mobile, var(--hero-overlay-opacity, 0)));
+    }
   }
 {%- endstyle -%}
 
@@ -260,6 +275,16 @@
         {% assign slide_fallback_bg = block.settings.fallback_bg_color | default: section.settings.fallback_bg_color %}
         {% assign slide_overlay_color = block.settings.overlay_color | default: section.settings.overlay_color %}
         {% assign slide_overlay_opacity = block.settings.overlay_opacity | default: section.settings.overlay_opacity %}
+        {% assign slide_overlay_color_mobile = slide_overlay_color %}
+        {% assign slide_overlay_opacity_mobile = slide_overlay_opacity %}
+        {% assign slide_overlay_color_desktop = slide_overlay_color %}
+        {% assign slide_overlay_opacity_desktop = slide_overlay_opacity %}
+        {% if block.settings.enable_device_overlay %}
+          {% assign slide_overlay_color_mobile = block.settings.overlay_color_mobile %}
+          {% assign slide_overlay_opacity_mobile = block.settings.overlay_opacity_mobile %}
+          {% assign slide_overlay_color_desktop = block.settings.overlay_color_desktop %}
+          {% assign slide_overlay_opacity_desktop = block.settings.overlay_opacity_desktop %}
+        {% endif %}
         {% assign slide_heading = block.settings.heading | default: section.settings.heading %}
         {% assign slide_highlight = block.settings.highlight_text | default: section.settings.highlight_text %}
         {% assign slide_text = block.settings.text | default: section.settings.text %}
@@ -281,6 +306,10 @@
             {% if slide_image != blank %}--hero-bg-desktop: url('{{ slide_image | image_url: width: 2400 }}');{% else %}--hero-bg-desktop: var(--hero-bg-mobile);{% endif %}
             --hero-overlay-color: {{ slide_overlay_color }};
             --hero-overlay-opacity: {{ slide_overlay_opacity | divided_by: 100.0 }};
+            --hero-overlay-color-mobile: {{ slide_overlay_color_mobile }};
+            --hero-overlay-opacity-mobile: {{ slide_overlay_opacity_mobile | divided_by: 100.0 }};
+            --hero-overlay-color-desktop: {{ slide_overlay_color_desktop }};
+            --hero-overlay-opacity-desktop: {{ slide_overlay_opacity_desktop | divided_by: 100.0 }};
           "
           {{ block.shopify_attributes }}
           aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}"
@@ -343,6 +372,10 @@
           {% if section.settings.image != blank %}--hero-bg-desktop: url('{{ section.settings.image | image_url: width: 2400 }}');{% else %}--hero-bg-desktop: var(--hero-bg-mobile);{% endif %}
           --hero-overlay-color: {{ section.settings.overlay_color }};
           --hero-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+          --hero-overlay-color-mobile: {{ section.settings.overlay_color }};
+          --hero-overlay-opacity-mobile: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+          --hero-overlay-color-desktop: {{ section.settings.overlay_color }};
+          --hero-overlay-opacity-desktop: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
         "
         aria-hidden="false"
       >
@@ -563,6 +596,44 @@
           "step": 1,
           "unit": "%",
           "label": "Image Overlay Opacity",
+          "default": 0
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_device_overlay",
+          "label": "Use separate overlays for mobile and desktop",
+          "default": false
+        },
+        {
+          "type": "color",
+          "id": "overlay_color_mobile",
+          "label": "Mobile Overlay Color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity_mobile",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Mobile Overlay Opacity",
+          "default": 0
+        },
+        {
+          "type": "color",
+          "id": "overlay_color_desktop",
+          "label": "Desktop Overlay Color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity_desktop",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Desktop Overlay Opacity",
           "default": 0
         },
         {
