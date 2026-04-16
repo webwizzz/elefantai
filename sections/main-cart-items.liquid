@@ -118,7 +118,7 @@
           src="{{ section.settings.banner_backgroung_image | image_url: width: 1920 }}"
           sizes="100vw"
           alt="{{- page.title | escape -}}"
-          loading="eager"
+          loading="lazy"
           width="{{ section.settings.banner_backgroung_image.width }}"
           height="{{ section.settings.banner_backgroung_image.height }}"
         >
@@ -144,7 +144,7 @@
           src="{{ section.settings.banner_background_mb | image_url: width: 1920 }}"
           sizes="100vw"
           alt="{{- page.title | escape -}}"
-          loading="eager"
+          loading="lazy"
           width="{{ section.settings.banner_background_mb.width }}"
           height="{{ section.settings.banner_background_mb.height }}"
         >
@@ -819,7 +819,7 @@
                     {% endif %}
                     form="cart"
                   >
-                    {{ 'sections.cart.checkout' | t }}
+                    Checkout
                   </button>
                 </div>
 

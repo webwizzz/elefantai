@@ -29,7 +29,7 @@
         "padding_top": 80,
         "padding_bottom": 40,
         "shape_content_position": "top",
-        "shape_content_type": "curve",
+        "shape_content_type": "none",
         "shape_content_color": "#6e4b7e",
         "shape_content_width": 100,
         "content_background_color": "color-bg-3",

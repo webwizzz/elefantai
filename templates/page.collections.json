@@ -20,8 +20,8 @@
         "heading_weight": "700",
         "text_color": "secondary",
         "full_width": true,
-        "shape_position": "bottom",
-        "shape_type": "curve-wide",
+        "shape_position": "top",
+        "shape_type": "curve-invert",
         "shape_color": "#6e4b7e",
         "shape_width": 153,
         "background_color": "color-bg-3",
@@ -34,14 +34,14 @@
         "shape_content_width": 100,
         "content_background_color": "color-bg-3",
         "content_colors_background_section_gradient": "",
-        "content_padding_top": 156,
-        "content_padding_bottom": 150
+        "content_padding_top": 52,
+        "content_padding_bottom": 54
       }
     },
-    "collection_list_JbcYpm": {
+    "collection_list_WHYHe8": {
       "type": "collection-list",
       "blocks": {
-        "featured_collection_fcm9Cy": {
+        "featured_collection_4Wm9kV": {
           "type": "featured_collection",
           "settings": {
             "collection": "0-to-1-year",
@@ -55,7 +55,7 @@
             "icon_horizontal_mobile": 0.5
           }
         },
-        "featured_collection_pnLhiN": {
+        "featured_collection_beU7fT": {
           "type": "featured_collection",
           "settings": {
             "collection": "1-3-years",
@@ -69,7 +69,7 @@
             "icon_horizontal_mobile": 0.5
           }
         },
-        "featured_collection_CmDEQa": {
+        "featured_collection_AznxiF": {
           "type": "featured_collection",
           "settings": {
             "collection": "3-5-years",
@@ -83,7 +83,7 @@
             "icon_horizontal_mobile": 0.5
           }
         },
-        "featured_collection_nz8AJz": {
+        "featured_collection_hy6Ltt": {
           "type": "featured_collection",
           "settings": {
             "collection": "5-8-years",
@@ -97,7 +97,7 @@
             "icon_horizontal_mobile": 0.5
           }
         },
-        "featured_collection_TqJKNH": {
+        "featured_collection_cPWt3N": {
           "type": "featured_collection",
           "settings": {
             "collection": "8-12-years",
@@ -111,7 +111,7 @@
             "icon_horizontal_mobile": 0.5
           }
         },
-        "featured_collection_aprBBt": {
+        "featured_collection_EmHDD8": {
           "type": "featured_collection",
           "settings": {
             "collection": "category-1",
@@ -125,7 +125,7 @@
             "icon_horizontal_mobile": 0.5
           }
         },
-        "featured_collection_Cgn7xM": {
+        "featured_collection_LjQrzf": {
           "type": "featured_collection",
           "settings": {
             "collection": "category-1-copy",
@@ -139,7 +139,7 @@
             "icon_horizontal_mobile": 0.5
           }
         },
-        "featured_collection_cXWH7r": {
+        "featured_collection_FrHWPe": {
           "type": "featured_collection",
           "settings": {
             "collection": "category-2-copy",
@@ -155,18 +155,18 @@
         }
       },
       "block_order": [
-        "featured_collection_fcm9Cy",
-        "featured_collection_pnLhiN",
-        "featured_collection_CmDEQa",
-        "featured_collection_nz8AJz",
-        "featured_collection_TqJKNH",
-        "featured_collection_aprBBt",
-        "featured_collection_Cgn7xM",
-        "featured_collection_cXWH7r"
+        "featured_collection_4Wm9kV",
+        "featured_collection_beU7fT",
+        "featured_collection_AznxiF",
+        "featured_collection_hy6Ltt",
+        "featured_collection_cPWt3N",
+        "featured_collection_EmHDD8",
+        "featured_collection_LjQrzf",
+        "featured_collection_FrHWPe"
       ],
       "name": "t:sections.collection-list.presets.name",
       "settings": {
-        "title": "<strong>Collections</strong>",
+        "title": "",
         "heading_size": "h2",
         "heading_color": "heading",
         "heading_align": "center",
@@ -210,13 +210,13 @@
         "full_width": false,
         "background_color": "color-bg-2",
         "colors_background_section_gradient": "",
-        "padding_top": 74,
+        "padding_top": 122,
         "padding_bottom": 74
       }
     }
   },
   "order": [
     "main",
-    "collection_list_JbcYpm"
+    "collection_list_WHYHe8"
   ]
 }

@@ -621,6 +621,9 @@
                         {% assign card_secondary = product.vendor %}
                       {% endif %}
 
+                      {% assign variant_price = current_variant.price | default: product.price %}
+                      {% assign variant_compare = current_variant.compare_at_price | default: product.compare_at_price %}
+
                       <div class="fc-card-bottom">
                         {% if card_primary != blank %}
                           <div class="fc-card-category">
@@ -645,14 +648,14 @@
                         {% endif %}
 
                         <div class="fc-card-price">
-                          {{ product.price | money }}
-                          {% if product.compare_at_price > product.price %}
-                            <s>{{ product.compare_at_price | money }}</s>
+                          {{ variant_price | money }}
+                          {% if variant_compare > variant_price %}
+                            <s>{{ variant_compare | money }}</s>
                           {% endif %}
                         </div>
 
-                        {% assign bb = product.price | times: 60 | divided_by: 100 %}
-                        <div class="fc-card-buyback">BUY BACK {{ bb | money }} ON THIS ORDER</div>
+                        {% assign bb = variant_price | times: 60 | divided_by: 100 %}
+                        <div class="fc-card-buyback">Buy now, sell back for  {{ bb | money }} </div>
                       </div>
                     </a>
 

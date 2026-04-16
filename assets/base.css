@@ -8,6 +8,18 @@
   --gradient-background: var(--gradient-base-background-1);
 }
 
+#kp-login-button-header-logo{
+  margin: 0 6px;
+}
+#kp-login-button-header-logo>svg>path:nth-of-type(2) {
+  stroke: #493254 !important;
+  fill: #493254 !important;
+}
+
+.wishlisthero-product-page-button-container .button:hover::before {
+  background-color: transparent !important;
+}
+
 .drawer__cart-items-wrapper .swym-wishlist-collections-v2-container{
   display: none !important;
 }
@@ -3181,6 +3193,13 @@ product-info .loading-overlay:not(.hidden) ~ *,
 	padding-bottom: 0;
 }
 
+.wishlisthero-product-page-button-container .button::before {
+  background-color: transparent !important;
+}
+
+.wishlisthero-product-page-button-container .button::before {
+  content: none !important;
+}
 .menu-with-icon {
 	flex-direction: column;
 }
@@ -3189,12 +3208,16 @@ product-info .loading-overlay:not(.hidden) ~ *,
 	text-decoration: none;
 }
 
+/* .MuiButtonBase-root{
+  background-color: rgb(110, 75, 126) !important;
+} */
+
 .header__icon:not(.header__icon--summary),
 .header__icon span {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: white !important;
   font-size: 22px;
 }
 
@@ -3204,6 +3227,14 @@ product-info .loading-overlay:not(.hidden) ~ *,
 
 .header__icon span {
   height: 100%;
+  font-size: 12px;
+}
+.header__icon span:hover {
+  color: white !important;
+}
+
+.wishlist-hero-items-count:hover{
+  color: white !important;
 }
 
 .header__icon::after {

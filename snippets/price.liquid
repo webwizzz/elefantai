@@ -68,10 +68,10 @@
 						{% if settings.sale_badge_style == 'sale' %}
 							{{- 'products.product.on_sale' | t -}}
 						{% elsif settings.sale_badge_style == 'saving' %}
-							{%- assign savings = product.compare_at_price | minus: product.price | money_without_trailing_zeros -%}
+              {%- assign savings = compare_at_price | minus: price | money_without_trailing_zeros -%}
 							Save {{ savings -}}
 						{% else %}
-							{%- assign savings = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round | append: '%' -%}
+              {%- assign savings = compare_at_price | minus: price | times: 100.0 | divided_by: compare_at_price | round | append: '%' -%}
 							{{- savings }} Off 
 						{% endif %}
           </span>

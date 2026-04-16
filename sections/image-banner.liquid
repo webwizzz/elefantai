@@ -373,7 +373,7 @@
 		src="{{ section.settings.backgroung_image | image_url: width: 750 }}"
 		sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 130px), calc(100vw - 55px)"
 		alt="{{- page.title | escape -}}"
-		loading="eager"
+		loading="lazy"
 		width="{{ section.settings.backgroung_image.width }}"
 		height="{{ section.settings.backgroung_image.height }}">
 		

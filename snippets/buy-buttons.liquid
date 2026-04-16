@@ -56,7 +56,9 @@
           -%}
         {%- endif -%}
 
-        <div class="product-form__buttons  {% if full_width != true %} not-full {% endif %}">
+        <div class="product-form__buttons  {% if full_width != true %} not-full {% endif %}" style="position: relative;">
+          <!-- Interception Overlay for Pincode Validator -->
+          <div class="pincode-interception-overlay" style="display: none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 10;"></div>
 
           <div id="Quantity-Form-{{ buy_buttons_section_id }}" class="product-form__input product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} product-form__quantity-top{% endif %} {% if show_quantity %}hide-quantity{% endif %}" {{ block.shopify_attributes }}>
 

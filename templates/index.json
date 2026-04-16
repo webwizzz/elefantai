@@ -17,9 +17,13 @@
           "settings": {
             "image": "shopify://shop_images/Group-7.svg",
             "fallback_bg_color": "#fffaf0",
-            "enable_overlay": true,
             "overlay_color": "#000000",
             "overlay_opacity": 0,
+            "enable_device_overlay": true,
+            "overlay_color_mobile": "#ffffff",
+            "overlay_opacity_mobile": 4,
+            "overlay_color_desktop": "#000000",
+            "overlay_opacity_desktop": 0,
             "heading": "Buy Toys Today,",
             "highlight_text": "Get 60% Back",
             "text": "The smart way to buy toys. Play, return when done, and get money back. It's that simple!",
@@ -27,7 +31,7 @@
             "highlight_color": "#f5a623",
             "text_color": "#4a4a4a",
             "button_label_1": "Learn How it Works",
-            "button_link_1": "shopify://pages/how-it-works",
+            "button_link_1": "https://funlearn.in/#how-it-works",
             "btn_primary_bg": "#9b63b8",
             "btn_primary_text": "#ffffff",
             "button_label_2": "Start Browsing",
@@ -38,11 +42,15 @@
         "slide_WCQjUD": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Desktop_-_16.jpg",
+            "image": "shopify://shop_images/toy-image-17313876312881.jpg",
             "fallback_bg_color": "#fffaf0",
-            "enable_overlay": true,
             "overlay_color": "#000000",
             "overlay_opacity": 19,
+            "enable_device_overlay": true,
+            "overlay_color_mobile": "#ffffff",
+            "overlay_opacity_mobile": 6,
+            "overlay_color_desktop": "#000000",
+            "overlay_opacity_desktop": 0,
             "heading": "Buy Toys Today,",
             "highlight_text": "Get 60% Back",
             "text": "The smart way to buy toys. Play, return when done, and get money back. It's that simple!",
@@ -50,7 +58,7 @@
             "highlight_color": "#f5a623",
             "text_color": "#4a4a4a",
             "button_label_1": "Learn How it Works",
-            "button_link_1": "shopify://pages/about-us",
+            "button_link_1": "https://funlearn.in/#how-it-works",
             "btn_primary_bg": "#9b63b8",
             "btn_primary_text": "#ffffff",
             "button_label_2": "Start Browsing",
@@ -67,10 +75,7 @@
       "settings": {
         "show_arrows": true,
         "enable_autoplay_desktop": true,
-        "auto_slide_speed": 7,
-        "enable_overlay": true,
-        "overlay_color": "#000000",
-        "overlay_opacity": 30
+        "auto_slide_speed": 7
       }
     },
     "featuredproducts_cw8znJ": {
@@ -1013,6 +1018,7 @@
         "feature_hdA8Vq",
         "feature_kaAwcJ"
       ],
+      "disabled": true,
       "name": "Features Solves Layout",
       "settings": {
         "bg_color": "#ffffff",

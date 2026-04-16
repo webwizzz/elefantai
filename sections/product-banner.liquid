@@ -355,7 +355,7 @@
             {% liquid
               assign loading = 'lazy' 
               if forloop.index == 1 and fetch_priority == 'high' 
-                assign loading = 'eager'
+                assign loading = 'lazy'
               elsif forloop.index > 1
                 assign fetch_priority = 'auto'
               endif

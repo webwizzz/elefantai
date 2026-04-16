@@ -18,7 +18,8 @@
           "type": "announcement",
           "settings": {
             "text": "See out latest products",
-            "link": "shopify://collections"
+            "image_after": "shopify://shop_images/List_Item_Link_-_Youtube_SVG_2ed6d93d-e6a7-4f2c-984f-2bef9b8576c9.svg",
+            "link": "shopify://pages/collections"
           }
         },
         "announcement_NLEdgD": {
@@ -32,7 +33,7 @@
           "type": "freeshipping",
           "settings": {
             "amount": 70,
-            "preunlock": "Spend $[[ amount ]] more and receive free shipping!",
+            "preunlock": "Spend [[ amount ]] more and receive free shipping!",
             "postunlock": "Free shipping available!"
           }
         }
@@ -60,6 +61,26 @@
     },
     "header": {
       "type": "header",
+      "blocks": {
+        "wishlist_hero_header_icon_9QNCjJ": {
+          "type": "shopify://apps/wishlist-hero/blocks/header-icon/a9a5079b-59e8-47cb-b659-ecf1c60b9b72",
+          "settings": {
+            "customThemeName": "Dawn",
+            "useCustomHeaderColor": true,
+            "customHeaderColor": "#493254",
+            "useCustomHeaderSize": true,
+            "customHeaderIconSize": 22,
+            "additionalIconCssClassNames": "",
+            "additionalIconStyle": "",
+            "additionalContainerClasses": "",
+            "additionalContainerStyle": "",
+            "replaceExistingClasses": false
+          }
+        }
+      },
+      "block_order": [
+        "wishlist_hero_header_icon_9QNCjJ"
+      ],
       "settings": {
         "logo_position": "middle-left",
         "menu": "main-menu",
