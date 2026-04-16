@@ -1249,6 +1249,7 @@ media-gallery + .buy-buttons .product-form__quantity .form__label {
   .mood3-mood .notification__wrapper,
   .mood3-mood .article-card-wrapper:hover .card--card,
   .mood3-mood .product-card-wrapper:hover .card--card,
+  .button:hover:not(.wishlisthero-product-in-wishlist),
   .mood3-mood .product-banner-slider .slider-arrow:hover {
     box-shadow: -8px 8px 0 0 rgb(var(--button-color-layer-3));
     -webkit-box-shadow: -8px 8px 0 0 rgb(var(--button-color-layer-3));

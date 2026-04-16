@@ -204,6 +204,15 @@
   }
 
 
+  .us-anchor-target {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    transform: translateY(calc(-1 * var(--header-height, 0px) - 1rem));
+    pointer-events: none;
+  }
 
   /* Dynamic Colored Elements */
   #HIW-{{ section.id }} .hiw-title .highlight {
@@ -222,6 +231,7 @@
 {%- endstyle -%}
 
 <div id="HIW-{{ section.id }}">
+  <span id="how-it-works" class="us-anchor-target" aria-hidden="true"></span>
   <!-- Background Elements -->
   {% if section.settings.top_left_image %}
     <img
@@ -261,6 +271,7 @@
           <div class="hiw-icon-box" style="background-color: {{ block.settings.bg_color }};">
             {% if block.settings.icon %}
               <img
+                loading="lazy"
                 src="{{ block.settings.icon | image_url: width: 150 }}"
                 alt="{{ block.settings.title | escape }}"
                 width="{{ block.settings.icon.width }}"

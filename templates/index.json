@@ -19,6 +19,11 @@
             "fallback_bg_color": "#fffaf0",
             "overlay_color": "#000000",
             "overlay_opacity": 0,
+            "enable_device_overlay": true,
+            "overlay_color_mobile": "#ffffff",
+            "overlay_opacity_mobile": 4,
+            "overlay_color_desktop": "#000000",
+            "overlay_opacity_desktop": 0,
             "heading": "Buy Toys Today,",
             "highlight_text": "Get 60% Back",
             "text": "The smart way to buy toys. Play, return when done, and get money back. It's that simple!",
@@ -26,7 +31,7 @@
             "highlight_color": "#f5a623",
             "text_color": "#4a4a4a",
             "button_label_1": "Learn How it Works",
-            "button_link_1": "shopify://pages/about-funlearn",
+            "button_link_1": "https://funlearn.in/#how-it-works",
             "btn_primary_bg": "#9b63b8",
             "btn_primary_text": "#ffffff",
             "button_label_2": "Start Browsing",
@@ -37,10 +42,15 @@
         "slide_WCQjUD": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/toy-image-17269977211152.jpg",
+            "image": "shopify://shop_images/toy-image-17313876312881.jpg",
             "fallback_bg_color": "#fffaf0",
             "overlay_color": "#000000",
-            "overlay_opacity": 0,
+            "overlay_opacity": 19,
+            "enable_device_overlay": true,
+            "overlay_color_mobile": "#ffffff",
+            "overlay_opacity_mobile": 6,
+            "overlay_color_desktop": "#000000",
+            "overlay_opacity_desktop": 0,
             "heading": "Buy Toys Today,",
             "highlight_text": "Get 60% Back",
             "text": "The smart way to buy toys. Play, return when done, and get money back. It's that simple!",
@@ -48,7 +58,7 @@
             "highlight_color": "#f5a623",
             "text_color": "#4a4a4a",
             "button_label_1": "Learn How it Works",
-            "button_link_1": "shopify://pages/about-us",
+            "button_link_1": "https://funlearn.in/#how-it-works",
             "btn_primary_bg": "#9b63b8",
             "btn_primary_text": "#ffffff",
             "button_label_2": "Start Browsing",
@@ -155,7 +165,7 @@
         "highlight_color": "#6c4c87",
         "subtitle": "The smart way to buy toys. Play, return when done, and get money back.",
         "button_label": "Learn How it Works",
-        "button_link": "shopify://pages/about-funlearn"
+        "button_link": "shopify://pages/how-it-works"
       }
     },
     "understand_sellback_QYfiY9": {
@@ -557,6 +567,7 @@
     },
     "text_image_card_p9QVHG": {
       "type": "text-image-card",
+      "disabled": true,
       "name": "Elevated Split Card",
       "settings": {
         "section_bg_color": "#f6f5fb",
@@ -574,7 +585,7 @@
         "btn_1_bg": "#ffffff",
         "btn_1_text": "#71507c",
         "button_label_2": "Learn How it Works",
-        "button_link_2": "shopify://pages/about-funlearn",
+        "button_link_2": "shopify://pages/how-it-works",
         "btn_2_text": "#ffffff",
         "image": "shopify://shop_images/toy-image-17323502458014_1.png"
       }
@@ -776,12 +787,13 @@
         "card_qpLRmw",
         "card_UyRMMN"
       ],
+      "disabled": true,
       "name": "Why EleFant Exists",
       "settings": {
         "heading": "We’ve Been There, *Too*",
         "description": "Parenting is beautiful, but the \"toy trap\" is exhausting. Raise curious kids without compromising your peace, wallet, or the planet.",
         "button_label": "Learn How it Works",
-        "button_link": "shopify://pages/about-funlearn",
+        "button_link": "shopify://pages/how-it-works",
         "kite_image": "shopify://shop_images/Frame-2.svg",
         "background_color": "#f2f0f5",
         "card_bg_color": "#f5f5f5"
@@ -944,6 +956,7 @@
     },
     "elevated_card_hNVmQ8": {
       "type": "elevated-card",
+      "disabled": true,
       "name": "Elevated Unified Card",
       "settings": {
         "section_bg_color": "#f6f5fb",
@@ -1005,6 +1018,7 @@
         "feature_hdA8Vq",
         "feature_kaAwcJ"
       ],
+      "disabled": true,
       "name": "Features Solves Layout",
       "settings": {
         "bg_color": "#ffffff",

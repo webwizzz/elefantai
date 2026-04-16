@@ -116,6 +116,10 @@
 
         {%- for block in section.blocks -%}
           {%- case block.type -%}
+            {%- when 'pincode_validator' -%}
+              {% if block.settings.block_position == 'under_media' %}
+                {% render 'pincode-validator', block: block %}
+              {% endif %}
             {%- when 'buy_buttons' -%}
               {% if block.settings.block_position == 'under_media' %}
                 {%- assign product_form_id = 'product-form-' | append: section.id -%}
@@ -386,8 +390,7 @@
                 {%- liquid
                   assign base_price = product.selected_or_first_available_variant.price
                   assign buyback_percent = block.settings.buyback_percent | default: 60
-                  assign remaining_percent = 100 | minus: buyback_percent
-                  assign effective_price = base_price | times: remaining_percent | divided_by: 100
+                  assign effective_price = base_price | times: buyback_percent | divided_by: 100
                   assign effective_price_cta_link = block.settings.button_link | strip
                   assign effective_price_cta_first_char = effective_price_cta_link | slice: 0, 1
 
@@ -411,12 +414,12 @@
                   {{ block.shopify_attributes }}
                 >
                   <div class="product-effective-price__text-wrap">
-                    <p class="product-effective-price__value">
-                      {{ block.settings.price_prefix }} <span data-effective-price-value>{{ effective_price | money_without_trailing_zeros }}</span>
-                    </p>
                     {% if block.settings.caption != blank %}
-                      <p class="product-effective-price__caption">{{ block.settings.caption }}</p>
+                      <p class="product-effective-price__caption">{{ block.settings.price_prefix }} {{ block.settings.caption }}</p>
                     {% endif %}
+                    <p class="product-effective-price__value">
+                      <span data-effective-price-value>{{ effective_price | money_without_trailing_zeros }}</span>
+                    </p>
                   </div>
 
                   {% if block.settings.button_label != blank %}
@@ -1292,6 +1295,11 @@
 
               {%- render 'countdown-bar', block: block, style: block.settings.coundown_style, section_id: section.id -%}
 
+            {%- when 'pincode_validator' -%}
+              {% if block.settings.block_position == 'sidebar' or product.media.size <= 0 %}
+                {% render 'pincode-validator', block: block %}
+              {% endif %}
+
             {%- when 'buy_buttons' -%}
               {% if block.settings.block_position == 'sidebar' or product.media.size <= 0 %}
                 {%- render 'buy-buttons',
@@ -1719,8 +1727,7 @@
                 {%- liquid
                   assign base_price = product.selected_or_first_available_variant.price
                   assign buyback_percent = block.settings.buyback_percent | default: 60
-                  assign remaining_percent = 100 | minus: buyback_percent
-                  assign effective_price = base_price | times: remaining_percent | divided_by: 100
+                  assign effective_price = base_price | times: buyback_percent | divided_by: 100
                   assign effective_price_cta_link = block.settings.button_link | strip
                   assign effective_price_cta_first_char = effective_price_cta_link | slice: 0, 1
 
@@ -1744,12 +1751,12 @@
                   {{ block.shopify_attributes }}
                 >
                   <div class="product-effective-price__text-wrap">
-                    <p class="product-effective-price__value">
-                      {{ block.settings.price_prefix }} <span data-effective-price-value>{{ effective_price | money_without_trailing_zeros }}</span>
-                    </p>
                     {% if block.settings.caption != blank %}
-                      <p class="product-effective-price__caption">{{ block.settings.caption }}</p>
+                      <p class="product-effective-price__caption">{{ block.settings.price_prefix }} {{ block.settings.caption }}</p>
                     {% endif %}
+                    <p class="product-effective-price__value">
+                       <span data-effective-price-value>{{ effective_price | money_without_trailing_zeros }}</span>
+                    </p>
                   </div>
 
                   {% if block.settings.button_label != blank %}
@@ -1781,6 +1788,10 @@
 
         {%- for block in section.blocks -%}
           {%- case block.type -%}
+            {%- when 'pincode_validator' -%}
+              {% if block.settings.block_position == 'under_media' %}
+                {% render 'pincode-validator', block: block %}
+              {% endif %}
             {%- when 'buy_buttons' -%}
               {% if block.settings.block_position == 'under_media' %}
                 {%- assign product_form_id = 'product-form-' | append: section.id -%}
@@ -2082,10 +2093,10 @@
                 >
                   <div class="product-effective-price__text-wrap">
                     <p class="product-effective-price__value">
-                      {{ block.settings.price_prefix }} <span data-effective-price-value>{{ effective_price | money_without_trailing_zeros }}</span>
+                      <span data-effective-price-value>{{ effective_price | money_without_trailing_zeros }}</span>
                     </p>
                     {% if block.settings.caption != blank %}
-                      <p class="product-effective-price__caption">{{ block.settings.caption }}</p>
+                      <p class="product-effective-price__caption">{{ block.settings.price_prefix }}  {{ block.settings.caption }}</p>
                     {% endif %}
                   </div>
 
@@ -2387,8 +2398,7 @@
             {%- liquid
               assign base_price = product.selected_or_first_available_variant.price
               assign buyback_percent = block.settings.buyback_percent | default: 60
-              assign remaining_percent = 100 | minus: buyback_percent
-              assign effective_price = base_price | times: remaining_percent | divided_by: 100
+              assign effective_price = base_price | times: buyback_percent | divided_by: 100
               assign effective_price_cta_link = block.settings.button_link | strip
               assign effective_price_cta_first_char = effective_price_cta_link | slice: 0, 1
 
@@ -2412,12 +2422,12 @@
               {{ block.shopify_attributes }}
             >
               <div class="product-effective-price__text-wrap">
-                <p class="product-effective-price__value">
-                  {{ block.settings.price_prefix }} <span data-effective-price-value>{{ effective_price | money_without_trailing_zeros }}</span>
-                </p>
                 {% if block.settings.caption != blank %}
-                  <p class="product-effective-price__caption">{{ block.settings.caption }}</p>
+                  <p class="product-effective-price__caption">{{ block.settings.price_prefix }} {{ block.settings.caption }}</p>
                 {% endif %}
+                <p class="product-effective-price__value">
+                  <span data-effective-price-value>{{ effective_price | money_without_trailing_zeros }}</span>
+                </p>
               </div>
 
               {% if block.settings.button_label != blank %}
@@ -3783,6 +3793,53 @@
           "id": "page",
           "type": "page",
           "label": "t:sections.main-product.blocks.popup.settings.page.label"
+        }
+      ]
+    },
+    {
+      "type": "pincode_validator",
+      "name": "Pincode Validator",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "pincode_list",
+          "label": "Pincodes & Delivery Dates",
+          "info": "Enter each pincode and its delivery date on a new line, e.g. '110001: 3-5 Days'"
+        },
+        {
+          "type": "text",
+          "id": "error_message",
+          "label": "Invalid Pincode Message",
+          "default": "Sorry, delivery is not available in your area."
+        },
+        {
+          "type": "text",
+          "id": "warning_message",
+          "label": "Checkout Warning Message",
+          "default": "Please verify your pincode to check delivery in your area."
+        },
+        {
+          "type": "url",
+          "id": "csv_url",
+          "label": "CSV File Link",
+          "info": "To use a CSV, upload your file in Content -> Files and paste the provided link here. Ensure your CSV has Pincode in the first column and Delivery Date in the second."
+        },
+        {
+          "type": "select",
+          "id": "block_position",
+          "options": [
+            {
+              "value": "sidebar",
+              "label": "In sidebar"
+            },
+            {
+              "value": "under_media",
+              "label": "Under media"
+            }
+          ],
+          "default": "sidebar",
+          "label": "Block position"
         }
       ]
     },

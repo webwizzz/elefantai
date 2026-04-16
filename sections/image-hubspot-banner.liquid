@@ -133,7 +133,7 @@
 							assign loading = "lazy"
               assign fetch_priority = 'auto'
             else
-							assign loading = "eager"
+							assign loading = "lazy"
               assign fetch_priority = 'high'
 						endif
 					%}
@@ -489,7 +489,7 @@
       src="{{ section.settings.backgroung_image | image_url: width: 1920 }}"
       sizes="100vw"
       alt="{{- page.title | escape -}}"
-      loading="eager"
+      loading="lazy"
       width="{{ section.settings.backgroung_image.width }}"
       height="{{ section.settings.backgroung_image.height }}">
 {% endif %}

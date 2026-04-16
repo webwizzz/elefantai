@@ -15,3 +15,13 @@
 .related-products__heading {
   margin: 0 0 4rem;
 }
+
+.related-products .card__inner + .card__content .card__information {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.related-products .card__inner + .card__content .card__information .card-information {
+  margin-top: auto;
+}
