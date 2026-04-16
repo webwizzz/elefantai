@@ -1,0 +1,269 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "show_breadcrumbs": false,
+        "breadcrumb_color": "main",
+        "breadcrumb_color_hover": "heading",
+        "hide_banner": false,
+        "heading_size": "h2",
+        "heading_weight": "700",
+        "text_color": "secondary",
+        "full_width": true,
+        "shape_position": "bottom",
+        "shape_type": "none",
+        "shape_color": "#fef7e6",
+        "shape_width": 100,
+        "background_color": "color-bg-3",
+        "colors_background_section_gradient": "",
+        "padding_top": 52,
+        "padding_bottom": 54,
+        "shape_content_position": "top",
+        "shape_content_type": "none",
+        "shape_content_color": "#da3c24",
+        "shape_content_width": 100,
+        "content_background_color": "color-main-bg",
+        "content_colors_background_section_gradient": "",
+        "content_padding_top": 52,
+        "content_padding_bottom": 54
+      }
+    },
+    "faq-faq": {
+      "type": "faq",
+      "blocks": {
+        "template--19412741194031__9219817a-0b4a-43c6-b3f4-be40ab2b1bf2-1686215539b2ea1459-1": {
+          "type": "item",
+          "settings": {
+            "item_heading": "1. Overview",
+            "text": "<p>This Shipping & Return Policy applies to all purchases made through The EleFant Buy & Sell Back platform at toys.theelefant.ai. By placing an order, you agree to the terms set out below.</p><p>This policy should be read together with our Terms of Service and Privacy Policy.</p>"
+          }
+        },
+        "69788240-769a-49d1-8bfe-19c9284bac08": {
+          "type": "item",
+          "settings": {
+            "item_heading": "2. Shipping Coverage & Serviceability",
+            "text": "<p>The EleFant currently delivers to eighteen (18) or more cities across India. Serviceability for your location can be checked by entering your delivery pincode at checkout.</p><p>If your area is not serviceable, you will be notified before payment is collected. We continually expand our network — please check back periodically.</p>"
+          }
+        },
+        "7ce35cba-4cc3-4de2-8e45-53b2e65f83e7": {
+          "type": "item",
+          "settings": {
+            "item_heading": "3. Shipping Charges",
+            "text": "<p>• Delivery charges, if applicable, are displayed at checkout before you confirm the order.</p><p>• Charges may vary based on delivery location, order value, and promotional offers in effect.</p><p>• Pickup charges for sell-back requests are disclosed upfront when you initiate the sell-back.</p><p>• All shipping and pickup charges are inclusive of applicable taxes unless stated otherwise.</p>"
+          }
+        },
+        "74d3bb51-c5b0-442f-9e35-1d2a241e1f13": {
+          "type": "item",
+          "settings": {
+            "item_heading": "4. Delivery Timelines",
+            "text": "<p>Standard delivery timelines for Buy & Sell Back orders are as follows:</p><p>• <strong>Metro cities:</strong> 2–5 business days from order dispatch.</p><p>• <strong>Non-metro / Tier 2 cities:</strong> 4–7 business days from order dispatch.</p><p>• <strong>Remote locations:</strong> up to 10 business days.</p><p>Actual timelines may vary due to courier performance, weather, public holidays, or unforeseen events. Any delays will be communicated through SMS, email, or in-app notifications.</p>"
+          }
+        },
+        "0a6e6042-4b00-40f3-904b-ce938ad30ed2": {
+          "type": "item",
+          "settings": {
+            "item_heading": "5. Order Confirmation & Tracking",
+            "text": "<p>• Upon successful payment, you will receive an order confirmation via email and SMS.</p><p>• Once dispatched, a tracking link will be shared so you can follow your shipment in real time.</p><p>• Order history and tracking are always accessible from your account dashboard.</p>"
+          }
+        },
+        "f7b1b07d-f2c2-4fbc-b7b5-fbfc8279435e": {
+          "type": "item",
+          "settings": {
+            "item_heading": "6. Delivery Attempts & Failed Deliveries",
+            "text": "<p>Our delivery partners will attempt delivery up to three (3) times at the address provided. If delivery fails due to reasons attributable to the customer — such as incorrect address, unavailability, or refusal to accept — the order may be returned to origin, and re-delivery charges may apply.</p>"
+          }
+        },
+        "1b9e2e36-ef45-4266-87f0-c8af3525b63b": {
+          "type": "item",
+          "settings": {
+            "item_heading": "7. Returns — Eligibility",
+            "text": "<p>A return request will be accepted only if the following conditions are met:</p><p>• The request is raised within <strong>5–7 days from the date of delivery</strong> (exact window as displayed at the time of purchase).</p><p>• The toy is returned unused, in its original condition, with the original packaging, tags, manuals, and all accessories intact.</p><p>• The toy is free from damage, stains, or signs of use beyond minimal handling.</p><p>Toys failing our quality inspection may be rejected for refund or refunded partially at our discretion.</p>"
+          }
+        },
+        "dee602f7-8c63-4ccb-bfb8-801d519d7056": {
+          "type": "item",
+          "settings": {
+            "item_heading": "8. How to Initiate a Return",
+            "text": "<p>• Log in to your account and navigate to “Orders”.</p><p>• Select the order and click “Request Return”.</p><p>• Choose a reason, upload photographs if relevant, and confirm the pickup address.</p><p>• Our logistics partner will schedule a reverse pickup within the next 2–4 business days.</p><p>• Please keep the toy and all accessories packed and ready at the time of pickup.</p>"
+          }
+        },
+        "daf61c64-1525-4c4e-9331-e9b2b6369c60": {
+          "type": "item",
+          "settings": {
+            "item_heading": "9. Refund Timeline & Method",
+            "text": "<p>• Once the returned toy is received and passes quality inspection, refunds are processed within <strong>5–7 business days</strong>.</p><p>• Refunds are issued to the <strong>original payment method</strong> used at the time of purchase.</p><p>• Bank processing timelines (typically 3–7 additional business days) are not within our control.</p><p>• You will receive a confirmation email and SMS once the refund is initiated from our side.</p>"
+          }
+        },
+        "item_RfRxgF": {
+          "type": "item",
+          "settings": {
+            "item_heading": "10. Non-Returnable Items",
+            "text": "<p>The following are not eligible for return or refund:</p><p>• Toys used beyond minimal handling or showing signs of wear.</p><p>• Toys returned without original packaging, manuals, or accessories.</p><p>• Customised, personalised, or made-to-order items (unless defective).</p><p>• Digital vouchers, gift cards, and memberships.</p><p>• Add-ons such as damage waiver, which are non-refundable once purchased.</p><p>If you received a defective or damaged item, please see Section 12 below.</p>"
+          }
+        },
+        "item_8hx4R6": {
+          "type": "item",
+          "settings": {
+            "item_heading": "11. Sell-Back Pickup (Separate from Returns)",
+            "text": "<p>The Sell Back programme is separate from standard returns. Under Sell Back, you can send back a toy you have owned and used at any time — there is no 5–7 day restriction. Once the toy passes our quality check, you receive a <strong>flat 60% of the purchase price</strong> as cash refund or EleFant credit.</p><p>Full terms of the Sell Back programme are set out in our Terms of Service. Pickup is scheduled through your account, and applicable pickup charges (if any) are shown upfront.</p>"
+          }
+        },
+        "item_hD4Mri": {
+          "type": "item",
+          "settings": {
+            "item_heading": "12. Damaged, Defective, or Missing Items on Delivery",
+            "text": "<p>We request that you inspect your package at the time of delivery. If you receive a damaged, defective, or incorrect item:</p><p>• Notify us within <strong>48 hours</strong> of delivery at support@theelefant.ai.</p><p>• Share clear photographs of the item and the packaging.</p><p>• Do not use the item, and preserve all original packaging.</p><p>On verification, we will arrange a free replacement or full refund at your preference.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--19412741194031__9219817a-0b4a-43c6-b3f4-be40ab2b1bf2-1686215539b2ea1459-1",
+        "69788240-769a-49d1-8bfe-19c9284bac08",
+        "7ce35cba-4cc3-4de2-8e45-53b2e65f83e7",
+        "74d3bb51-c5b0-442f-9e35-1d2a241e1f13",
+        "0a6e6042-4b00-40f3-904b-ce938ad30ed2",
+        "f7b1b07d-f2c2-4fbc-b7b5-fbfc8279435e",
+        "1b9e2e36-ef45-4266-87f0-c8af3525b63b",
+        "dee602f7-8c63-4ccb-bfb8-801d519d7056",
+        "daf61c64-1525-4c4e-9331-e9b2b6369c60",
+        "item_RfRxgF",
+        "item_8hx4R6",
+        "item_hD4Mri"
+      ],
+      "settings": {
+        "two_columns": false,
+        "heading_size": "h4",
+        "heading_item_color": "heading",
+        "heading_align": "",
+        "heading_weight": "400",
+        "heading_color": "main",
+        "heading_color_accent": "--color-secondary-heading",
+        "content_color": "main",
+        "show_first_item": true,
+        "show_all_items": false,
+        "item_background_color": "color-bg-2",
+        "btn_bg": "#da3c24",
+        "btn_color": "#ffffff",
+        "image_overlay_width": 10,
+        "image_overlay_vertical": 20,
+        "image_overlay_horizontal": 20,
+        "image_overlay_width_mobile": 10,
+        "image_overlay_vertical_mobile": 20,
+        "image_overlay_horizontal_mobile": 20,
+        "image_overlay_animation": "none",
+        "image_overlay_width_2": 10,
+        "image_overlay_vertical_2": 20,
+        "image_overlay_horizontal_2": 20,
+        "image_overlay_width_2_mobile": 10,
+        "image_overlay_vertical_2_mobile": 20,
+        "image_overlay_horizontal_2_mobile": 20,
+        "image_overlay_animation_2": "none",
+        "image_overlay_width_3": 10,
+        "image_overlay_vertical_3": 20,
+        "image_overlay_horizontal_3": 20,
+        "image_overlay_width_3_mobile": 10,
+        "image_overlay_vertical_3_mobile": 20,
+        "image_overlay_horizontal_3_mobile": 20,
+        "image_overlay_animation_3": "none",
+        "shape_position": "top",
+        "shape_type": "curve",
+        "shape_color": "#6e4b7e",
+        "shape_width": 100,
+        "background_color": "color-main-bg",
+        "colors_background_section_gradient": "",
+        "padding_top": 154,
+        "padding_bottom": 20
+      }
+    },
+    "faq_i8PhMh": {
+      "type": "faq",
+      "blocks": {
+        "item_hLKgEE": {
+          "type": "item",
+          "settings": {
+            "item_heading": "13. Order Cancellation",
+            "text": "<p>• Orders may be cancelled only <strong>before dispatch</strong>. Go to “Orders” in your account and click “Cancel Order”.</p><p>• Once a toy has been dispatched or delivered, cancellation is not permitted and this Return Policy will apply instead.</p><p>• Full refunds are issued to the original payment method for successful pre-dispatch cancellations, typically within 5–7 business days.</p>"
+          }
+        },
+        "item_6LXekT": {
+          "type": "item",
+          "settings": {
+            "item_heading": "14. Changes to This Policy",
+            "text": "<p>We may update this Shipping & Return Policy from time to time to reflect operational changes or legal requirements. The revised policy will be effective from the date posted on our Service. Continued use of the Service after updates constitutes acceptance of the revised policy.</p>"
+          }
+        },
+        "item_Lh8Pmd": {
+          "type": "item",
+          "settings": {
+            "item_heading": "15. Contact Us",
+            "text": "<p>For any questions related to shipping, returns, refunds, or sell-back pickups:</p><p>Email: support@theelefant.ai</p><p>Website: toys.theelefant.ai</p><p>Our support team operates Monday to Saturday, 10:00 AM to 7:00 PM IST (excluding public holidays).</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_hLKgEE",
+        "item_6LXekT",
+        "item_Lh8Pmd"
+      ],
+      "settings": {
+        "two_columns": false,
+        "heading_size": "h4",
+        "heading_item_color": "heading",
+        "heading_align": "",
+        "heading_weight": "400",
+        "heading_color": "main",
+        "heading_color_accent": "--color-secondary-heading",
+        "content_color": "main",
+        "show_first_item": false,
+        "show_all_items": false,
+        "item_background_color": "color-bg-2",
+        "btn_bg": "#da3c24",
+        "btn_color": "#ffffff",
+        "image_overlay_width": 10,
+        "image_overlay_vertical": 20,
+        "image_overlay_horizontal": 20,
+        "image_overlay_width_mobile": 10,
+        "image_overlay_vertical_mobile": 20,
+        "image_overlay_horizontal_mobile": 20,
+        "image_overlay_animation": "none",
+        "image_overlay_width_2": 10,
+        "image_overlay_vertical_2": 20,
+        "image_overlay_horizontal_2": 20,
+        "image_overlay_width_2_mobile": 10,
+        "image_overlay_vertical_2_mobile": 20,
+        "image_overlay_horizontal_2_mobile": 20,
+        "image_overlay_animation_2": "none",
+        "image_overlay_width_3": 10,
+        "image_overlay_vertical_3": 20,
+        "image_overlay_horizontal_3": 20,
+        "image_overlay_width_3_mobile": 10,
+        "image_overlay_vertical_3_mobile": 20,
+        "image_overlay_horizontal_3_mobile": 20,
+        "image_overlay_animation_3": "none",
+        "shape_position": "top",
+        "shape_type": "none",
+        "shape_color": "#6e4b7e",
+        "shape_width": 100,
+        "background_color": "color-main-bg",
+        "colors_background_section_gradient": "",
+        "padding_top": 0,
+        "padding_bottom": 76
+      }
+    }
+  },
+  "order": [
+    "main",
+    "faq-faq",
+    "faq_i8PhMh"
+  ]
+}

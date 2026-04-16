@@ -12,22 +12,25 @@
     "main": {
       "type": "main-page",
       "settings": {
+        "show_breadcrumbs": false,
+        "breadcrumb_color": "main",
+        "breadcrumb_color_hover": "heading",
+        "hide_banner": false,
         "heading_size": "h1",
+        "heading_weight": "700",
         "text_color": "secondary",
-        "overlay_image": "",
-        "overlay_image_right": "",
         "full_width": true,
         "shape_position": "bottom",
         "shape_type": "none",
         "shape_color": "#fef7e6",
         "shape_width": 100,
-        "background_color": "color-bg-4",
+        "background_color": "color-bg-3",
         "colors_background_section_gradient": "",
-        "padding_top": 180,
-        "padding_bottom": 90,
+        "padding_top": 50,
+        "padding_bottom": 54,
         "shape_content_position": "top",
         "shape_content_type": "curve",
-        "shape_content_color": "#DA3C24",
+        "shape_content_color": "#6e4b7e",
         "shape_content_width": 100,
         "content_background_color": "color-main-bg",
         "content_colors_background_section_gradient": "",
@@ -41,55 +44,172 @@
         "template--19412789362991__f0ace0e8-78a5-4526-853b-ccb838984de3-1686215539b2ea1459-1": {
           "type": "item",
           "settings": {
-            "item_heading": "What’s Covered in These Terms?",
-            "text": "<p>We know it’s tempting to skip these Terms of Service, but it’s important to establish what you can expect from us as you use TOYO services, and what we expect from you.<br/></p><p>These Terms of Service reflect the way our business works, the laws that apply to our company, and certain things we’ve always believed to be true. As a result, these Terms of Service help define TOYO's relationship with you as you interact with our services.</p>"
+            "item_heading": "1. Agreement to Terms",
+            "text": "<p>These Terms of Service (“Terms”) govern your access to and use of toys.theelefant.ai, the The EleFant mobile application, and related services (collectively, the “Service”) operated by Madshades Technologies Pvt. Ltd. (“The EleFant,” “we,” “us,” or “our”).</p><p>By accessing or using the Service, you agree to be bound by these Terms, our Privacy Policy, and our Shipping & Return Policy. If you do not agree, please do not use the Service.</p>"
           }
         },
         "6f126385-89da-47f7-84eb-5a58cb0a4afa": {
           "type": "item",
           "settings": {
-            "item_heading": "Age Requirements",
-            "text": "<p>If you’re under the age limit required to manage your own TOYO Account, you must have your parent or legal guardian’s permission to use the Account. Please have your parent or legal guardian read these terms with you.<br/><br/>If you’re a parent or legal guardian, and you allow your child to use the services, then these terms apply to you and you’re responsible for your child’s activity on the services.</p>"
+            "item_heading": "2. Eligibility",
+            "text": "<p>To use the Service you must be at least 18 years old and capable of entering into a legally binding contract under applicable Indian law. By using the Service, you represent and warrant that you meet these conditions.</p>"
+          }
+        },
+        "item_m8iUWq": {
+          "type": "item",
+          "settings": {
+            "item_heading": "3. Account Registration",
+            "text": "<p>• You agree to provide accurate, current, and complete information during registration, and to keep it updated.</p><p>• You are solely responsible for maintaining the confidentiality of your account credentials.</p><p>• You are responsible for all activities that occur under your account.</p><p>• Notify us immediately at <a href=\"mailto:support@theelefant.ai\" target=\"_blank\" title=\"support@theelefant.ai\">support@theelefant.ai</a> of any unauthorised use or suspected breach of your account.</p><p>• We reserve the right to suspend or terminate accounts that provide false information or violate these Terms.</p>"
+          }
+        },
+        "item_tQw3fn": {
+          "type": "item",
+          "settings": {
+            "item_heading": "4. The Buy & Sell Back Model",
+            "text": "<p>The EleFant operates a Buy & Sell Back platform where you may:</p><p>• Purchase brand-new or Certified Refurbished toys outright, with full ownership and no recurring fees.</p><p>• Sell back toys you have purchased from us when your child has outgrown them, for a flat payout based on quality check.</p><p>Participation in Sell Back is entirely optional. You may retain, gift, or dispose of your purchased toys as you choose.</p>"
+          }
+        },
+        "item_GttbQ6": {
+          "type": "item",
+          "settings": {
+            "item_heading": "5. Orders & Product Purchases",
+            "text": "<p>• All toy purchases must be paid in full at the time of order placement, including applicable taxes, delivery charges, and any add-ons such as the Damage Waiver.</p><p>• Product descriptions, images, and prices are provided in good faith but are subject to change without notice.</p><p>• We reserve the right to refuse or cancel any order at our sole discretion, including in cases of pricing errors, suspected fraud, or unavailability.</p><p>• Orders may be cancelled only before dispatch. Post-dispatch cancellations are governed by our Shipping & Return Policy.</p>"
+          }
+        },
+        "item_mLyfBM": {
+          "type": "item",
+          "settings": {
+            "item_heading": "6. Certified Refurbished Toys",
+            "text": "<p>Certified Refurbished toys are pre-owned items that have been inspected, cleaned, sanitised, and restored to our quality standards. They are offered at a discount to brand-new pricing and are clearly labelled as “Certified Refurbished” at the time of purchase.</p><p>Refurbished toys carry the same Sell Back eligibility as brand-new purchases and are covered by our condition guarantee. If an item arrives not matching its described condition, you may raise a return within the eligible window.</p>"
           }
         },
         "7a17d459-840a-4132-9690-fedc0e750fc2": {
           "type": "item",
           "settings": {
-            "item_heading": "Service Provider",
-            "text": "<p>Toyo services are provided by, and you’re contracting with:<br/>TOYO LLC, organized under the laws of the State of Anytown, USA, and operating under the laws of the USA. The address is 123 Main Street Anytown, USA 12345.</p>"
+            "item_heading": "7. Sell Back Programme",
+            "text": "<p><span style=\"text-decoration:underline\">7.1 Eligibility</span></p><p>• Only toys originally purchased through the Service are eligible for Sell Back.</p><p>• Toys must be presented with all original parts, pieces, manuals, and accessories at the time of pickup.</p><p>• You must be the registered purchaser and the toy must be linked to your account.</p><p><span style=\"text-decoration:underline\">7.2 Payout</span></p><p>Upon successful pickup and satisfactory completion of our quality check (“QC”), you will receive a flat 60% of the original purchase price of the toy as your Sell Back payout. The 60% rate is final and does not vary based on duration of ownership.</p><p>You may choose to receive this payout as:</p><p>• A cash refund to your original payment method, or</p><p>• Credit to your The EleFant account, which may be applied toward future purchases or a membership. The EleFant may, at its discretion, offer bonus value for credit redemptions.</p><p><span style=\"text-decoration:underline\">7.3 Quality Check (QC)</span></p><p>QC is conducted after the toy is collected. To pass QC, the toy must be:</p><p>• Complete — with all original parts, pieces, manuals, and accessories.</p><p>• Clean — free of excessive dirt, stains, or contamination.</p><p>• Functional — working as intended, without broken or non-operational components.</p><p>• Within normal wear — minor cosmetic marks from regular play are acceptable.</p><p>Toys that fail QC are ineligible for the 60% payout. In such cases, we will inform you of the reason, and you may choose to have the toy returned to you (return logistics charges may apply) or discuss alternate options with our support team.</p><p><span style=\"text-decoration:underline\">7.4 Payout timeline</span></p><p>Payouts are typically processed within 5–7 business days of successful QC completion. Bank processing timelines may add additional days.</p>"
           }
         },
         "1bd1537c-b2e1-499c-9ea0-5293ecccf067": {
           "type": "item",
           "settings": {
-            "item_heading": "Your Relationship with TOYO",
-            "text": "<p>These terms help define the relationship between you and TOYO. Broadly speaking, we give you permission to use our services if you agree to follow these terms, which reflect how TOYO's business works and how we earn money. When we speak of “TOYO,” “we,” “us,” and “our,” we mean TOYO LLC and its affiliates, excluding any local entities based in USA.</p>"
+            "item_heading": "8. Damage Waiver (Optional Add-On)",
+            "text": "<p>The EleFant may offer an optional Damage Waiver at the time of purchase. If opted in:</p><p>• Minor damages caused during normal use (for example, scratches, accidental drops) may be covered, subject to inspection.</p><p>• Damage Waiver helps ensure that minor accidental damage does not cause the toy to fail QC during Sell Back.</p><p>The Damage Waiver does not cover:</p><p>• Missing parts, pieces, accessories, or manuals.</p><p>• Wilful damage, neglect, or damage caused by misuse.</p><p>• Loss or theft of the toy.</p><p>• Irreparable damage that renders the toy non-functional.</p><p>The Damage Waiver is a non-refundable add-on once purchased. Coverage terms are as displayed at the time of purchase.</p>"
           }
         },
         "642457fa-b52a-40ad-9021-6bc5fe6bf586": {
           "type": "item",
           "settings": {
-            "item_heading": "What We Expect from You",
-            "text": "<p>Follow these terms and service-specific additional terms<br/><br/>The permission we give you to use our services continues as long as you meet your responsibilities in these terms service-specific additional terms, which could, for example, include things like additional age requirements.<br/></p><p>We also make various policies, help centers, and other resources available to you to answer common questions and to set expectations about using our services. These resources include our Privacy Policy, Copyright Help Center, Safety Center, and other pages accessible from our policies site.<br/><br/>Although we give you permission to use our services, we retain any intellectual property rights we have in the services.</p>"
+            "item_heading": "9. Pricing, Payment & Taxes",
+            "text": "<p>• All prices are listed in Indian Rupees (INR) and are inclusive of Goods and Services Tax (GST) unless stated otherwise.</p><p>• We use third-party payment gateways to process transactions. Your payment details are handled in accordance with applicable data protection and PCI-DSS standards.</p><p>• We may offer promotional prices and match prices across major platforms at our discretion. The EleFant's price-match decisions are final.</p><p>• In case of a payment failure or pricing error, we reserve the right to cancel the affected order and refund any amounts paid.</p>"
+          }
+        },
+        "item_6jnTEy": {
+          "type": "item",
+          "settings": {
+            "item_heading": "10. Cancellations, Returns & Refunds",
+            "text": "<p>Cancellations, returns, and refunds are governed by our Shipping & Return Policy, which forms part of these Terms. Refunds, where applicable, are processed to the original payment method.</p><p>Refunds are not applicable to memberships, services, or add-ons (including Damage Waiver) unless explicitly stated.</p>"
+          }
+        },
+        "item_bkwRGC": {
+          "type": "item",
+          "settings": {
+            "item_heading": "11. Intellectual Property",
+            "text": "<p>All content on the Service — including logos, trademarks, text, images, graphics, software, and design elements — is the property of Madshades Technologies Pvt. Ltd. or its licensors and is protected by Indian and international intellectual property laws.</p><p>You may not copy, reproduce, modify, distribute, or use any content for commercial purposes without our prior written consent. Limited personal, non-commercial use of the Service for its intended purpose is permitted.</p>"
+          }
+        },
+        "item_ghTDbF": {
+          "type": "item",
+          "settings": {
+            "item_heading": "12. User Conduct",
+            "text": "<p>You agree not to:</p><p>• Use the Service for any unlawful, fraudulent, or deceptive purpose.</p><p>• Misrepresent your identity, account ownership, or the condition of a toy being sold back.</p><p>• Attempt to sell back toys not purchased through the Service.</p><p>• Interfere with, disrupt, or attempt to gain unauthorised access to the Service or any systems, networks, or accounts.</p><p>• Reverse-engineer, decompile, or disassemble any part of the Service.</p><p>• Use the Service to harass, abuse, or harm other users or our staff.</p><p>• Post or transmit any content that is defamatory, obscene, or infringes on third-party rights.</p><p>Violations may result in suspension or termination of your account and, where appropriate, legal action.</p>"
+          }
+        },
+        "item_gFY6gt": {
+          "type": "item",
+          "settings": {
+            "item_heading": "13. Limitation of Liability",
+            "text": "<p>To the fullest extent permitted by applicable law:</p><p>• The Service is provided on an “as is” and “as available” basis, without warranties of any kind, express or implied.</p><p>• The EleFant's total aggregate liability under these Terms is limited to the total amount paid by you in the twelve (12) months preceding the event giving rise to the claim.</p><p>• We are not liable for indirect, incidental, consequential, or punitive damages, including loss of profits, data, or goodwill.</p><p>• We are not responsible for any injury or harm resulting from misuse of toys. Parents and guardians are solely responsible for assessing age appropriateness and supervising play.</p><p>Nothing in this clause limits liability for gross negligence, wilful misconduct, or any liability that cannot be excluded under applicable law.</p>"
+          }
+        },
+        "item_RcBbP8": {
+          "type": "item",
+          "settings": {
+            "item_heading": "14. Indemnification",
+            "text": "<p>You agree to indemnify, defend, and hold harmless Madshades Technologies Pvt. Ltd., its directors, employees, and affiliates from and against any claims, damages, losses, liabilities, and expenses (including reasonable legal fees) arising from </p><p>(a) your use of the Service, </p><p>(b) your breach of these Terms, or </p><p>(c) your violation of any applicable law or third-party right.</p>"
+          }
+        },
+        "item_HKTjFx": {
+          "type": "item",
+          "settings": {
+            "item_heading": "15. Termination",
+            "text": "<p>You may discontinue use of the Service at any time. We may suspend or terminate your account at our discretion, with or without notice, if you breach these Terms or engage in conduct that we consider harmful to other users, our staff, or the Service.</p><p>Termination does not affect any rights or obligations that accrued before termination, including pending orders, sell-back payouts, or disputes.</p>"
+          }
+        },
+        "item_WzyCXp": {
+          "type": "item",
+          "settings": {
+            "item_heading": "16. Governing Law & Dispute Resolution",
+            "text": "<p>These Terms are governed by and construed in accordance with the laws of India, without regard to its conflict of laws principles.</p><p>Any dispute, claim, or controversy arising out of or in connection with these Terms shall first be attempted to be resolved amicably through good-faith negotiation. If unresolved within thirty (30) days, the dispute shall be referred to arbitration under the Arbitration and Conciliation Act, 1996, before a sole arbitrator appointed by us. The seat of arbitration shall be Mumbai, Maharashtra, and the language shall be English.</p><p>Subject to the above, courts in Mumbai, Maharashtra shall have exclusive jurisdiction over any matters arising from these Terms.</p>"
+          }
+        },
+        "item_4JQ6d4": {
+          "type": "item",
+          "settings": {
+            "item_heading": "17. Changes to These Terms",
+            "text": "<p>We may revise these Terms from time to time. The revised Terms will be effective from the date posted on the Service. Material changes will be notified through the Service or by email. Continued use of the Service after updates constitutes acceptance of the revised Terms.</p>"
+          }
+        },
+        "item_WPk9U9": {
+          "type": "item",
+          "settings": {
+            "item_heading": "18. Miscellaneous",
+            "text": "<p>• Entire agreement: these Terms, along with the Privacy Policy and Shipping & Return Policy, constitute the entire agreement between you and us concerning the Service.</p><p>• Severability: if any provision is found invalid or unenforceable, the remaining provisions will continue in full force.</p><p>• No waiver: our failure to enforce any right or provision does not constitute a waiver.</p><p>• Assignment: you may not assign or transfer your rights under these Terms without our prior written consent. We may assign our rights freely.</p><p>• Force majeure: we are not liable for delays or failures resulting from events beyond our reasonable control, including natural disasters, strikes, pandemics, or government actions.</p>"
+          }
+        },
+        "item_BRyy9L": {
+          "type": "item",
+          "settings": {
+            "item_heading": "19. Contact Us",
+            "text": "<p>For any questions about these Terms, please contact:</p><p>Email: <a href=\"mailto:support@theelefant.ai\" target=\"_blank\" title=\"support@theelefant.ai\">support@theelefant.ai</a></p><p>Grievance: <a href=\"mailto:grievance@theelefant.ai\" target=\"_blank\" title=\"mailto:grievance@theelefant.ai\">grievance@theelefant.ai</a></p><p>Website: <a href=\"https://toys.theelefant.ai\" target=\"_blank\" title=\"https://toys.theelefant.ai\">toys.theelefant.ai</a></p>"
           }
         }
       },
       "block_order": [
         "template--19412789362991__f0ace0e8-78a5-4526-853b-ccb838984de3-1686215539b2ea1459-1",
         "6f126385-89da-47f7-84eb-5a58cb0a4afa",
+        "item_m8iUWq",
+        "item_tQw3fn",
+        "item_GttbQ6",
+        "item_mLyfBM",
         "7a17d459-840a-4132-9690-fedc0e750fc2",
         "1bd1537c-b2e1-499c-9ea0-5293ecccf067",
-        "642457fa-b52a-40ad-9021-6bc5fe6bf586"
+        "642457fa-b52a-40ad-9021-6bc5fe6bf586",
+        "item_6jnTEy",
+        "item_bkwRGC",
+        "item_ghTDbF",
+        "item_gFY6gt",
+        "item_RcBbP8",
+        "item_HKTjFx",
+        "item_WzyCXp",
+        "item_4JQ6d4",
+        "item_WPk9U9",
+        "item_BRyy9L"
       ],
       "settings": {
+        "two_columns": false,
         "heading_size": "h4",
         "heading_item_color": "heading",
         "heading_align": "",
+        "heading_weight": "600",
         "heading_color": "main",
+        "heading_color_accent": "--color-secondary-heading",
         "content_color": "main",
         "show_first_item": true,
         "show_all_items": false,
         "item_background_color": "color-bg-2",
+        "btn_bg": "#da3c24",
+        "btn_color": "#ffffff",
         "image_overlay_width": 10,
         "image_overlay_vertical": 20,
         "image_overlay_horizontal": 20,
@@ -113,74 +233,48 @@
         "image_overlay_animation_3": "none",
         "shape_position": "top",
         "shape_type": "curve",
-        "shape_color": "#DA3C24",
+        "shape_color": "#6e4b7e",
         "shape_width": 100,
         "background_color": "color-main-bg",
         "colors_background_section_gradient": "",
         "padding_top": 160,
-        "padding_bottom": 160
+        "padding_bottom": 62
       }
     },
-    "terms-showcase": {
-      "type": "showcase",
+    "rich_text_m8NVBb": {
+      "type": "rich-text",
       "blocks": {
-        "template--18867160121647__showcase-1683710468ee8b3279-0": {
-          "type": "column",
+        "text_WXNFw9": {
+          "type": "text",
           "settings": {
-            "image": "",
-            "link": ""
-          }
-        },
-        "template--18867160121647__showcase-1683710468ee8b3279-1": {
-          "type": "column",
-          "settings": {
-            "image": "",
-            "link": ""
-          }
-        },
-        "template--18867160121647__showcase-1683710468ee8b3279-2": {
-          "type": "column",
-          "settings": {
-            "image": "",
-            "link": ""
+            "text": "<p>Madshades Technologies Pvt. Ltd.</p><p>705, Palm Spring, Nr Infiniti Mall, </p><p>Malad West, Mumbai – 400064, Maharashtra, India</p><p><a href=\"mailto:support@theelefant.ai\" target=\"_blank\" title=\"support@theelefant.ai\">support@theelefant.ai</a>  ·  <a href=\"https://toys.theelefant.ai\" title=\"https://toys.theelefant.ai\">toys.theelefant.ai</a></p>",
+            "text_color": "main",
+            "text_style": "body"
           }
         }
       },
       "block_order": [
-        "template--18867160121647__showcase-1683710468ee8b3279-0",
-        "template--18867160121647__showcase-1683710468ee8b3279-1",
-        "template--18867160121647__showcase-1683710468ee8b3279-2"
+        "text_WXNFw9"
       ],
+      "name": "Rich text",
       "settings": {
-        "title": "<strong>Loved by Our Community</strong>",
-        "heading_size": "h2",
-        "text_color": "heading",
-        "text": "",
-        "text_body_size": "text-body--large",
-        "description_color": "main",
-        "heading_align": "center",
-        "show_social": true,
-        "social_label": "Follow Us",
-        "social_label_color": "main",
-        "social_color": "main",
-        "social_color_hover": "heading",
-        "under_section": true,
-        "image_overlay": "",
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "full_width": true,
         "image_overlay_width": 10,
-        "image_overlay_vertical": 83,
-        "image_overlay_horizontal": 5,
+        "image_overlay_vertical": 20,
+        "image_overlay_horizontal": 20,
         "image_overlay_width_mobile": 10,
-        "image_overlay_vertical_mobile": 83,
-        "image_overlay_horizontal_mobile": 5,
-        "image_overlay_animation": "ambient",
-        "image_overlay_2": "",
+        "image_overlay_vertical_mobile": 20,
+        "image_overlay_horizontal_mobile": 20,
+        "image_overlay_animation": "none",
         "image_overlay_width_2": 10,
-        "image_overlay_vertical_2": 18,
-        "image_overlay_horizontal_2": 95,
+        "image_overlay_vertical_2": 20,
+        "image_overlay_horizontal_2": 20,
         "image_overlay_width_2_mobile": 10,
-        "image_overlay_vertical_2_mobile": 18,
-        "image_overlay_horizontal_2_mobile": 95,
-        "image_overlay_animation_2": "ambient",
+        "image_overlay_vertical_2_mobile": 20,
+        "image_overlay_horizontal_2_mobile": 20,
+        "image_overlay_animation_2": "none",
         "image_overlay_width_3": 10,
         "image_overlay_vertical_3": 20,
         "image_overlay_horizontal_3": 20,
@@ -192,87 +286,16 @@
         "shape_type": "none",
         "shape_color": "#fff",
         "shape_width": 100,
-        "full_width": false,
-        "background_color": "color-bg-2",
+        "background_color": "color-main-bg",
         "colors_background_section_gradient": "",
-        "padding_top": 154,
-        "padding_bottom": 140
-      }
-    },
-    "terms-newsletter": {
-      "type": "newsletter",
-      "blocks": {
-        "template--18867160121647__newsletter-16830990270b07a601-0": {
-          "type": "heading",
-          "settings": {
-            "heading": "<strong>Sign Up to the Newsletter</strong>",
-            "heading_size": "h2",
-            "heading_color": "main"
-          }
-        },
-        "template--18867160121647__newsletter-16830990270b07a601-1": {
-          "type": "paragraph",
-          "settings": {
-            "text": "<p>Be the first to get notified about New Arrivals, Discounts, and Bargain Deals!</p>",
-            "text_style": "body",
-            "text_color": "main"
-          }
-        },
-        "template--18867160121647__newsletter-16830990270b07a601-2": {
-          "type": "email_form",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "template--18867160121647__newsletter-16830990270b07a601-0",
-        "template--18867160121647__newsletter-16830990270b07a601-1",
-        "template--18867160121647__newsletter-16830990270b07a601-2"
-      ],
-      "settings": {
-        "show_image": false,
-        "column_width": 40,
-        "background_color": "none",
-        "colors_background_section_gradient": "",
-        "full_width": true,
-        "image_overlay": "",
-        "image_overlay_width": 10,
-        "image_overlay_vertical": 5,
-        "image_overlay_horizontal": 20,
-        "image_overlay_width_mobile": 13,
-        "image_overlay_vertical_mobile": 3,
-        "image_overlay_horizontal_mobile": 10,
-        "image_overlay_animation": "ambient",
-        "image_overlay_2": "",
-        "image_overlay_width_2": 15,
-        "image_overlay_vertical_2": 60,
-        "image_overlay_horizontal_2": 7,
-        "image_overlay_width_2_mobile": 17,
-        "image_overlay_vertical_2_mobile": 87,
-        "image_overlay_horizontal_2_mobile": 9,
-        "image_overlay_animation_2": "ambient",
-        "image_overlay_3": "",
-        "image_overlay_width_3": 10,
-        "image_overlay_vertical_3": 44,
-        "image_overlay_horizontal_3": 95,
-        "image_overlay_width_3_mobile": 12,
-        "image_overlay_vertical_3_mobile": 20,
-        "image_overlay_horizontal_3_mobile": 94,
-        "image_overlay_animation_3": "ambient",
-        "shape_position": "top",
-        "shape_type": "waves",
-        "shape_color": "#f6ecd3",
-        "shape_width": 100,
-        "background_color_main": "color-bg-3",
-        "color_background_main": "",
-        "padding_top": 50,
-        "padding_bottom": 0
+        "padding_top": 0,
+        "padding_bottom": 74
       }
     }
   },
   "order": [
     "main",
     "terms-faq",
-    "terms-showcase",
-    "terms-newsletter"
+    "rich_text_m8NVBb"
   ]
 }
