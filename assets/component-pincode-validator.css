@@ -31,17 +31,38 @@
 
 .pincode-validator__input {
   flex-grow: 1;
-  border: none;
-  background: transparent;
-  padding: 8px 12px;
-  font-size: 14px;
-  color: #333;
-  outline: none;
-  min-width: 0;
+  border: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  padding: 8px 12px !important;
+  font-size: 14px !important;
+  color: #333 !important;
+  outline: none !important;
+  min-width: 0 !important;
+  box-shadow: none !important;
+}
+
+.pincode-validator__input:focus,
+.pincode-validator__input:active,
+.pincode-validator__input:focus-visible {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Safari autofill override */
+.pincode-validator__input:-webkit-autofill,
+.pincode-validator__input:-webkit-autofill:hover, 
+.pincode-validator__input:-webkit-autofill:focus, 
+.pincode-validator__input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px #fafdff inset !important;
+    background-color: transparent !important;
 }
 
 .pincode-validator__input::placeholder {
-  color: #b5c2cd;
+  color: #b5c2cd !important;
 }
 
 .pincode-validator__btn {

@@ -256,7 +256,12 @@
                 </div>
               {% endif %}
 
-              <div class="product__info-wrapper grid__item{% if section.settings.info_background_color != "none" %} info-wrapper-background-secondary {{ section.settings.info_background_color }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} {% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}">
+              <div class="product__info-wrapper grid__item{% if section.settings.info_background_color != "none" %} info-wrapper-background-secondary {{ section.settings.info_background_color }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} {% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
+                {% if product != blank %}
+                style="cursor: pointer;"
+                onclick="if(!event.target.closest('button, a, input, select, label, summary, details')) { window.location.href='{{ product.url }}'; }"
+                {% endif %}
+              >
                 <product-info
                   id="ProductInfo-{{ featured_product_section_id }}"
                   class="product__info-container{% if section.settings.info_background_color != "none" %} info-background-secondary{% endif %}"
@@ -313,7 +318,10 @@
                             | replace: 'Rs', '₹'
                           }}
                         </s>
-                        <span data-featured-save style="background-color: #6D28D9; color: #F9F8F8; padding: 6px 14px; border-radius: 20px; font-size: 14px; font-weight: 600;">
+                        <span
+                          data-featured-save
+                          style="background-color: #6D28D9; color: #F9F8F8; padding: 6px 14px; border-radius: 20px; font-size: 14px; font-weight: 600;"
+                        >
                           Save
                           {{
                             display_variant.compare_at_price
@@ -331,7 +339,9 @@
                           style="font-size: 32px; color: #999; text-decoration-thickness: 1px;"
                           >₹2,499</s
                         >
-                        <span data-featured-save style="background-color: #6D28D9; color: #F9F8F8; padding: 6px 14px; border-radius: 20px; font-size: 14px; font-weight: 600;"
+                        <span
+                          data-featured-save
+                          style="background-color: #6D28D9; color: #F9F8F8; padding: 6px 14px; border-radius: 20px; font-size: 14px; font-weight: 600;"
                           >Save ₹1,000</span
                         >
                       {% endif %}
@@ -343,13 +353,19 @@
                     {%- comment -%} 60% buyback price (displayed just below the main price) {%- endcomment -%}
                     {%- if product != blank -%}
                       {%- assign buyback_price = display_variant.price | times: 60 | divided_by: 100 -%}
-                      <div class="elefant-buyback" data-featured-buyback style="font-size: 16px; color: #666; margin-top: 6px;">
-                        {{ buyback_price
+                      <div
+                        class="elefant-buyback"
+                        data-featured-buyback
+                        style="font-size: 16px; color: #666; margin-top: 6px;"
+                      >
+                        {{
+                          buyback_price
                           | money_without_trailing_zeros
                           | replace: 'Rs.', '₹'
                           | replace: 'Rs ', '₹'
-                          | replace: 'Rs', '₹' }}
-                          {{ 'through our Buyback ' }}
+                          | replace: 'Rs', '₹'
+                        }}
+                        {{ 'through our Buyback ' }}
                       </div>
                     {%- endif -%}
 
@@ -358,8 +374,6 @@
                         {{ product.variants | json }}
                       </script>
                     {%- endif -%}
-
-                    
                   </div>
 
                   <div
@@ -479,7 +493,7 @@
                                         alt: block.settings.inventory_icon.alt
                                     }}
                                   {%- else -%}
-                                      <svg width="15" height="15" aria-hidden="true">
+                                    <svg width="15" height="15" aria-hidden="true">
                                       <circle cx="7.5" cy="7.5" r="7.5" fill="rgba(207, 46, 38, 0.3)"/>
                                       <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="#CF2E26"/>
                                     </svg>
