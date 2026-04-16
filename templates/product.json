@@ -229,9 +229,8 @@
           "settings": {
             "show_delivery_date": true,
             "icon_delivery": "shopify://shop_images/SVGRepo_iconCarrier_ad98d31e-0363-44e0-8c76-a76ced335e54.svg",
-            "delivery_max": 4,
-            "delivery_heading": "Express Delivery Available",
-            "delivery_text": "Order within 3 hours for delivery by tomorrow. Standard delivery: 2-4 business days",
+            "delivery_heading": "Check delivery availability",
+            "delivery_text": "Enter the pincode above to check the delivery in your area",
             "show_pickup_availability": true,
             "show_in_quick_add": true
           }

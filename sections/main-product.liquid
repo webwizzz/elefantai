@@ -146,7 +146,10 @@
           {%- case block.type -%}
             {%- when 'collapsible_tab' -%}
               {% if block.settings.collapsible_row_position == 'under_media' %}
-                <div class="product__accordion accordion under-product {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}" {{ block.shopify_attributes }}>
+                <div
+                  class="product__accordion accordion under-product {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}"
+                  {{ block.shopify_attributes }}
+                >
                   <details
                     id="Details-{{ block.id }}-{{ section.id }}"
                     {% if block.settings.default_open %}
@@ -415,7 +418,10 @@
                 >
                   <div class="product-effective-price__text-wrap">
                     {% if block.settings.caption != blank %}
-                      <p class="product-effective-price__caption">{{ block.settings.price_prefix }} {{ block.settings.caption }}</p>
+                      <p class="product-effective-price__caption">
+                        {{ block.settings.price_prefix }}
+                        {{ block.settings.caption }}
+                      </p>
                     {% endif %}
                     <p class="product-effective-price__value">
                       <span data-effective-price-value>{{ effective_price | money_without_trailing_zeros }}</span>
@@ -490,17 +496,54 @@
               {% endif %}
 
               <div
-                class="product__title {{ block.settings.heading_size }} text-color-{{ block.settings.heading_color }} text-weight-{{ block.settings.heading_weight }}"
-                {{ block.shopify_attributes }}
+                class="product__title-wrapper"
+                style="display: flex; justify-content: space-between; align-items: flex-start; gap: 15px;"
               >
-                <h1>
-                  {{ product.title | escape }}
+                <div
+                  class="product__title {{ block.settings.heading_size }} text-color-{{ block.settings.heading_color }} text-weight-{{ block.settings.heading_weight }}"
+                  {{ block.shopify_attributes }}
+                  style="margin: 0; flex-grow: 1;"
+                >
+                  <h1 style="margin: 0;">
+                    {{ product.title | escape }}
 
-                  {% if block.settings.show_vendor %}
-                    <span class="product__title-vendor">{{ product.vendor }}</span>
-                  {% endif %}
-                </h1>
+                    {% if block.settings.show_vendor %}
+                      <span class="product__title-vendor">{{ product.vendor }}</span>
+                    {% endif %}
+                  </h1>
+                </div>
+
+                <div
+                  class="product__title-actions"
+                  style="display: flex; align-items: center; gap: 15px; flex-shrink: 0; padding-top: 5px;"
+                >
+                  {% assign share_url = product.selected_variant.url | default: product.url | prepend: request.origin %}
+                  {% render 'product-share-button', block: block, product: product, share_link: share_url %}
+                  <!-- Wishlist Hero Custom Placement Button -->
+                  <div class="wishlist-hero-custom-button"></div>
+                </div>
               </div>
+
+              <style>
+                .product__title-actions .share-button {
+                  display: block;
+                  margin: 0;
+                }
+                .product__title-actions .share-button__button {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  background: none;
+                  border: none;
+                  padding: 0;
+                  cursor: pointer;
+                  color: inherit;
+                }
+                .product__title-actions .share-button__button svg {
+                  width: 20px;
+                  height: 20px;
+                }
+              </style>
 
               {%- if settings.product_info != blank and block.settings.title_product_type -%}
                 <div class="card-product-info">
@@ -643,146 +686,180 @@
                           </svg>
                         {% endif %}
 
-												{%- if block.settings.show_inventory_quantity -%}
-													{{- 'products.product.inventory_in_stock_show_count' | t: quantity: product.selected_or_first_available_variant.inventory_quantity -}}
-												{%- else -%}
-														{{- 'products.product.inventory_in_stock' | t -}}
-												{%- endif -%}
+                        {%- if block.settings.show_inventory_quantity -%}
+                          {{-
+                            'products.product.inventory_in_stock_show_count'
+                            | t: quantity: product.selected_or_first_available_variant.inventory_quantity
+                          -}}
+                        {%- else -%}
+                          {{- 'products.product.inventory_in_stock' | t -}}
+                        {%- endif -%}
 
-												{% if block.settings.show_inventory_progress %}
-													{% assign percentage_remaining = product.selected_or_first_available_variant.inventory_quantity | times: 100 | divided_by: block.settings.inventory_threshold_start %}
-													<span class="inventory_progress_bar">
-														<span style="width: {{ percentage_remaining }}%; max-width: 100%; min-width: 0;"></span>
-													</span>
-												{% endif %}
-											{%- endif -%}
+                        {% if block.settings.show_inventory_progress %}
+                          {% assign percentage_remaining = product.selected_or_first_available_variant.inventory_quantity
+                            | times: 100
+                            | divided_by: block.settings.inventory_threshold_start
+                          %}
+                          <span class="inventory_progress_bar">
+                            <span style="width: {{ percentage_remaining }}%; max-width: 100%; min-width: 0;"></span>
+                          </span>
+                        {% endif %}
+                      {%- endif -%}
 
-										{%- else -%}
-
-											{%- if product.selected_or_first_available_variant.inventory_policy == 'continue' -%}
-												{% if block.settings.inventory_icon != blank %}
-													{{
-														block.settings.inventory_icon
-														| image_url: width: 20
-														| image_tag: loading: 'lazy', sizes: '20px', widths: '20', alt: block.settings.inventory_icon.alt
-													}}
-												{%- else -%}
-													<svg width="15" height="15" aria-hidden="true">
-														<circle cx="7.5" cy="7.5" r="7.5" fill="rgb(62,214,96, 0.3)"/>
-														<circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(62,214,96)"/>
-													</svg>
-												{%- endif -%}
-												{{- 'products.product.inventory_out_of_stock_continue_selling' | t -}}
-											{%- else -%}
-												{% if block.settings.inventory_icon != blank %}
-														{{
-															block.settings.inventory_icon
-															| image_url: width: 20
-															| image_tag: loading: 'lazy', sizes: '20px', widths: '20', alt: block.settings.inventory_icon.alt
-														}}
-												{%- else -%}
-													<svg width="15" height="15" aria-hidden="true">
-														<circle cx="7.5" cy="7.5" r="7.5" fill="rgb(200,200,200, 0.3)"/>
-														<circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(200,200,200)"/>
-													</svg>
-												{%- endif -%}
-												{{- 'products.product.inventory_out_of_stock' | t -}}
-											{%- endif -%}
-										{%- endif -%}
-									{%- elsif block.settings.show_inventory_low == false -%}
-										{%- if product.selected_or_first_available_variant.inventory_quantity > 0 -%}
-											{%- if product.selected_or_first_available_variant.inventory_quantity <= block.settings.inventory_threshold -%}
-												{% if block.settings.inventory_icon != blank %}
-													{{
-														block.settings.inventory_icon
-														| image_url: width: 20
-														| image_tag: loading: 'lazy', sizes: '20px', widths: '20', alt: block.settings.inventory_icon.alt
-													}}
-												{%- else -%}
-													<svg width="15" height="15" aria-hidden="true">
-														<circle cx="7.5" cy="7.5" r="7.5" fill="rgba(207, 46, 38, 0.3)"/>
-														<circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="#CF2E26"/>
-													</svg>
-												{% endif %}
-												{%- if block.settings.show_inventory_quantity -%}
-													{{- 'products.product.inventory_low_stock_show_count' | t: quantity: product.selected_or_first_available_variant.inventory_quantity -}}
-												{%- else -%}
-													{{- 'products.product.inventory_low_stock' | t -}}
-												{%- endif -%}
-												{% if block.settings.show_inventory_progress %}
-													{% assign percentage_remaining = product.selected_or_first_available_variant.inventory_quantity | times: 100 | divided_by: block.settings.inventory_threshold_start %}
-													<span class="inventory_progress_bar low">
-														<span style="width: {{ percentage_remaining }}%; max-width: 100%; min-width: 0;"></span>
-													</span>
-												{% endif %}
-											{%- else -%}
-												{% if block.settings.inventory_icon != blank %}
-													{{
-														block.settings.inventory_icon
-														| image_url: width: 20
-														| image_tag: loading: 'lazy', sizes: '20px', widths: '20', alt: block.settings.inventory_icon.alt
-													}}
-												{%- else -%}
-													<svg width="15" height="15" aria-hidden="true">
-														<circle cx="7.5" cy="7.5" r="7.5" fill="rgb(62,214,96, 0.3)"/>
-														<circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(62,214,96)"/>
-													</svg>
-												{% endif %}
-												{%- if block.settings.show_inventory_quantity -%}
-													{{- 'products.product.inventory_in_stock_show_count' | t: quantity: product.selected_or_first_available_variant.inventory_quantity -}}
-												{%- else -%}
-														{{- 'products.product.inventory_in_stock' | t -}}
-												{%- endif -%}
-												{% if block.settings.show_inventory_progress %}
-													{% assign percentage_remaining = product.selected_or_first_available_variant.inventory_quantity | times: 100 | divided_by: block.settings.inventory_threshold_start %}
-													<span class="inventory_progress_bar">
-														<span style="width: {{ percentage_remaining }}%; max-width: 100%; min-width: 0;"></span>
-													</span>
-												{% endif %}
-											{%- endif -%}
-										{%- else -%}
-											{%- if product.selected_or_first_available_variant.inventory_policy == 'continue' -%}
-												<svg width="15" height="15" aria-hidden="true">
-													<circle cx="7.5" cy="7.5" r="7.5" fill="rgb(62,214,96, 0.3)"/>
-													<circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(62,214,96)"/>
-												</svg>
-												{{- 'products.product.inventory_out_of_stock_continue_selling' | t -}}
-											{%- else -%}
-												<svg width="15" height="15" aria-hidden="true">
-													<circle cx="7.5" cy="7.5" r="7.5" fill="rgb(200,200,200, 0.3)"/>
-													<circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(200,200,200)"/>
-												</svg>
-												{{- 'products.product.inventory_out_of_stock' | t -}}
-											{%- endif -%}
-										{%- endif -%}
-									{%- endif -%}
-								{%- endif -%}
-
-							</p>
-						{%- when 'tags' -%}
-												{%- if product.metafields and product.metafields.custom and product.metafields.custom.tags != blank -%}
-													{{ 'component-tags.css' | asset_url | stylesheet_tag }}
-													<div class="product__tags" {{ block.shopify_attributes }}>
-														{%- assign features_content = product.metafields.custom.tags.value -%}
-														{%- if features_content.children -%}
-															{%- for list in features_content.children -%}
-																{%- if list.listType == 'unordered' and list.children -%}
-																	{%- for item in list.children -%}
-																		{%- if item.children -%}
-																			{%- for text_node in item.children -%}
-																				{%- if text_node.value -%}
-																					<span class="product-tag">{{ text_node.value }}</span>
-																				{%- endif -%}
-																			{%- endfor -%}
-																		{%- endif -%}
-																	{%- endfor -%}
-																{%- endif -%}
-															{%- endfor -%}
-														{%- endif -%}
-													</div>
-												{%- endif -%}
-						{%- when 'product_meta_tabs' -%}
-							{% capture product_meta_tabs_markup %}
+                    {%- else -%}
+                      {%- if product.selected_or_first_available_variant.inventory_policy == 'continue' -%}
+                        {% if block.settings.inventory_icon != blank %}
+                          {{
+                            block.settings.inventory_icon
+                            | image_url: width: 20
+                            | image_tag:
+                              loading: 'lazy',
+                              sizes: '20px',
+                              widths: '20',
+                              alt: block.settings.inventory_icon.alt
+                          }}
+                        {%- else -%}
+                          <svg width="15" height="15" aria-hidden="true">
+                            <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(62,214,96, 0.3)"/>
+                            <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(62,214,96)"/>
+                          </svg>
+                        {%- endif -%}
+                        {{- 'products.product.inventory_out_of_stock_continue_selling' | t -}}
+                      {%- else -%}
+                        {% if block.settings.inventory_icon != blank %}
+                          {{
+                            block.settings.inventory_icon
+                            | image_url: width: 20
+                            | image_tag:
+                              loading: 'lazy',
+                              sizes: '20px',
+                              widths: '20',
+                              alt: block.settings.inventory_icon.alt
+                          }}
+                        {%- else -%}
+                          <svg width="15" height="15" aria-hidden="true">
+                            <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(200,200,200, 0.3)"/>
+                            <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(200,200,200)"/>
+                          </svg>
+                        {%- endif -%}
+                        {{- 'products.product.inventory_out_of_stock' | t -}}
+                      {%- endif -%}
+                    {%- endif -%}
+                  {%- elsif block.settings.show_inventory_low == false -%}
+                    {%- if product.selected_or_first_available_variant.inventory_quantity > 0 -%}
+                      {%- if product.selected_or_first_available_variant.inventory_quantity
+                          <= block.settings.inventory_threshold
+                      -%}
+                        {% if block.settings.inventory_icon != blank %}
+                          {{
+                            block.settings.inventory_icon
+                            | image_url: width: 20
+                            | image_tag:
+                              loading: 'lazy',
+                              sizes: '20px',
+                              widths: '20',
+                              alt: block.settings.inventory_icon.alt
+                          }}
+                        {%- else -%}
+                          <svg width="15" height="15" aria-hidden="true">
+                            <circle cx="7.5" cy="7.5" r="7.5" fill="rgba(207, 46, 38, 0.3)"/>
+                            <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="#CF2E26"/>
+                          </svg>
+                        {% endif %}
+                        {%- if block.settings.show_inventory_quantity -%}
+                          {{-
+                            'products.product.inventory_low_stock_show_count'
+                            | t: quantity: product.selected_or_first_available_variant.inventory_quantity
+                          -}}
+                        {%- else -%}
+                          {{- 'products.product.inventory_low_stock' | t -}}
+                        {%- endif -%}
+                        {% if block.settings.show_inventory_progress %}
+                          {% assign percentage_remaining = product.selected_or_first_available_variant.inventory_quantity
+                            | times: 100
+                            | divided_by: block.settings.inventory_threshold_start
+                          %}
+                          <span class="inventory_progress_bar low">
+                            <span style="width: {{ percentage_remaining }}%; max-width: 100%; min-width: 0;"></span>
+                          </span>
+                        {% endif %}
+                      {%- else -%}
+                        {% if block.settings.inventory_icon != blank %}
+                          {{
+                            block.settings.inventory_icon
+                            | image_url: width: 20
+                            | image_tag:
+                              loading: 'lazy',
+                              sizes: '20px',
+                              widths: '20',
+                              alt: block.settings.inventory_icon.alt
+                          }}
+                        {%- else -%}
+                          <svg width="15" height="15" aria-hidden="true">
+                            <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(62,214,96, 0.3)"/>
+                            <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(62,214,96)"/>
+                          </svg>
+                        {% endif %}
+                        {%- if block.settings.show_inventory_quantity -%}
+                          {{-
+                            'products.product.inventory_in_stock_show_count'
+                            | t: quantity: product.selected_or_first_available_variant.inventory_quantity
+                          -}}
+                        {%- else -%}
+                          {{- 'products.product.inventory_in_stock' | t -}}
+                        {%- endif -%}
+                        {% if block.settings.show_inventory_progress %}
+                          {% assign percentage_remaining = product.selected_or_first_available_variant.inventory_quantity
+                            | times: 100
+                            | divided_by: block.settings.inventory_threshold_start
+                          %}
+                          <span class="inventory_progress_bar">
+                            <span style="width: {{ percentage_remaining }}%; max-width: 100%; min-width: 0;"></span>
+                          </span>
+                        {% endif %}
+                      {%- endif -%}
+                    {%- else -%}
+                      {%- if product.selected_or_first_available_variant.inventory_policy == 'continue' -%}
+                        <svg width="15" height="15" aria-hidden="true">
+                          <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(62,214,96, 0.3)"/>
+                          <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(62,214,96)"/>
+                        </svg>
+                        {{- 'products.product.inventory_out_of_stock_continue_selling' | t -}}
+                      {%- else -%}
+                        <svg width="15" height="15" aria-hidden="true">
+                          <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(200,200,200, 0.3)"/>
+                          <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(200,200,200)"/>
+                        </svg>
+                        {{- 'products.product.inventory_out_of_stock' | t -}}
+                      {%- endif -%}
+                    {%- endif -%}
+                  {%- endif -%}
+                {%- endif -%}
+              </p>
+            {%- when 'tags' -%}
+              {%- if product.metafields and product.metafields.custom and product.metafields.custom.tags != blank -%}
+                {{ 'component-tags.css' | asset_url | stylesheet_tag }}
+                <div class="product__tags" {{ block.shopify_attributes }}>
+                  {%- assign features_content = product.metafields.custom.tags.value -%}
+                  {%- if features_content.children -%}
+                    {%- for list in features_content.children -%}
+                      {%- if list.listType == 'unordered' and list.children -%}
+                        {%- for item in list.children -%}
+                          {%- if item.children -%}
+                            {%- for text_node in item.children -%}
+                              {%- if text_node.value -%}
+                                <span class="product-tag">{{ text_node.value }}</span>
+                              {%- endif -%}
+                            {%- endfor -%}
+                          {%- endif -%}
+                        {%- endfor -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+            {%- when 'product_meta_tabs' -%}
+              {% capture product_meta_tabs_markup %}
 							{% assign about_content = product.metafields.custom.about_this_product %}
 							{% assign key_features = product.metafields.custom.key_features.value %}
 							{% assign why_kids_love_it = product.metafields.custom.why_kids_love_it.value %}
@@ -1099,7 +1176,10 @@
 
             {%- when 'collapsible_tab' -%}
               {% if block.settings.collapsible_row_position == 'sidebar' or product.media.size <= 0 %}
-                <div class="product__accordion accordion {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}" {{ block.shopify_attributes }}>
+                <div
+                  class="product__accordion accordion {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}"
+                  {{ block.shopify_attributes }}
+                >
                   <details
                     id="Details-{{ block.id }}-{{ section.id }}"
                     {% if block.settings.default_open %}
@@ -1209,9 +1289,11 @@
 
             {%- when 'delivery_date_pickup' -%}
               {% if product.selected_or_first_available_variant.available %}
-                <div class="delivery-pickup {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}" {{ block.shopify_attributes }}>
+                <div
+                  class="delivery-pickup {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}"
+                  {{ block.shopify_attributes }}
+                >
                   {% if block.settings.show_delivery_date %}
-                    {% assign max_date = block.settings.delivery_max | times: 24 | times: 60 | times: 60 %}
                     <div class="delivery-pickup-date">
                       <div class="delivery-pickup-wrap">
                         {% if block.settings.icon_delivery != blank %}
@@ -1225,9 +1307,6 @@
                             {{ block.settings.delivery_heading }}
                           </span>
                           <div class="delivery-pickup-description">
-                            <span>
-                              {{ 'now' | date: '%s' | plus: max_date | date: '%d %b' }}
-                            </span>
                             {{ block.settings.delivery_text }}
                           </div>
                         </div>
@@ -1667,7 +1746,10 @@
             {%- when 'skills-learned' -%}
               {% assign skills = product.metafields.custom.skills.value %}
               {% if skills != blank %}
-                <div class="product-skills-learned {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}" {{ block.shopify_attributes }}>
+                <div
+                  class="product-skills-learned {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}"
+                  {{ block.shopify_attributes }}
+                >
                   {% if block.settings.heading != blank %}
                     <h2 class="product-skills-learned__heading">{{ block.settings.heading }}</h2>
                   {% endif %}
@@ -1752,10 +1834,13 @@
                 >
                   <div class="product-effective-price__text-wrap">
                     {% if block.settings.caption != blank %}
-                      <p class="product-effective-price__caption">{{ block.settings.price_prefix }} {{ block.settings.caption }}</p>
+                      <p class="product-effective-price__caption">
+                        {{ block.settings.price_prefix }}
+                        {{ block.settings.caption }}
+                      </p>
                     {% endif %}
                     <p class="product-effective-price__value">
-                       <span data-effective-price-value>{{ effective_price | money_without_trailing_zeros }}</span>
+                      <span data-effective-price-value>{{ effective_price | money_without_trailing_zeros }}</span>
                     </p>
                   </div>
 
@@ -1818,7 +1903,10 @@
           {%- case block.type -%}
             {%- when 'collapsible_tab' -%}
               {% if block.settings.collapsible_row_position == 'under_media' %}
-                <div class="product__accordion accordion under-product {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}" {{ block.shopify_attributes }}>
+                <div
+                  class="product__accordion accordion under-product {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}"
+                  {{ block.shopify_attributes }}
+                >
                   <details
                     id="Details-{{ block.id }}-{{ section.id }}"
                     {% if block.settings.default_open %}
@@ -2096,7 +2184,10 @@
                       <span data-effective-price-value>{{ effective_price | money_without_trailing_zeros }}</span>
                     </p>
                     {% if block.settings.caption != blank %}
-                      <p class="product-effective-price__caption">{{ block.settings.price_prefix }}  {{ block.settings.caption }}</p>
+                      <p class="product-effective-price__caption">
+                        {{ block.settings.price_prefix }}
+                        {{ block.settings.caption }}
+                      </p>
                     {% endif %}
                   </div>
 
@@ -2423,7 +2514,10 @@
             >
               <div class="product-effective-price__text-wrap">
                 {% if block.settings.caption != blank %}
-                  <p class="product-effective-price__caption">{{ block.settings.price_prefix }} {{ block.settings.caption }}</p>
+                  <p class="product-effective-price__caption">
+                    {{ block.settings.price_prefix }}
+                    {{ block.settings.caption }}
+                  </p>
                 {% endif %}
                 <p class="product-effective-price__value">
                   <span data-effective-price-value>{{ effective_price | money_without_trailing_zeros }}</span>
@@ -4283,15 +4377,6 @@
           "type": "image_picker",
           "id": "icon_delivery",
           "label": "Icon"
-        },
-        {
-          "type": "range",
-          "id": "delivery_max",
-          "label": "Max date",
-          "min": 1,
-          "max": 30,
-          "step": 1,
-          "default": 4
         },
         {
           "type": "text",
