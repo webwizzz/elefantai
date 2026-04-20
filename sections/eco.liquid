@@ -287,7 +287,7 @@
     <div class="eco-decoration">
       {% if section.settings.decoration_image != blank %}
         <img
-          src="{{ section.settings.decoration_image | image_url: width: 300 }}"
+          src="{{ section.settings.decoration_image | image_url: width: 300, format: 'webp' }}"
           alt=""
           loading="lazy"
           style="width: 100%; height: auto;"

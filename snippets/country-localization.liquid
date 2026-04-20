@@ -11,7 +11,7 @@
     <span class="test">
       {% if localPosition == 'HeaderCountry' or localPosition == 'FooterCountry' %}
         {% if show_image %}
-          {{ localization.country | image_url: width: 20 | image_tag }}
+          {{ localization.country | image_url: width: 20, format: 'webp' | image_tag }}
         {% endif %}
         {% if show_name %}
           {{ localization.country.name }}

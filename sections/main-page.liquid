@@ -47,7 +47,7 @@
       {%- endcapture -%}
         {{
           section.settings.overlay_image
-          | image_url: width: 1700
+          | image_url: width: 1700, format: 'webp' 
           | image_tag: 
             loading: 'lazy', 
             width: section.settings.overlay_image.width,
@@ -65,7 +65,7 @@
       {%- endcapture -%}
         {{
           section.settings.overlay_image_right
-          | image_url: width: 1700
+          | image_url: width: 1700, format: 'webp' 
           | image_tag: 
             loading: 'lazy', 
             width: section.settings.overlay_image_right.width,
@@ -78,18 +78,18 @@
 
   {%- if section.settings.banner_backgroung_image != blank -%}
     <div class="collection-hero--background">
-			<img srcset=" {%- if section.settings.banner_backgroung_image.width >= 165 -%}{{ section.settings.banner_backgroung_image | image_url: width: 165 }} 165w,{%- endif -%}
-				{%- if section.settings.banner_backgroung_image.width >= 360 -%}{{ section.settings.banner_backgroung_image | image_url: width: 360 }} 360w,{%- endif -%}
-				{%- if section.settings.banner_backgroung_image.width >= 535 -%}{{ section.settings.banner_backgroung_image | image_url: width: 535 }} 535w,{%- endif -%}
-				{%- if section.settings.banner_backgroung_image.width >= 750 -%}{{ section.settings.banner_backgroung_image | image_url: width: 750 }} 750w,{%- endif -%}
-				{%- if section.settings.banner_backgroung_image.width >= 1070 -%}{{ section.settings.banner_backgroung_image | image_url: width: 1070 }} 1070w,{%- endif -%}
-				{%- if section.settings.banner_backgroung_image.width >= 1500 -%}{{ section.settings.banner_backgroung_image | image_url: width: 1500 }} 1500w,{%- endif -%}
-				{%- if section.settings.banner_backgroung_image.width >= 1600 -%}{{ section.settings.banner_backgroung_image | image_url: width: 1600 }} 1600w,{%- endif -%}
-				{%- if section.settings.banner_backgroung_image.width >= 1700 -%}{{ section.settings.banner_backgroung_image | image_url: width: 1700 }} 1700w,{%- endif -%}
-				{%- if section.settings.banner_backgroung_image.width >= 1800 -%}{{ section.settings.banner_backgroung_image | image_url: width: 1800 }} 1800w,{%- endif -%}
-				{%- if section.settings.banner_backgroung_image.width >= 1920 -%}{{ section.settings.banner_backgroung_image | image_url: width: 1920 }} 1920w,{%- endif -%}
-				{{ section.settings.banner_backgroung_image | image_url }} {{ section.settings.banner_backgroung_image.width }}w"
-				src="{{ section.settings.banner_backgroung_image | image_url: width: 1920 }}"
+			<img srcset=" {%- if section.settings.banner_backgroung_image.width >= 165 -%}{{ section.settings.banner_backgroung_image | image_url: width: 165, format: 'webp' }} 165w,{%- endif -%}
+				{%- if section.settings.banner_backgroung_image.width >= 360 -%}{{ section.settings.banner_backgroung_image | image_url: width: 360, format: 'webp' }} 360w,{%- endif -%}
+				{%- if section.settings.banner_backgroung_image.width >= 535 -%}{{ section.settings.banner_backgroung_image | image_url: width: 535, format: 'webp' }} 535w,{%- endif -%}
+				{%- if section.settings.banner_backgroung_image.width >= 750 -%}{{ section.settings.banner_backgroung_image | image_url: width: 750, format: 'webp' }} 750w,{%- endif -%}
+				{%- if section.settings.banner_backgroung_image.width >= 1070 -%}{{ section.settings.banner_backgroung_image | image_url: width: 1070, format: 'webp' }} 1070w,{%- endif -%}
+				{%- if section.settings.banner_backgroung_image.width >= 1500 -%}{{ section.settings.banner_backgroung_image | image_url: width: 1500, format: 'webp' }} 1500w,{%- endif -%}
+				{%- if section.settings.banner_backgroung_image.width >= 1600 -%}{{ section.settings.banner_backgroung_image | image_url: width: 1600, format: 'webp' }} 1600w,{%- endif -%}
+				{%- if section.settings.banner_backgroung_image.width >= 1700 -%}{{ section.settings.banner_backgroung_image | image_url: width: 1700, format: 'webp' }} 1700w,{%- endif -%}
+				{%- if section.settings.banner_backgroung_image.width >= 1800 -%}{{ section.settings.banner_backgroung_image | image_url: width: 1800, format: 'webp' }} 1800w,{%- endif -%}
+				{%- if section.settings.banner_backgroung_image.width >= 1920 -%}{{ section.settings.banner_backgroung_image | image_url: width: 1920, format: 'webp' }} 1920w,{%- endif -%}
+				{{ section.settings.banner_backgroung_image | image_url: format: 'webp' }} {{ section.settings.banner_backgroung_image.width }}w"
+				src="{{ section.settings.banner_backgroung_image | image_url: width: 1920, format: 'webp' }}"
 				sizes="100vw"
 				alt="{{- page.title | escape -}}"
 				loading="lazy"
@@ -100,18 +100,18 @@
 
   {%- if section.settings.banner_backgroung_image_mob != blank -%}
     <div class="collection-hero--background-mobile">
-			<img srcset=" {%- if section.settings.banner_backgroung_image_mob.width >= 165 -%}{{ section.settings.banner_backgroung_image_mob | image_url: width: 165 }} 165w,{%- endif -%}
-				{%- if section.settings.banner_backgroung_image_mob.width >= 360 -%}{{ section.settings.banner_backgroung_image_mob | image_url: width: 360 }} 360w,{%- endif -%}
-				{%- if section.settings.banner_backgroung_image_mob.width >= 535 -%}{{ section.settings.banner_backgroung_image_mob | image_url: width: 535 }} 535w,{%- endif -%}
-				{%- if section.settings.banner_backgroung_image_mob.width >= 750 -%}{{ section.settings.banner_backgroung_image_mob | image_url: width: 750 }} 750w,{%- endif -%}
-				{%- if section.settings.banner_backgroung_image_mob.width >= 1070 -%}{{ section.settings.banner_backgroung_image_mob | image_url: width: 1070 }} 1070w,{%- endif -%}
-				{%- if section.settings.banner_backgroung_image_mob.width >= 1500 -%}{{ section.settings.banner_backgroung_image_mob | image_url: width: 1500 }} 1500w,{%- endif -%}
-				{%- if section.settings.banner_backgroung_image_mob.width >= 1600 -%}{{ section.settings.banner_backgroung_image_mob | image_url: width: 1600 }} 1600w,{%- endif -%}
-				{%- if section.settings.banner_backgroung_image_mob.width >= 1700 -%}{{ section.settings.banner_backgroung_image_mob | image_url: width: 1700 }} 1700w,{%- endif -%}
-				{%- if section.settings.banner_backgroung_image_mob.width >= 1800 -%}{{ section.settings.banner_backgroung_image_mob | image_url: width: 1800 }} 1800w,{%- endif -%}
-				{%- if section.settings.banner_backgroung_image_mob.width >= 1920 -%}{{ section.settings.banner_backgroung_image_mob | image_url: width: 1920 }} 1920w,{%- endif -%}
-				{{ section.settings.banner_backgroung_image_mob | image_url }} {{ section.settings.banner_backgroung_image_mob.width }}w"
-				src="{{ section.settings.banner_backgroung_image_mob | image_url: width: 1920 }}"
+			<img srcset=" {%- if section.settings.banner_backgroung_image_mob.width >= 165 -%}{{ section.settings.banner_backgroung_image_mob | image_url: width: 165, format: 'webp' }} 165w,{%- endif -%}
+				{%- if section.settings.banner_backgroung_image_mob.width >= 360 -%}{{ section.settings.banner_backgroung_image_mob | image_url: width: 360, format: 'webp' }} 360w,{%- endif -%}
+				{%- if section.settings.banner_backgroung_image_mob.width >= 535 -%}{{ section.settings.banner_backgroung_image_mob | image_url: width: 535, format: 'webp' }} 535w,{%- endif -%}
+				{%- if section.settings.banner_backgroung_image_mob.width >= 750 -%}{{ section.settings.banner_backgroung_image_mob | image_url: width: 750, format: 'webp' }} 750w,{%- endif -%}
+				{%- if section.settings.banner_backgroung_image_mob.width >= 1070 -%}{{ section.settings.banner_backgroung_image_mob | image_url: width: 1070, format: 'webp' }} 1070w,{%- endif -%}
+				{%- if section.settings.banner_backgroung_image_mob.width >= 1500 -%}{{ section.settings.banner_backgroung_image_mob | image_url: width: 1500, format: 'webp' }} 1500w,{%- endif -%}
+				{%- if section.settings.banner_backgroung_image_mob.width >= 1600 -%}{{ section.settings.banner_backgroung_image_mob | image_url: width: 1600, format: 'webp' }} 1600w,{%- endif -%}
+				{%- if section.settings.banner_backgroung_image_mob.width >= 1700 -%}{{ section.settings.banner_backgroung_image_mob | image_url: width: 1700, format: 'webp' }} 1700w,{%- endif -%}
+				{%- if section.settings.banner_backgroung_image_mob.width >= 1800 -%}{{ section.settings.banner_backgroung_image_mob | image_url: width: 1800, format: 'webp' }} 1800w,{%- endif -%}
+				{%- if section.settings.banner_backgroung_image_mob.width >= 1920 -%}{{ section.settings.banner_backgroung_image_mob | image_url: width: 1920, format: 'webp' }} 1920w,{%- endif -%}
+				{{ section.settings.banner_backgroung_image_mob | image_url: format: 'webp' }} {{ section.settings.banner_backgroung_image_mob.width }}w"
+				src="{{ section.settings.banner_backgroung_image_mob | image_url: width: 1920, format: 'webp' }}"
 				sizes="100vw"
 				alt="{{- page.title | escape -}}"
 				loading="lazy"

@@ -25,7 +25,7 @@
 	{% if section.settings.background_image != blank %}
     #shopify-section-{{ section.id }} .announcement-bar {
       background-color: transparent;
-      background-image: url({{ section.settings.background_image | image_url }});
+      background-image: url({{ section.settings.background_image | image_url: format: 'webp' }});
       background-size: cover;
       background-position: bottom;
       background-repeat: repeat;
@@ -52,7 +52,7 @@
                 {%- if block.settings.image_before != blank -%}
                   {{
                     block.settings.image_before
-                    | image_url: width: 100
+                    | image_url: width: 100, format: 'webp' 
                     | image_tag: loading: 'lazy', sizes: '100px', widths: '100', alt: block.settings.image_before.alt
                   }}
                 {%- endif -%}
@@ -62,7 +62,7 @@
                 {%- if block.settings.image_after != blank -%}
                   {{
                     block.settings.image_after
-                    | image_url: width: 100
+                    | image_url: width: 100, format: 'webp' 
                     | image_tag: loading: 'lazy', sizes: '100px', widths: '100', alt: block.settings.image_after.alt
                   }}
                 {%- endif -%}
@@ -74,7 +74,7 @@
               {%- if block.settings.image_before != blank -%}
                 {{
                   block.settings.image_before
-                  | image_url: width: 100
+                  | image_url: width: 100, format: 'webp' 
                   | image_tag: loading: 'lazy', sizes: '100px', widths: '100', alt: block.settings.image_before.alt
                 }}
               {%- endif -%}
@@ -101,7 +101,7 @@
                 {%- if block.settings.image_after != blank -%}
                   {{
                     block.settings.image_after
-                    | image_url: width: 100
+                    | image_url: width: 100, format: 'webp' 
                     | image_tag: loading: 'lazy', sizes: '100px', widths: '100', alt: block.settings.image_after.alt
                   }}
                 {%- endif -%}
@@ -112,7 +112,7 @@
               {% if block.settings.image != blank %}
                 {{
                   block.settings.image
-                  | image_url: width: 100
+                  | image_url: width: 100, format: 'webp' 
                   | image_tag: loading: 'lazy', sizes: '100px', widths: '100', alt: block.settings.image.alt
                 }}
               {%- else -%}

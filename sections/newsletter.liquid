@@ -66,7 +66,7 @@
 
 	<div class="newsletter {% if section.settings.full_width == false %}page-width newsletter--narrow {% else %} full-width{% endif %}">
 
-		<div class="newsletter__wrapper{% if section.settings.colors_background_section_gradient != blank %} gradient{% else %} {{ section.settings.background_color }}{% endif %} content-container isolate{% if section.settings.full_width == true %} content-container--full-width{% endif %} grid grid--gapless grid--1-col grid--2-col-tablet {% if section.settings.bg_image != blank %} image-bg {% endif %}" {% if section.settings.bg_image != blank %} style="background-image: url('{{ section.settings.bg_image | image_url: width: 480, height: 480 }}');" {% endif %}>
+		<div class="newsletter__wrapper{% if section.settings.colors_background_section_gradient != blank %} gradient{% else %} {{ section.settings.background_color }}{% endif %} content-container isolate{% if section.settings.full_width == true %} content-container--full-width{% endif %} grid grid--gapless grid--1-col grid--2-col-tablet {% if section.settings.bg_image != blank %} image-bg {% endif %}" {% if section.settings.bg_image != blank %} style="background-image: url('{{ section.settings.bg_image | image_url: width: 480, height: 480, format: 'webp' }}');" {% endif %}>
 
       {% if section.settings.show_image and section.settings.image_position == 'left' %}
         <div class="grid__item newsletter-media {% if section.settings.hide_image_mb %} small-hide {% endif %}">
@@ -79,7 +79,7 @@
               {%- endcapture -%}
               {{
                 section.settings.image
-                | image_url: width: 1500
+                | image_url: width: 1500, format: 'webp' 
                 | image_tag: loading: 'lazy', sizes: sizes, widths: widths, alt: section.settings.image.alt
               }}
             {%- else -%}
@@ -210,7 +210,7 @@
               {%- endcapture -%}
               {{
                 section.settings.image
-                | image_url: width: 1500
+                | image_url: width: 1500, format: 'webp' 
                 | image_tag: loading: 'lazy', sizes: sizes, widths: widths, alt: section.settings.image.alt
               }}
             {%- else -%}

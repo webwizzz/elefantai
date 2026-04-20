@@ -25,7 +25,7 @@
   .ec-card {
     background-color: {{ section.settings.card_bg_color }};
     {% if section.settings.card_bg_image != blank %}
-      background-image: url('{{ section.settings.card_bg_image | image_url: width: 1600 }}');
+      background-image: url('{{ section.settings.card_bg_image | image_url: width: 1600, format: 'webp' }}');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -144,7 +144,7 @@
 <div id="EC-{{ section.id }}">
   {% if section.settings.section_bg_image != blank %}
     <img
-      src="{{ section.settings.section_bg_image | image_url: width: 2400 }}"
+      src="{{ section.settings.section_bg_image | image_url: width: 2400, format: 'webp' }}"
       alt=""
       class="ec-section-bg"
       loading="lazy"

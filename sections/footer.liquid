@@ -4,7 +4,7 @@
       <div class="footer__intro">
         {% if section.settings.intro_logo != blank %}
           <div class="footer__intro-logo" style="--intro-logo-width: {{ section.settings.intro_logo_width | default: 180 }}px;">
-            {{ section.settings.intro_logo | image_url: width: 800 | image_tag: alt: section.settings.intro_logo_alt, class: 'footer__intro-logo-image' }}
+            {{ section.settings.intro_logo | image_url: width: 800, format: 'webp' | image_tag: alt: section.settings.intro_logo_alt, class: 'footer__intro-logo-image' }}
           </div>
         {% endif %}
 
@@ -28,7 +28,7 @@
               {% if block.type == 'social_link' and block.settings.link != blank and block.settings.icon != blank %}
                 <li class="footer__social-item" {{ block.shopify_attributes }}>
                   <a href="{{ block.settings.link }}" class="footer__social-link" target="_blank" rel="noopener" aria-label="{{ block.settings.label | escape | default: 'Social link' }}">
-                    {{ block.settings.icon | image_url: width: 100 | image_tag: alt: block.settings.label, class: 'footer__social-icon' }}
+                    {{ block.settings.icon | image_url: width: 100, format: 'webp' | image_tag: alt: block.settings.label, class: 'footer__social-icon' }}
                   </a>
                 </li>
               {% endif %}
@@ -118,7 +118,7 @@
                 {% if block.settings.contact_logo != blank or block.settings.label != blank %}
                   <div class="footer__contact-head">
                     {% if block.settings.contact_logo != blank %}
-                      {{ block.settings.contact_logo | image_url: width: 80 | image_tag: alt: block.settings.label, class: 'footer__contact-logo' }}
+                      {{ block.settings.contact_logo | image_url: width: 80, format: 'webp' | image_tag: alt: block.settings.label, class: 'footer__contact-logo' }}
                     {% endif %}
                     {% if block.settings.label != blank %}
                       <p class="footer__contact-label">{{ block.settings.label }}</p>
@@ -171,7 +171,7 @@
     <div class="footer__logo-wrap">
       {% if section.settings.logo != blank %}
         <div class="footer__logo" style="--logo-width: {{ section.settings.logo_width | default: 171 }}px;">
-          {{ section.settings.logo | image_url: width: 1400 | image_tag: alt: section.settings.logo_alt, class: 'footer__logo-image' }}
+          {{ section.settings.logo | image_url: width: 1400, format: 'webp' | image_tag: alt: section.settings.logo_alt, class: 'footer__logo-image' }}
         </div>
       {% endif %}
     </div>

@@ -88,8 +88,8 @@
 	function setRecentlyViewedPdp() {
 		const pdpData = {
 			productId : "{{ product.id }}",
-			productImage : "{{ product.featured_media | image_url: width: 535 }}",
-			productSecondImage : "{{ product.media[1] | image_url: width: 533 }}",
+			productImage : "{{ product.featured_media | image_url: width: 535, format: 'webp' }}",
+			productSecondImage : "{{ product.media[1] | image_url: width: 533, format: 'webp' }}",
 			productTitle : "{{ product.title }}",
 			productUrl : "{{ product.url }}",
 			productPrice : "{{ product.price | money | remove_first: '' }}",

@@ -302,8 +302,8 @@
           class="elevated-hero-card elevated-hero-slide {% if forloop.first %}is-active{% endif %}"
           style="
             --hero-bg-color: {{ slide_fallback_bg }};
-            {% if slide_image_mobile != blank %}--hero-bg-mobile: url('{{ slide_image_mobile | image_url: width: 900 }}');{% else %}--hero-bg-mobile: none;{% endif %}
-            {% if slide_image != blank %}--hero-bg-desktop: url('{{ slide_image | image_url: width: 2400 }}');{% else %}--hero-bg-desktop: var(--hero-bg-mobile);{% endif %}
+            {% if slide_image_mobile != blank %}--hero-bg-mobile: url('{{ slide_image_mobile | image_url: width: 900, format: 'webp' }}');{% else %}--hero-bg-mobile: none;{% endif %}
+            {% if slide_image != blank %}--hero-bg-desktop: url('{{ slide_image | image_url: width: 2400, format: 'webp' }}');{% else %}--hero-bg-desktop: var(--hero-bg-mobile);{% endif %}
             --hero-overlay-color: {{ slide_overlay_color }};
             --hero-overlay-opacity: {{ slide_overlay_opacity | divided_by: 100.0 }};
             --hero-overlay-color-mobile: {{ slide_overlay_color_mobile }};
@@ -368,8 +368,8 @@
         class="elevated-hero-card elevated-hero-slide is-active"
         style="
           --hero-bg-color: {{ section.settings.fallback_bg_color }};
-          {% if mobile_image != blank %}--hero-bg-mobile: url('{{ mobile_image | image_url: width: 900 }}');{% else %}--hero-bg-mobile: none;{% endif %}
-          {% if section.settings.image != blank %}--hero-bg-desktop: url('{{ section.settings.image | image_url: width: 2400 }}');{% else %}--hero-bg-desktop: var(--hero-bg-mobile);{% endif %}
+          {% if mobile_image != blank %}--hero-bg-mobile: url('{{ mobile_image | image_url: width: 900, format: 'webp' }}');{% else %}--hero-bg-mobile: none;{% endif %}
+          {% if section.settings.image != blank %}--hero-bg-desktop: url('{{ section.settings.image | image_url: width: 2400, format: 'webp' }}');{% else %}--hero-bg-desktop: var(--hero-bg-mobile);{% endif %}
           --hero-overlay-color: {{ section.settings.overlay_color }};
           --hero-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
           --hero-overlay-color-mobile: {{ section.settings.overlay_color }};

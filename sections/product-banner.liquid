@@ -103,7 +103,7 @@
 
 										{{
 											block.settings.icon
-											| image_url: width: 230
+											| image_url: width: 230, format: 'webp' 
 											| image_tag: loading: 'lazy', sizes: sizes, widths: widths, class: classes, alt: 'background shape'
 										}}
 									{% endif %}
@@ -121,18 +121,18 @@
 
 										{{
 											block.settings.icon_2
-											| image_url: width: 230
+											| image_url: width: 230, format: 'webp' 
 											| image_tag: loading: 'lazy', sizes: sizes, widths: widths, class: classes, alt: 'background shape'
 										}}
 									{% endif %}
 
 									<div class="media media--landscape media--transparent shape--round">
 										{% if block.settings.banner_product_image %}
-											<img src="{{ block.settings.banner_product_image | image_url: width: 500 }}" class="product-preview" width="500" height="500" alt="{{ block.settings.banner_product_image.alt | escape }}">
+											<img loading="lazy" src="{{ block.settings.banner_product_image | image_url: width: 500, format: 'webp' }}" class="product-preview" width="500" height="500" alt="{{ block.settings.banner_product_image.alt | escape }}">
 										{% elsif block.settings.product.media[1] != blank %}
-											<img src="{{ block.settings.product.media[1] | image_url: width: 500 }}" class="product-preview" width="500" height="500" alt="{{ block.settings.product.media[1].alt | escape }}">
+											<img loading="lazy" src="{{ block.settings.product.media[1] | image_url: width: 500, format: 'webp' }}" class="product-preview" width="500" height="500" alt="{{ block.settings.product.media[1].alt | escape }}">
 										{% elsif block.settings.product.featured_image %}
-											<img src="{{ block.settings.product.featured_image | image_url: width: 500 }}" class="product-preview" width="500" height="500" alt="{{ block.settings.product.featured_image.alt | escape }}">
+											<img loading="lazy" src="{{ block.settings.product.featured_image | image_url: width: 500, format: 'webp' }}" class="product-preview" width="500" height="500" alt="{{ block.settings.product.featured_image.alt | escape }}">
 										{% else %}
 											{% capture placeholder_classes %}placeholder-svg placeholder-preview placeholder text-color-{{ block.settings.heading_color }}{% endcapture %}
 											{{ 'product-1' | placeholder_svg_tag: placeholder_classes }}
@@ -146,11 +146,11 @@
 
               {% if section.settings.image_style == 'default' and section.settings.hide_banner_product_image != true %}
                 {% if block.settings.banner_product_image %}
-                  <img src="{{ block.settings.banner_product_image | image_url: width: 500 }}" class="product-preview" width="500" height="500" alt="{{ block.settings.banner_product_image.alt | escape }}">
+                  <img loading="lazy" src="{{ block.settings.banner_product_image | image_url: width: 500, format: 'webp' }}" class="product-preview" width="500" height="500" alt="{{ block.settings.banner_product_image.alt | escape }}">
                 {% elsif block.settings.product.media[1] %}
-                  <img src="{{ block.settings.product.media[1] | image_url: width: 500 }}" class="product-preview" width="500" height="500" alt="{{ block.settings.product.media[1].alt | escape }}">
+                  <img loading="lazy" src="{{ block.settings.product.media[1] | image_url: width: 500, format: 'webp' }}" class="product-preview" width="500" height="500" alt="{{ block.settings.product.media[1].alt | escape }}">
                 {% elsif block.settings.product.featured_image %}
-                  <img src="{{ block.settings.product.featured_image | image_url: width: 500 }}" class="product-preview" width="500" height="500" alt="{{ block.settings.product.featured_image.alt | escape }}">
+                  <img loading="lazy" src="{{ block.settings.product.featured_image | image_url: width: 500, format: 'webp' }}" class="product-preview" width="500" height="500" alt="{{ block.settings.product.featured_image.alt | escape }}">
                 {% else %}
                   {% capture placeholder_classes %}placeholder-svg placeholder-preview placeholder text-color-{{ block.settings.heading_color }}{% endcapture %}
                   {{ 'product-1' | placeholder_svg_tag: placeholder_classes }}
@@ -165,9 +165,9 @@
   
                 <a class="product-image" href="{{ block.settings.product.url }}" aria-label="{% if block.settings.product.title != blank %}{{ block.settings.product.title | escape }}{% else %}{{ 'onboarding.product_title' | t }}{% endif %}">
                   {% if block.settings.container_product_image  %}
-                    <img src="{{ block.settings.container_product_image | image_url: width: 100}}" alt="{{ block.settings.container_product_image.alt | escape }}" loading="lazy" width="80" height="100">
+                    <img src="{{ block.settings.container_product_image | image_url: width: 100, format: 'webp' }}" alt="{{ block.settings.container_product_image.alt | escape }}" loading="lazy" width="80" height="100">
                   {% elsif block.settings.product.featured_image %}
-                    <img src="{{ block.settings.product.featured_image | image_url: width: 100 }}" alt="{{ block.settings.product.featured_image.alt | escape }}" loading="lazy" width="80" height="100">
+                    <img src="{{ block.settings.product.featured_image | image_url: width: 100, format: 'webp' }}" alt="{{ block.settings.product.featured_image.alt | escape }}" loading="lazy" width="80" height="100">
                   {% else %}
                     {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
                   {% endif %}
@@ -227,7 +227,7 @@
                     <span>
                       {{
                         block.settings.bullet_icon
-                        | image_url: width: 50
+                        | image_url: width: 50, format: 'webp' 
                         | image_tag: 
                           loading: 'lazy', 
                           width: block.settings.bullet_icon.width,
@@ -249,14 +249,14 @@
       
                     <a class="bubble-image" href="{{ product.url }}">
                       {% if product.featured_image %}
-                        <img src="{{ product.featured_image | image_url: width: 100 }}" 
+                        <img src="{{ product.featured_image | image_url: width: 100, format: 'webp' }}" 
                         alt="{{ product.featured_image.alt | escape }}"
                         loading="lazy" width="80" height="100">
                       {% else %}
                         {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
                       {% endif %}
                       {%- if product.media[1] != null -%}
-                        <img src="{{ product.media[1] | image_url: width: 100 }}" 
+                        <img src="{{ product.media[1] | image_url: width: 100, format: 'webp' }}" 
                         alt="{{ product.media[1].alt | escape }}"
                         loading="lazy" width="80" height="100">
                       {%- endif -%}
@@ -367,7 +367,7 @@
               {%- endcapture -%}
               {{
                 block.settings.banner_background
-                | image_url: width: block.settings.banner_background.width
+                | image_url: width: block.settings.banner_background.width, format: 'webp' 
                 | image_tag:
                   loading: loading, 
                   fetchpriority: fetch_priority,
@@ -384,7 +384,7 @@
               {%- endcapture -%}
               {{
                 block.settings.banner_background_mb
-                | image_url: width: block.settings.banner_background_mb.width
+                | image_url: width: block.settings.banner_background_mb.width, format: 'webp' 
                 | image_tag:
                   loading: loading, 
                   fetchpriority: fetch_priority,

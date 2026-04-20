@@ -24,7 +24,7 @@
 
       {{
         block.settings.image
-        | image_url: width: 750
+        | image_url: width: 750, format: 'webp' 
         | image_tag: loading: 'lazy', 
         sizes: sizes, 
         alt: block.settings.image.alt,

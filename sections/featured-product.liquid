@@ -485,7 +485,7 @@
                                   {% if block.settings.inventory_icon != blank %}
                                     {{
                                       block.settings.inventory_icon
-                                      | image_url: width: 20
+                                      | image_url: width: 20, format: 'webp' 
                                       | image_tag:
                                         loading: 'lazy',
                                         sizes: '20px',
@@ -524,7 +524,7 @@
                                   {% if block.settings.inventory_icon != blank %}
                                     {{
                                       block.settings.inventory_icon
-                                      | image_url: width: 20
+                                      | image_url: width: 20, format: 'webp' 
                                       | image_tag:
                                         loading: 'lazy',
                                         sizes: '20px',
@@ -565,7 +565,7 @@
                                   {% if block.settings.inventory_icon != blank %}
                                     {{
                                       block.settings.inventory_icon
-                                      | image_url: width: 20
+                                      | image_url: width: 20, format: 'webp' 
                                       | image_tag:
                                         loading: 'lazy',
                                         sizes: '20px',
@@ -583,7 +583,7 @@
                                   {% if block.settings.inventory_icon != blank %}
                                     {{
                                       block.settings.inventory_icon
-                                      | image_url: width: 20
+                                      | image_url: width: 20, format: 'webp' 
                                       | image_tag:
                                         loading: 'lazy',
                                         sizes: '20px',
@@ -607,7 +607,7 @@
                                   {% if block.settings.inventory_icon != blank %}
                                     {{
                                       block.settings.inventory_icon
-                                      | image_url: width: 20
+                                      | image_url: width: 20, format: 'webp' 
                                       | image_tag:
                                         loading: 'lazy',
                                         sizes: '20px',
@@ -643,7 +643,7 @@
                                   {% if block.settings.inventory_icon != blank %}
                                     {{
                                       block.settings.inventory_icon
-                                      | image_url: width: 20
+                                      | image_url: width: 20, format: 'webp' 
                                       | image_tag:
                                         loading: 'lazy',
                                         sizes: '20px',
@@ -1350,7 +1350,7 @@
       "url": {{ request.origin | append: product.url | json }},
       {% if seo_media -%}
         "image": [
-          {{ seo_media | image_url: width: 1920 | prepend: "https:" | json }}
+          {{ seo_media | image_url: width: 1920, format: 'webp' | prepend: "https:" | json }}
         ],
       {%- endif %}
       "description": {{ product.description | strip_html | json }},

@@ -14,7 +14,7 @@
     --card-btn-mobile: 14px;
 
     {% if section.settings.bg_image != blank %}
-      background-image: url('{{ section.settings.bg_image | image_url }}');
+      background-image: url('{{ section.settings.bg_image | image_url: format: 'webp' }}');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -333,7 +333,7 @@
   {% if section.settings.deco_image != blank %}
     {{
       section.settings.deco_image
-      | image_url: width: 300
+      | image_url: width: 300, format: 'webp' 
       | image_tag: loading: 'lazy', alt: 'Decoration', class: 'sba-deco-img'
     }}
   {% endif %}
@@ -361,7 +361,7 @@
           {% if block.settings.image != blank %}
             {{
               block.settings.image
-              | image_url: width: 600
+              | image_url: width: 600, format: 'webp' 
               | image_tag: loading: 'lazy', alt: block.settings.title, class: 'sba-card-bg'
             }}
           {% endif %}
@@ -371,7 +371,7 @@
           {% if block.settings.overlay_image != blank %}
             {{
               block.settings.overlay_image
-              | image_url: width: 600
+              | image_url: width: 600, format: 'webp' 
               | image_tag: loading: 'lazy', alt: block.settings.title, class: 'sba-card-overlay-img'
             }}
           {% endif %}

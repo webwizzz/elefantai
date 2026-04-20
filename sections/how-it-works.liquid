@@ -235,7 +235,7 @@
   <!-- Background Elements -->
   {% if section.settings.top_left_image %}
     <img
-      src="{{ section.settings.top_left_image | image_url: width: 800 }}"
+      src="{{ section.settings.top_left_image | image_url: width: 800, format: 'webp' }}"
       alt=""
       class="hiw-bg-img hiw-top-left"
       loading="lazy"
@@ -246,7 +246,7 @@
 
   {% if section.settings.bottom_right_image %}
     <img
-      src="{{ section.settings.bottom_right_image | image_url: width: 800 }}"
+      src="{{ section.settings.bottom_right_image | image_url: width: 800, format: 'webp' }}"
       alt=""
       class="hiw-bg-img hiw-bottom-right"
       loading="lazy"
@@ -272,7 +272,7 @@
             {% if block.settings.icon %}
               <img
                 loading="lazy"
-                src="{{ block.settings.icon | image_url: width: 150 }}"
+                src="{{ block.settings.icon | image_url: width: 150, format: 'webp' }}"
                 alt="{{ block.settings.title | escape }}"
                 width="{{ block.settings.icon.width }}"
                 height="{{ block.settings.icon.height }}"

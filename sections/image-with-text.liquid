@@ -104,7 +104,7 @@
       
         {{
           section.settings.icon_top
-          | image_url: width: 230
+          | image_url: width: 230, format: 'webp' 
           | image_tag: loading: 'lazy', sizes: sizes, widths: widths, class: classes, alt: 'background shape'
         }}
       {% endif %}
@@ -126,7 +126,7 @@
       
         {{
           section.settings.icon_bottom
-          | image_url: width: 230
+          | image_url: width: 230, format: 'webp' 
           | image_tag: loading: 'lazy', sizes: sizes, widths: widths, class: classes, alt: 'background shape'
         }}
       {% endif %}
@@ -167,7 +167,7 @@
                     {%- if poster != null -%}
                       {{
                         poster
-                        | image_url: width: 3840
+                        | image_url: width: 3840, format: 'webp' 
                         | image_tag:
                           loading: 'lazy',
                           sizes: sizes,
@@ -198,7 +198,7 @@
                   {%- if poster != null -%}
                     {{
                       poster
-                      | image_url: width: 1840
+                      | image_url: width: 1840, format: 'webp' 
                       | image_tag: loading: 'lazy', 
                       sizes: sizes, 
                       widths: '375, 750, 1100, 1500, 1780', 
@@ -290,7 +290,7 @@
 							%}
               {{
                 section.settings.image
-                | image_url: width: 1500
+                | image_url: width: 1500, format: 'webp' 
                 | image_tag: loading: 'lazy', 
                 sizes: sizes, 
                 widths: widths,
@@ -306,7 +306,7 @@
 								{%- endcapture -%}
 								{{
 									section.settings.image_mb
-									| image_url: width: 750
+									| image_url: width: 750, format: 'webp' 
 									| image_tag: loading: 'lazy', 
 									sizes: sizes, 
 									widths: widths,
@@ -324,7 +324,7 @@
 
 				{%- if section.settings.icon != blank -%}
 					{{ 
-            section.settings.icon | image_url: width: 90 
+            section.settings.icon | image_url: width: 90, format: 'webp' 
             | image_tag: 
             loading: 'lazy', 
             class: 'image-with-text__icon', 

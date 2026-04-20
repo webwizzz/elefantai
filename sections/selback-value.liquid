@@ -11,7 +11,7 @@
     padding: 50px 20px;
     background: {{ section.settings.bg_color }};
     {% if section.settings.bg_image != blank %}
-      background-image: url('{{ section.settings.bg_image | image_url: width: 2400 }}');
+      background-image: url('{{ section.settings.bg_image | image_url: width: 2400, format: 'webp' }}');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -334,7 +334,7 @@
         {{ block.shopify_attributes }}
       >
         <img
-          src="{{ block.settings.image | image_url: width: 400 }}"
+          src="{{ block.settings.image | image_url: width: 400, format: 'webp' }}"
           loading="lazy"
           width="{{ block.settings.image.width }}"
           height="{{ block.settings.image.height }}"
@@ -347,7 +347,7 @@
   {%- comment -%} Fixed Corner Images {%- endcomment -%}
   {% if section.settings.bottom_left_image != blank %}
     <img
-      src="{{ section.settings.bottom_left_image | image_url: width: 600 }}"
+      src="{{ section.settings.bottom_left_image | image_url: width: 600, format: 'webp' }}"
       class="us-corner-img us-corner-bl"
       alt=""
       loading="lazy"
@@ -358,7 +358,7 @@
 
   {% if section.settings.bottom_right_image != blank %}
     <img
-      src="{{ section.settings.bottom_right_image | image_url: width: 600 }}"
+      src="{{ section.settings.bottom_right_image | image_url: width: 600, format: 'webp' }}"
       class="us-corner-img us-corner-br"
       alt=""
       loading="lazy"
@@ -383,7 +383,7 @@
         <div class="us-card-icon" style="background: {{ section.settings.card_1_icon_bg }};">
           {% if section.settings.card_1_icon != blank %}
             <img
-              src="{{ section.settings.card_1_icon | image_url: width: 200 }}"
+              src="{{ section.settings.card_1_icon | image_url: width: 200, format: 'webp' }}"
               alt=""
               width="{{ section.settings.card_1_icon.width }}"
               height="{{ section.settings.card_1_icon.height }}"
@@ -418,7 +418,7 @@
         <div class="us-card-icon" style="background: {{ section.settings.card_2_icon_bg }};">
           {% if section.settings.card_2_icon != blank %}
             <img
-              src="{{ section.settings.card_2_icon | image_url: width: 200 }}"
+              src="{{ section.settings.card_2_icon | image_url: width: 200, format: 'webp' }}"
               alt=""
               width="{{ section.settings.card_2_icon.width }}"
               height="{{ section.settings.card_2_icon.height }}"

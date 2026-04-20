@@ -258,7 +258,7 @@
         <div class="why-elefant-kite">
           {{
             section.settings.kite_image
-            | image_url: width: 400
+            | image_url: width: 400, format: 'webp' 
             | image_tag: loading: 'lazy', alt: 'Decorative graphic'
           }}
         </div>
@@ -278,7 +278,7 @@
         <div class="why-elefant-card" {{ block.shopify_attributes }}>
           <div class="why-elefant-card-image">
             {% if block.settings.icon != blank %}
-              {{ block.settings.icon | image_url: width: 200 | image_tag: loading: 'lazy', alt: block.settings.title }}
+              {{ block.settings.icon | image_url: width: 200, format: 'webp' | image_tag: loading: 'lazy', alt: block.settings.title }}
             {% endif %}
           </div>
           <h3>{{ block.settings.title }}</h3>

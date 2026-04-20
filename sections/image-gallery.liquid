@@ -74,7 +74,7 @@
           <noscript>
             {% if block.settings.image != blank %}
             {{ block.settings.image
-              | image_url: width: 700
+              | image_url: width: 700, format: 'webp' 
               | image_tag: 
               loading: 'lazy', 
               alt: 'Gallery image',
@@ -97,7 +97,7 @@
             <div class="product__media media media--transparent">
               {% if block.settings.image != blank %}
                 {{ block.settings.image
-                  | image_url: width: 700
+                  | image_url: width: 700, format: 'webp' 
                   | image_tag: 
                   loading: 'lazy', 
                   alt: 'Gallery image',
@@ -142,7 +142,7 @@
 
             {% if block.settings.image != blank %}
               {{ block.settings.image
-                | image_url: width: 1700
+                | image_url: width: 1700, format: 'webp' 
                 | image_tag: 
                 loading: 'lazy', 
                 data-media-id: media_id,

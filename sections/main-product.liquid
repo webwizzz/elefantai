@@ -85,7 +85,7 @@
     %}
     {{
       section.settings.image_overlay
-      | image_url: width: 2000
+      | image_url: width: 2000, format: 'webp' 
       | image_tag: loading: 'lazy', sizes: sizes, widths: widths, class: classes, alt: 'background shape'
     }}
   {%- endif -%}
@@ -179,7 +179,7 @@
                       {%- if block.settings.image != blank -%}
                         {{
                           block.settings.image
-                          | image_url: width: 445
+                          | image_url: width: 445, format: 'webp' 
                           | image_tag: loading: 'lazy', alt: block.settings.image.alt, class: 'accordion__image'
                         }}
                       {% endif %}
@@ -635,7 +635,7 @@
                         {% if block.settings.inventory_icon != blank %}
                           {{
                             block.settings.inventory_icon
-                            | image_url: width: 20
+                            | image_url: width: 20, format: 'webp' 
                             | image_tag:
                               loading: 'lazy',
                               sizes: '20px',
@@ -672,7 +672,7 @@
                         {% if block.settings.inventory_icon != blank %}
                           {{
                             block.settings.inventory_icon
-                            | image_url: width: 20
+                            | image_url: width: 20, format: 'webp' 
                             | image_tag:
                               loading: 'lazy',
                               sizes: '20px',
@@ -711,7 +711,7 @@
                         {% if block.settings.inventory_icon != blank %}
                           {{
                             block.settings.inventory_icon
-                            | image_url: width: 20
+                            | image_url: width: 20, format: 'webp' 
                             | image_tag:
                               loading: 'lazy',
                               sizes: '20px',
@@ -729,7 +729,7 @@
                         {% if block.settings.inventory_icon != blank %}
                           {{
                             block.settings.inventory_icon
-                            | image_url: width: 20
+                            | image_url: width: 20, format: 'webp' 
                             | image_tag:
                               loading: 'lazy',
                               sizes: '20px',
@@ -753,7 +753,7 @@
                         {% if block.settings.inventory_icon != blank %}
                           {{
                             block.settings.inventory_icon
-                            | image_url: width: 20
+                            | image_url: width: 20, format: 'webp' 
                             | image_tag:
                               loading: 'lazy',
                               sizes: '20px',
@@ -787,7 +787,7 @@
                         {% if block.settings.inventory_icon != blank %}
                           {{
                             block.settings.inventory_icon
-                            | image_url: width: 20
+                            | image_url: width: 20, format: 'webp' 
                             | image_tag:
                               loading: 'lazy',
                               sizes: '20px',
@@ -875,7 +875,7 @@
 											<li class="product-meta-tabs__item">
 												<span class="product-meta-tabs__item-icon-wrap">
 													{% if feature_icon != blank %}
-														{{ feature_icon | image_url: width: 32 | image_tag: class: 'product-meta-tabs__item-icon', alt: feature_text }}
+														{{ feature_icon | image_url: width: 32, format: 'webp' | image_tag: class: 'product-meta-tabs__item-icon', alt: feature_text }}
 													{% else %}
 														<span class="product-meta-tabs__item-icon-fallback">&#10003;</span>
 													{% endif %}
@@ -897,7 +897,7 @@
 											<li class="product-meta-tabs__item">
 												<span class="product-meta-tabs__item-icon-wrap product-meta-tabs__item-icon-wrap--star">
 													{% if feature_icon != blank %}
-														{{ feature_icon | image_url: width: 32 | image_tag: class: 'product-meta-tabs__item-icon', alt: feature_text }}
+														{{ feature_icon | image_url: width: 32, format: 'webp' | image_tag: class: 'product-meta-tabs__item-icon', alt: feature_text }}
 													{% else %}
 														<span class="product-meta-tabs__item-icon-fallback product-meta-tabs__item-icon-fallback--star">&#9733;</span>
 													{% endif %}
@@ -942,7 +942,7 @@
 										<li class="product-meta-tabs__stack">
 											<div class="product-meta-tabs__stack-icon" style="--stack-color: {{ stack_color }};">
 												{% if stack_icon != blank %}
-													{{ stack_icon | image_url: width: 56 | image_tag: class: 'product-meta-tabs__stack-icon-image', alt: stack_title }}
+													{{ stack_icon | image_url: width: 56, format: 'webp' | image_tag: class: 'product-meta-tabs__stack-icon-image', alt: stack_title }}
 												{% else %}
 													<span class="product-meta-tabs__stack-icon-fallback">{{ i }}</span>
 												{% endif %}
@@ -1210,7 +1210,7 @@
                       {%- if block.settings.image != blank -%}
                         {{
                           block.settings.image
-                          | image_url: width: 445
+                          | image_url: width: 445, format: 'webp' 
                           | image_tag: loading: 'lazy', alt: block.settings.image.alt, class: 'accordion__image'
                         }}
                       {% endif %}
@@ -1298,7 +1298,7 @@
                       <div class="delivery-pickup-wrap">
                         {% if block.settings.icon_delivery != blank %}
                           <div class="delivery-pickup-icon">
-                            {{ block.settings.icon_delivery | image_url: width: 30 | image_tag: loading: 'lazy' }}
+                            {{ block.settings.icon_delivery | image_url: width: 30, format: 'webp' | image_tag: loading: 'lazy' }}
                           </div>
                         {% endif %}
 
@@ -1769,7 +1769,7 @@
                           <span class="product-skills-learned__icon-wrap">
                             {{
                               skill_icon
-                              | image_url: width: 64
+                              | image_url: width: 64, format: 'webp' 
                               | image_tag: class: 'product-skills-learned__icon', alt: skill_title
                             }}
                           </span>
@@ -1937,7 +1937,7 @@
                       {%- if block.settings.image != blank -%}
                         {{
                           block.settings.image
-                          | image_url: width: 445
+                          | image_url: width: 445, format: 'webp' 
                           | image_tag: loading: 'lazy', alt: block.settings.image.alt, class: 'accordion__image'
                         }}
                       {% endif %}
@@ -2252,7 +2252,7 @@
                   {%- if block.settings.image != blank -%}
                     {{
                       block.settings.image
-                      | image_url: width: 445
+                      | image_url: width: 445, format: 'webp' 
                       | image_tag: loading: 'lazy', alt: block.settings.image.alt, class: 'accordion__image'
                     }}
                   {% endif %}
@@ -2652,7 +2652,7 @@
     	"url": {{ request.origin | append: product.url | json }},
     	{% if seo_media -%}
     		"image": [
-    			{{ seo_media | image_url: width: 1920 | prepend: "https:" | json }}
+    			{{ seo_media | image_url: width: 1920, format: 'webp' | prepend: "https:" | json }}
     		],
     	{%- endif %}
     	"description": {{ product.description | strip_html | json }},

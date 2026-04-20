@@ -199,7 +199,7 @@
 
                           {{
                             block.settings.icon
-                            | image_url: width: 230
+                            | image_url: width: 230, format: 'webp' 
                             | image_tag: loading: 'lazy', sizes: sizes, widths: widths, class: classes, alt: 'background shape'
                           }}
                         {% endif %}
@@ -218,7 +218,7 @@
                             {% endcapture %}
                             {{
                               block.settings.image
-                              | image_url: width: 600
+                              | image_url: width: 600, format: 'webp' 
                               | image_tag:
                                 loading: 'lazy',
                                 alt: block.settings.image.alt,
@@ -243,7 +243,7 @@
                             {% endcapture %}
                             {{
                               block.settings.image
-                              | image_url: width: 600
+                              | image_url: width: 600, format: 'webp' 
                               | image_tag:
                                 loading: 'lazy',
                                 alt: block.settings.image.alt,
@@ -298,7 +298,7 @@
                               {% endcapture %}
                               {{
                                 block.settings.image
-                                | image_url: width: 600
+                                | image_url: width: 600, format: 'webp' 
                                 | image_tag:
                                 loading: 'lazy',
                                 alt: block.settings.image.alt,
