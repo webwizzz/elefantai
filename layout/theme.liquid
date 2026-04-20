@@ -32,13 +32,8 @@
 
     {% render 'meta-tags' %}
 
-    <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'global-bundle.js' | asset_url }}" defer="defer"></script>
 
-    {%- if settings.animations_reveal_on_scroll -%}
-      <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
-    {%- endif -%}
 
     {{ content_for_header }}
 
@@ -293,26 +288,17 @@
           }
     {% endstyle %}
 
-    {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'base-bundle.css' | asset_url | stylesheet_tag }}
 
     {%- unless settings.type_body_font.system? -%}
-      {% comment %}theme-check-disable AssetPreload{% endcomment %}
       <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
-      {% comment %}theme-check-enable AssetPreload{% endcomment %}
     {%- endunless -%}
     {%- unless settings.type_header_font.system? -%}
-      {% comment %}theme-check-disable AssetPreload{% endcomment %}
       <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
-      {% comment %}theme-check-enable AssetPreload{% endcomment %}
     {%- endunless -%}
 
     {%- if settings.predictive_search_enabled -%}
-      <link
-        rel="stylesheet"
-        href="{{ 'component-predictive-search.css' | asset_url }}"
-        media="print"
-        onload="this.media='all'"
-      >
+      <link rel="stylesheet" href="{{ 'component-predictive-search.css' | asset_url }}" media="print" onload="this.media='all'">
     {%- endif -%}
 
     <script>
@@ -322,21 +308,7 @@
       }
     </script>
 
-    {% comment %}theme-check-disable AssetPreload{% endcomment %}
-    <link
-      rel="preload"
-      href="{{ 'swiper-bundle.min.css' | asset_url }}"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    >
-    {% comment %}theme-check-enable AssetPreload{% endcomment %}
-
-    <noscript>
-      {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
-    </noscript>
-
     <link rel="stylesheet" href="{{ 'button-animation.css' | asset_url }}" media="print" onload="this.media='all'">
-    {% comment %} {{ 'button-animation.css' | asset_url | stylesheet_tag }} {% endcomment %}
 
     {% case settings.mood_type %}
       {% when 'kawai' %}
