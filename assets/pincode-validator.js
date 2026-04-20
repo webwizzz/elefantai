@@ -70,9 +70,23 @@ document.addEventListener('DOMContentLoaded', () => {
         updateInterceptionOverlay();
         return;
       }
+      
+      if (!/^\d{6}$/.test(val)) {
+        if (/[a-zA-Z]/.test(val)) {
+          msg.textContent = "We don't deliver outside India.";
+          updateDeliveryBlock('invalid', '', "We don't deliver outside India.");
+        } else {
+          msg.textContent = "Invalid pincode.";
+          updateDeliveryBlock('invalid', '', "Invalid pincode.");
+        }
+        msg.classList.add('error');
+        window.isPincodeVerified = false;
+        updateInterceptionOverlay();
+        return;
+      }
 
       if (pincodeMap.hasOwnProperty(val)) {
-        msg.textContent = pincodeMap[val];
+        msg.innerHTML = `Awesome! Delivery is available at your location.<br>Expected in: <strong>${pincodeMap[val]}</strong>`;
         msg.classList.add('success');
         window.isPincodeVerified = true;
         
@@ -88,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateDeliveryBlock(status, dateStr);
       } else {
         // Find error message setting, but we'll use a default if not wired up to JS specifically
-        msg.textContent = "Sorry, delivery is not available in your area.";
+        msg.textContent = "Delivery isn’t available at this pincode right now. We’ll be there soon!";
         msg.classList.add('error');
         window.isPincodeVerified = false;
         updateDeliveryBlock('invalid');
@@ -98,23 +112,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  function updateDeliveryBlock(status, dateStr = '') {
+  function updateDeliveryBlock(status, dateStr = '', overrideMessage = null) {
     const headings = document.querySelectorAll('.delivery-pickup-heading');
     const descriptions = document.querySelectorAll('.delivery-pickup-description');
     const singleTexts = document.querySelectorAll('.delivery-text');
     
-    if (status === 'express') {
-      headings.forEach(el => { el.innerHTML = '<strong>Express delivery available</strong>'; });
-      descriptions.forEach(el => { el.innerHTML = `<span>Expected delivery date: ${dateStr}</span>`; });
-      singleTexts.forEach(el => { el.innerHTML = `<strong>Express delivery expected:</strong> ${dateStr}`; });
-    } else if (status === 'standard') {
+    if (status === 'express' || status === 'standard') {
       headings.forEach(el => { el.innerHTML = '<strong>Delivery available</strong>'; });
-      descriptions.forEach(el => { el.innerHTML = `<span>Standard delivery days: ${dateStr}</span>`; });
-      singleTexts.forEach(el => { el.innerHTML = `<strong>Standard delivery:</strong> ${dateStr}`; });
+      descriptions.forEach(el => { el.innerHTML = `Awesome! Delivery is available at your location.<br>Expected in: <strong>${dateStr}</strong>`; });
+      singleTexts.forEach(el => { el.innerHTML = `Awesome! Delivery is available at your location.<br><strong>Expected in: ${dateStr}</strong>`; });
     } else if (status === 'invalid') {
+      const errMsg = overrideMessage || `Delivery isn’t available at this pincode right now. We’ll be there soon!`;
       headings.forEach(el => { el.innerHTML = '<strong>Delivery unavailable</strong>'; });
-      descriptions.forEach(el => { el.innerHTML = `<span>We do not deliver to this pincode.</span>`; });
-      singleTexts.forEach(el => { el.innerHTML = `<strong>Delivery unavailable for this pincode.</strong>`; });
+      descriptions.forEach(el => { el.innerHTML = errMsg; });
+      singleTexts.forEach(el => { el.innerHTML = `<strong>${errMsg}</strong>`; });
     }
   }
 
