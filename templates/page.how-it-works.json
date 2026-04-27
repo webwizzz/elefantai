@@ -28,16 +28,12 @@
         "colors_background_section_gradient": "",
         "padding_top": 54,
         "padding_bottom": 52,
-        "padding_top": 54,
-        "padding_bottom": 52,
         "shape_content_position": "bottom",
         "shape_content_type": "curve",
         "shape_content_color": "#da3c24",
         "shape_content_width": 100,
         "content_background_color": "color-bg-3",
         "content_colors_background_section_gradient": "",
-        "content_padding_top": 64,
-        "content_padding_bottom": 74
         "content_padding_top": 64,
         "content_padding_bottom": 74
       }
@@ -57,7 +53,6 @@
           "type": "text",
           "settings": {
             "text": "<p>Buy <strong>brand-new</strong> or <strong>certified refurbished</strong> toys your kids will go wild for. Play as long as they’re obsessed. When they move on - and you know they will - we pick it up and put <strong>a flat 60% of what you paid</strong> straight back in your pocket.</p>",
-            "text": "<p>Buy <strong>brand-new</strong> or <strong>certified refurbished</strong> toys your kids will go wild for. Play as long as they’re obsessed. When they move on - and you know they will - we pick it up and put <strong>a flat 60% of what you paid</strong> straight back in your pocket.</p>",
             "text_color": "main",
             "text_style": "body"
           }
@@ -65,7 +60,6 @@
         "button_hjExJh": {
           "type": "button",
           "settings": {
-            "button_label": "Explore Catalogue",
             "button_label": "Explore Catalogue",
             "button_link": "shopify://collections/all",
             "button_label_2": "See how it works",
@@ -94,22 +88,7 @@
         "content_alignment": "center",
         "full_width": true,
         "image_overlay": "shopify://shop_images/Group-2.svg",
-        "image_overlay": "shopify://shop_images/Group-2.svg",
         "image_overlay_width": 10,
-        "image_overlay_vertical": 30,
-        "image_overlay_horizontal": 7,
-        "image_overlay_width_mobile": 15,
-        "image_overlay_vertical_mobile": 19,
-        "image_overlay_horizontal_mobile": 12,
-        "image_overlay_animation": "ambient",
-        "image_overlay_2": "shopify://shop_images/Group-6.svg",
-        "image_overlay_width_2": 15,
-        "image_overlay_vertical_2": 71,
-        "image_overlay_horizontal_2": 83,
-        "image_overlay_width_2_mobile": 27,
-        "image_overlay_vertical_2_mobile": 93,
-        "image_overlay_horizontal_2_mobile": 100,
-        "image_overlay_animation_2": "ambient",
         "image_overlay_vertical": 30,
         "image_overlay_horizontal": 7,
         "image_overlay_width_mobile": 15,
@@ -131,7 +110,6 @@
         "image_overlay_vertical_3_mobile": 20,
         "image_overlay_horizontal_3_mobile": 20,
         "image_overlay_animation_3": "ambient",
-        "image_overlay_animation_3": "ambient",
         "shape_position": "top",
         "shape_type": "curve",
         "shape_color": "#6e4b7e",
@@ -152,7 +130,6 @@
             "caption": "Step 1",
             "heading": "<strong>Shop Smart</strong>",
             "text": "<p>Browse thousands of premium toys, from first rattles to rocket-building kits. Choose <strong>Brand New</strong> or go for <strong>Certified Refurbished - </strong>same joy, kinder price, way less landfill. Filter by your kid’s age, the skills you want to sneak in this month. And because we price-match across Amazon, Flipkart, and the big guys — you’re never overpaying.</p>",
-            "text": "<p>Browse thousands of premium toys, from first rattles to rocket-building kits. Choose <strong>Brand New</strong> or go for <strong>Certified Refurbished - </strong>same joy, kinder price, way less landfill. Filter by your kid’s age, the skills you want to sneak in this month. And because we price-match across Amazon, Flipkart, and the big guys — you’re never overpaying.</p>",
             "button_label": "Browse the Catalogue",
             "button_link": "shopify://collections/all",
             "top_space": ""
@@ -163,7 +140,7 @@
           "settings": {
             "image": "shopify://shop_images/Gemini_Generated_Image_djzwqhdjzwqhdjzw.png",
             "caption": "STEP 2",
-            "heading": "<strong>Play your heart out.</strong>",
+            "heading": "<strong>Play your heart out</strong>",
             "text": "<p>Your toy lands at your doorstep. And then? It’s yours. Fully. Properly. Forever-if-you-want-it yours. No rental meter ticking. No “please return by Friday” emails. No pressure. Play with it for three weeks or three years - the only clock that matters is your kid’s obsession timeline.</p>",
             "button_label": "Shop by Age",
             "button_link": "shopify://collections",
@@ -175,7 +152,7 @@
           "settings": {
             "image": "shopify://shop_images/Gemini_Generated_Image_dgkp9rdgkp9rdgkp.png",
             "caption": "Step 3",
-            "heading": "Done? We’ll Come Get It",
+            "heading": "<strong>Done? We’ll Come Get It</strong>",
             "text": "<p>One day - probably sooner than you think the toy stops being <strong>the</strong> toy. That’s your cue. Open the app, tap <strong>Schedule a pickup </strong>done. Our team swings by, runs a quick quality check, and boom - you get a <strong>flat 60% back</strong>. Straight to your original payment method, or as EleFant credit (which unlocks a little bonus because we like repeat customers).</p>",
             "button_label": "Schedule a Pickup",
             "button_link": "",
@@ -217,14 +194,12 @@
         "image_overlay_vertical_mobile": 20,
         "image_overlay_horizontal_mobile": 20,
         "image_overlay_animation": "ambient",
-        "image_overlay_animation": "ambient",
         "image_overlay_width_2": 10,
         "image_overlay_vertical_2": 20,
         "image_overlay_horizontal_2": 20,
         "image_overlay_width_2_mobile": 10,
         "image_overlay_vertical_2_mobile": 20,
         "image_overlay_horizontal_2_mobile": 20,
-        "image_overlay_animation_2": "ambient",
         "image_overlay_animation_2": "ambient",
         "image_overlay_width_3": 10,
         "image_overlay_vertical_3": 20,
@@ -233,9 +208,7 @@
         "image_overlay_vertical_3_mobile": 20,
         "image_overlay_horizontal_3_mobile": 20,
         "image_overlay_animation_3": "ambient",
-        "image_overlay_animation_3": "ambient",
         "shape_position": "top",
-        "shape_type": "waves",
         "shape_type": "waves",
         "shape_color": "#ffffff",
         "shape_width": 100,
@@ -252,9 +225,7 @@
           "type": "column",
           "settings": {
             "image_position": "bottom",
-            "image_position": "bottom",
             "title": "Real money back.",
-            "text": "<p>Get a <strong>flat 60%</strong> of what you paid on every toy - no fine print, no sliding scales. Effectively, you paid 40% for a toy your child already loved. That’s the math every young parent deserves.</p>",
             "text": "<p>Get a <strong>flat 60%</strong> of what you paid on every toy - no fine print, no sliding scales. Effectively, you paid 40% for a toy your child already loved. That’s the math every young parent deserves.</p>",
             "heading_color": "#da3c24",
             "link_label": "",
@@ -262,7 +233,6 @@
             "column_background_color": "color-bg-1",
             "enable_border_radius": false,
             "border_radius": 1,
-            "icon_width": 20,
             "icon_width": 20,
             "icon_vertical": 0.5,
             "icon_horizontal": 0.5,
@@ -277,7 +247,6 @@
             "image_position": "top",
             "title": "Less stuff, more space.",
             "text": "<p>Every toy that leaves your home goes to another family that needs it. Your kid’s old obsession becomes another kid’s new one. You get your living room back. The planet gets a break. Everyone wins.</p>",
-            "heading_color": "#6e2fa8",
             "heading_color": "#6e2fa8",
             "link_label": "",
             "link": "",
@@ -298,7 +267,6 @@
             "image_position": "top",
             "title": "Spotlessly clean, seriously safe.",
             "text": "<p>Every refurbished toy is inspected, cleaned, and sanitised by our team before it goes out. No shortcuts. We know the stakes.</p>",
-            "text": "<p>Every refurbished toy is inspected, cleaned, and sanitised by our team before it goes out. No shortcuts. We know the stakes.</p>",
             "heading_color": "#2d3679",
             "link_label": "",
             "link": "",
@@ -318,7 +286,6 @@
           "settings": {
             "image_position": "top",
             "title": "All from your phone.",
-            "text": "<p>Shopping, delivery, pickup, payouts - all doorstep, all app-based. Because the last thing a parent needs is one more errand. ❤️</p>",
             "text": "<p>Shopping, delivery, pickup, payouts - all doorstep, all app-based. Because the last thing a parent needs is one more errand. ❤️</p>",
             "heading_color": "#b76e79",
             "link_label": "",
@@ -352,7 +319,6 @@
         "text_color": "main",
         "heading_align": "center",
         "text_bottom_space": "",
-        "button_label": "",
         "button_label": "",
         "button_link": "",
         "top_space": "",
@@ -391,7 +357,6 @@
         "shape_position": "top",
         "shape_type": "none",
         "shape_color": "#ffffff",
-        "shape_color": "#ffffff",
         "shape_width": 100,
         "background_color": "color-bg-2",
         "colors_background_section_gradient": "",
@@ -414,7 +379,6 @@
           "type": "text",
           "settings": {
             "text": "<p><em>Join the community of  </em><em><strong>15000+</strong></em><em> parents who’ve made toy-buying smarter.</em></p>",
-            "text": "<p><em>Join the community of  </em><em><strong>15000+</strong></em><em> parents who’ve made toy-buying smarter.</em></p>",
             "text_color": "main",
             "text_style": "body"
           }
@@ -423,9 +387,7 @@
           "type": "button",
           "settings": {
             "button_label": "Shop Now",
-            "button_label": "Shop Now",
             "button_link": "shopify://collections/all",
-            "button_label_2": "Chat with us",
             "button_label_2": "Chat with us",
             "button_link_2": "shopify://pages/contact",
             "top_space": ""
@@ -465,10 +427,8 @@
         "image_overlay_animation_3": "none",
         "shape_position": "top",
         "shape_type": "waves",
-        "shape_type": "waves",
         "shape_color": "#fef7e6",
         "shape_width": 100,
-        "background_color": "color-main-bg",
         "background_color": "color-main-bg",
         "colors_background_section_gradient": "",
         "padding_top": 74,
@@ -481,7 +441,7 @@
         "paragraph_Jzz7Hw": {
           "type": "paragraph",
           "settings": {
-            "text": "<p>15000+ happy families  ·  5+ cities  ·  Trusted since day one</p>",
+            "text": "<p>15000+ happy families  ·  18+ cities  ·  Trusted since day one</p>",
             "text_style": "body",
             "text_size": "medium",
             "text_color": "secondary"
@@ -524,7 +484,6 @@
         "image_overlay_animation_3": "none",
         "shape_position": "top",
         "shape_type": "waves",
-        "shape_color": "#ffffff",
         "shape_color": "#ffffff",
         "shape_width": 100,
         "background_color_main": "color-bg-2",
