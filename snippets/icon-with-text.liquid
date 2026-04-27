@@ -45,7 +45,11 @@
       {%- if block.settings.image_1 == null -%}
         {%- render 'icon-accordion', icon: block.settings.icon_1 -%}
       {%- else -%}
+<<<<<<< HEAD
         <img src="{{ block.settings.image_1 | image_url: format: 'webp' }}" {% if block.settings.image_1.alt != blank %} alt="{{ block.settings.image_1.alt | escape }}"
+=======
+        <img src="{{ block.settings.image_1 | img_url: 'master' }}" {% if block.settings.image_1.alt != blank %} alt="{{ block.settings.image_1.alt | escape }}"
+>>>>>>> 6ebb789 (Refactor code structure for improved readability and maintainability)
           {% else %} role="presentation" {% endif %} height="auto" width="auto" loading="lazy">
       {%- endif -%}
 
@@ -66,7 +70,11 @@
       {%- if block.settings.image_2 == null -%}
         {% render 'icon-accordion', icon: block.settings.icon_2 -%}
       {%- else -%}
+<<<<<<< HEAD
         <img src="{{ block.settings.image_2 | image_url: format: 'webp' }}" {% if block.settings.image_2.alt != blank %} alt="{{ block.settings.image_2.alt | escape }}"
+=======
+        <img src="{{ block.settings.image_2 | img_url: 'master' }}" {% if block.settings.image_2.alt != blank %} alt="{{ block.settings.image_2.alt | escape }}"
+>>>>>>> 6ebb789 (Refactor code structure for improved readability and maintainability)
           {% else %} role="presentation" {% endif %} height="auto" width="auto" loading="lazy">
       {%- endif -%}
 
@@ -87,7 +95,11 @@
       {%- if block.settings.image_3 == null -%}
         {% render 'icon-accordion', icon: block.settings.icon_3 -%}
       {%- else -%}
+<<<<<<< HEAD
         <img src="{{ block.settings.image_3 | image_url: format: 'webp' }}" {% if block.settings.image_3.alt != blank %} alt="{{ block.settings.image_3.alt | escape }}"
+=======
+        <img src="{{ block.settings.image_3 | img_url: 'master' }}" {% if block.settings.image_3.alt != blank %} alt="{{ block.settings.image_3.alt | escape }}"
+>>>>>>> 6ebb789 (Refactor code structure for improved readability and maintainability)
           {% else %} role="presentation" {% endif %} height="auto" width="auto" loading="lazy">
       {%- endif -%}
 

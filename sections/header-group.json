@@ -96,7 +96,7 @@
         "image_ratio": "landscape",
         "mm_image_shape": true,
         "mm_collection": "",
-        "dm_custom": "",
+        "dm_custom": "{{ section.settings.mm_collection.title }}",
         "dm_product": "",
         "enable_search": true,
         "search_color": "#000000",

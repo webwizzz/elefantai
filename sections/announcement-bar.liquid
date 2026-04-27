@@ -25,7 +25,11 @@
 	{% if section.settings.background_image != blank %}
     #shopify-section-{{ section.id }} .announcement-bar {
       background-color: transparent;
+<<<<<<< HEAD
       background-image: url({{ section.settings.background_image | image_url: format: 'webp' }});
+=======
+      background-image: url("{{ section.settings.background_image | image_url: width: 1920, format: 'webp' }}");
+>>>>>>> 6ebb789 (Refactor code structure for improved readability and maintainability)
       background-size: cover;
       background-position: bottom;
       background-repeat: repeat;

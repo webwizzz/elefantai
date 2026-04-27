@@ -96,6 +96,8 @@
       ],
       "settings": {
         "layout_block": "default",
+        "image": "shopify://shop_images/Gemini_Generated_Image_6afdhz6afdhz6afd.png",
+        "image_mb": "shopify://shop_images/Gemini_Generated_Image_6afdhz6afdhz6afd.png",
         "image_shape": true,
         "enable_border_radius": false,
         "border_radius": 100,

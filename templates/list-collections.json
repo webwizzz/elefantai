@@ -114,7 +114,7 @@
         "featured_collection_aprBBt": {
           "type": "featured_collection",
           "settings": {
-            "collection": "category-1",
+            "collection": "large-toys",
             "layout": "default",
             "background": "",
             "icon_width": 25,

@@ -11,7 +11,7 @@
   "current": {
     "logo": "shopify://shop_images/Logo_Horizontal_Purple_1.svg",
     "logo_width": 235,
-    "favicon": "shopify://shop_images/Logo_Horizontal_Purple_1.svg",
+    "favicon": "shopify://shop_images/favicon.svg",
     "colors_text": "#000000",
     "colors_heading": "#6e4b7e",
     "colors_secondary_heading": "#2d3679",

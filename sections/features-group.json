@@ -72,15 +72,15 @@
         "text_alignment": "left",
         "popup_tag": "Discount code.",
         "popup_timeout": 4,
-        "popup_times": 1,
+        "popup_times": 3,
         "background_color": "#fef7e6",
         "discount_popup_heading": "<h3><strong>Congratulations! You’ve Successfully Joined Our List</strong></h3>",
         "promo_text_color": "main",
         "discount_popup_description": "<h4><strong>Stay Tuned for Further Updates</strong></h4>",
         "promo_description_color": "heading",
         "promo_text_alignment": "center",
-        "discount_promocode": "Take 10%",
-        "discount_background": "#b76e79",
+        "discount_promocode": "WELCOME10",
+        "discount_background": "#da3c24",
         "discount_button_label": "Copy code",
         "discount_background_color": "#fef7e6",
         "subscripbe_popup_shape": true
@@ -107,7 +107,7 @@
         "popup_description": "<h4><strong>Sign Up And Get 10% Off Your First Order</strong></h4>",
         "popup_text_color": "heading",
         "popup_text_alignment": "center",
-        "popup_tag": "Discount code.",
+        "popup_tag": "WELCOME10",
         "popup_background_color": "#fef7e6",
         "subscribe_popup_shape": true
       }
