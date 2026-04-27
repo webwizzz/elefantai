@@ -1553,12 +1553,40 @@ class VariantRadios extends VariantSelects {
 	  const swatchParent = swatch.closest('.product-card-wrapper');
 	  const variantImage = swatch.dataset.variantImg;
 	  const productImages = swatchParent.querySelectorAll('.card__media img');
+
+	  const input = swatch.querySelector('.card-variant__radio');
+	  if (input) {
+		input.checked = true;
+		input.dispatchEvent(new Event('change', { bubbles: true }));
+	  }
   
 	  productImages.forEach(image => {
 		if (typeof variantImage === 'undefined') return;
 		image.src = variantImage;
 		image.srcset = variantImage;
 	  });
+
+	  const priceEl = swatchParent.querySelector('.price');
+	  if (!priceEl) return;
+
+	  const moneyPrice = swatch.dataset.variantMoneyPrice;
+	  const moneyCompareAtPrice = swatch.dataset.variantMoneyCompareAtPrice;
+	  const price = parseInt(swatch.dataset.variantPrice, 10);
+	  const compareAtPrice = parseInt(swatch.dataset.variantCompareAtPrice, 10);
+	  const isOnSale = Number.isFinite(price) && Number.isFinite(compareAtPrice) && compareAtPrice > price;
+
+	  const regularPriceItem = priceEl.querySelector('.price__regular .price-item--regular');
+	  if (regularPriceItem && moneyPrice) regularPriceItem.textContent = moneyPrice;
+
+	  const salePriceItem = priceEl.querySelector('.price__sale .price-item--sale');
+	  if (salePriceItem && moneyPrice) salePriceItem.textContent = moneyPrice;
+
+	  const compareAtPriceItem = priceEl.querySelector('.price__sale .price-item--last .price-item--regular');
+	  if (compareAtPriceItem && moneyCompareAtPrice) compareAtPriceItem.textContent = moneyCompareAtPrice;
+
+	  priceEl.classList.toggle('price--on-sale', isOnSale);
+	  const isAvailable = swatch.dataset.variantAvailable !== 'false';
+	  priceEl.classList.toggle('price--sold-out', !isAvailable);
 	}
   }
   

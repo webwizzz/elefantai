@@ -28,6 +28,8 @@
     if ratio == 0 or ratio == null
       assign ratio = 1
     endif
+
+    assign default_card_variant = card_product.variants.first
   -%}
   
   <div class="card-wrapper product-card-wrapper underline-links-hover">
@@ -64,7 +66,7 @@
               {{ card_product.title | escape }}
             </a>
           </h3>
-          {% render 'price', product: card_product, price_class: '' %}
+          {% render 'price', product: card_product, use_variant: true, variant: default_card_variant, price_class: '' %}
           {%- if show_quick_add -%}
             <div class="quick-add no-js-hidden">
               {%- liquid
