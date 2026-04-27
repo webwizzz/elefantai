@@ -42,7 +42,7 @@
         "grid_navigation": true,
         "image_ratio": "portrait",
         "show_secondary_image": true,
-        "show_vendor": false,
+        "show_vendor": true,
         "show_rating": true,
         "filtering_background_color": "color-main-bg",
         "enable_filtering": true,
