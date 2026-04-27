@@ -593,7 +593,7 @@
                         {% if product.featured_image %}
                           <img
                             class="fc-card-img fc-card-img--primary"
-                            src="{{ product.featured_image | image_url: width: 400 }}"
+                            src="{{ product.featured_image | image_url: width: 400, format: 'webp' }}"
                             alt="{{ product.title | escape }}"
                             loading="lazy"
                             width="{{ product.featured_image.width }}"
@@ -603,7 +603,7 @@
                           {% if secondary_image != blank %}
                             <img
                               class="fc-card-img fc-card-img--secondary"
-                              src="{{ secondary_image | image_url: width: 400 }}"
+                              src="{{ secondary_image | image_url: width: 400, format: 'webp' }}"
                               alt="{{ product.title | escape }}"
                               loading="lazy"
                               width="{{ secondary_image.width }}"
@@ -655,7 +655,7 @@
                         </div>
 
                         {% assign bb = variant_price | times: 60 | divided_by: 100 %}
-                        <div class="fc-card-buyback">Buy now, sell back for  {{ bb | money }} </div>
+                        <div class="fc-card-buyback">You’ll get {{ bb | money }} back when you’re done </div>
                       </div>
                     </a>
 

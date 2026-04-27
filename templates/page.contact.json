@@ -64,7 +64,7 @@
           "settings": {
             "contact_title": "Phone",
             "text_color": "main",
-            "contact_label": "<p><a href=\"tel:+1-(555) 555-1234\" target=\"_blank\" title=\"tel:+1-(555) 555-1234\">+1-(555) 555-1234</a></p>",
+            "contact_label": "<p>+91 22 4618 4888</p>",
             "text_color_hover": "heading"
           }
         },
@@ -73,7 +73,7 @@
           "settings": {
             "contact_title": "Email",
             "text_color": "main",
-            "contact_label": "<p><a href=\"mailto:care@toyo.com\" target=\"_blank\" title=\"mailto:care@toyo.com\">care@toyo.com</a></p>",
+            "contact_label": "<p><a href=\"mailto:care@toyo.com\" target=\"_blank\" title=\"mailto:care@toyo.com\">support@theelefant.ai</a></p>",
             "text_color_hover": "heading"
           }
         },
@@ -82,7 +82,7 @@
           "settings": {
             "contact_title": "Address",
             "text_color": "main",
-            "contact_label": "<p>123 Main Street Anytown, USA 12345</p>",
+            "contact_label": "<p>706, Iscon Elegance, nr. SG Higway Service Lane, Prahlad Nagar, Ahmedabad, Gujarat - 380015</p>",
             "text_color_hover": "heading"
           }
         }
@@ -96,6 +96,8 @@
       ],
       "settings": {
         "layout_block": "default",
+        "image": "shopify://shop_images/Gemini_Generated_Image_6afdhz6afdhz6afd.png",
+        "image_mb": "shopify://shop_images/Gemini_Generated_Image_6afdhz6afdhz6afd.png",
         "image_shape": true,
         "enable_border_radius": false,
         "border_radius": 100,

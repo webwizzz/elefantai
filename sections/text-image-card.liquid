@@ -200,7 +200,7 @@
     <div class="tic-img-col">
       {% if section.settings.image != blank %}
         <img
-          src="{{ section.settings.image | image_url: width: 1000 }}"
+          src="{{ section.settings.image | image_url: width: 1000, format: 'webp' }}"
           alt="{{ section.settings.image.alt | default: 'Elevated Card Image' | escape }}"
           loading="lazy"
           width="{{ section.settings.image.width }}"

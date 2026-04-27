@@ -28,7 +28,7 @@
 	{%- elsif swatch.image != blank -%}
 		{{
 			swatch.image
-			| image_url: width: 300
+			| image_url: width: 300, format: 'webp' 
 			| image_tag: class: 'visual-display__child visual-display__image', alt: value.alt
 		}}
 	{%- else -%}

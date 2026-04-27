@@ -231,7 +231,7 @@
 			<div class="community-floating-ball">
 				{{
 					section.settings.floating_ball
-					| image_url: width: 400
+					| image_url: width: 400, format: 'webp' 
 					| image_tag: loading: 'lazy', alt: 'Floating decorative ball'
 				}}
 			</div>
@@ -261,7 +261,7 @@
 						{% if block.settings.image != blank %}
 							{{
 								block.settings.image
-								| image_url: width: 800
+								| image_url: width: 800, format: 'webp' 
 								| image_tag: loading: 'lazy', alt: block.settings.alt_text
 							}}
 						{% else %}

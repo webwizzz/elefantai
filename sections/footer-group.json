@@ -43,7 +43,7 @@
           "settings": {
             "contact_logo": "shopify://shop_images/mail-pencil-svgrepo-com.svg",
             "label": "Email",
-            "value": "<p>hello@example.com</p>"
+            "value": "<p>support@theelefant.ai</p>"
           }
         },
         "contact_item_fMXkTQ": {
@@ -51,7 +51,7 @@
           "settings": {
             "contact_logo": "shopify://shop_images/phone-alt-svgrepo-com.svg",
             "label": "Phone",
-            "value": "<p>+91 1234567899</p>"
+            "value": "<p>+91 22 4618 4888</p>"
           }
         },
         "contact_item_YX4bQG": {
@@ -59,7 +59,7 @@
           "settings": {
             "contact_logo": "shopify://shop_images/address-book-svgrepo-com.svg",
             "label": "Address",
-            "value": "<p>Mumbai, Maharashtra</p>"
+            "value": "<p>Iscon Elegance, 706, SG Hwy Service Rd, Prahlad Nagar, Ahmedabad, Gujarat 380015</p>"
           }
         }
       },
@@ -75,7 +75,7 @@
         "intro_logo": "shopify://shop_images/Group_6.svg",
         "intro_logo_alt": "Footer logo",
         "intro_logo_width": 180,
-        "intro_content": "<p>The smart toy economy. Buy quality toys, get up to 60% back when you're done. Better for parents, better for the planet.</p>",
+        "intro_content": "<p>The smart toy economy. Buy quality toys, get 60% back when you're done. Better for parents, better for the planet.</p>",
         "social_icon_bg": "#ffffff",
         "menu": "footer-main",
         "right_links_menu": "footer",

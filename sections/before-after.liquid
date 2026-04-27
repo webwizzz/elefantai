@@ -97,7 +97,7 @@
 
 				{{
 					section.settings.icon
-					| image_url: width: 230
+					| image_url: width: 230, format: 'webp' 
 					| image_tag: loading: 'lazy', sizes: sizes, widths: widths, class: classes, alt: 'background shape'
 				}}
 			{% endif %}
@@ -115,7 +115,7 @@
 
 				{{
 					section.settings.icon_2
-					| image_url: width: 230
+					| image_url: width: 230, format: 'webp' 
 					| image_tag: loading: 'lazy', sizes: sizes, widths: widths, class: classes, alt: 'background shape'
 				}}
 			{% endif %}
@@ -136,7 +136,7 @@
                 {%- endcapture -%}
 								{{
 									section.settings.before_image
-									| image_url: width: 1200
+									| image_url: width: 1200, format: 'webp' 
 									| image_tag: loading: 'lazy',
                   sizes: sizes,
                   widths: widths,
@@ -168,7 +168,7 @@
                 {%- endcapture -%}
 								{{
 									section.settings.after_image
-									| image_url: width: 1200
+									| image_url: width: 1200, format: 'webp' 
 									| image_tag: loading: 'lazy',
                   sizes: sizes,
                   widths: widths,

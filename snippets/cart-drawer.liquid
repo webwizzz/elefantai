@@ -59,7 +59,7 @@
           {%- if settings.drawer_image_before != blank -%}
             {{
               settings.drawer_image_before
-              | image_url: width: 100
+              | image_url: width: 100, format: 'webp' 
               | image_tag: loading: 'lazy', sizes: '100px', widths: '100'
             }}
           {%- endif -%}
@@ -69,7 +69,7 @@
           {%- if settings.drawer_image_after != blank -%}
             {{
               settings.drawer_image_after
-              | image_url: width: 100
+              | image_url: width: 100, format: 'webp' 
               | image_tag: loading: 'lazy', sizes: '100px', widths: '100'
             }}
           {%- endif -%}
@@ -100,7 +100,7 @@
           {%- if settings.drawer_image_before != blank -%}
             {{
               settings.drawer_image_before
-              | image_url: width: 100
+              | image_url: width: 100, format: 'webp' 
               | image_tag: loading: 'lazy', sizes: '100px', widths: '100'
             }}
           {%- endif -%}
@@ -110,7 +110,7 @@
           {%- if settings.drawer_image_after != blank -%}
             {{
               settings.drawer_image_after
-              | image_url: width: 100
+              | image_url: width: 100, format: 'webp' 
               | image_tag: loading: 'lazy', sizes: '100px', widths: '100'
             }}
           {%- endif -%}
@@ -149,11 +149,11 @@
 
                                 {% if settings.mood_type == 'mood5' %}
                                   <a href="{{ item.url }}">
-                                    <img class="cart-item__image" src="{{ item.image | image_url: width: 95 }}" alt="{{ item.image.alt | escape }}"
+                                    <img class="cart-item__image" src="{{ item.image | image_url: width: 95, format: 'webp' }}" alt="{{ item.image.alt | escape }}"
                                       loading="lazy" width="95" height="{{ 95 | divided_by: item.image.aspect_ratio | ceil }}">
                                   </a>
                                 {% else %}
-                                  <img class="cart-item__image" src="{{ item.image | image_url: width: 95 }}" alt="{{ item.image.alt | escape }}"
+                                  <img class="cart-item__image" src="{{ item.image | image_url: width: 95, format: 'webp' }}" alt="{{ item.image.alt | escape }}"
                                     loading="lazy" width="95" height="{{ 95 | divided_by: item.image.aspect_ratio | ceil }}">
                                 {% endif %}
                                 

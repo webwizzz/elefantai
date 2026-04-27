@@ -126,7 +126,7 @@
         "image_overlay_animation_3": "none",
         "shape_position": "top",
         "shape_type": "none",
-        "shape_color": "#fff",
+        "shape_color": "#ffffff",
         "shape_width": 100,
         "background_color": "color-main-bg",
         "colors_background_section_gradient": "",
@@ -148,7 +148,7 @@
         "text_z4q6r8": {
           "type": "text",
           "settings": {
-            "text": "<p>Subject to applicable law, including the Digital Personal Data Protection Act, 2023, you have the following rights:</p><p>• <strong>Right to access</strong> the personal information we hold about you.</p><p>• <strong>Right to correction</strong> of inaccurate or outdated information.</p><p>• <strong>Right to erasure</strong> of your data, subject to our legal retention obligations.</p><p>• <strong>Right to withdraw consent</strong> at any time, without affecting the lawfulness of prior processing.</p><p>• <strong>Right to grievance redressal</strong> via our Grievance Officer (see Section 11).</p><p>• <strong>Right to nominate</strong> another individual to exercise your rights in case of incapacity or death.</p><p>To exercise any of these rights, write to us at grievance@theelefant.ai. We will respond within the timelines prescribed under applicable law.</p>",
+            "text": "<p>Subject to applicable law, including the Digital Personal Data Protection Act, 2023, you have the following rights:</p><p>• <strong>Right to access</strong> the personal information we hold about you.</p><p>• <strong>Right to correction</strong> of inaccurate or outdated information.</p><p>• <strong>Right to erasure</strong> of your data, subject to our legal retention obligations.</p><p>• <strong>Right to withdraw consent</strong> at any time, without affecting the lawfulness of prior processing.</p><p>• <strong>Right to grievance redressal</strong> via our Grievance Officer (see Section 11).</p><p>• <strong>Right to nominate</strong> another individual to exercise your rights in case of incapacity or death.</p><p>To exercise any of these rights, write to us at <a href=\"mailto:grievance@theelefant.ai.\" target=\"_blank\" title=\"grievance@theelefant.ai.\">grievance@theelefant.ai.</a> We will respond within the timelines prescribed under applicable law.</p>",
             "text_color": "main",
             "text_style": "body"
           }
@@ -222,7 +222,7 @@
         "image_overlay_animation_3": "none",
         "shape_position": "top",
         "shape_type": "none",
-        "shape_color": "#fff",
+        "shape_color": "#ffffff",
         "shape_width": 100,
         "background_color": "color-main-bg",
         "colors_background_section_gradient": "",
@@ -300,7 +300,7 @@
         "image_overlay_animation_3": "none",
         "shape_position": "top",
         "shape_type": "none",
-        "shape_color": "#fff",
+        "shape_color": "#ffffff",
         "shape_width": 100,
         "background_color": "color-main-bg",
         "colors_background_section_gradient": "",
@@ -314,7 +314,7 @@
         "text_MgaRX4": {
           "type": "text",
           "settings": {
-            "text": "<p><strong>Grievance Officer</strong></p><p>Madshades Technologies Pvt. Ltd.</p><p>705, Palm Spring, Nr Infiniti Mall, Malad West, Mumbai – 400064, Maharashtra, India</p><p>Email: grievance@theelefant.ai</p><p>Support: support@theelefant.ai</p><p>We will acknowledge your grievance within forty-eight (48) hours and endeavour to resolve it within the timelines prescribed under applicable law.</p>",
+            "text": "<p><strong>Grievance Officer</strong></p><p>Madshades Technologies Pvt. Ltd.</p><p>705, Palm Spring, Nr Infiniti Mall, Malad West, Mumbai – 400064, Maharashtra, India</p><p>Email: <a href=\"mailto:grievance@theelefant.ai\" title=\"mailto:grievance@theelefant.ai\">grievance@theelefant.ai</a></p><p>Support: <a href=\"mailto:support@theelefant.ai\" title=\"mailto:support@theelefant.ai\">support@theelefant.ai</a></p><p>We will acknowledge your grievance within forty-eight (48) hours and endeavour to resolve it within the timelines prescribed under applicable law.</p>",
             "text_color": "main",
             "text_style": "body"
           }
@@ -351,7 +351,7 @@
         "image_overlay_animation_3": "none",
         "shape_position": "top",
         "shape_type": "none",
-        "shape_color": "#fff",
+        "shape_color": "#ffffff",
         "shape_width": 100,
         "background_color": "color-main-bg",
         "colors_background_section_gradient": "",

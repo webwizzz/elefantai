@@ -68,7 +68,7 @@
   {% endif %}
 
   {% if block.settings.show_pinterest_share %}
-    <a class="share-button__button" href="https://www.pinterest.com/pin/create/button/?guid=w7dEew2ynTe1-1&url={{ canonical_url }}&media={{ product.featured_image | image_url: width: 1500 }}&description={{ product.title | escape }}" target="_blank" rel="noopener noreferrer" aria-label="{{ canonical_url }}">
+    <a class="share-button__button" href="https://www.pinterest.com/pin/create/button/?guid=w7dEew2ynTe1-1&url={{ canonical_url }}&media={{ product.featured_image | image_url: width: 1500, format: 'webp' }}&description={{ product.title | escape }}" target="_blank" rel="noopener noreferrer" aria-label="{{ canonical_url }}">
       {% render 'icon-pinterest' %}
     </a>
   {% endif %}

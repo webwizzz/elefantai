@@ -158,20 +158,20 @@
 					{%- endcapture -%}
 					{{
 						section.settings.image
-						| image_url: width: 700
+						| image_url: width: 700, format: 'webp' 
 						| image_tag: loading: 'lazy', sizes: sizes, widths: widths
 					}}
 					{% if section.settings.icon-left != blank %} 
 						{{
 							section.settings.icon-left 
-							| image_url: width: 67
+							| image_url: width: 67, format: 'webp' 
 							| image_tag: loading: 'lazy', class: 'login-icon--left'
 						}}
 					{% endif %}
 					{% if section.settings.icon-right != blank %} 
 						{{
 							section.settings.icon-right 
-							| image_url: width: 67
+							| image_url: width: 67, format: 'webp' 
 							| image_tag: loading: 'lazy', class: 'login-icon--right'
 						}}
 					{% endif %}

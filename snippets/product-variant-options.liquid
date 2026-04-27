@@ -27,7 +27,7 @@
 		assign swatch = value.swatch
 		assign swatch_value = value
 		if swatch.image
-			assign image_url = swatch.image | image_url: width: 50
+			assign image_url = swatch.image | image_url: width: 50, format: 'webp' 
 			assign swatch_value = 'url(' | append: image_url | append: '); background-position: center !important'
 		elsif swatch.color
 			assign swatch_value = 'rgb(' | append: swatch.color.rgb | append: ')'

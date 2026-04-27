@@ -53,15 +53,15 @@
               {% if block.settings.image_height == 'adapt' and article.image %} style="padding-bottom: {{ 1 | divided_by: article.image.aspect_ratio | times: 100 }}%;"{% endif %}>
 
               <img srcset="
-                  {% if article.image.width >= 350 %}{{ article.image | image_url: width: 350 }} 350w,{% endif %}
-                  {% if article.image.width >= 750 %}{{ article.image | image_url: width: 750 }} 750w,{% endif %}
-                  {% if article.image.width >= 1100 %}{{ article.image | image_url: width: 1100 }} 1100w,{% endif %}
-                  {% if article.image.width >= 1500 %}{{ article.image | image_url: width: 1500 }} 1500w,{% endif %}
-                  {% if article.image.width >= 2200 %}{{ article.image | image_url: width: 2200 }} 2200w,{% endif %}
-                  {% if article.image.width >= 3000 %}{{ article.image | image_url: width: 3000 }} 3000w,{% endif %}
-                  {{ article.image | image_url }} {{ article.image.width }}w"
+                  {% if article.image.width >= 350 %}{{ article.image | image_url: width: 350, format: 'webp' }} 350w,{% endif %}
+                  {% if article.image.width >= 750 %}{{ article.image | image_url: width: 750, format: 'webp' }} 750w,{% endif %}
+                  {% if article.image.width >= 1100 %}{{ article.image | image_url: width: 1100, format: 'webp' }} 1100w,{% endif %}
+                  {% if article.image.width >= 1500 %}{{ article.image | image_url: width: 1500, format: 'webp' }} 1500w,{% endif %}
+                  {% if article.image.width >= 2200 %}{{ article.image | image_url: width: 2200, format: 'webp' }} 2200w,{% endif %}
+                  {% if article.image.width >= 3000 %}{{ article.image | image_url: width: 3000, format: 'webp' }} 3000w,{% endif %}
+                  {{ article.image | image_url: format: 'webp' }} {{ article.image.width }}w"
                 sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw"
-                src="{{ article.image | image_url: width: 1100 }}"
+                src="{{ article.image | image_url: width: 1100, format: 'webp' }}"
                 loading="lazy"
                 fetchpriority="high"
                 width="{{ article.image.width }}"
@@ -71,7 +71,7 @@
               {%- if section.settings.icon_left != blank -%}
                 {{
                   section.settings.icon_left
-                  | image_url: width: 80
+                  | image_url: width: 80, format: 'webp' 
                   | image_tag: loading: 'lazy', 
                   class: 'article-template__icon--left',
                   alt: section.settings.icon_left.alt
@@ -80,7 +80,7 @@
               {%- if section.settings.icon_right != blank -%}
                 {{
                   section.settings.icon_right
-                  | image_url: width: 75
+                  | image_url: width: 75, format: 'webp' 
                   | image_tag: loading: 'lazy', class: 'article-template__icon--right'
                 }}
               {%- endif -%}
@@ -145,7 +145,7 @@
               {% endif %}
 
               {% if block.settings.show_pinterest_share %}
-                <a class="share-button__button" href="https://www.pinterest.com/pin/create/button/?guid=w7dEew2ynTe1-1&url={{ canonical_url }}&media={{ article.image | image_url: width: 1500 }}&description={{ article.title | escape }}" target="_blank" rel="noopener noreferrer">
+                <a class="share-button__button" href="https://www.pinterest.com/pin/create/button/?guid=w7dEew2ynTe1-1&url={{ canonical_url }}&media={{ article.image | image_url: width: 1500, format: 'webp' }}&description={{ article.title | escape }}" target="_blank" rel="noopener noreferrer">
                   {% render 'icon-pinterest' %}
                 </a>
               {% endif %}
@@ -380,7 +380,7 @@
     {% endif %}
     {% if article.image %}
       "image": [
-        {{ article | image_url: width: 1920 | prepend: "https:" | json }}
+        {{ article | image_url: width: 1920, format: 'webp' | prepend: "https:" | json }}
       ],
     {% endif %}
     "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},

@@ -74,7 +74,7 @@
         "coundown_title_color": "#222222",
         "coundown_title_size": 14,
         "coundown_title_weight": "400",
-        "heading_size": "h1",
+        "heading_size": "h3",
         "heading_weight_banner": "700",
         "text_color": "secondary",
         "show_continue": true,

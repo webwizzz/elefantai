@@ -109,7 +109,7 @@
             {%- if poster != null -%}
               {{
                 poster
-                | image_url: width: 3840
+                | image_url: width: 3840, format: 'webp' 
                 | image_tag:
                   loading: 'lazy',
                   sizes: sizes,
@@ -136,7 +136,7 @@
         {%- if poster != null -%}
           {{
             poster
-            | image_url: width: 3840
+            | image_url: width: 3840, format: 'webp' 
             | image_tag: loading: 'lazy', sizes: sizes, widths: '375, 750, 1100, 1500, 1780, 2000, 3000, 3840', alt: alt
           }}
         {% elsif poster_with_video_id != null %}

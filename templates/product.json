@@ -374,7 +374,7 @@
         "highlight_color": "#8c6f9c",
         "subtitle": "The smart way to buy toys. Play, return when done, and get money back.",
         "button_label": "Learn How it Works",
-        "button_link": ""
+        "button_link": "shopify://pages/how-it-works"
       }
     },
     "selback_value_EnfcJp": {
@@ -471,7 +471,7 @@
         "card_1_bg": "#ffffff",
         "card_1_icon": "shopify://shop_images/SVGRepo_iconCarrier-4.svg",
         "card_1_icon_bg": "#ffecc2",
-        "card_1_title": "You Buy Toys",
+        "card_1_title": "You Buy Toy",
         "card_1_price": "₹10,000",
         "card_1_subtext": "Total Purchase",
         "card_2_bg": "#fffafa",

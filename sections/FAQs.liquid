@@ -116,7 +116,7 @@
   .faqs-section-{{ section.id }} {
     background-color: {{ section.settings.bg_color }};
     {% if section.settings.background_image %}
-      background-image: url('{{ section.settings.background_image | image_url: width: 2000 }}');
+      background-image: url('{{ section.settings.background_image | image_url: width: 2000, format: 'webp' }}');
       background-size: contain;
       background-position: top;
       background-repeat: repeat;

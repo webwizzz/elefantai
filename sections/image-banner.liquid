@@ -106,9 +106,9 @@
               -%}
               {{
                 section.settings.image
-                | image_url: width: 3840
+                | image_url: width: 3840, format: 'webp' 
                 | image_tag:
-                  loading: 'lazy',
+                  fetchpriority: 'high',
                   width: section.settings.image.width,
                   height: image_height,
                   class: image_class,
@@ -141,9 +141,9 @@
               -%}
               {{
                 section.settings.image_2
-                | image_url: width: 3840
+                | image_url: width: 3840, format: 'webp' 
                 | image_tag:
-                  loading: 'lazy',
+                  fetchpriority: 'high',
                   width: section.settings.image_2.width,
                   height: image_height_2,
                   class: image_class_2,
@@ -337,7 +337,7 @@
               
                     {{
                       block.settings.float_image_item
-                      | image_url: width: 750
+                      | image_url: width: 750, format: 'webp' 
                       | image_tag: loading: 'lazy', 
                       sizes: sizes, 
                       alt: block.settings.float_image_item.alt,
@@ -363,14 +363,14 @@
 {% if section.settings.backgroung_image != blank %}
 	<div class="section-background">
   
-		<img srcset=" {%- if section.settings.backgroung_image.width >= 165 -%}{{ section.settings.backgroung_image | image_url: width: 165 }} 165w,{%- endif -%}
-		{%- if section.settings.backgroung_image.width >= 535 -%}{{ section.settings.backgroung_image | image_url: width: 535 }} 535w,{%- endif -%}
-		{%- if section.settings.backgroung_image.width >= 360 -%}{{ section.settings.backgroung_image | image_url: width: 360 }} 360w,{%- endif -%}
-		{%- if section.settings.backgroung_image.width >= 750 -%}{{ section.settings.backgroung_image | image_url: width: 750 }} 750w,{%- endif -%}
-		{%- if section.settings.backgroung_image.width >= 1070 -%}{{ section.settings.backgroung_image | image_url: width: 1070 }} 1070w,{%- endif -%}
-		{%- if section.settings.backgroung_image.width >= 1500 -%}{{ section.settings.backgroung_image | image_url: width: 1500 }} 1500w,{%- endif -%}
-		{{ section.settings.backgroung_image | image_url }} {{ section.settings.backgroung_image.width }}w"
-		src="{{ section.settings.backgroung_image | image_url: width: 750 }}"
+		<img srcset=" {%- if section.settings.backgroung_image.width >= 165 -%}{{ section.settings.backgroung_image | image_url: width: 165, format: 'webp' }} 165w,{%- endif -%}
+		{%- if section.settings.backgroung_image.width >= 535 -%}{{ section.settings.backgroung_image | image_url: width: 535, format: 'webp' }} 535w,{%- endif -%}
+		{%- if section.settings.backgroung_image.width >= 360 -%}{{ section.settings.backgroung_image | image_url: width: 360, format: 'webp' }} 360w,{%- endif -%}
+		{%- if section.settings.backgroung_image.width >= 750 -%}{{ section.settings.backgroung_image | image_url: width: 750, format: 'webp' }} 750w,{%- endif -%}
+		{%- if section.settings.backgroung_image.width >= 1070 -%}{{ section.settings.backgroung_image | image_url: width: 1070, format: 'webp' }} 1070w,{%- endif -%}
+		{%- if section.settings.backgroung_image.width >= 1500 -%}{{ section.settings.backgroung_image | image_url: width: 1500, format: 'webp' }} 1500w,{%- endif -%}
+		{{ section.settings.backgroung_image | image_url: format: 'webp' }} {{ section.settings.backgroung_image.width }}w"
+		src="{{ section.settings.backgroung_image | image_url: width: 750, format: 'webp' }}"
 		sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 130px), calc(100vw - 55px)"
 		alt="{{- page.title | escape -}}"
 		loading="lazy"

@@ -15,7 +15,7 @@
         {% if section.settings.custom_search_icon != blank %}
           {{
             section.settings.custom_search_icon
-            | image_url: width: 40
+            | image_url: width: 40, format: 'webp' 
             | image_tag:
               class: 'modal__toggle-open header__custom-search-icon',
               widths: '20, 40',

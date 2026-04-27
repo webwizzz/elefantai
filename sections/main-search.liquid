@@ -110,7 +110,7 @@
           <div class="search-hero--overlay">
             {{
               section.settings.overlay_image
-              | image_url: width: 1700
+              | image_url: width: 1700, format: 'webp' 
               | image_tag: 
                 loading: 'lazy', 
                 width: section.settings.overlay_image.width,
@@ -127,7 +127,7 @@
         <div class="search-hero--overlay-right">
           {{
             section.settings.overlay_image_right
-            | image_url: width: 1700
+            | image_url: width: 1700, format: 'webp' 
             | image_tag: 
               loading: 'lazy', 
               width: section.settings.overlay_image_right.width,

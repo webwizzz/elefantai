@@ -23,7 +23,7 @@
     --card-bg-color: {{ section.settings.card_bg_color }};
 
     {% if section.settings.bg_image != blank %}
-      background-image: url('{{ section.settings.bg_image | image_url }}');
+      background-image: url('{{ section.settings.bg_image | image_url: format: 'webp' }}');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -259,7 +259,7 @@
         <div class="prb-card" {{ block.shopify_attributes }}>
           <div class="prb-icon-wrap" style="background-color: {{ block.settings.icon_bg_color | default: '#4a90e2' }};">
             {% if block.settings.icon != blank %}
-              {{ block.settings.icon | image_url: width: 200 | image_tag: loading: 'lazy', alt: block.settings.title }}
+              {{ block.settings.icon | image_url: width: 200, format: 'webp' | image_tag: loading: 'lazy', alt: block.settings.title }}
             {% endif %}
           </div>
 

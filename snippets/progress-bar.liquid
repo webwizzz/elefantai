@@ -7,7 +7,7 @@
       <div class="progress-icon" style="width: {{ block.settings.icon_width }}px;">
         {{
           block.settings.lablel_icon
-          | image_url: width: 150
+          | image_url: width: 150, format: 'webp' 
           | image_tag: loading: 'lazy', 
           alt: block.settings.lablel_icon.alt
         }}

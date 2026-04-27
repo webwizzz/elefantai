@@ -106,7 +106,7 @@
                         {%- endcapture -%}
                       {{
                         block.settings.image
-                        | image_url: width: 3200
+                        | image_url: width: 3200, format: 'webp' 
                         | image_tag:
                           loading: 'lazy',
                           sizes: sizes,
@@ -120,7 +120,7 @@
                         {%- endcapture -%}
                       {{
                         block.settings.image
-                        | image_url: width: 3200
+                        | image_url: width: 3200, format: 'webp' 
                         | image_tag:
                           loading: 'lazy',
                           sizes: sizes,
@@ -173,7 +173,7 @@
                         {%- endcapture -%}
                         {{
                           block.settings.cover_image
-                          | image_url: width: 3000
+                          | image_url: width: 3000, format: 'webp' 
                           | image_tag: loading: 'lazy', sizes: sizes, widths: '550, 720, 990, 1100, 1500, 2200, 3000', alt: block.settings.cover_image.alt
                         }}
                       {%- else -%}
@@ -208,7 +208,7 @@
 
                           {{
                             block.settings.cover_image
-                            | image_url: width: 3000
+                            | image_url: width: 3000, format: 'webp' 
                             | image_tag: loading: 'lazy', sizes: sizes, widths: '550, 720, 990, 1100, 1500, 2200, 3000', alt: block.settings.cover_image.alt
                           }}
                         {%- else -%}
