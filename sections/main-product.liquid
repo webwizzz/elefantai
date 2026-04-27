@@ -85,7 +85,7 @@
     %}
     {{
       section.settings.image_overlay
-      | image_url: width: 2000
+      | image_url: width: 2000, format: 'webp' 
       | image_tag: loading: 'lazy', sizes: sizes, widths: widths, class: classes, alt: 'background shape'
     }}
   {%- endif -%}
@@ -97,7 +97,7 @@
   {% assign breadcrumb_block = section.blocks | where: 'type', 'breadcrumb' | first %}
   {% if breadcrumb_block != blank %}
     <div
-      class="breadcrumb-section breadcrumb-section-product quick-add-hidden text-color-{{ breadcrumb_block.settings.breadcrumb_color }} text-color-{{ breadcrumb_block.settings.breadcrumb_color_hover }}-hover"
+      class="breadcrumb-section breadcrumb-section-product {% unless breadcrumb_block.settings.show_in_quick_add %}quick-add-hidden{% endunless %} text-color-{{ breadcrumb_block.settings.breadcrumb_color }} text-color-{{ breadcrumb_block.settings.breadcrumb_color_hover }}-hover"
       {{ breadcrumb_block.shopify_attributes }}
     >
       {% render 'breadcrumb', active_color: breadcrumb_block.settings.breadcrumb_color_hover %}
@@ -116,6 +116,10 @@
 
         {%- for block in section.blocks -%}
           {%- case block.type -%}
+            {%- when 'pincode_validator' -%}
+              {% if block.settings.block_position == 'under_media' %}
+                {% render 'pincode-validator', block: block %}
+              {% endif %}
             {%- when 'buy_buttons' -%}
               {% if block.settings.block_position == 'under_media' %}
                 {%- assign product_form_id = 'product-form-' | append: section.id -%}
@@ -142,7 +146,10 @@
           {%- case block.type -%}
             {%- when 'collapsible_tab' -%}
               {% if block.settings.collapsible_row_position == 'under_media' %}
-                <div class="product__accordion accordion under-product quick-add-hidden" {{ block.shopify_attributes }}>
+                <div
+                  class="product__accordion accordion under-product {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}"
+                  {{ block.shopify_attributes }}
+                >
                   <details
                     id="Details-{{ block.id }}-{{ section.id }}"
                     {% if block.settings.default_open %}
@@ -172,7 +179,7 @@
                       {%- if block.settings.image != blank -%}
                         {{
                           block.settings.image
-                          | image_url: width: 445
+                          | image_url: width: 445, format: 'webp' 
                           | image_tag: loading: 'lazy', alt: block.settings.image.alt, class: 'accordion__image'
                         }}
                       {% endif %}
@@ -184,7 +191,7 @@
             {%- when 'complementary' -%}
               {% if block.settings.block_position == 'under_media' %}
                 <product-recommendations
-                  class="complementary-products quick-add-hidden no-js-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}"
+                  class="complementary-products {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %} no-js-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}"
                   data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ block.settings.product_list_limit }}&intent=complementary"
                   {{ block.shopify_attributes }}
                 >
@@ -336,7 +343,7 @@
             {%- when 'text' -%}
               {% if block.settings.block_position == 'under_media' %}
                 <div
-                  class="product__text rte quick-add-hidden text-color-{{ block.settings.text_color }} {{ block.settings.text_style }} text-weight-{{ block.settings.text_weight }}"
+                  class="product__text rte {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %} text-color-{{ block.settings.text_color }} {{ block.settings.text_style }} text-weight-{{ block.settings.text_weight }}"
                   {{ block.shopify_attributes }}
                 >
                   {{- block.settings.text -}}
@@ -353,10 +360,14 @@
 
             {%- when 'video' -%}
               {% if block.settings.block_position == 'under_media' %}
+                {%- assign video_classes = '' -%}
+                {%- unless block.settings.show_in_quick_add -%}
+                  {%- assign video_classes = 'quick-add-hidden' -%}
+                {%- endunless -%}
                 {%- render 'block-video',
                   block: block,
                   forloop: forloop,
-                  classes: 'quick-add-hidden',
+                  classes: video_classes,
                   section_id: section.id
                 -%}
               {% endif %}
@@ -369,7 +380,7 @@
             {%- when 'divider' -%}
               {% if block.settings.block_position == 'under_media' %}
                 <div
-                  class="product__divider quick-add-hidden"
+                  class="product__divider {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}"
                   style="--divider-color: {{ block.settings.divider_color }}; --divider-thickness: {{ block.settings.divider_thickness }}px;"
                   {{ block.shopify_attributes }}
                 >
@@ -382,8 +393,7 @@
                 {%- liquid
                   assign base_price = product.selected_or_first_available_variant.price
                   assign buyback_percent = block.settings.buyback_percent | default: 60
-                  assign remaining_percent = 100 | minus: buyback_percent
-                  assign effective_price = base_price | times: remaining_percent | divided_by: 100
+                  assign effective_price = base_price | times: buyback_percent | divided_by: 100
                   assign effective_price_cta_link = block.settings.button_link | strip
                   assign effective_price_cta_first_char = effective_price_cta_link | slice: 0, 1
 
@@ -401,18 +411,21 @@
                 -%}
                 <div
                   id="EffectivePrice-{{ block.id }}-{{ section.id }}"
-                  class="product-effective-price quick-add-hidden"
+                  class="product-effective-price {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}"
                   data-effective-price-section="{{ section.id }}"
                   data-effective-price-block-id="{{ block.id }}"
                   {{ block.shopify_attributes }}
                 >
                   <div class="product-effective-price__text-wrap">
-                    <p class="product-effective-price__value">
-                      {{ block.settings.price_prefix }} <span data-effective-price-value>{{ effective_price | money_without_trailing_zeros }}</span>
-                    </p>
                     {% if block.settings.caption != blank %}
-                      <p class="product-effective-price__caption">{{ block.settings.caption }}</p>
+                      <p class="product-effective-price__caption">
+                        {{ block.settings.price_prefix }}
+                        {{ block.settings.caption }}
+                      </p>
                     {% endif %}
+                    <p class="product-effective-price__value">
+                      <span data-effective-price-value>{{ effective_price | money_without_trailing_zeros }}</span>
+                    </p>
                   </div>
 
                   {% if block.settings.button_label != blank %}
@@ -483,17 +496,54 @@
               {% endif %}
 
               <div
-                class="product__title {{ block.settings.heading_size }} text-color-{{ block.settings.heading_color }} text-weight-{{ block.settings.heading_weight }}"
-                {{ block.shopify_attributes }}
+                class="product__title-wrapper"
+                style="display: flex; justify-content: space-between; align-items: flex-start; gap: 15px;"
               >
-                <h1>
-                  {{ product.title | escape }}
+                <div
+                  class="product__title {{ block.settings.heading_size }} text-color-{{ block.settings.heading_color }} text-weight-{{ block.settings.heading_weight }}"
+                  {{ block.shopify_attributes }}
+                  style="margin: 0; flex-grow: 1;"
+                >
+                  <h1 style="margin: 0;">
+                    {{ product.title | escape }}
 
-                  {% if block.settings.show_vendor %}
-                    <span class="product__title-vendor">{{ product.vendor }}</span>
-                  {% endif %}
-                </h1>
+                    {% if block.settings.show_vendor %}
+                      <span class="product__title-vendor">{{ product.vendor }}</span>
+                    {% endif %}
+                  </h1>
+                </div>
+
+                <div
+                  class="product__title-actions"
+                  style="display: flex; align-items: center; gap: 15px; flex-shrink: 0; padding-top: 5px;"
+                >
+                  {% assign share_url = product.selected_variant.url | default: product.url | prepend: request.origin %}
+                  {% render 'product-share-button', block: block, product: product, share_link: share_url %}
+                  <!-- Wishlist Hero Custom Placement Button -->
+                  <div class="wishlist-hero-custom-button"></div>
+                </div>
               </div>
+
+              <style>
+                .product__title-actions .share-button {
+                  display: block;
+                  margin: 0;
+                }
+                .product__title-actions .share-button__button {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  background: none;
+                  border: none;
+                  padding: 0;
+                  cursor: pointer;
+                  color: inherit;
+                }
+                .product__title-actions .share-button__button svg {
+                  width: 20px;
+                  height: 20px;
+                }
+              </style>
 
               {%- if settings.product_info != blank and block.settings.title_product_type -%}
                 <div class="card-product-info">
@@ -585,7 +635,7 @@
                         {% if block.settings.inventory_icon != blank %}
                           {{
                             block.settings.inventory_icon
-                            | image_url: width: 20
+                            | image_url: width: 20, format: 'webp' 
                             | image_tag:
                               loading: 'lazy',
                               sizes: '20px',
@@ -622,7 +672,7 @@
                         {% if block.settings.inventory_icon != blank %}
                           {{
                             block.settings.inventory_icon
-                            | image_url: width: 20
+                            | image_url: width: 20, format: 'webp' 
                             | image_tag:
                               loading: 'lazy',
                               sizes: '20px',
@@ -636,146 +686,180 @@
                           </svg>
                         {% endif %}
 
-												{%- if block.settings.show_inventory_quantity -%}
-													{{- 'products.product.inventory_in_stock_show_count' | t: quantity: product.selected_or_first_available_variant.inventory_quantity -}}
-												{%- else -%}
-														{{- 'products.product.inventory_in_stock' | t -}}
-												{%- endif -%}
+                        {%- if block.settings.show_inventory_quantity -%}
+                          {{-
+                            'products.product.inventory_in_stock_show_count'
+                            | t: quantity: product.selected_or_first_available_variant.inventory_quantity
+                          -}}
+                        {%- else -%}
+                          {{- 'products.product.inventory_in_stock' | t -}}
+                        {%- endif -%}
 
-												{% if block.settings.show_inventory_progress %}
-													{% assign percentage_remaining = product.selected_or_first_available_variant.inventory_quantity | times: 100 | divided_by: block.settings.inventory_threshold_start %}
-													<span class="inventory_progress_bar">
-														<span style="width: {{ percentage_remaining }}%; max-width: 100%; min-width: 0;"></span>
-													</span>
-												{% endif %}
-											{%- endif -%}
+                        {% if block.settings.show_inventory_progress %}
+                          {% assign percentage_remaining = product.selected_or_first_available_variant.inventory_quantity
+                            | times: 100
+                            | divided_by: block.settings.inventory_threshold_start
+                          %}
+                          <span class="inventory_progress_bar">
+                            <span style="width: {{ percentage_remaining }}%; max-width: 100%; min-width: 0;"></span>
+                          </span>
+                        {% endif %}
+                      {%- endif -%}
 
-										{%- else -%}
-
-											{%- if product.selected_or_first_available_variant.inventory_policy == 'continue' -%}
-												{% if block.settings.inventory_icon != blank %}
-													{{
-														block.settings.inventory_icon
-														| image_url: width: 20
-														| image_tag: loading: 'lazy', sizes: '20px', widths: '20', alt: block.settings.inventory_icon.alt
-													}}
-												{%- else -%}
-													<svg width="15" height="15" aria-hidden="true">
-														<circle cx="7.5" cy="7.5" r="7.5" fill="rgb(62,214,96, 0.3)"/>
-														<circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(62,214,96)"/>
-													</svg>
-												{%- endif -%}
-												{{- 'products.product.inventory_out_of_stock_continue_selling' | t -}}
-											{%- else -%}
-												{% if block.settings.inventory_icon != blank %}
-														{{
-															block.settings.inventory_icon
-															| image_url: width: 20
-															| image_tag: loading: 'lazy', sizes: '20px', widths: '20', alt: block.settings.inventory_icon.alt
-														}}
-												{%- else -%}
-													<svg width="15" height="15" aria-hidden="true">
-														<circle cx="7.5" cy="7.5" r="7.5" fill="rgb(200,200,200, 0.3)"/>
-														<circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(200,200,200)"/>
-													</svg>
-												{%- endif -%}
-												{{- 'products.product.inventory_out_of_stock' | t -}}
-											{%- endif -%}
-										{%- endif -%}
-									{%- elsif block.settings.show_inventory_low == false -%}
-										{%- if product.selected_or_first_available_variant.inventory_quantity > 0 -%}
-											{%- if product.selected_or_first_available_variant.inventory_quantity <= block.settings.inventory_threshold -%}
-												{% if block.settings.inventory_icon != blank %}
-													{{
-														block.settings.inventory_icon
-														| image_url: width: 20
-														| image_tag: loading: 'lazy', sizes: '20px', widths: '20', alt: block.settings.inventory_icon.alt
-													}}
-												{%- else -%}
-													<svg width="15" height="15" aria-hidden="true">
-														<circle cx="7.5" cy="7.5" r="7.5" fill="rgba(207, 46, 38, 0.3)"/>
-														<circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="#CF2E26"/>
-													</svg>
-												{% endif %}
-												{%- if block.settings.show_inventory_quantity -%}
-													{{- 'products.product.inventory_low_stock_show_count' | t: quantity: product.selected_or_first_available_variant.inventory_quantity -}}
-												{%- else -%}
-													{{- 'products.product.inventory_low_stock' | t -}}
-												{%- endif -%}
-												{% if block.settings.show_inventory_progress %}
-													{% assign percentage_remaining = product.selected_or_first_available_variant.inventory_quantity | times: 100 | divided_by: block.settings.inventory_threshold_start %}
-													<span class="inventory_progress_bar low">
-														<span style="width: {{ percentage_remaining }}%; max-width: 100%; min-width: 0;"></span>
-													</span>
-												{% endif %}
-											{%- else -%}
-												{% if block.settings.inventory_icon != blank %}
-													{{
-														block.settings.inventory_icon
-														| image_url: width: 20
-														| image_tag: loading: 'lazy', sizes: '20px', widths: '20', alt: block.settings.inventory_icon.alt
-													}}
-												{%- else -%}
-													<svg width="15" height="15" aria-hidden="true">
-														<circle cx="7.5" cy="7.5" r="7.5" fill="rgb(62,214,96, 0.3)"/>
-														<circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(62,214,96)"/>
-													</svg>
-												{% endif %}
-												{%- if block.settings.show_inventory_quantity -%}
-													{{- 'products.product.inventory_in_stock_show_count' | t: quantity: product.selected_or_first_available_variant.inventory_quantity -}}
-												{%- else -%}
-														{{- 'products.product.inventory_in_stock' | t -}}
-												{%- endif -%}
-												{% if block.settings.show_inventory_progress %}
-													{% assign percentage_remaining = product.selected_or_first_available_variant.inventory_quantity | times: 100 | divided_by: block.settings.inventory_threshold_start %}
-													<span class="inventory_progress_bar">
-														<span style="width: {{ percentage_remaining }}%; max-width: 100%; min-width: 0;"></span>
-													</span>
-												{% endif %}
-											{%- endif -%}
-										{%- else -%}
-											{%- if product.selected_or_first_available_variant.inventory_policy == 'continue' -%}
-												<svg width="15" height="15" aria-hidden="true">
-													<circle cx="7.5" cy="7.5" r="7.5" fill="rgb(62,214,96, 0.3)"/>
-													<circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(62,214,96)"/>
-												</svg>
-												{{- 'products.product.inventory_out_of_stock_continue_selling' | t -}}
-											{%- else -%}
-												<svg width="15" height="15" aria-hidden="true">
-													<circle cx="7.5" cy="7.5" r="7.5" fill="rgb(200,200,200, 0.3)"/>
-													<circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(200,200,200)"/>
-												</svg>
-												{{- 'products.product.inventory_out_of_stock' | t -}}
-											{%- endif -%}
-										{%- endif -%}
-									{%- endif -%}
-								{%- endif -%}
-
-							</p>
-						{%- when 'tags' -%}
-												{%- if product.metafields and product.metafields.custom and product.metafields.custom.tags != blank -%}
-													{{ 'component-tags.css' | asset_url | stylesheet_tag }}
-													<div class="product__tags" {{ block.shopify_attributes }}>
-														{%- assign features_content = product.metafields.custom.tags.value -%}
-														{%- if features_content.children -%}
-															{%- for list in features_content.children -%}
-																{%- if list.listType == 'unordered' and list.children -%}
-																	{%- for item in list.children -%}
-																		{%- if item.children -%}
-																			{%- for text_node in item.children -%}
-																				{%- if text_node.value -%}
-																					<span class="product-tag">{{ text_node.value }}</span>
-																				{%- endif -%}
-																			{%- endfor -%}
-																		{%- endif -%}
-																	{%- endfor -%}
-																{%- endif -%}
-															{%- endfor -%}
-														{%- endif -%}
-													</div>
-												{%- endif -%}
-						{%- when 'product_meta_tabs' -%}
-							{% capture product_meta_tabs_markup %}
+                    {%- else -%}
+                      {%- if product.selected_or_first_available_variant.inventory_policy == 'continue' -%}
+                        {% if block.settings.inventory_icon != blank %}
+                          {{
+                            block.settings.inventory_icon
+                            | image_url: width: 20, format: 'webp' 
+                            | image_tag:
+                              loading: 'lazy',
+                              sizes: '20px',
+                              widths: '20',
+                              alt: block.settings.inventory_icon.alt
+                          }}
+                        {%- else -%}
+                          <svg width="15" height="15" aria-hidden="true">
+                            <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(62,214,96, 0.3)"/>
+                            <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(62,214,96)"/>
+                          </svg>
+                        {%- endif -%}
+                        {{- 'products.product.inventory_out_of_stock_continue_selling' | t -}}
+                      {%- else -%}
+                        {% if block.settings.inventory_icon != blank %}
+                          {{
+                            block.settings.inventory_icon
+                            | image_url: width: 20, format: 'webp' 
+                            | image_tag:
+                              loading: 'lazy',
+                              sizes: '20px',
+                              widths: '20',
+                              alt: block.settings.inventory_icon.alt
+                          }}
+                        {%- else -%}
+                          <svg width="15" height="15" aria-hidden="true">
+                            <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(200,200,200, 0.3)"/>
+                            <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(200,200,200)"/>
+                          </svg>
+                        {%- endif -%}
+                        {{- 'products.product.inventory_out_of_stock' | t -}}
+                      {%- endif -%}
+                    {%- endif -%}
+                  {%- elsif block.settings.show_inventory_low == false -%}
+                    {%- if product.selected_or_first_available_variant.inventory_quantity > 0 -%}
+                      {%- if product.selected_or_first_available_variant.inventory_quantity
+                          <= block.settings.inventory_threshold
+                      -%}
+                        {% if block.settings.inventory_icon != blank %}
+                          {{
+                            block.settings.inventory_icon
+                            | image_url: width: 20, format: 'webp' 
+                            | image_tag:
+                              loading: 'lazy',
+                              sizes: '20px',
+                              widths: '20',
+                              alt: block.settings.inventory_icon.alt
+                          }}
+                        {%- else -%}
+                          <svg width="15" height="15" aria-hidden="true">
+                            <circle cx="7.5" cy="7.5" r="7.5" fill="rgba(207, 46, 38, 0.3)"/>
+                            <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="#CF2E26"/>
+                          </svg>
+                        {% endif %}
+                        {%- if block.settings.show_inventory_quantity -%}
+                          {{-
+                            'products.product.inventory_low_stock_show_count'
+                            | t: quantity: product.selected_or_first_available_variant.inventory_quantity
+                          -}}
+                        {%- else -%}
+                          {{- 'products.product.inventory_low_stock' | t -}}
+                        {%- endif -%}
+                        {% if block.settings.show_inventory_progress %}
+                          {% assign percentage_remaining = product.selected_or_first_available_variant.inventory_quantity
+                            | times: 100
+                            | divided_by: block.settings.inventory_threshold_start
+                          %}
+                          <span class="inventory_progress_bar low">
+                            <span style="width: {{ percentage_remaining }}%; max-width: 100%; min-width: 0;"></span>
+                          </span>
+                        {% endif %}
+                      {%- else -%}
+                        {% if block.settings.inventory_icon != blank %}
+                          {{
+                            block.settings.inventory_icon
+                            | image_url: width: 20, format: 'webp' 
+                            | image_tag:
+                              loading: 'lazy',
+                              sizes: '20px',
+                              widths: '20',
+                              alt: block.settings.inventory_icon.alt
+                          }}
+                        {%- else -%}
+                          <svg width="15" height="15" aria-hidden="true">
+                            <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(62,214,96, 0.3)"/>
+                            <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(62,214,96)"/>
+                          </svg>
+                        {% endif %}
+                        {%- if block.settings.show_inventory_quantity -%}
+                          {{-
+                            'products.product.inventory_in_stock_show_count'
+                            | t: quantity: product.selected_or_first_available_variant.inventory_quantity
+                          -}}
+                        {%- else -%}
+                          {{- 'products.product.inventory_in_stock' | t -}}
+                        {%- endif -%}
+                        {% if block.settings.show_inventory_progress %}
+                          {% assign percentage_remaining = product.selected_or_first_available_variant.inventory_quantity
+                            | times: 100
+                            | divided_by: block.settings.inventory_threshold_start
+                          %}
+                          <span class="inventory_progress_bar">
+                            <span style="width: {{ percentage_remaining }}%; max-width: 100%; min-width: 0;"></span>
+                          </span>
+                        {% endif %}
+                      {%- endif -%}
+                    {%- else -%}
+                      {%- if product.selected_or_first_available_variant.inventory_policy == 'continue' -%}
+                        <svg width="15" height="15" aria-hidden="true">
+                          <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(62,214,96, 0.3)"/>
+                          <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(62,214,96)"/>
+                        </svg>
+                        {{- 'products.product.inventory_out_of_stock_continue_selling' | t -}}
+                      {%- else -%}
+                        <svg width="15" height="15" aria-hidden="true">
+                          <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(200,200,200, 0.3)"/>
+                          <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(200,200,200)"/>
+                        </svg>
+                        {{- 'products.product.inventory_out_of_stock' | t -}}
+                      {%- endif -%}
+                    {%- endif -%}
+                  {%- endif -%}
+                {%- endif -%}
+              </p>
+            {%- when 'tags' -%}
+              {%- if product.metafields and product.metafields.custom and product.metafields.custom.tags != blank -%}
+                {{ 'component-tags.css' | asset_url | stylesheet_tag }}
+                <div class="product__tags" {{ block.shopify_attributes }}>
+                  {%- assign features_content = product.metafields.custom.tags.value -%}
+                  {%- if features_content.children -%}
+                    {%- for list in features_content.children -%}
+                      {%- if list.listType == 'unordered' and list.children -%}
+                        {%- for item in list.children -%}
+                          {%- if item.children -%}
+                            {%- for text_node in item.children -%}
+                              {%- if text_node.value -%}
+                                <span class="product-tag">{{ text_node.value }}</span>
+                              {%- endif -%}
+                            {%- endfor -%}
+                          {%- endif -%}
+                        {%- endfor -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+            {%- when 'product_meta_tabs' -%}
+              {% capture product_meta_tabs_markup %}
 							{% assign about_content = product.metafields.custom.about_this_product %}
 							{% assign key_features = product.metafields.custom.key_features.value %}
 							{% assign why_kids_love_it = product.metafields.custom.why_kids_love_it.value %}
@@ -791,7 +875,7 @@
 											<li class="product-meta-tabs__item">
 												<span class="product-meta-tabs__item-icon-wrap">
 													{% if feature_icon != blank %}
-														{{ feature_icon | image_url: width: 32 | image_tag: class: 'product-meta-tabs__item-icon', alt: feature_text }}
+														{{ feature_icon | image_url: width: 32, format: 'webp' | image_tag: class: 'product-meta-tabs__item-icon', alt: feature_text }}
 													{% else %}
 														<span class="product-meta-tabs__item-icon-fallback">&#10003;</span>
 													{% endif %}
@@ -813,7 +897,7 @@
 											<li class="product-meta-tabs__item">
 												<span class="product-meta-tabs__item-icon-wrap product-meta-tabs__item-icon-wrap--star">
 													{% if feature_icon != blank %}
-														{{ feature_icon | image_url: width: 32 | image_tag: class: 'product-meta-tabs__item-icon', alt: feature_text }}
+														{{ feature_icon | image_url: width: 32, format: 'webp' | image_tag: class: 'product-meta-tabs__item-icon', alt: feature_text }}
 													{% else %}
 														<span class="product-meta-tabs__item-icon-fallback product-meta-tabs__item-icon-fallback--star">&#9733;</span>
 													{% endif %}
@@ -858,7 +942,7 @@
 										<li class="product-meta-tabs__stack">
 											<div class="product-meta-tabs__stack-icon" style="--stack-color: {{ stack_color }};">
 												{% if stack_icon != blank %}
-													{{ stack_icon | image_url: width: 56 | image_tag: class: 'product-meta-tabs__stack-icon-image', alt: stack_title }}
+													{{ stack_icon | image_url: width: 56, format: 'webp' | image_tag: class: 'product-meta-tabs__stack-icon-image', alt: stack_title }}
 												{% else %}
 													<span class="product-meta-tabs__stack-icon-fallback">{{ i }}</span>
 												{% endif %}
@@ -973,7 +1057,7 @@
 									</div>
 								{% endcapture %}
 
-								<div id="{{ tabs_id }}" class="product-meta-tabs quick-add-hidden" data-product-meta-tabs {{ block.shopify_attributes }}>
+                <div id="{{ tabs_id }}" class="product-meta-tabs {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}" data-product-meta-tabs {{ block.shopify_attributes }}>
 									<div class="product-meta-tabs__desktop">
 										<div class="product-meta-tabs__nav" role="tablist" aria-label="{% if description_has_data %}{{ block.settings.description_tab_label }} {% endif %}{% if specifications_has_data %}{{ block.settings.specification_tab_label }} {% endif %}{% if buyback_has_data %}{{ block.settings.buyback_tab_label }}{% endif %}">
 											{% if description_has_data %}
@@ -1032,7 +1116,7 @@
             {%- when 'description' -%}
               {%- if product.description != blank -%}
                 <div
-                  class="product__description rte quick-add-hidden {% if block.settings.show_only_table %}show-table{% endif %}"
+                  class="product__description rte {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %} {% if block.settings.show_only_table %}show-table{% endif %}"
                   {{ block.shopify_attributes }}
                 >
                   {{ product.description }}
@@ -1059,7 +1143,7 @@
                 and product.description != empty
               %}
                 <div
-                  class="collabsible_description {% if settings.mood_type == 'mood5' %}quick-add-hidden{% endif %}"
+                  class="collabsible_description {% if settings.mood_type == 'mood5' and block.settings.show_in_quick_add != true %}quick-add-hidden{% endif %}"
                   {{ block.shopify_attributes }}
                 >
                   <div class="collapsible_text">
@@ -1092,7 +1176,10 @@
 
             {%- when 'collapsible_tab' -%}
               {% if block.settings.collapsible_row_position == 'sidebar' or product.media.size <= 0 %}
-                <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
+                <div
+                  class="product__accordion accordion {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}"
+                  {{ block.shopify_attributes }}
+                >
                   <details
                     id="Details-{{ block.id }}-{{ section.id }}"
                     {% if block.settings.default_open %}
@@ -1123,7 +1210,7 @@
                       {%- if block.settings.image != blank -%}
                         {{
                           block.settings.image
-                          | image_url: width: 445
+                          | image_url: width: 445, format: 'webp' 
                           | image_tag: loading: 'lazy', alt: block.settings.image.alt, class: 'accordion__image'
                         }}
                       {% endif %}
@@ -1134,7 +1221,7 @@
 
             {%- when 'popup' -%}
               <modal-opener
-                class="product-popup-modal__opener no-js-hidden quick-add-hidden"
+                class="product-popup-modal__opener no-js-hidden {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}"
                 data-modal="#PopupModal-{{ block.id }}"
                 {{ block.shopify_attributes }}
               >
@@ -1202,14 +1289,16 @@
 
             {%- when 'delivery_date_pickup' -%}
               {% if product.selected_or_first_available_variant.available %}
-                <div class="delivery-pickup quick-add-hidden" {{ block.shopify_attributes }}>
+                <div
+                  class="delivery-pickup {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}"
+                  {{ block.shopify_attributes }}
+                >
                   {% if block.settings.show_delivery_date %}
-                    {% assign max_date = block.settings.delivery_max | times: 24 | times: 60 | times: 60 %}
                     <div class="delivery-pickup-date">
                       <div class="delivery-pickup-wrap">
                         {% if block.settings.icon_delivery != blank %}
                           <div class="delivery-pickup-icon">
-                            {{ block.settings.icon_delivery | image_url: width: 30 | image_tag: loading: 'lazy' }}
+                            {{ block.settings.icon_delivery | image_url: width: 30, format: 'webp' | image_tag: loading: 'lazy' }}
                           </div>
                         {% endif %}
 
@@ -1218,9 +1307,6 @@
                             {{ block.settings.delivery_heading }}
                           </span>
                           <div class="delivery-pickup-description">
-                            <span>
-                              {{ 'now' | date: '%s' | plus: max_date | date: '%d %b' }}
-                            </span>
                             {{ block.settings.delivery_text }}
                           </div>
                         </div>
@@ -1236,7 +1322,7 @@
                       {{ 'component-pickup-availability.css' | asset_url | stylesheet_tag }}
 
                       <pickup-availability
-                        class="product__pickup-availabilities no-js-hidden quick-add-hidden"
+                        class="product__pickup-availabilities no-js-hidden {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}"
                         {% if product.selected_or_first_available_variant.available
                           and pick_up_availabilities.size > 0
                         %}
@@ -1288,6 +1374,11 @@
 
               {%- render 'countdown-bar', block: block, style: block.settings.coundown_style, section_id: section.id -%}
 
+            {%- when 'pincode_validator' -%}
+              {% if block.settings.block_position == 'sidebar' or product.media.size <= 0 %}
+                {% render 'pincode-validator', block: block %}
+              {% endif %}
+
             {%- when 'buy_buttons' -%}
               {% if block.settings.block_position == 'sidebar' or product.media.size <= 0 %}
                 {%- render 'buy-buttons',
@@ -1303,7 +1394,7 @@
 
             {%- when 'note' -%}
               {%- if settings.show_cart_note -%}
-                <cart-note class="cart__note field {% if settings.mood_type == 'mood5' %}quick-add-hidden{% endif %}">
+                <cart-note class="cart__note field {% if settings.mood_type == 'mood5' and block.settings.show_in_quick_add != true %}quick-add-hidden{% endif %}">
                   <label for="Cart-note">
                     {{ 'sections.cart.note' | t }}
                   </label>
@@ -1501,7 +1592,7 @@
             {%- when 'complementary' -%}
               {% if block.settings.block_position == 'sidebar' or product.media.size <= 0 %}
                 <product-recommendations
-                  class="complementary-products quick-add-hidden no-js-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}"
+                  class="complementary-products {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %} no-js-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}"
                   data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ block.settings.product_list_limit }}&intent=complementary"
                   {{ block.shopify_attributes }}
                 >
@@ -1655,7 +1746,10 @@
             {%- when 'skills-learned' -%}
               {% assign skills = product.metafields.custom.skills.value %}
               {% if skills != blank %}
-                <div class="product-skills-learned quick-add-hidden" {{ block.shopify_attributes }}>
+                <div
+                  class="product-skills-learned {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}"
+                  {{ block.shopify_attributes }}
+                >
                   {% if block.settings.heading != blank %}
                     <h2 class="product-skills-learned__heading">{{ block.settings.heading }}</h2>
                   {% endif %}
@@ -1675,7 +1769,7 @@
                           <span class="product-skills-learned__icon-wrap">
                             {{
                               skill_icon
-                              | image_url: width: 64
+                              | image_url: width: 64, format: 'webp' 
                               | image_tag: class: 'product-skills-learned__icon', alt: skill_title
                             }}
                           </span>
@@ -1715,8 +1809,7 @@
                 {%- liquid
                   assign base_price = product.selected_or_first_available_variant.price
                   assign buyback_percent = block.settings.buyback_percent | default: 60
-                  assign remaining_percent = 100 | minus: buyback_percent
-                  assign effective_price = base_price | times: remaining_percent | divided_by: 100
+                  assign effective_price = base_price | times: buyback_percent | divided_by: 100
                   assign effective_price_cta_link = block.settings.button_link | strip
                   assign effective_price_cta_first_char = effective_price_cta_link | slice: 0, 1
 
@@ -1740,12 +1833,15 @@
                   {{ block.shopify_attributes }}
                 >
                   <div class="product-effective-price__text-wrap">
-                    <p class="product-effective-price__value">
-                      {{ block.settings.price_prefix }} <span data-effective-price-value>{{ effective_price | money_without_trailing_zeros }}</span>
-                    </p>
                     {% if block.settings.caption != blank %}
-                      <p class="product-effective-price__caption">{{ block.settings.caption }}</p>
+                      <p class="product-effective-price__caption">
+                        {{ block.settings.price_prefix }}
+                        {{ block.settings.caption }}
+                      </p>
                     {% endif %}
+                    <p class="product-effective-price__value">
+                      <span data-effective-price-value>{{ effective_price | money_without_trailing_zeros }}</span>
+                    </p>
                   </div>
 
                   {% if block.settings.button_label != blank %}
@@ -1777,6 +1873,10 @@
 
         {%- for block in section.blocks -%}
           {%- case block.type -%}
+            {%- when 'pincode_validator' -%}
+              {% if block.settings.block_position == 'under_media' %}
+                {% render 'pincode-validator', block: block %}
+              {% endif %}
             {%- when 'buy_buttons' -%}
               {% if block.settings.block_position == 'under_media' %}
                 {%- assign product_form_id = 'product-form-' | append: section.id -%}
@@ -1803,7 +1903,10 @@
           {%- case block.type -%}
             {%- when 'collapsible_tab' -%}
               {% if block.settings.collapsible_row_position == 'under_media' %}
-                <div class="product__accordion accordion under-product quick-add-hidden" {{ block.shopify_attributes }}>
+                <div
+                  class="product__accordion accordion under-product {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}"
+                  {{ block.shopify_attributes }}
+                >
                   <details
                     id="Details-{{ block.id }}-{{ section.id }}"
                     {% if block.settings.default_open %}
@@ -1834,7 +1937,7 @@
                       {%- if block.settings.image != blank -%}
                         {{
                           block.settings.image
-                          | image_url: width: 445
+                          | image_url: width: 445, format: 'webp' 
                           | image_tag: loading: 'lazy', alt: block.settings.image.alt, class: 'accordion__image'
                         }}
                       {% endif %}
@@ -1846,7 +1949,7 @@
             {%- when 'complementary' -%}
               {% if block.settings.block_position == 'under_media' %}
                 <product-recommendations
-                  class="complementary-products quick-add-hidden no-js-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}"
+                  class="complementary-products {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %} no-js-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}"
                   data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ block.settings.product_list_limit }}&intent=complementary"
                   {{ block.shopify_attributes }}
                 >
@@ -2002,7 +2105,7 @@
             {%- when 'text' -%}
               {% if block.settings.block_position == 'under_media' %}
                 <div
-                  class="product__text rte quick-add-hidden text-color-{{ block.settings.text_color }} {{ block.settings.text_style }} text-weight-{{ block.settings.text_weight }}"
+                  class="product__text rte {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %} text-color-{{ block.settings.text_color }} {{ block.settings.text_style }} text-weight-{{ block.settings.text_weight }}"
                   {{ block.shopify_attributes }}
                 >
                   {{- block.settings.text -}}
@@ -2019,10 +2122,14 @@
 
             {%- when 'video' -%}
               {% if block.settings.block_position == 'under_media' %}
+                {%- assign video_classes = '' -%}
+                {%- unless block.settings.show_in_quick_add -%}
+                  {%- assign video_classes = 'quick-add-hidden' -%}
+                {%- endunless -%}
                 {%- render 'block-video',
                   block: block,
                   forloop: forloop,
-                  classes: 'quick-add-hidden',
+                  classes: video_classes,
                   section_id: section.id
                 -%}
               {% endif %}
@@ -2035,7 +2142,7 @@
             {%- when 'divider' -%}
               {% if block.settings.block_position == 'under_media' %}
                 <div
-                  class="product__divider quick-add-hidden"
+                  class="product__divider {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}"
                   style="--divider-color: {{ block.settings.divider_color }}; --divider-thickness: {{ block.settings.divider_thickness }}px;"
                   {{ block.shopify_attributes }}
                 >
@@ -2067,17 +2174,20 @@
                 -%}
                 <div
                   id="EffectivePrice-{{ block.id }}-{{ section.id }}"
-                  class="product-effective-price quick-add-hidden"
+                  class="product-effective-price {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}"
                   data-effective-price-section="{{ section.id }}"
                   data-effective-price-block-id="{{ block.id }}"
                   {{ block.shopify_attributes }}
                 >
                   <div class="product-effective-price__text-wrap">
                     <p class="product-effective-price__value">
-                      {{ block.settings.price_prefix }} <span data-effective-price-value>{{ effective_price | money_without_trailing_zeros }}</span>
+                      <span data-effective-price-value>{{ effective_price | money_without_trailing_zeros }}</span>
                     </p>
                     {% if block.settings.caption != blank %}
-                      <p class="product-effective-price__caption">{{ block.settings.caption }}</p>
+                      <p class="product-effective-price__caption">
+                        {{ block.settings.price_prefix }}
+                        {{ block.settings.caption }}
+                      </p>
                     {% endif %}
                   </div>
 
@@ -2110,7 +2220,7 @@
         {%- when 'collapsible_tab' -%}
           {% if block.settings.collapsible_row_position != 'sidebar' %}
             <div
-              class="product__accordion accordion under-product quick-add-hidden{% if block.settings.collapsible_row_position == 'under_media' %} medium-hide large-up-hide{% endif %}"
+              class="product__accordion accordion under-product {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %}{% if block.settings.collapsible_row_position == 'under_media' %} medium-hide large-up-hide{% endif %}"
               {{ block.shopify_attributes }}
             >
               <details
@@ -2142,7 +2252,7 @@
                   {%- if block.settings.image != blank -%}
                     {{
                       block.settings.image
-                      | image_url: width: 445
+                      | image_url: width: 445, format: 'webp' 
                       | image_tag: loading: 'lazy', alt: block.settings.image.alt, class: 'accordion__image'
                     }}
                   {% endif %}
@@ -2154,7 +2264,7 @@
         {%- when 'complementary' -%}
           {% if block.settings.block_position != 'sidebar' %}
             <product-recommendations
-              class="complementary-products quick-add-hidden no-js-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}{% if block.settings.block_position == 'under_media' %} medium-hide large-up-hide{% endif %}"
+              class="complementary-products {% unless block.settings.show_in_quick_add %}quick-add-hidden{% endunless %} no-js-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}{% if block.settings.block_position == 'under_media' %} medium-hide large-up-hide{% endif %}"
               data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ block.settings.product_list_limit }}&intent=complementary"
               {{ block.shopify_attributes }}
             >
@@ -2305,7 +2415,10 @@
         {%- when 'text' -%}
           {% if block.settings.block_position != 'sidebar' %}
             {% if block.settings.block_position == 'under_media' %}
-              {% assign classes = 'medium-hide large-up-hide quick-add-hidden' %}
+              {% assign classes = 'medium-hide large-up-hide' %}
+              {% unless block.settings.show_in_quick_add %}
+                {% assign classes = classes | append: ' quick-add-hidden' %}
+              {% endunless %}
             {% else %}
               {% assign classes = ' ' %}
             {% endif %}
@@ -2331,7 +2444,10 @@
         {%- when 'video' -%}
           {% if block.settings.block_position != 'sidebar' %}
             {% if block.settings.block_position == 'under_media' %}
-              {% assign classes = 'medium-hide large-up-hide quick-add-hidden' %}
+              {% assign classes = 'medium-hide large-up-hide' %}
+              {% unless block.settings.show_in_quick_add %}
+                {% assign classes = classes | append: ' quick-add-hidden' %}
+              {% endunless %}
             {% else %}
               {% assign classes = ' ' %}
             {% endif %}
@@ -2342,7 +2458,10 @@
         {%- when 'divider' -%}
           {% if block.settings.block_position != 'sidebar' %}
             {% if block.settings.block_position == 'under_media' %}
-              {% assign divider_classes = 'medium-hide large-up-hide quick-add-hidden' %}
+              {% assign divider_classes = 'medium-hide large-up-hide' %}
+              {% unless block.settings.show_in_quick_add %}
+                {% assign divider_classes = divider_classes | append: ' quick-add-hidden' %}
+              {% endunless %}
             {% else %}
               {% assign divider_classes = '' %}
             {% endif %}
@@ -2359,7 +2478,10 @@
         {%- when 'effective_price_cta' -%}
           {% if block.settings.block_position != 'sidebar' %}
             {% if block.settings.block_position == 'under_media' %}
-              {% assign effective_price_classes = 'medium-hide large-up-hide quick-add-hidden' %}
+              {% assign effective_price_classes = 'medium-hide large-up-hide' %}
+              {% unless block.settings.show_in_quick_add %}
+                {% assign effective_price_classes = effective_price_classes | append: ' quick-add-hidden' %}
+              {% endunless %}
             {% else %}
               {% assign effective_price_classes = '' %}
             {% endif %}
@@ -2367,8 +2489,7 @@
             {%- liquid
               assign base_price = product.selected_or_first_available_variant.price
               assign buyback_percent = block.settings.buyback_percent | default: 60
-              assign remaining_percent = 100 | minus: buyback_percent
-              assign effective_price = base_price | times: remaining_percent | divided_by: 100
+              assign effective_price = base_price | times: buyback_percent | divided_by: 100
               assign effective_price_cta_link = block.settings.button_link | strip
               assign effective_price_cta_first_char = effective_price_cta_link | slice: 0, 1
 
@@ -2392,12 +2513,15 @@
               {{ block.shopify_attributes }}
             >
               <div class="product-effective-price__text-wrap">
-                <p class="product-effective-price__value">
-                  {{ block.settings.price_prefix }} <span data-effective-price-value>{{ effective_price | money_without_trailing_zeros }}</span>
-                </p>
                 {% if block.settings.caption != blank %}
-                  <p class="product-effective-price__caption">{{ block.settings.caption }}</p>
+                  <p class="product-effective-price__caption">
+                    {{ block.settings.price_prefix }}
+                    {{ block.settings.caption }}
+                  </p>
                 {% endif %}
+                <p class="product-effective-price__value">
+                  <span data-effective-price-value>{{ effective_price | money_without_trailing_zeros }}</span>
+                </p>
               </div>
 
               {% if block.settings.button_label != blank %}
@@ -2528,7 +2652,7 @@
     	"url": {{ request.origin | append: product.url | json }},
     	{% if seo_media -%}
     		"image": [
-    			{{ seo_media | image_url: width: 1920 | prepend: "https:" | json }}
+    			{{ seo_media | image_url: width: 1920, format: 'webp' | prepend: "https:" | json }}
     		],
     	{%- endif %}
     	"description": {{ product.description | strip_html | json }},
@@ -2629,6 +2753,12 @@
           "default": "heading",
           "label": "Breadcrumbs color hover",
           "info": "t:sections.all.colors.has_cards_info"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
         }
       ]
     },
@@ -2862,6 +2992,12 @@
           ],
           "default": "sidebar",
           "label": "Block position"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
         }
       ]
     },
@@ -2904,6 +3040,12 @@
           ],
           "default": "under",
           "label": "Block position"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
         }
       ]
     },
@@ -2964,6 +3106,12 @@
           ],
           "default": "under",
           "label": "Block position"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
         }
       ]
     },
@@ -3743,6 +3891,53 @@
       ]
     },
     {
+      "type": "pincode_validator",
+      "name": "Pincode Validator",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "pincode_list",
+          "label": "Pincodes & Delivery Dates",
+          "info": "Enter each pincode and its delivery date on a new line, e.g. '110001: 3-5 Days'"
+        },
+        {
+          "type": "text",
+          "id": "error_message",
+          "label": "Invalid Pincode Message",
+          "default": "Sorry, delivery is not available in your area."
+        },
+        {
+          "type": "text",
+          "id": "warning_message",
+          "label": "Checkout Warning Message",
+          "default": "Please verify your pincode to check delivery in your area."
+        },
+        {
+          "type": "url",
+          "id": "csv_url",
+          "label": "CSV File Link",
+          "info": "To use a CSV, upload your file in Content -> Files and paste the provided link here. Ensure your CSV has Pincode in the first column and Delivery Date in the second."
+        },
+        {
+          "type": "select",
+          "id": "block_position",
+          "options": [
+            {
+              "value": "sidebar",
+              "label": "In sidebar"
+            },
+            {
+              "value": "under_media",
+              "label": "Under media"
+            }
+          ],
+          "default": "sidebar",
+          "label": "Block position"
+        }
+      ]
+    },
+    {
       "type": "buy_buttons",
       "name": "t:sections.main-product.blocks.buy_buttons.name",
       "limit": 1,
@@ -3808,13 +4003,27 @@
           "label": "Show table",
           "default": false,
           "info": "Displays only the table from the product description"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
         }
       ]
     },
     {
       "type": "note",
       "name": "Note",
-      "limit": 1
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
+        }
+      ]
     },
     {
       "type": "crossell_product",
@@ -4170,15 +4379,6 @@
           "label": "Icon"
         },
         {
-          "type": "range",
-          "id": "delivery_max",
-          "label": "Max date",
-          "min": 1,
-          "max": 30,
-          "step": 1,
-          "default": 4
-        },
-        {
           "type": "text",
           "id": "delivery_heading",
           "default": "Expected delivery date:",
@@ -4199,6 +4399,12 @@
           "id": "show_pickup_availability",
           "default": true,
           "label": "Show pickup availability"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
         }
       ]
     },
@@ -4222,6 +4428,12 @@
           "id": "collapsible_btn",
           "default": "Read More",
           "label": "Label button"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
         }
       ]
     },
@@ -4491,6 +4703,12 @@
           ],
           "default": "under",
           "label": "Block position"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
         }
       ]
     },
@@ -4566,6 +4784,12 @@
           ],
           "default": "under_media",
           "label": "Block position"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
         }
       ]
     },
@@ -4626,6 +4850,12 @@
           "id": "page",
           "type": "page",
           "label": "t:sections.main-product.blocks.popup.settings.page.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
         }
       ]
     },
@@ -5004,6 +5234,12 @@
           "default": "color-main-bg",
           "label": "t:settings_schema.colors.settings.background_colors.content",
           "info": "t:sections.all.colors.has_cards_info"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
         }
       ]
     },
@@ -5806,6 +6042,12 @@
           "id": "heading",
           "label": "Heading",
           "default": "Skills learned"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
         }
       ]
     },
@@ -6061,6 +6303,12 @@
           "type": "textarea",
           "id": "stack_6_description",
           "label": "Stack 6 description"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_in_quick_add",
+          "label": "Show in quick add",
+          "default": false
         }
       ]
     }

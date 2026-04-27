@@ -14,7 +14,7 @@
     --mobile-banner-offset: {% if section.settings.banner_left != blank or section.settings.banner_right != blank %}92px{% else %}0px{% endif %};
 
     background-color: {{ section.settings.background_color }};
-    padding: 60px 0 80px 0;
+    padding: 40px 0;;
     position: relative;
     overflow: hidden;
   }
@@ -65,10 +65,9 @@
   }
 
   .wtm-title .highlight-font {
-    color: #7d6599;  /* default purple color for curly font */
-    font-family: inherit;
-    font-family: "Shadows Into Light", "Gochi Hand", "Comic Sans MS", cursive, sans-serif;
-    font-weight: 500;
+    color: #7d6599; 
+    font-weight: 700;
+    font-family: 'sag' !important;
   }
 
   .wtm-subtitle {
@@ -173,6 +172,7 @@
     .wtm-cards {
       gap: 16px;
     }
+
     .wtm-card-content {
       padding: 20px 16px;
     }
@@ -183,8 +183,12 @@
       margin-top: 0 !important;
     }
 
+    .wtm-header{
+      margin-bottom: 30px;
+    }
+
     #WhatThisMeans-{{ section.id }} {
-      padding: 0 0 60px 0;
+      padding: 0 0 20px 0;
     }
 
     .wtm-banners {
@@ -213,7 +217,7 @@
     }
 
     .wtm-container {
-      padding: var(--mobile-banner-offset) 20px 0;
+      padding: 45px 20px 0;
     }
     .wtm-title {
       font-size: var(--heading-size-mobile);
@@ -274,14 +278,14 @@
     {% if section.settings.banner_left != blank %}
       {{
         section.settings.banner_left
-        | image_url: width: 400
+        | image_url: width: 400, format: 'webp' 
         | image_tag: loading: 'lazy', class: 'wtm-banner-l', alt: 'Left banner'
       }}
     {% endif %}
     {% if section.settings.banner_right != blank %}
       {{
         section.settings.banner_right
-        | image_url: width: 400
+        | image_url: width: 400, format: 'webp' 
         | image_tag: loading: 'lazy', class: 'wtm-banner-r', alt: 'Right banner'
       }}
     {% endif %}
@@ -309,7 +313,7 @@
         <div class="wtm-card" style="--theme-color: {{ block.settings.theme_color }};" {{ block.shopify_attributes }}>
           <div class="wtm-card-image-wrap">
             {% if block.settings.image != blank %}
-              {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: block.settings.title }}
+              {{ block.settings.image | image_url: width: 600, format: 'webp' | image_tag: loading: 'lazy', alt: block.settings.title }}
             {% else %}
               <div style="width: 100%; height: 100%; background: #e0e0e0;"></div>
             {% endif %}

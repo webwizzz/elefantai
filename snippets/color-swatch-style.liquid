@@ -12,7 +12,7 @@
 	if swatch.image or swatch.color
 
 		if swatch.image
-			assign image_url = swatch.image | image_url: width: 50
+			assign image_url = swatch.image | image_url: width: 50, format: 'webp' 
 			assign swatch_value = 'url(' | append: image_url | append: '); background-position: center center !important; background-size: cover'
 		elsif swatch.color
 			assign swatch_value = 'rgb(' | append: swatch.color.rgb | append: ')'
@@ -35,7 +35,7 @@
 				if color_swatch_value contains '#'
 					assign color_swatch_style = 'background: ' | append: color_swatch_value
 				elsif images[color_swatch_value] != blank
-					assign color_swatch_image = images[color_swatch_value] | image_url: width: 72, height: 72
+					assign color_swatch_image = images[color_swatch_value] | image_url: width: 72, height: 72, format: 'webp' 
 					assign color_swatch_style = 'background: url(' | append: color_swatch_image | append: '); background-position: center center !important'
 				endif
 

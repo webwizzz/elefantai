@@ -4,7 +4,7 @@
       <div class="footer__intro">
         {% if section.settings.intro_logo != blank %}
           <div class="footer__intro-logo" style="--intro-logo-width: {{ section.settings.intro_logo_width | default: 180 }}px;">
-            {{ section.settings.intro_logo | image_url: width: 800 | image_tag: alt: section.settings.intro_logo_alt, class: 'footer__intro-logo-image' }}
+            {{ section.settings.intro_logo | image_url: width: 800, format: 'webp' | image_tag: alt: section.settings.intro_logo_alt, class: 'footer__intro-logo-image' }}
           </div>
         {% endif %}
 
@@ -23,12 +23,12 @@
         {% endfor %}
 
         {% if has_social_links %}
-          <ul class="footer__social" role="list">
+          <ul class="footer__social" role="list" style="--footer-social-bg: {{ section.settings.social_icon_bg | default: '#1E2938' }};">
             {% for block in section.blocks %}
               {% if block.type == 'social_link' and block.settings.link != blank and block.settings.icon != blank %}
                 <li class="footer__social-item" {{ block.shopify_attributes }}>
                   <a href="{{ block.settings.link }}" class="footer__social-link" target="_blank" rel="noopener" aria-label="{{ block.settings.label | escape | default: 'Social link' }}">
-                    {{ block.settings.icon | image_url: width: 100 | image_tag: alt: block.settings.label, class: 'footer__social-icon' }}
+                    {{ block.settings.icon | image_url: width: 100, format: 'webp' | image_tag: alt: block.settings.label, class: 'footer__social-icon' }}
                   </a>
                 </li>
               {% endif %}
@@ -118,7 +118,7 @@
                 {% if block.settings.contact_logo != blank or block.settings.label != blank %}
                   <div class="footer__contact-head">
                     {% if block.settings.contact_logo != blank %}
-                      {{ block.settings.contact_logo | image_url: width: 80 | image_tag: alt: block.settings.label, class: 'footer__contact-logo' }}
+                      {{ block.settings.contact_logo | image_url: width: 80, format: 'webp' | image_tag: alt: block.settings.label, class: 'footer__contact-logo' }}
                     {% endif %}
                     {% if block.settings.label != blank %}
                       <p class="footer__contact-label">{{ block.settings.label }}</p>
@@ -171,7 +171,7 @@
     <div class="footer__logo-wrap">
       {% if section.settings.logo != blank %}
         <div class="footer__logo" style="--logo-width: {{ section.settings.logo_width | default: 171 }}px;">
-          {{ section.settings.logo | image_url: width: 1400 | image_tag: alt: section.settings.logo_alt, class: 'footer__logo-image' }}
+          {{ section.settings.logo | image_url: width: 1400, format: 'webp' | image_tag: alt: section.settings.logo_alt, class: 'footer__logo-image' }}
         </div>
       {% endif %}
     </div>
@@ -249,11 +249,14 @@
 }
 
 .footer__social-link {
-  width: 24px;
-  height: 24px;
+  width: 44px;
+  height: 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  background: var(--footer-social-bg, #1E2938);
+  border-radius: 999px;
+  position: relative;
   opacity: 0.95;
   transition: opacity 0.3s ease;
 }
@@ -263,17 +266,19 @@
 }
 
 .footer__social-icon {
-  width: 100%;
-  height: 100%;
+  width: 60%;
+  height: 60%;
   object-fit: contain;
   display: block;
+  position: relative;
+  z-index: 1;
 }
 
 .footer__menu-title {
-  font-size: 18px;
+  font-size: 20px;
   color: #fff;
   margin-bottom: 12px;
-  font-familt: 'sag-semibold';
+  font-weight: 600;
   white-space: nowrap;
 }
 
@@ -291,6 +296,14 @@
   color: #fff;
   text-decoration: none;
   font-size: 18px;
+}
+
+.footer__menu-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+  color: #f1bd56;
+  transition: underline-offset 0.3s ease, color 0.3s ease;
+  
 }
 
 .footer__menu--stacked .footer__menu-block {
@@ -460,11 +473,16 @@
   }
 
   .footer__menu-title {
-    font-size: 16px;
+    font-size: 20px;
   }
 
   .footer__menu-link {
-    font-size: 20px;
+    font-size: 18px;
+  }
+
+  .footer__social-link{
+    width: 35px;
+    height: 35px;
   }
 
   .footer__section-heading {
@@ -552,6 +570,10 @@
     font-size: 14px;
   }
 
+  .footer__menu-title{
+  font-size: 18px;
+  }
+
   .footer__menu-link {
     font-size: 16px;
   }
@@ -571,6 +593,9 @@
     { "type": "text", "id": "intro_logo_alt", "label": "First column logo alt text", "default": "Footer logo" },
     { "type": "range", "id": "intro_logo_width", "label": "First column logo width (px)", "min": 80, "max": 500, "step": 10, "default": 180 },
     { "type": "richtext", "id": "intro_content", "label": "First column content", "default": "<p>Add your brand summary for the footer.</p>" },
+
+    { "type": "header", "content": "Social icons" },
+    { "type": "color", "id": "social_icon_bg", "label": "Social icon circle color", "default": "#1E2938" },
 
     { "type": "header", "content": "Menus" },
     { "type": "link_list", "id": "menu", "label": "Footer menu" },

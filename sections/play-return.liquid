@@ -23,7 +23,7 @@
     --card-bg-color: {{ section.settings.card_bg_color }};
 
     {% if section.settings.bg_image != blank %}
-      background-image: url('{{ section.settings.bg_image | image_url }}');
+      background-image: url('{{ section.settings.bg_image | image_url: format: 'webp' }}');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -31,7 +31,7 @@
       background: {{ section.settings.bg_gradient }};
     {% endif %}
 
-    padding: 80px 0 100px 0;
+    padding: 50px 0;
     position: relative;
   }
 
@@ -56,8 +56,7 @@
 
   .prb-title .highlight-font {
     color: #6E4B7E;
-    font-family: inherit !important;
-
+    font-family: 'sag' !important;
     font-weight: 700;
   }
 
@@ -151,7 +150,7 @@
 
   @media (max-width: 768px) {
     #PlayReturn-{{ section.id }} {
-      padding: 50px 0 60px 0;
+      padding: 0px 0 20px 0;
     }
     .prb-container {
       padding: 0 20px;
@@ -192,14 +191,15 @@
         'icon desc';
       column-gap: 14px;
       row-gap: 4px;
-      align-items: flex-start;
+      align-items: center;
       text-align: left;
-      padding: 14px 16px 14px 14px;
+      padding: 10px;
       border-radius: 34px;
     }
 
     .prb-icon-wrap {
       grid-area: icon;
+      flex-shrink: 0;
       width: 62px;
       height: 62px;
       margin-bottom: 0;
@@ -259,7 +259,7 @@
         <div class="prb-card" {{ block.shopify_attributes }}>
           <div class="prb-icon-wrap" style="background-color: {{ block.settings.icon_bg_color | default: '#4a90e2' }};">
             {% if block.settings.icon != blank %}
-              {{ block.settings.icon | image_url: width: 200 | image_tag: loading: 'lazy', alt: block.settings.title }}
+              {{ block.settings.icon | image_url: width: 200, format: 'webp' | image_tag: loading: 'lazy', alt: block.settings.title }}
             {% endif %}
           </div>
 

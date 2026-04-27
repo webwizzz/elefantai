@@ -11,6 +11,10 @@
   }
 }
 
+.related-products-heading .title-wrapper .title{
+  font-weight: 700;
+}
+
 .related-products-heading strong{
   color: #9264A8;
 }

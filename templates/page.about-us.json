@@ -26,16 +26,16 @@
         "shape_width": 100,
         "background_color": "color-bg-3",
         "colors_background_section_gradient": "",
-        "padding_top": 180,
-        "padding_bottom": 90,
+        "padding_top": 80,
+        "padding_bottom": 40,
         "shape_content_position": "top",
-        "shape_content_type": "curve",
+        "shape_content_type": "none",
         "shape_content_color": "#6e4b7e",
         "shape_content_width": 100,
         "content_background_color": "color-bg-3",
         "content_colors_background_section_gradient": "",
-        "content_padding_top": 100,
-        "content_padding_bottom": 100
+        "content_padding_top": 80,
+        "content_padding_bottom": 40
       }
     },
     "ed031781-7986-41b3-8f11-c6f15128fa79": {
@@ -54,7 +54,7 @@
         "template--15153388617779__ed031781-7986-41b3-8f11-c6f15128fa79-text-1": {
           "type": "text",
           "settings": {
-            "text": "<p>Welcome to the EleFant, India’s first toy rental mobile app. Our journey began with a simple yet profound idea - to revolutionize the way India interacts with toys and play, while also building the largest fleet of women entrepreneurs.</p>",
+            "text": "<p>Let's be honest - kids outgrow toys faster than they outgrow shoes. One week it's dinosaurs. The next, it's unicorns. And somewhere in between, your living room turns into a plastic graveyard and your wallet wonders what just happened.</p><p>That's why we built <strong>the EleFant.</strong></p><p>India's best buy-and-sellback toy platform, made for parents who want the best for their little ones without the guilt of growing clutter. <br/>When they're done, sell them back to us for <strong>60% of what you paid</strong>. We clean them up, and send them off to bring joy to another little explorer.</p>",
             "text_body_size": "text-body--medium",
             "description_color": "main"
           }
@@ -308,7 +308,7 @@
             "image": "shopify://shop_images/Group.svg",
             "image_position": "bottom",
             "title": "Mission",
-            "text": "<p>Our mission is to provide children with a diverse range of high-quality toys that nurture their imagination, creativity, and cognitive development. We aim to build a vibrant community of women entrepreneurs who contribute to shaping a bright future for the next generation.</p>",
+            "text": "<p>We imagine an India where toys are shared, loved, and passed on - not bought, outgrown, and forgotten. Where playrooms are full of possibility, not plastic. Where childhood, in all its magical mess, doesn't cost the earth. That's the future we're building, one toy at a time.</p>",
             "heading_color": "#4f98de",
             "link_label": "",
             "link": "",
@@ -329,7 +329,7 @@
             "image": "shopify://shop_images/Group-5.svg",
             "image_position": "bottom",
             "title": "Vision",
-            "text": "<p>Our vision is to foster a generation of curious and confident learners through play. We envision EleFant as a symbol of empowerment, where women lead the way in delivering exceptional play experiences, while parents and children cherish the joy and memories created with our toys.</p>",
+            "text": "<p>We're freeing parents from the <strong>buy-use-dump cycle</strong>. Through our circular toy marketplace, you buy today and sell back tomorrow - putting 60% back in your pocket and keeping good toys out of landfills. All powered by a growing fleet of women entrepreneurs.</p>",
             "heading_color": "#ec6c9a",
             "link_label": "",
             "link": "",
@@ -350,7 +350,7 @@
             "image": "shopify://shop_images/Group-2.svg",
             "image_position": "bottom",
             "title": "Our Process",
-            "text": "<p>We curate a carefully selected collection of toys that spark imagination and ignite the love for learning. Our process ensures that every toy in our library meets the highest safety standards and cleanliness requirements. With EleFant, you can be confident that your child's playtime is filled with safe and delightful experiences</p>",
+            "text": "<p><strong>Simple as ABC. Kinder than you'd think.</strong></p><p><strong>Buy</strong> - Shop curated, quality toys your kids will adore.</p><p><strong>Play</strong> - Let the magic happen. Tea parties, space missions, all of it.</p><p><strong>Sell Back</strong> - Done? Send it back for 60% of what you paid.</p><p><strong>Refresh</strong> - We clean it, sanitize it, pass it on.</p><p>Less stuff. More stories.</p>",
             "heading_color": "#9264a8",
             "link_label": "",
             "link": "",

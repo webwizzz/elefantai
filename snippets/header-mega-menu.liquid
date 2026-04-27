@@ -13,8 +13,8 @@
     {% render 'icon-caret' %}
 	{%- if section.settings.active_menu_icon != blank and link.child_active -%}
 	<img srcset="
-	{{ section.settings.active_menu_icon | image_url }}"
-	src="{{ section.settings.active_menu_icon | image_url: width: 1920 }}"
+	{{ section.settings.active_menu_icon | image_url: format: 'webp' }}"
+	src="{{ section.settings.active_menu_icon | image_url: width: 1920, format: 'webp' }}"
 	loading="lazy"
 	class="header__active-menu-item-icon"
 	height="13"
@@ -26,13 +26,13 @@
   <div id="MegaMenu-Content-{{ forloop.index }}" class="mega-menu__content gradient motion-reduce global-settings-popup with-image {{ section.settings.background_color }}" tabindex="-1">
     {% if section.settings.mm_overlay != blank %}
       <img srcset="
-          {%- if section.settings.mm_overlay.width >= 535 -%}{{ section.settings.mm_overlay | image_url: width: 535 }} 535w,{%- endif -%}
-          {%- if section.settings.mm_overlay.width >= 750 -%}{{ section.settings.mm_overlay | image_url: width: 750 }} 750w,{%- endif -%}
-          {%- if section.settings.mm_overlay.width >= 1150 -%}{{ section.settings.mm_overlay | image_url: width: 1150 }} 1150w,{%- endif -%}
-          {%- if section.settings.mm_overlay.width >= 1250 -%}{{ section.settings.mm_overlay | image_url: width: 1250 }} 1250w,{%- endif -%}
-          {%- if section.settings.mm_overlay.width >= 1350 -%}{{ section.settings.mm_overlay | image_url: width: 1350 }} 1350w,{%- endif -%}
-          {{ section.settings.mm_overlay | image_url }} {{ section.settings.mm_overlay.width }}w"
-        src="{{ section.settings.mm_overlay | image_url: width: 1920 }}"
+          {%- if section.settings.mm_overlay.width >= 535 -%}{{ section.settings.mm_overlay | image_url: width: 535, format: 'webp' }} 535w,{%- endif -%}
+          {%- if section.settings.mm_overlay.width >= 750 -%}{{ section.settings.mm_overlay | image_url: width: 750, format: 'webp' }} 750w,{%- endif -%}
+          {%- if section.settings.mm_overlay.width >= 1150 -%}{{ section.settings.mm_overlay | image_url: width: 1150, format: 'webp' }} 1150w,{%- endif -%}
+          {%- if section.settings.mm_overlay.width >= 1250 -%}{{ section.settings.mm_overlay | image_url: width: 1250, format: 'webp' }} 1250w,{%- endif -%}
+          {%- if section.settings.mm_overlay.width >= 1350 -%}{{ section.settings.mm_overlay | image_url: width: 1350, format: 'webp' }} 1350w,{%- endif -%}
+          {{ section.settings.mm_overlay | image_url: format: 'webp' }} {{ section.settings.mm_overlay.width }}w"
+        src="{{ section.settings.mm_overlay | image_url: width: 1920, format: 'webp' }}"
         sizes="(min-width: {{ settings.page_width }}px) 100vw, (min-width: 750px) calc(100vw - 10rem), calc(100vw - 3rem)"
         alt="{{ section.settings.mm_collection.title }}"
         height="{{ section.settings.mm_overlay.height }}"
@@ -60,7 +60,7 @@
 									%}
                   <li>
                     <a id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}" href="{{ grandchildlink.url }}"
-                      class="mega-menu__link link{% if grandchildlink.current %} mega-menu__link--active{% endif %}" {% if menu_image_2 != blank %} data-image="{{ menu_image_2 | image_url: width: 600 }}"{% endif %} {% if grandchildlink.current %} aria-current="page" {% endif %}>
+                      class="mega-menu__link link{% if grandchildlink.current %} mega-menu__link--active{% endif %}" {% if menu_image_2 != blank %} data-image="{{ menu_image_2 | image_url: width: 600, format: 'webp' }}"{% endif %} {% if grandchildlink.current %} aria-current="page" {% endif %}>
                       {{ grandchildlink.title | escape }}
                     </a>
                   </li>
@@ -74,8 +74,8 @@
       {% if section.settings.mm_collection != blank %}
         <div class="mega-menu-image">
           <a href="{{ section.settings.mm_collection.url }}" aria-label="Link to {{ section.settings.mm_collection.title }}">
-            <img srcset="{%- if section.settings.mm_collection.featured_image.width >= 535 -%}{{ section.settings.mm_collection.featured_image | image_url: width: 535 }} 535w,{%- endif -%}{%- if section.settings.mm_collection.featured_image.width >= 750 -%}{{ section.settings.mm_collection.featured_image | image_url: width: 750 }} 750w,{%- endif -%} {{ section.settings.mm_collection.featured_image | image_url }} {{ section.settings.mm_collection.featured_image.width }}w"
-              src="{{ section.settings.mm_collection.featured_image | image_url: width: 700 }}"
+            <img srcset="{%- if section.settings.mm_collection.featured_image.width >= 535 -%}{{ section.settings.mm_collection.featured_image | image_url: width: 535, format: 'webp' }} 535w,{%- endif -%}{%- if section.settings.mm_collection.featured_image.width >= 750 -%}{{ section.settings.mm_collection.featured_image | image_url: width: 750, format: 'webp' }} 750w,{%- endif -%} {{ section.settings.mm_collection.featured_image | image_url: format: 'webp' }} {{ section.settings.mm_collection.featured_image.width }}w"
+              src="{{ section.settings.mm_collection.featured_image | image_url: width: 700, format: 'webp' }}"
               sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: columns }}px,
                 (min-width: 750px) {% if columns > 1 %}calc((100vw - 10rem) / 2){% else %}calc(100vw - 10rem){% endif %}, calc(100vw - 3rem)"
               alt="{{ section.settings.mm_collection.title }}"
@@ -96,10 +96,10 @@
 
 				<variant-megamenu-img class="{{ section.settings.image_ratio }} js-megaMenuImgWrp{% if section.settings.mm_image_shape == true %} image-shape{% endif %}">
 					{% if section.settings.mega_menu_image != blank %}
-            <img srcset="{%- if section.settings.mega_menu_image.width >= 535 -%}{{ section.settings.mega_menu_image | image_url: width: 535 }} 535w, {%- endif -%}
-                {%- if section.settings.mega_menu_image.width >= 750 -%}{{ section.settings.mega_menu_image | image_url: width: 750 }} 750w, {%- endif -%}
-                {{ section.settings.mega_menu_image | image_url }} {{ section.settings.mega_menu_image.width }}w"
-              src="{{ section.settings.mega_menu_image | image_url: width: 700 }}"
+            <img srcset="{%- if section.settings.mega_menu_image.width >= 535 -%}{{ section.settings.mega_menu_image | image_url: width: 535, format: 'webp' }} 535w, {%- endif -%}
+                {%- if section.settings.mega_menu_image.width >= 750 -%}{{ section.settings.mega_menu_image | image_url: width: 750, format: 'webp' }} 750w, {%- endif -%}
+                {{ section.settings.mega_menu_image | image_url: format: 'webp' }} {{ section.settings.mega_menu_image.width }}w"
+              src="{{ section.settings.mega_menu_image | image_url: width: 700, format: 'webp' }}"
               sizes="
                 (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: columns }}px,
                 (min-width: 750px) {% if columns > 1 %}calc((100vw - 10rem) / 2){% else %}calc(100vw - 10rem){% endif %},

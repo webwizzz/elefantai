@@ -58,7 +58,7 @@
           <div class="gallery-item">
             <noscript>
               <div class="product__media media">
-                {{ media.preview_image | image_url: width: 750 | image_tag:
+                {{ media.preview_image | image_url: width: 750, format: 'webp' | image_tag:
                   loading: 'lazy',
                   sizes: sizes,
                   widths: '246, 493, 600, 713, 823',
@@ -75,7 +75,7 @@
               </div>
           
               <div class="product__media media media--transparent">
-                {{ media.preview_image | image_url: width: 1946 | image_tag:
+                {{ media.preview_image | image_url: width: 1946, format: 'webp' | image_tag:
                   loading: 'lazy',
                   sizes: sizes,
                   widths: '246, 493, 600, 713, 823',
@@ -109,13 +109,13 @@
           {%- for media in product.media -%}
             {% if media.media_type == 'image' %}
               <img class="global-media-settings global-media-settings--no-shadow"
-              srcset="{%- if media.preview_image.width >= 550 -%}{{ media.preview_image | image_url: width: 550 }} 550w,{%- endif -%}
-                      {%- if media.preview_image.width >= 1100 -%}{{ media.preview_image | image_url: width: 1100 }} 1100w,{%- endif -%}
-                      {%- if media.preview_image.width >= 1445 -%}{{ media.preview_image | image_url: width: 1445 }} 1445w,{%- endif -%}
-                      {%- if media.preview_image.width >= 1680 -%}{{ media.preview_image | image_url: width: 1680 }} 1680w,{%- endif -%}
-                      {%- if media.preview_image.width >= 2048 -%}{{ media.preview_image | image_url: width: 2048 }} 2048w{%- endif -%}"
+              srcset="{%- if media.preview_image.width >= 550 -%}{{ media.preview_image | image_url: width: 550, format: 'webp' }} 550w,{%- endif -%}
+                      {%- if media.preview_image.width >= 1100 -%}{{ media.preview_image | image_url: width: 1100, format: 'webp' }} 1100w,{%- endif -%}
+                      {%- if media.preview_image.width >= 1445 -%}{{ media.preview_image | image_url: width: 1445, format: 'webp' }} 1445w,{%- endif -%}
+                      {%- if media.preview_image.width >= 1680 -%}{{ media.preview_image | image_url: width: 1680, format: 'webp' }} 1680w,{%- endif -%}
+                      {%- if media.preview_image.width >= 2048 -%}{{ media.preview_image | image_url: width: 2048, format: 'webp' }} 2048w{%- endif -%}"
               sizes="(min-width: 750px) calc(100vw - 22rem), 1100px"
-              src="{{ media.preview_image | image_url: width: 1445 }}"
+              src="{{ media.preview_image | image_url: width: 1445, format: 'webp' }}"
               alt="{{ media.alt | escape }}"
               loading="lazy"
               width="1100"

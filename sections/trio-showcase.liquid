@@ -135,7 +135,7 @@
                   
                     {{
                       block.settings.icon
-                      | image_url: width: block.settings.icon.width
+                      | image_url: width: block.settings.icon.width, format: 'webp' 
                       | image_tag: loading: 'lazy', 
                       sizes: sizes, 
                       widths: widths, 
@@ -146,7 +146,7 @@
 
                   {{
                     block.settings.image
-                    | image_url: width: block.settings.image.width
+                    | image_url: width: block.settings.image.width, format: 'webp' 
                     | image_tag: loading: 'lazy', 
                     sizes: sizes,
                     widths: widths,
@@ -276,7 +276,7 @@
                   {% if block.settings.icon != blank %}
                     {{
                       block.settings.icon
-                      | image_url: width: block.settings.icon.width
+                      | image_url: width: block.settings.icon.width, format: 'webp' 
                       | image_tag: loading: 'lazy', 
                       sizes: sizes, 
                       widths: widths, 
@@ -287,7 +287,7 @@
                   {% endif %}
                   {{
                     block.settings.image
-                    | image_url: width: block.settings.image.width
+                    | image_url: width: block.settings.image.width, format: 'webp' 
                     | image_tag: loading: 'lazy', 
                     sizes: sizes, 
                     widths: widths, 

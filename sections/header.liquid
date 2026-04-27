@@ -96,7 +96,9 @@
       justify-self: end;
       margin-left: 0;
     }
+  }
 
+  @media screen and (min-width: 750px) {
     .header__icon--account {
       width: auto;
       min-width: 0;
@@ -211,6 +213,18 @@
       color: transparent;
       -webkit-text-fill-color: transparent;
     }
+
+  nav ul:first-child:not(.mega-menu__list) > li:last-child > a{
+    background: linear-gradient(
+        90deg,
+        hsla(209, 68%, 59%, 1) 0%,
+        hsla(281, 25%, 39%, 1) 100%
+      );
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+  }
   {% endif %}
 
   @media screen and (min-width: 750px) {
@@ -382,7 +396,7 @@
                 {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
                 {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
                 {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
-                {{ settings.logo | image_url: width: 600 | image_tag:
+                {{ settings.logo | image_url: width: 600, format: 'webp' | image_tag:
                   class: 'header__heading-logo motion-reduce',
                   widths: widths,
                   height: logo_height,
@@ -443,8 +457,8 @@
                   </span>
                   {%- if section.settings.active_menu_icon != blank and link.current -%}
                     <img srcset="
-                    {{ section.settings.active_menu_icon | image_url }}"
-                    src="{{ section.settings.active_menu_icon | image_url: width: 1920 }}"
+                    {{ section.settings.active_menu_icon | image_url: format: 'webp' }}"
+                    src="{{ section.settings.active_menu_icon | image_url: width: 1920, format: 'webp' }}"
                     loading="lazy"
                     class="header__active-menu-item-icon"
                     width="auto"
@@ -469,7 +483,7 @@
               {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
               {% capture sizes %}(min-width: 750px) {{ settings.logo_width }}px, 50vw{% endcapture %}
               {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
-              {{ settings.logo | image_url: width: 600 | image_tag:
+              {{ settings.logo | image_url: width: 600, format: 'webp' | image_tag:
                 class: 'header__heading-logo',
                 widths: widths,
                 height: logo_height,
@@ -536,11 +550,11 @@
           {% if section.settings.custom_cart_icon != blank %}
             {{
               section.settings.custom_cart_icon
-              | image_url: width: 40
+              | image_url: width: 40, format: 'webp' 
               | image_tag:
                 class: 'header__custom-cart-icon',
                 widths: '20, 40',
-                loading: 'eager',
+                loading: 'lazy',
                 alt: 'Cart'
             }}
           {% else %}
@@ -789,7 +803,7 @@
     "@type": "Organization",
     "name": {{ shop.name | json }},
     {% if settings.logo %}
-      "logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},
+      "logo": {{ settings.logo | image_url: width: 500, format: 'webp' | prepend: "https:" | json }},
     {% endif %}
     "sameAs": [
       {{ settings.social_twitter_link | json }},

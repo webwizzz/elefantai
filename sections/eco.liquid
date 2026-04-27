@@ -31,6 +31,7 @@
     font-size: {{ section.settings.heading_fs_m }}px;
     color: {{ section.settings.heading_color }};
     margin: 0 0 10px 0;
+    font-weight: 700;
     line-height: 1.2;
     /* You can override font-family here or let it inherit */
   }
@@ -45,6 +46,10 @@
     .eco-heading {
       font-size: {{ section.settings.heading_fs_d }}px;
     }
+
+    .eco-heading span {  
+      font-family: 'sag' !important;
+    }
     .eco-description {
       font-size: {{ section.settings.description_fs_d }}px;
     }
@@ -52,10 +57,11 @@
 
   .eco-decoration {
     position: absolute;
-    top: -40px;
-    right: 0;
-    width: 60px;
+    top: -37px;
+    right: -19px;
+    width: 50px;
     z-index: 1;
+    opacity: 0.5;
     pointer-events: none;
   }
 
@@ -110,6 +116,7 @@
         top: -60px;
         right: 10%;
         width: 120px;
+        opacity: 1;
     }
   }
 
@@ -219,7 +226,7 @@
     background-color: {{ block.settings.button_bg }};
     color: {{ block.settings.button_color }};
     font-size: {{ block.settings.button_fs_m }}px;
-    padding: 16px 20px;
+    padding: 10px;
     border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
@@ -264,7 +271,7 @@
   <div class="eco-header">
     <h2 class="eco-heading">
       {% if section.settings.heading_highlight != blank %}
-        {% assign highlight_style = '<span style="color: '
+        {% assign highlight_style = '<span style="color:'
           | append: section.settings.heading_highlight_color
           | append: ';">'
           | append: section.settings.heading_highlight
@@ -280,7 +287,7 @@
     <div class="eco-decoration">
       {% if section.settings.decoration_image != blank %}
         <img
-          src="{{ section.settings.decoration_image | image_url: width: 300 }}"
+          src="{{ section.settings.decoration_image | image_url: width: 300, format: 'webp' }}"
           alt=""
           loading="lazy"
           style="width: 100%; height: auto;"

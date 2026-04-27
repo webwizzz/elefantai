@@ -83,7 +83,7 @@
         <div class="menu-drawer-owerlay">
           {{
             section.settings.dm_image
-            | image_url: width: 320
+            | image_url: width: 320, format: 'webp' 
             | image_tag: loading: 'lazy', 
             sizes: '32rem',
             widths: '198, 230, 280, 330',

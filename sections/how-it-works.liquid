@@ -32,8 +32,8 @@
   }
   @media (max-width: 768px) {
     .hiw-top-left { max-width: 150px; }
-    .hiw-bottom-right { max-width: 150px; opacity: 0.5; /* Fade out slightly on small mobile if it conflicts with text */ }
-    #HIW-{{ section.id }} { padding: 50px 15px; }
+    .hiw-bottom-right { max-width: 150px; opacity: 0.4; transform:translateY(80px); /* Fade out slightly on small mobile if it conflicts with text */ }
+    #HIW-{{ section.id }} { padding: 40px 15px; }
   }
 
   .hiw-content {
@@ -83,10 +83,9 @@
   }
   @media (max-width: 768px) {
     .hiw-steps-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;      
+      justify-content: center;
       gap: 24px 16px;
-      max-width: 360px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -175,7 +174,7 @@
   @media (max-width: 768px) {
     .hiw-step-desc {
       font-size: 12px;
-      max-width: unset;
+      max-width: 11pc;
       padding: 0 4px;
     }
   }
@@ -189,7 +188,7 @@
     border: 1px solid;
     border-radius: 50px;
     font-size: 22px;
-    font-weight: 500;
+    font-weight: 700;
     text-decoration: none;
     transition: all 0.3s ease;
     background: transparent;
@@ -199,18 +198,31 @@
     .hiw-btn {
       padding: 10px;
       font-size: 16px;
+      width: 100%;
+      text-align: center;
     }
   }
 
 
+  .us-anchor-target {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    transform: translateY(calc(-1 * var(--header-height, 0px) - 1rem));
+    pointer-events: none;
+  }
 
   /* Dynamic Colored Elements */
   #HIW-{{ section.id }} .hiw-title .highlight {
+    font-family: 'sag' !important;
     color: {{ section.settings.highlight_color }};
   }
   #HIW-{{ section.id }} .hiw-btn {
     border-color: {{ section.settings.highlight_color }};
     color: {{ section.settings.highlight_color }};
+
   }
   #HIW-{{ section.id }} .hiw-btn:hover {
     background-color: {{ section.settings.highlight_color }};
@@ -219,10 +231,11 @@
 {%- endstyle -%}
 
 <div id="HIW-{{ section.id }}">
+  <span id="how-it-works" class="us-anchor-target" aria-hidden="true"></span>
   <!-- Background Elements -->
   {% if section.settings.top_left_image %}
     <img
-      src="{{ section.settings.top_left_image | image_url: width: 800 }}"
+      src="{{ section.settings.top_left_image | image_url: width: 800, format: 'webp' }}"
       alt=""
       class="hiw-bg-img hiw-top-left"
       loading="lazy"
@@ -233,7 +246,7 @@
 
   {% if section.settings.bottom_right_image %}
     <img
-      src="{{ section.settings.bottom_right_image | image_url: width: 800 }}"
+      src="{{ section.settings.bottom_right_image | image_url: width: 800, format: 'webp' }}"
       alt=""
       class="hiw-bg-img hiw-bottom-right"
       loading="lazy"
@@ -258,7 +271,8 @@
           <div class="hiw-icon-box" style="background-color: {{ block.settings.bg_color }};">
             {% if block.settings.icon %}
               <img
-                src="{{ block.settings.icon | image_url: width: 150 }}"
+                loading="lazy"
+                src="{{ block.settings.icon | image_url: width: 150, format: 'webp' }}"
                 alt="{{ block.settings.title | escape }}"
                 width="{{ block.settings.icon.width }}"
                 height="{{ block.settings.icon.height }}"

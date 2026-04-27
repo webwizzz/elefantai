@@ -88,7 +88,7 @@
             {%- endcapture -%}
             {{
               section.settings.image
-              | image_url: width: 1500
+              | image_url: width: 1500, format: 'webp' 
               | image_tag: loading: 'lazy', sizes: sizes, widths: widths
             }}
           {%- else -%}
@@ -118,7 +118,7 @@
             {%- if block.settings.image != blank -%}
               {{
                 block.settings.image
-                | image_url: width: 200
+                | image_url: width: 200, format: 'webp' 
                 | image_tag: loading: 'lazy', alt: block.settings.image.alt
               }}
             {%- endif -%}

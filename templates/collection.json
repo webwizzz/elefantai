@@ -16,7 +16,7 @@
         "breadcrumb_color": "main",
         "breadcrumb_color_hover": "secondary",
         "hide_banner": false,
-        "heading_size": "hxl",
+        "heading_size": "h1",
         "text_weight": "700",
         "text_color": "secondary",
         "description_color": "secondary",
@@ -29,8 +29,8 @@
         "shape_width": 100,
         "background_color": "color-bg-3",
         "colors_background_section_gradient": "",
-        "padding_top": 160,
-        "padding_bottom": 30
+        "padding_top": 80,
+        "padding_bottom": 40
       }
     },
     "product-grid": {
@@ -42,7 +42,7 @@
         "grid_navigation": true,
         "image_ratio": "portrait",
         "show_secondary_image": true,
-        "show_vendor": false,
+        "show_vendor": true,
         "show_rating": true,
         "filtering_background_color": "color-main-bg",
         "enable_filtering": true,

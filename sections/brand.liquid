@@ -33,7 +33,7 @@
  
 
   .brands-title {
-    font-size: 3.6rem;
+    font-size: 52px;
     font-weight: 700;
     color: #111;
     margin: 0 0 10px 0;
@@ -41,7 +41,10 @@
   }
   
   .brands-title .highlight {
+    font-weight: 700;
+    font-size: 52px;
     color: {{ section.settings.highlight_color }};
+    font-family: 'sag' !important;
   }
   
   .brands-subtitle {
@@ -71,8 +74,12 @@
       max-width: 90px;
     }
 
-    .brands-title{
-      font-size: 34px;
+    .brands-title {
+      font-size: 30px;
+    }
+
+    .brands-title .highlight {
+      font-size: 30px;
     }
 
     .brands-header-wrapper{
@@ -138,7 +145,7 @@
 <div id="Brands-{{ section.id }}">
   <div class="brands-header-wrapper">
     {% if section.settings.left_image != blank %}
-      <img src="{{ section.settings.left_image | image_url: width: 300 }}" class="brands-left-img" alt="Decorative Illustration" loading="lazy" width="{{ section.settings.left_image.width }}" height="{{ section.settings.left_image.height }}">
+      <img src="{{ section.settings.left_image | image_url: width: 300, format: 'webp' }}" class="brands-left-img" alt="Decorative Illustration" loading="lazy" width="{{ section.settings.left_image.width }}" height="{{ section.settings.left_image.height }}">
     {% endif %}
     
     <h2 class="brands-title">
@@ -156,7 +163,7 @@
         {% for block in section.blocks %}
           <div class="brand-card" {{ block.shopify_attributes }}>
             {% if block.settings.logo != blank %}
-              <img src="{{ block.settings.logo | image_url: width: 400 }}" alt="{{ block.settings.logo.alt | default: 'Brand Logo' | escape }}" width="{{ block.settings.logo.width }}" height="{{ block.settings.logo.height }}" loading="lazy">
+              <img src="{{ block.settings.logo | image_url: width: 400, format: 'webp' }}" alt="{{ block.settings.logo.alt | default: 'Brand Logo' | escape }}" width="{{ block.settings.logo.width }}" height="{{ block.settings.logo.height }}" loading="lazy">
             {% else %}
                <!-- Placeholder or Brand Name -->
                <svg class="brand-placeholder" viewBox="0 0 200 100" preserveAspectRatio="xMidYMid meet">

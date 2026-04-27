@@ -65,6 +65,7 @@
 
 .price__regular .price-item--regular {
   margin-right: 0;
+  color: rgba(110, 75, 126 );
 }
 
 .price:not(.price--show-badge) .price-item--last:last-of-type {

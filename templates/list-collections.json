@@ -1,0 +1,222 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "show_breadcrumbs": false,
+        "breadcrumb_color": "main",
+        "breadcrumb_color_hover": "heading",
+        "hide_banner": false,
+        "heading_size": "h1",
+        "heading_weight": "700",
+        "text_color": "secondary",
+        "full_width": true,
+        "shape_position": "bottom",
+        "shape_type": "curve-wide",
+        "shape_color": "#6e4b7e",
+        "shape_width": 153,
+        "background_color": "color-bg-3",
+        "colors_background_section_gradient": "",
+        "padding_top": 80,
+        "padding_bottom": 40,
+        "shape_content_position": "bottom",
+        "shape_content_type": "curve",
+        "shape_content_color": "#da3c24",
+        "shape_content_width": 100,
+        "content_background_color": "color-bg-3",
+        "content_colors_background_section_gradient": "",
+        "content_padding_top": 156,
+        "content_padding_bottom": 150
+      }
+    },
+    "collection_list_JbcYpm": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_fcm9Cy": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "0-to-1-year",
+            "layout": "default",
+            "background": "",
+            "icon_width": 25,
+            "icon_vertical": 0.5,
+            "icon_horizontal": 0.5,
+            "icon_width_mobile": 25,
+            "icon_vertical_mobile": 0.5,
+            "icon_horizontal_mobile": 0.5
+          }
+        },
+        "featured_collection_pnLhiN": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "1-3-years",
+            "layout": "default",
+            "background": "",
+            "icon_width": 25,
+            "icon_vertical": 0.5,
+            "icon_horizontal": 0.5,
+            "icon_width_mobile": 25,
+            "icon_vertical_mobile": 0.5,
+            "icon_horizontal_mobile": 0.5
+          }
+        },
+        "featured_collection_CmDEQa": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "3-5-years",
+            "layout": "default",
+            "background": "",
+            "icon_width": 25,
+            "icon_vertical": 0.5,
+            "icon_horizontal": 0.5,
+            "icon_width_mobile": 25,
+            "icon_vertical_mobile": 0.5,
+            "icon_horizontal_mobile": 0.5
+          }
+        },
+        "featured_collection_nz8AJz": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "5-8-years",
+            "layout": "default",
+            "background": "",
+            "icon_width": 25,
+            "icon_vertical": 0.5,
+            "icon_horizontal": 0.5,
+            "icon_width_mobile": 25,
+            "icon_vertical_mobile": 0.5,
+            "icon_horizontal_mobile": 0.5
+          }
+        },
+        "featured_collection_TqJKNH": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "8-12-years",
+            "layout": "default",
+            "background": "",
+            "icon_width": 25,
+            "icon_vertical": 0.5,
+            "icon_horizontal": 0.5,
+            "icon_width_mobile": 25,
+            "icon_vertical_mobile": 0.5,
+            "icon_horizontal_mobile": 0.5
+          }
+        },
+        "featured_collection_aprBBt": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "large-toys",
+            "layout": "default",
+            "background": "",
+            "icon_width": 25,
+            "icon_vertical": 0.5,
+            "icon_horizontal": 0.5,
+            "icon_width_mobile": 25,
+            "icon_vertical_mobile": 0.5,
+            "icon_horizontal_mobile": 0.5
+          }
+        },
+        "featured_collection_Cgn7xM": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "category-1-copy",
+            "layout": "default",
+            "background": "",
+            "icon_width": 25,
+            "icon_vertical": 0.5,
+            "icon_horizontal": 0.5,
+            "icon_width_mobile": 25,
+            "icon_vertical_mobile": 0.5,
+            "icon_horizontal_mobile": 0.5
+          }
+        },
+        "featured_collection_cXWH7r": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "category-2-copy",
+            "layout": "default",
+            "background": "",
+            "icon_width": 25,
+            "icon_vertical": 0.5,
+            "icon_horizontal": 0.5,
+            "icon_width_mobile": 25,
+            "icon_vertical_mobile": 0.5,
+            "icon_horizontal_mobile": 0.5
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_fcm9Cy",
+        "featured_collection_pnLhiN",
+        "featured_collection_CmDEQa",
+        "featured_collection_nz8AJz",
+        "featured_collection_TqJKNH",
+        "featured_collection_aprBBt",
+        "featured_collection_Cgn7xM",
+        "featured_collection_cXWH7r"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "<strong>Collections</strong>",
+        "heading_size": "h2",
+        "heading_color": "heading",
+        "heading_align": "center",
+        "text_bottom_space": "",
+        "image_ratio": "square",
+        "collection_heading_size": "h4",
+        "collection_text_color": "heading-secondary",
+        "collection_heading_weight": "700",
+        "columns_desktop": 4,
+        "show_view_all": false,
+        "top_space": "",
+        "enable_border_radius": false,
+        "border_radius": 100,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "image_overlay_width": 10,
+        "image_overlay_vertical": 20,
+        "image_overlay_horizontal": 20,
+        "image_overlay_width_mobile": 10,
+        "image_overlay_vertical_mobile": 20,
+        "image_overlay_horizontal_mobile": 20,
+        "image_overlay_animation": "none",
+        "image_overlay_width_2": 10,
+        "image_overlay_vertical_2": 20,
+        "image_overlay_horizontal_2": 20,
+        "image_overlay_width_2_mobile": 10,
+        "image_overlay_vertical_2_mobile": 20,
+        "image_overlay_horizontal_2_mobile": 20,
+        "image_overlay_animation_2": "none",
+        "image_overlay_width_3": 10,
+        "image_overlay_vertical_3": 20,
+        "image_overlay_horizontal_3": 20,
+        "image_overlay_width_3_mobile": 10,
+        "image_overlay_vertical_3_mobile": 20,
+        "image_overlay_horizontal_3_mobile": 20,
+        "image_overlay_animation_3": "none",
+        "shape_position": "top",
+        "shape_type": "curve",
+        "shape_color": "#6e4b7e",
+        "shape_width": 100,
+        "full_width": false,
+        "background_color": "color-bg-2",
+        "colors_background_section_gradient": "",
+        "padding_top": 74,
+        "padding_bottom": 74
+      }
+    }
+  },
+  "order": [
+    "main",
+    "collection_list_JbcYpm"
+  ]
+}

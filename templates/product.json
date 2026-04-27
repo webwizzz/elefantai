@@ -16,7 +16,8 @@
           "type": "breadcrumb",
           "settings": {
             "breadcrumb_color": "main",
-            "breadcrumb_color_hover": "heading"
+            "breadcrumb_color_hover": "heading",
+            "show_in_quick_add": false
           }
         },
         "title": {
@@ -30,39 +31,30 @@
             "title_product_type": false
           }
         },
-        "wishlist_plus_wishlist_pdp_button_KYpTzT": {
-          "type": "shopify://apps/wishlist-plus/blocks/wishlist-pdp-button/80c3b1fc-3a8f-407e-8367-ffdeebb8b612",
-          "settings": {
-            "swym_atw_button_icon": "heart",
-            "swym_atw_icon_thickness": 1,
-            "swym_atw_custom_icon": "shopify://shop_images/Vector-2_cb2e9f3c-3f20-467c-a129-a8ae02f50579.svg",
-            "swym_atw_display_btn_text": false,
-            "swym_button_position": "product_title_right",
-            "swym_atw_button_vertical_offset": 0,
-            "swym_atw_full_width": false,
-            "swym_atw_button_alignment": "right",
-            "swym_add_to_wishlist_color": "#ffffff",
-            "swym_added_to_wishlist_color": "#ffffff",
-            "swym_button_text_color": "#ffffff",
-            "swym_atw_border_color": "rgba(0,0,0,0)",
-            "swym_atw_border_thickness": 0,
-            "swym_atw_button_border_radius": 0,
-            "swym_enable_hover_customization": false,
-            "swym_hover_add_to_wishlist_color": "#000000",
-            "swym_hover_added_to_wishlist_color": "#222222",
-            "swym_hover_button_text_color": "#ffffff",
-            "swym_hover_atw_border_color": "#000000",
-            "swym_hover_atw_border_thickness": 0,
-            "swym_hover_atw_button_border_radius": 0,
-            "swym_custom_css": ""
-          }
-        },
-        "tags_b9YKGF": {
+        "tags_hTXxtU": {
           "type": "tags",
           "settings": {
-            "heading": "Age & Attributes",
-            "pill_color": "#ff6a00",
+            "heading": "",
+            "pill_color": "#6e4b7e",
             "position": "sidebar"
+          }
+        },
+        "wishlist_hero_custom_product_button_REgVq9": {
+          "type": "shopify://apps/wishlist-hero/blocks/custom-product-button/a9a5079b-59e8-47cb-b659-ecf1c60b9b72",
+          "settings": {
+            "displayButtonMode": "icon_only",
+            "contentAlignment": "left",
+            "buttonAlignment": "flex-start",
+            "buttonFontSize": 22,
+            "overrideFont": false,
+            "customFont": "sans_serif_n4",
+            "buttonFullwidth": false,
+            "removeBoxShadowAndBorder": false,
+            "horizontalPadding": 10,
+            "iconSize": 20,
+            "iconTopOffset": 0,
+            "addedCssClassNames": "",
+            "addedContainerStyles": ""
           }
         },
         "buyback_CTtRCe": {
@@ -82,7 +74,19 @@
         "description_3GT8yD": {
           "type": "description",
           "settings": {
-            "show_only_table": false
+            "show_only_table": false,
+            "show_in_quick_add": true
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "label_size": "medium",
+            "enable_size_chart": true,
+            "choose_variant": "Size",
+            "popup_label": "Size Chart",
+            "page": ""
           }
         },
         "divider_AJifDg": {
@@ -90,7 +94,8 @@
           "settings": {
             "divider_color": "#d9d9d9",
             "divider_thickness": 1,
-            "block_position": "sidebar"
+            "block_position": "sidebar",
+            "show_in_quick_add": true
           }
         },
         "price": {
@@ -107,7 +112,8 @@
           "settings": {
             "divider_color": "#d9d9d9",
             "divider_thickness": 1,
-            "block_position": "sidebar"
+            "block_position": "sidebar",
+            "show_in_quick_add": true
           }
         },
         "effective_price_cta_QLYTre": {
@@ -115,10 +121,11 @@
           "settings": {
             "price_prefix": "or",
             "buyback_percent": 60,
-            "caption": "through our buyback system",
+            "caption": "Buy now, sell back for",
             "button_label": "Learn How it Works",
             "button_link": "#selback_value",
-            "block_position": "sidebar"
+            "block_position": "sidebar",
+            "show_in_quick_add": true
           }
         },
         "divider_d3FtjA": {
@@ -126,13 +133,15 @@
           "settings": {
             "divider_color": "#d9d9d9",
             "divider_thickness": 1,
-            "block_position": "sidebar"
+            "block_position": "sidebar",
+            "show_in_quick_add": true
           }
         },
         "skills_learned_UG4wAX": {
           "type": "skills-learned",
           "settings": {
-            "heading": "Skills learned"
+            "heading": "Skills learned",
+            "show_in_quick_add": true
           }
         },
         "divider_q3E4TT": {
@@ -140,18 +149,8 @@
           "settings": {
             "divider_color": "#d9d9d9",
             "divider_thickness": 1,
-            "block_position": "sidebar"
-          }
-        },
-        "variant_picker": {
-          "type": "variant_picker",
-          "settings": {
-            "picker_type": "button",
-            "label_size": "medium",
-            "enable_size_chart": true,
-            "choose_variant": "Size",
-            "popup_label": "Size Chart",
-            "page": ""
+            "block_position": "sidebar",
+            "show_in_quick_add": true
           }
         },
         "c652140f-d2b2-42d5-b88b-2f636b5f4875": {
@@ -178,6 +177,16 @@
             "crossell_product_type": "Yes please",
             "product_type_color": "",
             "price_color": "#da3c24"
+          }
+        },
+        "pincode_validator_Eg97em": {
+          "type": "pincode_validator",
+          "settings": {
+            "pincode_list": "400089: 3-5 Days\n400007: 2-3 Days",
+            "error_message": "Sorry, delivery is not available in your area.",
+            "warning_message": "Please verify your pincode to check delivery in your area.",
+            "csv_url": "",
+            "block_position": "sidebar"
           }
         },
         "buy_buttons_deLbPX": {
@@ -220,10 +229,10 @@
           "settings": {
             "show_delivery_date": true,
             "icon_delivery": "shopify://shop_images/SVGRepo_iconCarrier_ad98d31e-0363-44e0-8c76-a76ced335e54.svg",
-            "delivery_max": 4,
-            "delivery_heading": "Express Delivery Available",
-            "delivery_text": "Order within 3 hours for delivery by tomorrow. Standard delivery: 2-4 business days",
-            "show_pickup_availability": true
+            "delivery_heading": "Check delivery availability",
+            "delivery_text": "Enter the pincode above to check the delivery in your area",
+            "show_pickup_availability": true,
+            "show_in_quick_add": true
           }
         },
         "product_meta_tabs_MybfXq": {
@@ -260,17 +269,19 @@
             "stack_5_description": "User can choose how they want the cashback: \n• Wallet credit \n• Direct payout \n• Membership conversion",
             "stack_6_icon_color": "#8a8f98",
             "stack_6_title": "",
-            "stack_6_description": ""
+            "stack_6_description": "",
+            "show_in_quick_add": false
           }
         }
       },
       "block_order": [
         "breadcrumb_WBMM3F",
         "title",
-        "wishlist_plus_wishlist_pdp_button_KYpTzT",
-        "tags_b9YKGF",
+        "tags_hTXxtU",
+        "wishlist_hero_custom_product_button_REgVq9",
         "buyback_CTtRCe",
         "description_3GT8yD",
+        "variant_picker",
         "divider_AJifDg",
         "price",
         "divider_6jC6zM",
@@ -278,9 +289,9 @@
         "divider_d3FtjA",
         "skills_learned_UG4wAX",
         "divider_q3E4TT",
-        "variant_picker",
         "c652140f-d2b2-42d5-b88b-2f636b5f4875",
         "54271896-8c87-41aa-8788-341687752aa1",
+        "pincode_validator_Eg97em",
         "buy_buttons_deLbPX",
         "ca1a9e3e-8740-4219-87ee-8a26036e96f0",
         "delivery_date_pickup_REq3Gf",
@@ -363,7 +374,7 @@
         "highlight_color": "#8c6f9c",
         "subtitle": "The smart way to buy toys. Play, return when done, and get money back.",
         "button_label": "Learn How it Works",
-        "button_link": ""
+        "button_link": "shopify://pages/how-it-works"
       }
     },
     "selback_value_EnfcJp": {
@@ -460,7 +471,7 @@
         "card_1_bg": "#ffffff",
         "card_1_icon": "shopify://shop_images/SVGRepo_iconCarrier-4.svg",
         "card_1_icon_bg": "#ffecc2",
-        "card_1_title": "You Buy Toys",
+        "card_1_title": "You Buy Toy",
         "card_1_price": "₹10,000",
         "card_1_subtext": "Total Purchase",
         "card_2_bg": "#fffafa",
@@ -583,7 +594,7 @@
         "background_color": "color-bg-4",
         "colors_background_section_gradient": "",
         "padding_top": 52,
-        "padding_bottom": 20
+        "padding_bottom": 50
       }
     }
   },

@@ -13,8 +13,8 @@
     {% render 'icon-caret' %}
 	{%- if section.settings.active_menu_icon != blank and link.child_active -%}
 		<img srcset="
-		{{ section.settings.active_menu_icon | image_url }}"
-		src="{{ section.settings.active_menu_icon | image_url: width: 1920 }}"
+		{{ section.settings.active_menu_icon | image_url: format: 'webp' }}"
+		src="{{ section.settings.active_menu_icon | image_url: width: 1920, format: 'webp' }}"
 		loading="lazy"
 		class="header__active-menu-item-icon"
 		height="13"

@@ -35,6 +35,8 @@
     if ratio == 0 or ratio == null
       assign ratio = 1
     endif
+
+    assign default_card_variant = card_product.variants.first
   -%}
 
   <div class="card-wrapper product-card-wrapper underline-links-hover card-image-hover">
@@ -46,15 +48,15 @@
             <div class="media media--transparent media--hover-effect">
               {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
               <img srcset="
-                  {%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
-                  {%- if card_product.featured_media.width >= 360 -%}{{ card_product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
-                  {%- if card_product.featured_media.width >= 533 -%}{{ card_product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
-                  {%- if card_product.featured_media.width >= 633 -%}{{ card_product.featured_media | image_url: width: 633 }} 633w,{%- endif -%}
-                  {%- if card_product.featured_media.width >= 720 -%}{{ card_product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
-                  {%- if card_product.featured_media.width >= 940 -%}{{ card_product.featured_media | image_url: width: 940 }} 940w,{%- endif -%}
-                  {%- if card_product.featured_media.width >= 1066 -%}{{ card_product.featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
-                  {{ card_product.featured_media | image_url }} {{ card_product.featured_media.width }}w"
-                src="{{ card_product.featured_media | image_url: width: 533 }}"
+                  {%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | image_url: width: 165, format: 'webp' }} 165w,{%- endif -%}
+                  {%- if card_product.featured_media.width >= 360 -%}{{ card_product.featured_media | image_url: width: 360, format: 'webp' }} 360w,{%- endif -%}
+                  {%- if card_product.featured_media.width >= 533 -%}{{ card_product.featured_media | image_url: width: 533, format: 'webp' }} 533w,{%- endif -%}
+                  {%- if card_product.featured_media.width >= 633 -%}{{ card_product.featured_media | image_url: width: 633, format: 'webp' }} 633w,{%- endif -%}
+                  {%- if card_product.featured_media.width >= 720 -%}{{ card_product.featured_media | image_url: width: 720, format: 'webp' }} 720w,{%- endif -%}
+                  {%- if card_product.featured_media.width >= 940 -%}{{ card_product.featured_media | image_url: width: 940, format: 'webp' }} 940w,{%- endif -%}
+                  {%- if card_product.featured_media.width >= 1066 -%}{{ card_product.featured_media | image_url: width: 1066, format: 'webp' }} 1066w,{%- endif -%}
+                  {{ card_product.featured_media | image_url: format: 'webp' }} {{ card_product.featured_media.width }}w"
+                src="{{ card_product.featured_media | image_url: width: 533, format: 'webp' }}"
                 sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 2 }}px, 
                       (min-width: 990px) calc((100vw - 130px) / 2), 
                       (min-width: 750px) calc((100vw - 120px) / 2), 
@@ -69,15 +71,15 @@
 
               {%- if card_product.media[1] != null and show_secondary_image -%}
                 <img srcset="
-                    {%- if card_product.media[1].width >= 165 -%}{{ card_product.media[1] | image_url: width: 165 }} 165w,{%- endif -%}
-                    {%- if card_product.media[1].width >= 360 -%}{{ card_product.media[1] | image_url: width: 360 }} 360w,{%- endif -%}
-                    {%- if card_product.media[1].width >= 533 -%}{{ card_product.media[1] | image_url: width: 533 }} 533w,{%- endif -%}
-                    {%- if card_product.media[1].width >= 633 -%}{{ card_product.media[1] | image_url: width: 633 }} 633w,{%- endif -%}
-                    {%- if card_product.media[1].width >= 720 -%}{{ card_product.media[1] | image_url: width: 720 }} 720w,{%- endif -%}
-                    {%- if card_product.media[1].width >= 940 -%}{{ card_product.media[1] | image_url: width: 940 }} 940w,{%- endif -%}
-                    {%- if card_product.media[1].width >= 1066 -%}{{ card_product.media[1] | image_url: width: 1066 }} 1066w,{%- endif -%}
-                    {{ card_product.media[1] | image_url }} {{ card_product.media[1].width }}w"
-                  src="{{ card_product.media[1] | image_url: width: 533 }}"
+                    {%- if card_product.media[1].width >= 165 -%}{{ card_product.media[1] | image_url: width: 165, format: 'webp' }} 165w,{%- endif -%}
+                    {%- if card_product.media[1].width >= 360 -%}{{ card_product.media[1] | image_url: width: 360, format: 'webp' }} 360w,{%- endif -%}
+                    {%- if card_product.media[1].width >= 533 -%}{{ card_product.media[1] | image_url: width: 533, format: 'webp' }} 533w,{%- endif -%}
+                    {%- if card_product.media[1].width >= 633 -%}{{ card_product.media[1] | image_url: width: 633, format: 'webp' }} 633w,{%- endif -%}
+                    {%- if card_product.media[1].width >= 720 -%}{{ card_product.media[1] | image_url: width: 720, format: 'webp' }} 720w,{%- endif -%}
+                    {%- if card_product.media[1].width >= 940 -%}{{ card_product.media[1] | image_url: width: 940, format: 'webp' }} 940w,{%- endif -%}
+                    {%- if card_product.media[1].width >= 1066 -%}{{ card_product.media[1] | image_url: width: 1066, format: 'webp' }} 1066w,{%- endif -%}
+                    {{ card_product.media[1] | image_url: format: 'webp' }} {{ card_product.media[1].width }}w"
+                  src="{{ card_product.media[1] | image_url: width: 533, format: 'webp' }}"
                   sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 2 }}px, 
                         (min-width: 990px) calc((100vw - 130px) / 2), 
                         (min-width: 750px) calc((100vw - 120px) / 2), 
@@ -286,13 +288,36 @@
 			
 												{%- for value in product_option.values -%}
 													{%- capture color_id -%}{{ color_name }}-{{ forloop.index }}{%- endcapture -%}
-													{%- liquid
-														assign color_value_downcase = value | downcase
-														assign variant_for_value = card_product.variants | where: variant_option, value | first
-													-%}
+                          {%- liquid
+                            assign color_value_downcase = value | downcase
+                            assign variant_for_value = card_product.variants | where: variant_option, value | first
+                            assign is_default_variant_value = false
+                            if default_card_variant[variant_option] == value
+                              assign is_default_variant_value = true
+                            endif
+                            assign variant_money_price = variant_for_value.price | money
+                            assign variant_money_compare_at_price = ''
+                            if variant_for_value.compare_at_price != blank
+                              assign variant_money_compare_at_price = variant_for_value.compare_at_price | money
+                            endif
+                            if settings.currency_code_enabled
+                              assign variant_money_price = variant_for_value.price | money_with_currency
+                              if variant_for_value.compare_at_price != blank
+                                assign variant_money_compare_at_price = variant_for_value.compare_at_price | money_with_currency
+                              endif
+                            endif
+                          -%}
 			
-													<div class="card-variant{% if color_white_label == color_value_downcase %} card-variant--white{% endif %}" data-variant-id="{{ variant_for_value.id }}" {% if variant_for_value.featured_media != blank %} data-variant-img="{{ variant_for_value.featured_media | image_url: width: 533 }}"{% endif %} role="button" aria-label="Card variant" tabindex="0">
-														<input class="card-variant__radio visually-hidden" type="radio" name="{{ color_name }}" id="{{ color_id }}" value="{{ value | escape }}" {% if product_option.selected_value == value %}checked="checked"{% endif %}>
+                          <div class="card-variant{% if is_default_variant_value %} active{% endif %}{% if color_white_label == color_value_downcase %} card-variant--white{% endif %}"
+                            data-variant-id="{{ variant_for_value.id }}"
+                            data-variant-price="{{ variant_for_value.price }}"
+                            data-variant-compare-at-price="{{ variant_for_value.compare_at_price }}"
+                            data-variant-money-price="{{ variant_money_price | escape }}"
+                            data-variant-money-compare-at-price="{{ variant_money_compare_at_price | escape }}"
+                            data-variant-available="{% if variant_for_value.available %}true{% else %}false{% endif %}"
+                            {% if variant_for_value.featured_media != blank %} data-variant-img="{{ variant_for_value.featured_media | image_url: width: 533, format: 'webp' }}"{% endif %}
+                            role="button" aria-label="Card variant" tabindex="0">
+                            <input class="card-variant__radio visually-hidden" type="radio" name="{{ color_name }}" id="{{ color_id }}" value="{{ value | escape }}" {% if is_default_variant_value %}checked="checked"{% endif %}>
 	
 														<label class="card-variant__item color--{{ value | escape | downcase | replace: " ", "-" }}" for="{{ color_id }}" style="{% render 'color-swatch-style', color_swatch_config: color_swatch_config, value: value, swatch: value.swatch %}">
 															<span class="visually-hidden">{{ value }}</span>
@@ -343,7 +368,7 @@
               </p>
             {%- endif -%}
 
-            {% render 'price', product: card_product, price_class: '' %}
+            {% render 'price', product: card_product, use_variant: true, variant: default_card_variant, price_class: '' %}
 
 						{%- if settings.card_style == 'rounded' -%}
 							{% if settings.enable_product_variants == true %}
@@ -362,11 +387,36 @@
 			
 												{%- for value in product_option.values -%}
 													{%- capture color_id -%}{{ color_name }}-{{ forloop.index }}{%- endcapture -%}
-													{%- assign color_value_downcase = value | downcase -%}
-													{%- assign variant_for_value = card_product.variants | where: variant_option, value | first -%}
+                          {%- liquid
+                            assign color_value_downcase = value | downcase
+                            assign variant_for_value = card_product.variants | where: variant_option, value | first
+                            assign is_default_variant_value = false
+                            if default_card_variant[variant_option] == value
+                              assign is_default_variant_value = true
+                            endif
+                            assign variant_money_price = variant_for_value.price | money
+                            assign variant_money_compare_at_price = ''
+                            if variant_for_value.compare_at_price != blank
+                              assign variant_money_compare_at_price = variant_for_value.compare_at_price | money
+                            endif
+                            if settings.currency_code_enabled
+                              assign variant_money_price = variant_for_value.price | money_with_currency
+                              if variant_for_value.compare_at_price != blank
+                                assign variant_money_compare_at_price = variant_for_value.compare_at_price | money_with_currency
+                              endif
+                            endif
+                          -%}
 			
-													<div class="card-variant{% if color_white_label == color_value_downcase %} card-variant--white{% endif %}" data-variant-id="{{ variant_for_value.id }}" {% if variant_for_value.featured_media != blank %} data-variant-img="{{ variant_for_value.featured_media | image_url: width: 533 }}"{% endif %} role="button" aria-label="Card variant" tabindex="0">
-														<input class="card-variant__radio visually-hidden" type="radio" name="{{ color_name }}" id="{{ color_id }}" value="{{ value | escape }}" {% if product_option.selected_value == value %}checked="checked"{% endif %}>
+                          <div class="card-variant{% if is_default_variant_value %} active{% endif %}{% if color_white_label == color_value_downcase %} card-variant--white{% endif %}"
+                            data-variant-id="{{ variant_for_value.id }}"
+                            data-variant-price="{{ variant_for_value.price }}"
+                            data-variant-compare-at-price="{{ variant_for_value.compare_at_price }}"
+                            data-variant-money-price="{{ variant_money_price | escape }}"
+                            data-variant-money-compare-at-price="{{ variant_money_compare_at_price | escape }}"
+                            data-variant-available="{% if variant_for_value.available %}true{% else %}false{% endif %}"
+                            {% if variant_for_value.featured_media != blank %} data-variant-img="{{ variant_for_value.featured_media | image_url: width: 533, format: 'webp' }}"{% endif %}
+                            role="button" aria-label="Card variant" tabindex="0">
+                            <input class="card-variant__radio visually-hidden" type="radio" name="{{ color_name }}" id="{{ color_id }}" value="{{ value | escape }}" {% if is_default_variant_value %}checked="checked"{% endif %}>
 	
 														<label class="card-variant__item color--{{ value | escape | downcase | replace: " ", "-" }}" for="{{ color_id }}" style="{% render 'color-swatch-style', color_swatch_config: color_swatch_config, value: value, swatch: value.swatch  %}">
 															<span class="visually-hidden">{{ value }}</span>

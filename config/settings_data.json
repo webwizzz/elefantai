@@ -11,7 +11,7 @@
   "current": {
     "logo": "shopify://shop_images/Logo_Horizontal_Purple_1.svg",
     "logo_width": 235,
-    "favicon": "shopify://shop_images/Logo_Horizontal_Purple_1.svg",
+    "favicon": "shopify://shop_images/favicon.svg",
     "colors_text": "#000000",
     "colors_heading": "#6e4b7e",
     "colors_secondary_heading": "#2d3679",
@@ -48,13 +48,13 @@
     "type_body_font": "asap_n4",
     "body_font_large": 30,
     "body_font_medium": 22,
-    "header_width": 1440,
+    "header_width": 1600,
     "page_width": 1440,
     "spacing_sections": 0,
     "spacing_grid_horizontal": 30,
     "spacing_grid_vertical": 40,
     "media_radius": 20,
-    "animations_reveal_on_scroll": true,
+    "animations_reveal_on_scroll": false,
     "buttons_font_size": 18,
     "button_font_weight": "500",
     "buttons_border_thickness": 1,
@@ -67,11 +67,11 @@
     "product_card_heading_size": "h5",
     "product_card_heading_weight": "500",
     "enable_product_variants": false,
-    "product_variants_name": "type",
+    "product_variants_name": "Type",
     "enable_quick_add": true,
     "card_corner_radius": 6,
     "quick_add_text": "#101010",
-    "quick_add_background": "#fef7e6",
+    "quick_add_background": "#ffffff",
     "quick_add_border": "#101010",
     "quick_add_text_hover": "#ffffff",
     "quick_add_background_hover": "#6e4b7e",
@@ -81,6 +81,7 @@
     "blog_card_text_alignment": "left",
     "blog_card_corner_radius": 20,
     "show_swatches": true,
+    "swatches_variant": "Type",
     "swatches_textarea": "",
     "popup_border_thickness": 1,
     "popup_border_opacity": 100,
@@ -108,8 +109,8 @@
     "currency_code_enabled": false,
     "cart_type": "drawer",
     "show_vendor": false,
-    "show_cart_note": true,
-    "drawer_text": "Free Shipping On All Orders Above $50!",
+    "show_cart_note": false,
+    "drawer_text": "Free Shipping On All Orders Above Rs 2000!",
     "drawer_image_before": "",
     "drawer_image_after": "",
     "drawer_message_background_color": "#ffd265",
@@ -230,7 +231,7 @@
       "main-password-header": {
         "type": "main-password-header",
         "settings": {
-          "background_color": "color-bg-3",
+          "background_color": "color-main-bg",
           "text_color": "main",
           "text_color_hover": "heading-secondary"
         }
@@ -238,7 +239,7 @@
       "main-password-footer": {
         "type": "main-password-footer",
         "settings": {
-          "background_color": "color-bg-3",
+          "background_color": "color-bg-2",
           "text_color": "main",
           "text_color_hover": "heading-secondary"
         }
@@ -376,55 +377,58 @@
         "disabled": false,
         "settings": {}
       },
-      "17755616602367737787": {
-        "type": "shopify://apps/swym-relay/blocks/storefront-ui-elements/80c3b1fc-3a8f-407e-8367-ffdeebb8b612",
+      "1219337400145039034": {
+        "type": "shopify://apps/kwikpass/blocks/kp_login/603e209b-d585-47ff-8592-837a4faa325b",
         "disabled": false,
         "settings": {}
       },
-      "5946647744298494267": {
-        "type": "shopify://apps/wishlist-plus/blocks/wishlist-app-embed/80c3b1fc-3a8f-407e-8367-ffdeebb8b612",
+      "1366455014531238847": {
+        "type": "shopify://apps/wishlist-hero/blocks/customize-style-block/a9a5079b-59e8-47cb-b659-ecf1c60b9b72",
         "disabled": false,
         "settings": {
-          "show_ui": true,
-          "storefront_layout_enabled": true,
-          "storefront_layout_primary_bg_color": "rgba(0,0,0,0)",
-          "storefront_layout_primary_text_color": "#000000",
-          "storefront_layout_secondary_bg_color": "#ffffff",
-          "storefront_layout_secondary_text_color": "#ffffff",
-          "storefront_layout_ui_border_radius": 0,
-          "storefront_layout_notification_position": "left",
-          "storefront_layout_action_popup_position": "left",
-          "storefront_layout_drawer_position": "right",
-          "storefront_layout_as_section_page": ""
+          "Btn_color": "",
+          "WishlistButtonTextColor": "#6e4b7e",
+          "Ico_color": "",
+          "HeaderFontSize": 30,
+          "HeaderColor": "",
+          "ProductNameFontSize": 18,
+          "PriceFontSize": 16,
+          "PriceColor": ""
         }
       },
-      "10274264662263595587": {
-        "type": "shopify://apps/wishlist-plus/blocks/wishlist-collections-embed/80c3b1fc-3a8f-407e-8367-ffdeebb8b612",
+      "10486658301671024706": {
+        "type": "shopify://apps/wishlist-hero/blocks/collection-embed/a9a5079b-59e8-47cb-b659-ecf1c60b9b72",
         "disabled": false,
         "settings": {
-          "swym_collections_icon_type": "heart",
-          "swym_collections_icon_thickness": 1.7,
-          "swym_collections_add_icon": "shopify://shop_images/Vector-2_cb2e9f3c-3f20-467c-a129-a8ae02f50579.svg",
-          "swym_collections_added_icon": "shopify://shop_images/svgviewer-output.svg",
-          "swym_collections_position": "top-right",
-          "swym_collections_vertical_offset": 0,
-          "swym_collections_horizontal_offset": 0,
-          "swym_collections_button_size": 25,
-          "swym_collections_icon_color": "#000000",
-          "swym_collections_product_link_selector": "-",
-          "swym_collections_product_tile_selector": "-",
-          "enable_variant_selector": false,
-          "swym_add_to_wishlist_title_color": "#333",
-          "swym_variant_selector_font_size_1": 14,
-          "swym_variant_selector_popup_bg_color": "#fff",
-          "swym_variant_selector_section_heading_color": "#000",
-          "swym_variant_selector_section_heading_font_size_2": 12,
-          "swym_variant_selector_choose_create_text": "Choose or Create new Wishlist",
-          "swym_variant_selector_wishlist_btn_bg_color": "#292929",
-          "swym_variant_selector_wishlist_btn_color": "#fff",
-          "swym_variant_selector_product_detail_font_color": "#fff",
-          "swym_variant_selector_create_list_placeholder_text": "Enter wishlist name",
-          "swym_variant_selector_create_list_title": "Name Your Wishlist"
+          "customThemeName": "Toyo",
+          "wlIconPlacementInCard": "auto",
+          "iconHorizontalOffset": 0,
+          "iconVerticalOffset": 0,
+          "iconBackgroundSize": 48,
+          "iconFontSize": 20,
+          "enableCustomColors": true,
+          "wishlistIconColor": "#6e4b7e",
+          "wishlistIconBgColor": "",
+          "wishlistIconBgColorAlpha": 100,
+          "addedWishlistIconColor": "",
+          "addedWishlistIconBgColor": "",
+          "addedWishlistIconBgColorAlpha": 100,
+          "wlCollectionCardSelectorClass": "",
+          "wlIconPlacementInCardSelector": "",
+          "wlIconPlacementInCardMode": "I",
+          "wlProductHandleExtractor": "",
+          "searchAndFilterApp": "algolia"
+        }
+      },
+      "7870687481494312845": {
+        "type": "shopify://apps/wishlist-hero/blocks/app-embed/a9a5079b-59e8-47cb-b659-ecf1c60b9b72",
+        "disabled": false,
+        "settings": {
+          "customThemeName": "Dawn",
+          "additionalWLButtonCssClasses": "",
+          "additionalWLCartBubbleCssClasses": "",
+          "extraHTMLToAppend": "",
+          "disableAutomaticButtonAddition": false
         }
       }
     }

@@ -22,7 +22,15 @@
     }
   }
 
-	{% if section.settings.colors_background_section_gradient != blank %}
+	{% if section.settings.background_image != blank %}
+    #shopify-section-{{ section.id }} .announcement-bar {
+      background-color: transparent;
+      background-image: url("{{ section.settings.background_image | image_url: width: 1920, format: 'webp' }}");
+      background-size: cover;
+      background-position: bottom;
+      background-repeat: repeat;
+    }
+	{% elsif section.settings.colors_background_section_gradient != blank %}
     #shopify-section-{{ section.id }} .announcement-bar {
       background: {{ section.settings.colors_background_section_gradient }};
     }
@@ -44,7 +52,7 @@
                 {%- if block.settings.image_before != blank -%}
                   {{
                     block.settings.image_before
-                    | image_url: width: 100
+                    | image_url: width: 100, format: 'webp' 
                     | image_tag: loading: 'lazy', sizes: '100px', widths: '100', alt: block.settings.image_before.alt
                   }}
                 {%- endif -%}
@@ -54,7 +62,7 @@
                 {%- if block.settings.image_after != blank -%}
                   {{
                     block.settings.image_after
-                    | image_url: width: 100
+                    | image_url: width: 100, format: 'webp' 
                     | image_tag: loading: 'lazy', sizes: '100px', widths: '100', alt: block.settings.image_after.alt
                   }}
                 {%- endif -%}
@@ -66,7 +74,7 @@
               {%- if block.settings.image_before != blank -%}
                 {{
                   block.settings.image_before
-                  | image_url: width: 100
+                  | image_url: width: 100, format: 'webp' 
                   | image_tag: loading: 'lazy', sizes: '100px', widths: '100', alt: block.settings.image_before.alt
                 }}
               {%- endif -%}
@@ -93,7 +101,7 @@
                 {%- if block.settings.image_after != blank -%}
                   {{
                     block.settings.image_after
-                    | image_url: width: 100
+                    | image_url: width: 100, format: 'webp' 
                     | image_tag: loading: 'lazy', sizes: '100px', widths: '100', alt: block.settings.image_after.alt
                   }}
                 {%- endif -%}
@@ -104,7 +112,7 @@
               {% if block.settings.image != blank %}
                 {{
                   block.settings.image
-                  | image_url: width: 100
+                  | image_url: width: 100, format: 'webp' 
                   | image_tag: loading: 'lazy', sizes: '100px', widths: '100', alt: block.settings.image.alt
                 }}
               {%- else -%}
@@ -200,6 +208,12 @@
       "id": "background_color",
       "label": "t:sections.all.padding.background_color",
       "default": "#DA3C24"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image",
+      "info": "Optional background image; when set it overrides background color/gradient"
     },
     {
       "id": "colors_background_section_gradient",

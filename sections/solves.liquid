@@ -1,10 +1,10 @@
 {%- style -%}
   #Solves-{{ section.id }} {
     position: relative;
-    padding: 100px 20px 120px 20px;
+    padding: 50px 20px 50px 20px;
     background-color: {{ section.settings.bg_color }};
     {% if section.settings.bg_image != blank %}
-      background-image: url('{{ section.settings.bg_image | image_url: width: 2400 }}');
+      background-image: url('{{ section.settings.bg_image | image_url: width: 2400, format: 'webp' }}');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -95,7 +95,8 @@
   @media (max-width: 900px) {
     .slv-row, .slv-row.slv-row-reverse { 
       flex-direction: column !important; 
-      gap: 40px; 
+      gap: 30px; 
+      margin: 30px 0;
     }
   }
 
@@ -190,13 +191,16 @@
 
   /* Typography Auto Scaling */
   @media (max-width: 768px) {
-    .slv-title { font-size: calc({{ section.settings.heading_size }}px * 0.75); }
-    .slv-subtitle { font-size: calc({{ section.settings.subtitle_size }}px * 0.9); }
-    .slv-item-text { font-size: calc({{ section.settings.list_font_size }}px * 0.9); }
-    .slv-btn { font-size: calc({{ section.settings.btn_font_size }}px * 0.9); }
-    .slv-icon-box { width: 60px; height: 60px; border-radius: 16px; }
+    .slv-list-item{
+      gap: 16px;
+    }
+    .slv-title { font-size: 30px; }
+    .slv-subtitle { font-size: 18px; }
+    .slv-item-text { font-size: 16px; }
+    .slv-btn { font-size: 16px; width: 100%; text-align: center; padding: 10px; }
+    .slv-icon-box { width: 50px; height: 50px; border-radius: 16px; }
     .slv-icon-box svg { width: 28px; height: 28px; }
-    #Solves-{{ section.id }} { padding: 60px 15px 80px 15px; }
+    #Solves-{{ section.id }} { padding: 30px 20px; }
   }
 {%- endstyle -%}
 
@@ -206,7 +210,7 @@
   {% for block in section.blocks %}
     {% if block.type == "decoration" and block.settings.image != blank %}
       <div class="slv-floating-item" style="top: {{ block.settings.top_pos }}%; left: {{ block.settings.left_pos }}%; width: {{ block.settings.size }}px; height: {{ block.settings.size }}px;" {{ block.shopify_attributes }}>
-        <img src="{{ block.settings.image | image_url: width: 300 }}" loading="lazy" width="{{ block.settings.image.width }}" height="{{ block.settings.image.height }}" alt="">
+        <img src="{{ block.settings.image | image_url: width: 300, format: 'webp' }}" loading="lazy" width="{{ block.settings.image.width }}" height="{{ block.settings.image.height }}" alt="">
       </div>
     {% endif %}
   {% endfor %}
@@ -214,7 +218,7 @@
   {%- comment -%} Corner Overlay Character {%- endcomment -%}
   {% if section.settings.corner_character != blank %}
     <div class="slv-character">
-      <img src="{{ section.settings.corner_character | image_url: width: 600 }}" loading="lazy" width="{{ section.settings.corner_character.width }}" height="{{ section.settings.corner_character.height }}" alt="Friendly Box Decor">
+      <img src="{{ section.settings.corner_character | image_url: width: 600, format: 'webp' }}" loading="lazy" width="{{ section.settings.corner_character.width }}" height="{{ section.settings.corner_character.height }}" alt="Friendly Box Decor">
     </div>
   {% endif %}
 
@@ -222,7 +226,7 @@
     <h2 class="slv-title">{{ section.settings.heading }}</h2>
     <p class="slv-subtitle">{{ section.settings.subtitle }}</p>
     {% if section.settings.center_squiggle != blank %}
-      <img src="{{ section.settings.center_squiggle | image_url: width: 300 }}" width="{{ section.settings.center_squiggle.width }}" height="{{ section.settings.center_squiggle.height }}" alt="" class="slv-squiggle" loading="lazy">
+      <img src="{{ section.settings.center_squiggle | image_url: width: 300, format: 'webp' }}" width="{{ section.settings.center_squiggle.width }}" height="{{ section.settings.center_squiggle.height }}" alt="" class="slv-squiggle" loading="lazy">
     {% endif %}
   </div>
 
@@ -231,7 +235,7 @@
     <div class="slv-image-col">
       <div class="slv-hero-img-box">
         {% if section.settings.main_image != blank %}
-          <img src="{{ section.settings.main_image | image_url: width: 1200 }}" loading="lazy" width="{{ section.settings.main_image.width }}" height="{{ section.settings.main_image.height }}" alt="">
+          <img src="{{ section.settings.main_image | image_url: width: 1200, format: 'webp' }}" loading="lazy" width="{{ section.settings.main_image.width }}" height="{{ section.settings.main_image.height }}" alt="">
         {% else %}
            {{ 'hero-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
         {% endif %}

@@ -8,6 +8,22 @@
   --gradient-background: var(--gradient-base-background-1);
 }
 
+#kp-login-button-header-logo{
+  margin: 0 6px;
+}
+#kp-login-button-header-logo>svg>path:nth-of-type(2) {
+  stroke: #493254 !important;
+  fill: #493254 !important;
+}
+
+.wishlisthero-product-page-button-container .button:hover::before {
+  background-color: transparent !important;
+}
+
+.drawer__cart-items-wrapper .swym-wishlist-collections-v2-container{
+  display: none !important;
+}
+
 .swym-atw-btn-wrapper.product_title_left-position, .swym-atw-btn-wrapper.product_title_right-position{
   justify-content: space-between !important;
   align-items: start !important;
@@ -15,6 +31,10 @@
 
 .related-products-heading strong{
   color:#9264A8 !important;
+}
+
+.related-products-heading .title-wrapper .title{
+  font-weight: 700;
 }
 
 .color-background-2 {
@@ -232,9 +252,15 @@ body:has(.section-header .drawer-menu) .announcement-bar-section slideshow-compo
     padding: 0 5rem;
   }
 
+  /* .header{
+    padding: 0 40px;
+  } */
+
+
   .header.page-width {
-    padding-left: 3.2rem;
-    padding-right: 3.2rem;
+    max-width: none;
+    padding-left: 40px;
+    padding-right: 40px;
   }
 
   .page-width--narrow {
@@ -252,8 +278,9 @@ body:has(.section-header .drawer-menu) .announcement-bar-section slideshow-compo
 
 @media screen and (min-width: 990px) {
   .header:not(.drawer-menu).page-width {
-    padding-left: 0;
-    padding-right: 0;
+    max-width: none;
+    padding-left: 40px;
+    padding-right: 40px;
   }
 
   .page-width--narrow {
@@ -2864,8 +2891,8 @@ product-info .loading-overlay:not(.hidden) ~ *,
   position: absolute;
   color: rgba(var(--button-color-text), 1);
   background-color: #6E4B7E;
-  min-height: 1.3rem;
-  min-width: 1.3rem;
+  height: 18px;
+  width: 18px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -2875,8 +2902,19 @@ product-info .loading-overlay:not(.hidden) ~ *,
   top: 4px;
   left: auto;
   bottom: auto;
-  right: 0.8rem;
+  right: 0.5rem;
 }
+
+.swym-header-icon-html svg {
+  color: #493254 !important;
+  stroke-width: 2 !important;
+}
+
+.swym-header-icon-html svg path {
+  color: #493254 !important;
+}
+
+
 
 .cart-count-bubble span {
   line-height: 1;
@@ -3155,6 +3193,13 @@ product-info .loading-overlay:not(.hidden) ~ *,
 	padding-bottom: 0;
 }
 
+.wishlisthero-product-page-button-container .button::before {
+  background-color: transparent !important;
+}
+
+.wishlisthero-product-page-button-container .button::before {
+  content: none !important;
+}
 .menu-with-icon {
 	flex-direction: column;
 }
@@ -3163,12 +3208,16 @@ product-info .loading-overlay:not(.hidden) ~ *,
 	text-decoration: none;
 }
 
+/* .MuiButtonBase-root{
+  background-color: rgb(110, 75, 126) !important;
+} */
+
 .header__icon:not(.header__icon--summary),
 .header__icon span {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: white !important;
   font-size: 22px;
 }
 
@@ -3178,6 +3227,14 @@ product-info .loading-overlay:not(.hidden) ~ *,
 
 .header__icon span {
   height: 100%;
+  font-size: 12px;
+}
+.header__icon span:hover {
+  color: white !important;
+}
+
+.wishlist-hero-items-count:hover{
+  color: white !important;
 }
 
 .header__icon::after {

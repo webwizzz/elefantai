@@ -173,7 +173,7 @@ if section.settings.button_type == 'regular_button'
             </h3>
 
             {% if section.settings.navigation_style == 'with-icon' and section.settings.active_menu_icon != blank %}
-              <img srcset="{{ section.settings.active_menu_icon | image_url }}" src="{{ section.settings.active_menu_icon | image_url: width: 1920 }}" loading="lazy"  class="navigation-icon" width="auto" height="auto" alt="{{ section.settings.active_menu_icon.alt }}">
+              <img srcset="{{ section.settings.active_menu_icon | image_url: format: 'webp' }}" src="{{ section.settings.active_menu_icon | image_url: width: 1920, format: 'webp' }}" loading="lazy"  class="navigation-icon" width="auto" height="auto" alt="{{ section.settings.active_menu_icon.alt }}">
 
             {% endif %}
           </li>
