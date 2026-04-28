@@ -3150,3 +3150,123 @@ variant-selects .product-popup-modal__opener {
     padding: 10px;
   }
 }
+/* Custom Condition Cards (Color Swatches Override) */
+.color-swatches.product-form__input .custom-condition-card {
+  display: flex !important;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px !important;
+  border-radius: 12px !important;
+  border: 1px solid #e0e0e0 !important;
+  background: #ffffff !important;
+  min-width: 250px !important;
+  width: auto !important;
+  height: auto !important;
+  font-size: 14px !important;
+  text-align: left !important;
+  margin: 0 !important;
+  cursor: pointer;
+  box-shadow: none !important;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.color-swatches.product-form__input .custom-condition-card::after,
+.color-swatches.product-form__input .custom-condition-card::before {
+  display: none !important;
+}
+
+.color-swatches.product-form__input input[type='radio']:checked + .custom-condition-card.custom-card--brand-new {
+  border: 1px solid #663399 !important;
+  background: #fdfafc !important;
+}
+
+.color-swatches.product-form__input input[type='radio']:checked + .custom-condition-card.custom-card--refurbished {
+  border: 1px solid #49c67a !important;
+  background: #fdfdfd !important;
+}
+
+.color-swatches.product-form__input .custom-condition-card__icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.color-swatches.product-form__input .custom-condition-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.color-swatches.product-form__input .custom-condition-card__title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #666;
+}
+
+.color-swatches.product-form__input .custom-condition-card.custom-card--brand-new .custom-condition-card__title {
+  color: #663399;
+}
+
+.color-swatches.product-form__input .custom-condition-card__price {
+  font-size: 22px;
+  font-weight: 700;
+  color: #000;
+  line-height: 1.1;
+}
+
+.color-swatches.product-form__input .custom-condition-card__desc {
+  font-size: 13px;
+  color: #888;
+}
+
+.color-swatches.product-form__input {
+  display: flex;
+  gap: 15px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.color-swatches.product-form__input::-webkit-scrollbar {
+  display: none;
+}
+
+@media screen and (max-width: 749px) {
+  .color-swatches.product-form__input {
+    gap: 10px;
+  }
+  
+  .color-swatches.product-form__input .custom-condition-card {
+    min-width: 0 !important;
+    flex: 1;
+    padding: 10px !important;
+    gap: 8px !important;
+  }
+  
+  .color-swatches.product-form__input .custom-condition-card__icon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .color-swatches.product-form__input .custom-condition-card__icon svg {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .color-swatches.product-form__input .custom-condition-card__title {
+    font-size: 11px;
+  }
+  
+  .color-swatches.product-form__input .custom-condition-card__price {
+    font-size: 15px;
+  }
+  
+  .color-swatches.product-form__input .custom-condition-card__desc {
+    font-size: 10px;
+  }
+}
