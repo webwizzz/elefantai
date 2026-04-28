@@ -3,7 +3,7 @@
 }
 
 .pincode-validator__label {
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 600;
   color: #000;
   margin-bottom: 8px;
@@ -54,11 +54,11 @@
 
 /* Safari autofill override */
 .pincode-validator__input:-webkit-autofill,
-.pincode-validator__input:-webkit-autofill:hover, 
-.pincode-validator__input:-webkit-autofill:focus, 
-.pincode-validator__input:-webkit-autofill:active{
-    -webkit-box-shadow: 0 0 0 30px #fafdff inset !important;
-    background-color: transparent !important;
+.pincode-validator__input:-webkit-autofill:hover,
+.pincode-validator__input:-webkit-autofill:focus,
+.pincode-validator__input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #fafdff inset !important;
+  background-color: transparent !important;
 }
 
 .pincode-validator__input::placeholder {
@@ -110,8 +110,15 @@
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translate(-50%, 20px); }
-  to { opacity: 1; transform: translate(-50%, 0); }
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
 }
 
 .pincode-toast__inner {
@@ -121,7 +128,7 @@
   color: #fff;
   padding: 12px 16px;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   font-size: 14px;
   gap: 12px;
 }
@@ -148,4 +155,10 @@
 
 .pincode-toast__close:hover {
   color: #fff;
+}
+
+@media screen and (max-width: 749px) {
+  .pincode-validator__label {
+    font-size: 16px;
+  }
 }
