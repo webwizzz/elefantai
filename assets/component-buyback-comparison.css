@@ -1,0 +1,215 @@
+/* ============================================
+   Buyback Comparison Block
+   ============================================ */
+
+.buyback-comparison {
+  scroll-margin-top: 100px;
+  padding: 4rem 0;
+}
+
+/* ---- Heading ---- */
+.buyback-comparison__heading-wrap {
+  text-align: center;
+  margin-bottom: 3.2rem;
+}
+
+.buyback-comparison__title {
+  font-size: 52px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 1rem;
+  color: var(--bbc-heading-color, #1a1a1a);
+}
+
+.buyback-comparison__title-highlight {
+  color: var(--bbc-accent, #7c3aed);
+  font-family: 'sag' !important;
+}
+
+.buyback-comparison__subtitle {
+  font-size: 22px;
+  color: var(--bbc-muted, #666);
+  margin: 0;
+  max-width: 40ch;
+  margin-inline: auto;
+  line-height: 1.5;
+}
+
+/* ---- Cards row ---- */
+.buyback-comparison__cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.4rem;
+  max-width: 80%;
+  margin-top: 8rem;
+  margin-inline: auto;
+}
+
+/* ---- Card base ---- */
+.buyback-comparison__card {
+  position: relative;
+  background: var(--bbc-card-bg, #ffffff);
+  border: 1.5px dashed rgba(0, 0, 0, 0.15);
+  border-radius: 2rem;
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* ---- Right / recommended card ---- */
+.buyback-comparison__card--right {
+  background: var(--bbc-right-card-bg, #f4f0ff);
+  border-style: solid;
+  position: relative;
+  box-shadow: #8348BE33 10px 8px 38px;
+  border: 4px solid #8348BE;
+}
+
+
+
+/* ---- Recommended badge ---- */
+.buyback-comparison__badge {
+  position: absolute;
+  top: -2.4rem;
+  left: 30%;
+  transform: translateX(-50%);
+  background: var(--bbc-badge-bg, #ff6b35);
+  color: var(--bbc-badge-text, #fff);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 10px;
+  border-radius: 22px;
+  white-space: nowrap;
+}
+
+/* ---- Card header ---- */
+.buyback-comparison__card-title {
+  font-size: 24px;
+  font-family: 'sag' !important;
+  font-weight: 700;
+  margin: 0;
+  color: var(--bbc-heading-color, #1a1a1a);
+}
+
+.buyback-comparison__card--right .buyback-comparison__card-title {
+  color: var(--bbc-accent, #7c3aed);
+}
+
+/* ---- Price area ---- */
+.buyback-comparison__price-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  line-height: 1;
+}
+
+.buyback-comparison__price {
+  font-size: 62px;
+  font-weight: 900;
+  color: var(--bbc-price-color, #1a1a1a);
+  letter-spacing: -0.02em;
+}
+
+.buyback-comparison__price-label {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--bbc-muted, #666);
+}
+
+/* ---- Price note ---- */
+.buyback-comparison__price-note {
+  font-size: 22px;
+  color: var(--bbc-muted, #666);
+  margin: 0;
+}
+
+/* ---- Icon ---- */
+.buyback-comparison__icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* ---- List ---- */
+.buyback-comparison__list {
+  list-style: none;
+  margin: 0.4rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.buyback-comparison__list li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 18px;
+  color: var(--bbc-text, #333);
+}
+
+.buyback-comparison__list li svg,
+.buyback-comparison__list li .bbc-icon-wrap {
+  flex-shrink: 0;
+}
+
+/* Left card — cross icon */
+.buyback-comparison__card--left .bbc-item-icon {
+  color: #999;
+}
+
+/* Right card — check icon */
+.buyback-comparison__card--right .bbc-item-icon {
+  color: var(--bbc-accent, #7c3aed);
+}
+
+.buyback-comparison__card--right .buyback-comparison__list li {
+  color: #31C47A;
+  font-weight: 500;
+}
+
+/* ---- Responsive ---- */
+@media screen and (max-width: 749px) {
+  .buyback-comparison__cards {
+    grid-template-columns: 1fr;
+    gap: 3.2rem;
+    padding: 0 1.6rem;
+    max-width: none;
+  }
+
+  .buyback-comparison__title {
+    font-size: 42px;
+  }
+
+  .buyback-comparison__subtitle {
+    font-size: 18px;
+  }
+
+  .buyback-comparison__price {
+    font-size: 52px;
+  }
+
+  .buyback-comparison__price-note {
+    font-size: 18px;
+  }
+
+  .buyback-comparison__list li {
+    font-size: 16px;
+  }
+
+  .buyback-comparison__badge {
+    font-size: 14px;
+  }
+
+  .buyback-comparison__card {
+    padding: 2.4rem 2rem;
+  }
+
+  .buyback-comparison {
+    padding: 3rem 0;
+  }
+}

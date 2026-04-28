@@ -1,83 +1,264 @@
-.product-buyback {
-  background: var(--buyback-bg, #ffffff);
-  border-radius: 20px;
-  padding: 18px 22px;
+.buyback-guarantee {
+  --bb-accent: #ff6a00;
+  --bb-bg: #fff;
+  --bb-border: rgba(255, 106, 0, 0.25);
+  --bb-heading-color: var(--bb-accent);
+  --bb-text: rgb(var(--color-foreground));
+  --bb-muted: rgba(var(--color-foreground), 0.6);
+  --bb-panel-bg: rgb(var(--color-background));
+  --bb-panel-border: rgba(var(--color-foreground), 0.12);
+  --bb-step-icon-bg: rgba(255, 106, 0, 0.12);
+  --bb-step-icon-border: rgba(255, 106, 0, 0.9);
+  --bb-arrow-color: rgba(var(--color-foreground), 0.65);
+  --bb-arrow-accent-color: var(--bb-accent);
+  --bb-link-color: rgb(var(--color-link));
+
+  background: var(--bb-bg);
+  border: 1px solid var(--bb-border);
+  border-radius: 2.4rem;
+  padding: 2.5rem 1.5rem;
+}
+
+.buyback-guarantee__title {
+  margin: 0 0 1.8rem;
+  color: var(--bb-heading-color);
+  font-weight: 900;
+  line-height: 1.1;
+  font-size: 32px;
+}
+
+.buyback-guarantee__summary {
   display: flex;
   align-items: center;
-  gap: 18px;
-  box-shadow: 0 12px 30px rgba(16, 24, 40, 0.06);
-  border: 1px solid #FFE4DA;
-  overflow: hidden;
+  gap: 1.4rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
-.product-buyback__left {
-  font-size: 75px;
-  line-height: 40px;
-  font-weight: 1000;
-  font-family: 'sag-bold';
-  color: var(--buyback-accent, #ff6a00);
-  flex: 0 0 auto;
+.buyback-guarantee__metric {
+  min-width: 0;
 }
 
-.product-buyback__text {
+.buyback-guarantee__label {
+  color: var(--bb-muted);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.buyback-guarantee__value {
+  margin-top: 0.6rem;
+  color: var(--bb-text);
+  font-weight: 900;
+  font-size: 26px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.buyback-guarantee__metric--net .buyback-guarantee__label,
+.buyback-guarantee__metric--net .buyback-guarantee__value {
+  color: var(--bb-accent);
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.buyback-guarantee__metric--net .buyback-guarantee__value {
+  font-size: 42px;
+}
+
+.buyback-guarantee__arrow {
+  color: var(--bb-arrow-color);
+  font-weight: 800;
+  font-size: 3.2rem;
+  line-height: 1;
+  padding-bottom: 0.6rem;
+}
+
+.buyback-guarantee__subtitle {
+  margin-top: 1.6rem;
+  color: var(--bb-muted);
+  font-weight: 700;
+  font-size: 1.7rem;
+  line-height: 1.35;
+}
+
+.buyback-guarantee__panel {
+  margin-top: 2.2rem;
+  background: var(--bb-panel-bg);
+  border: 1px solid var(--bb-panel-border);
+  border-radius: 2rem;
+  padding: 1.4rem;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: 8px;
+  justify-content: space-between;
+  gap: 0.2rem;
 }
 
-.product-buyback__titles {
+.buyback-guarantee__step {
+  flex: 1 1 0;
   display: flex;
   flex-direction: column;
-  align-items: baseline;
-  font-size: 30px;
-  line-height: 28px;
+  align-items: center;
+  text-align: center;
+  gap: 1.1rem;
+  min-width: 8rem;
 }
 
-.product-buyback__title {
-  font-weight: 700;
-  color: var(--buyback-title-color, #ff6a00);
+.buyback-guarantee__step-icon {
+  width: 6.2rem;
+  height: 6.2rem;
+  border-radius: 9999px;
+  background: var(--bb-step-icon-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.product-buyback__emphasis {
+.buyback-guarantee__step-icon--accent {
+  border: 1px solid var(--bb-step-icon-border);
+}
+
+.buyback-guarantee__step-icon img {
+  width: 3.2rem;
+  height: 3.2rem;
+  object-fit: contain;
+  display: block;
+}
+
+.buyback-guarantee__step-label {
+  color: var(--bb-text);
+  font-size: 14px;
+  line-height: 1.15;
+}
+
+.buyback-guarantee__step-label-strong {
+  display: block;
+  font-weight: bolder !important;
+}
+
+.buyback-guarantee__step-label-light {
+  display: block;
+  font-weight: 400;
+}
+
+.buyback-guarantee__step-arrow {
+  flex: 0 0 auto;
+  color: var(--bb-arrow-color);
   font-weight: 900;
-  color: var(--buyback-emphasis-color, #000000);
+  font-size: 2.6rem;
+  line-height: 1;
+  padding: 0;
 }
 
-.product-buyback__desc {
-  color: #8a8f98;
-  font-size: 0.95rem;
-  max-width: 60ch;
-  margin-top: 6px;
+.buyback-guarantee__step-arrow--accent {
+  stroke: var(--bb-arrow-accent-color);
 }
 
-@media (max-width: 1245px) {
-  .product-buyback {
-    padding: 10px;
-    gap: 4px;
+.buyback-guarantee__footer {
+  margin-top: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.buyback-guarantee__note {
+  color: var(--bb-muted);
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.buyback-guarantee__link {
+  color: var(--bb-link-color);
+  position: relative;
+  font-weight: 400;
+  font-size: 16px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.buyback-guarantee__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: var(--bb-link-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.buyback-guarantee__link:hover::after {
+  transform: scaleX(1);
+}
+
+.buyback-guarantee__link img {
+  width: 13px;
+  height: 13px;
+  display: block;
+}
+
+@media (max-width: 749px) {
+  .buyback-guarantee__title {
+    font-size: 20px;
   }
 
-  .product-buyback__desc{
-    font-size: 10px;
+  .buyback-guarantee__subtitle {
+    font-size: 16px
   }
 
-  .product-buyback {
-    flex-direction: row;
+  .buyback-guarantee__label {
+    font-size: 12px;
   }
 
-  .product-buyback__text {
-    display: flex;
-    flex-direction: column;
-    align-items: baseline;
-    gap: 0;
+  .buyback-guarantee__value {
+    font-size: 18px;
   }
 
-  .product-buyback__left {
-    font-size: 50px;
+  .buyback-guarantee__metric--net .buyback-guarantee__label {
+    font-size: 14px;
   }
 
-  .product-buyback__titles {
-    gap: 0px;
-    font-size: 26px;
+  .buyback-guarantee__metric--net .buyback-guarantee__value {
+    font-size: 22px;
+  }
+
+  .buyback-guarantee {
+    padding: 2rem 1rem;
+  }
+
+  .buyback-guarantee__summary {
+    row-gap: 2rem;
+    column-gap: 10px;
+    justify-content: start;
+  }
+
+  .buyback-guarantee__metric {
+    min-width: 0;
+  }
+
+  .buyback-guarantee__panel {
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+
+  .buyback-guarantee__step-icon {
+    width: 5.2rem;
+    height: 5.2rem;
+    flex-shrink: 0;
+  }
+
+  .buyback-guarantee__step {
+    flex: 1 1 40%;
+  }
+
+  .buyback-guarantee__step-arrow {
+    display: none;
   }
 }

@@ -495,16 +495,13 @@
                 {% endfor %}
               {% endif %}
 
-              <div
-                class="product__title-wrapper"
-                style="display: flex; justify-content: space-between; align-items: flex-start; gap: 15px;"
-              >
+              <div class="product__title-wrapper">
                 <div
                   class="product__title {{ block.settings.heading_size }} text-color-{{ block.settings.heading_color }} text-weight-{{ block.settings.heading_weight }}"
                   {{ block.shopify_attributes }}
-                  style="margin: 0; flex-grow: 1;"
+                  style="margin: 0;"
                 >
-                  <h1 style="margin: 0;">
+                  <h1>
                     {{ product.title | escape }}
 
                     {% if block.settings.show_vendor %}
@@ -513,18 +510,30 @@
                   </h1>
                 </div>
 
-                <div
-                  class="product__title-actions"
-                  style="display: flex; align-items: center; gap: 15px; flex-shrink: 0; padding-top: 5px;"
-                >
+                <div class="product__title-actions">
                   {% assign share_url = product.selected_variant.url | default: product.url | prepend: request.origin %}
                   {% render 'product-share-button', block: block, product: product, share_link: share_url %}
-                  <!-- Wishlist Hero Custom Placement Button -->
-                  <div class="wishlist-hero-custom-button"></div>
+
+                  <div class="product-form__item" id="wishlist-hero-product-page-button"></div>
                 </div>
+
               </div>
 
               <style>
+                /* ---- Title / actions row ---- */
+                .product__title-wrapper {
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: flex-start;
+                  gap: 12px;
+                }
+                .product__title-actions {
+                  display: flex;
+                  align-items: center;
+                  flex-shrink: 0;
+                }
+
+                /* ---- Share button ---- */
                 .product__title-actions .share-button {
                   display: block;
                   margin: 0;
@@ -533,16 +542,106 @@
                   display: flex;
                   align-items: center;
                   justify-content: center;
-                  background: none;
-                  border: none;
-                  padding: 0;
+                  background: none !important;
+                  border: none !important;
+                  box-shadow: none !important;
+                  padding: 4px !important;
                   cursor: pointer;
-                  color: inherit;
+                  transition: color 0.2s ease;
+                  border-radius: 0 !important;
+                }
+                .product__title-actions .share-button__button:hover,
+                .product__title-actions .share-button__button:focus {
+                  background: none !important;
+                  box-shadow: none !important;
+                  color: #000;
                 }
                 .product__title-actions .share-button__button svg {
                   width: 20px;
                   height: 20px;
+                  transition: fill 0.2s ease, color 0.2s ease;
                 }
+
+                /* ---- Wishlist (WishlistHero) button — full reset ---- */
+                #wishlist-hero-product-page-button,
+                #wishlist-hero-product-page-button .wishlisthero-product-page-button-container,
+                #wishlist-hero-product-page-button > div {
+                  display: flex;
+                  align-items: center;
+                  margin: 0 !important;
+                  padding: 0 !important;
+                }
+
+                /* Strip every decoration the app injects */
+                #wishlist-hero-product-page-button button,
+                #wishlist-hero-product-page-button .btn,
+                #wishlist-hero-product-page-button [class*="btn"] {
+                  background: none !important;
+                  background-color: transparent !important;
+                  border: none !important;
+                  border-radius: 0 !important;
+                  border-width: 0 !important;
+                  border-style: none !important;
+                  border-color: transparent !important;
+                  border-image: none !important;
+                  box-shadow: none !important;
+                  outline: none !important;
+                  padding: 4px !important;
+                  margin: 0 !important;
+                  height: auto !important;
+                  min-height: 0 !important;
+                  line-height: normal !important;
+                  overflow: visible !important;
+                  opacity: 1 !important;
+                  transform: none !important;
+                  transition: none !important;
+                  cursor: pointer;
+                  color: #555 !important;
+                  display: flex !important;
+                  align-items: center !important;
+                  justify-content: center !important;
+                  width: auto !important;
+                  min-width: 0 !important;
+                  text-indent: -9999px !important;  /* hide any label text */
+                  font-size: 0 !important;
+                }
+
+                /* Remove the "Add to wishlist" tooltip / ::after pseudo-element */
+                #wishlist-hero-product-page-button button::after,
+                #wishlist-hero-product-page-button button::before,
+                #wishlist-hero-product-page-button [class*="btn"]::after,
+                #wishlist-hero-product-page-button [class*="btn"]::before {
+                  display: none !important;
+                  content: none !important;
+                }
+
+                /* SVG icon — default stroke only, no fill */
+                #wishlist-hero-product-page-button button svg,
+                #wishlist-hero-product-page-button [class*="btn"] svg {
+                  width: 20px !important;
+                  height: 20px !important;
+                  color: #6E4B7E !important;
+                  fill: none !important;
+                  stroke: currentColor;
+                  transition: fill 0.2s ease, color 0.2s ease !important;
+                  display: block !important;
+                }
+
+                /* On hover: fill icon black, nothing else changes */
+                #wishlist-hero-product-page-button button:hover,
+                #wishlist-hero-product-page-button [class*="btn"]:hover {
+                  background: none !important;
+                  background-color: transparent !important;
+                  box-shadow: none !important;
+                  transform: none !important;
+                  fill: #6E4B7E !important;
+                }
+                #wishlist-hero-product-page-button button:hover svg,
+                #wishlist-hero-product-page-button [class*="btn"]:hover svg {
+                  fill: #6E4B7E !important;
+                  color: #6E4B7E !important;
+                }
+                
               </style>
 
               {%- if settings.product_info != blank and block.settings.title_product_type -%}
@@ -561,22 +660,288 @@
 
             {%- when 'buyback' -%}
               {{ 'component-buyback.css' | asset_url | stylesheet_tag }}
+              {%- liquid
+                assign bb_variant = product.selected_or_first_available_variant
+                assign bb_original_price = bb_variant.price | default: 0
+                assign bb_percent_num = block.settings.buyback_percent | default: 60
+                assign bb_back_price = bb_original_price | times: bb_percent_num | divided_by: 100
+                assign bb_net_price = bb_original_price | minus: bb_back_price
+
+                if settings.currency_code_enabled
+                  assign bb_original_money = bb_original_price | money_with_currency
+                  assign bb_back_money = bb_back_price | money_with_currency
+                  assign bb_net_money = bb_net_price | money_with_currency
+                else
+                  assign bb_original_money = bb_original_price | money
+                  assign bb_back_money = bb_back_price | money
+                  assign bb_net_money = bb_net_price | money
+                endif
+              -%}
+
               <div
-                class="product-buyback {{ block.settings.block_position }}"
-                style="--buyback-accent: {{ block.settings.accent_color }}; --buyback-bg: {{ block.settings.background_color }}; --buyback-title-color: {{ block.settings.title_color }}; --buyback-emphasis-color: {{ block.settings.emphasis_color }};"
+                id="BuybackGuarantee-{{ section.id }}"
+                class="buyback-guarantee {{ block.settings.block_position }}"
+                style="
+                  --bb-accent: {{ block.settings.accent_color }};
+                  --bb-bg: {{ block.settings.background_color }};
+                  --bb-border: {{ block.settings.border_color }};
+                  --bb-heading-color: {{ block.settings.heading_color }};
+                  --bb-text: {{ block.settings.text_color }};
+                  --bb-muted: {{ block.settings.muted_text_color }};
+                  --bb-panel-bg: {{ block.settings.panel_background_color }};
+                  --bb-panel-border: {{ block.settings.panel_border_color }};
+                  --bb-step-icon-bg: {{ block.settings.step_icon_background_color }};
+                  --bb-step-icon-border: {{ block.settings.step_icon_border_color }};
+                  --bb-arrow-color: {{ block.settings.arrow_color }};
+                  --bb-arrow-accent-color: {{ block.settings.arrow_accent_color }};
+                  --bb-link-color: {{ block.settings.link_color }};
+                "
+                data-section-id="{{ section.id }}"
+                data-buyback-percent="{{ bb_percent_num }}"
+                data-initial-price="{{ bb_original_price }}"
+                data-money-format="{{ shop.money_format | escape }}"
+                data-money-format-currency="{{ shop.money_with_currency_format | escape }}"
+                data-currency-code-enabled="{% if settings.currency_code_enabled %}true{% else %}false{% endif %}"
                 {{ block.shopify_attributes }}
               >
-                <div class="product-buyback__left">{{ block.settings.percent }}</div>
-                <div class="product-buyback__text">
-                  <div class="product-buyback__titles">
-                    <div class="product-buyback__title">{{ block.settings.title_main }}</div>
-                    <div class="product-buyback__emphasis">{{ block.settings.title_emphasis }}</div>
+                {% if block.settings.heading != blank %}
+                  <h3 class="buyback-guarantee__title">{{ block.settings.heading }}</h3>
+                {% endif %}
+
+                <div class="buyback-guarantee__summary" role="group" aria-label="{{ block.settings.aria_label | escape }}">
+                  <div class="buyback-guarantee__metric buyback-guarantee__metric--original">
+                    <div class="buyback-guarantee__label">{{ block.settings.label_original }}</div>
+                    <div class="buyback-guarantee__value" data-bb-original>{{ bb_original_money }}</div>
                   </div>
-                  {% if block.settings.description != blank %}
-                    <div class="product-buyback__desc">{{ block.settings.description }}</div>
+
+                  <div class="buyback-guarantee__arrow" aria-hidden="true">
+                    <svg width="22" height="8" viewBox="0 0 22 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0.5 3.18198C0.223858 3.18198 0 3.40583 0 3.68198C0 3.95812 0.223858 4.18198 0.5 4.18198V3.68198V3.18198ZM21.8536 4.03553C22.0488 3.84027 22.0488 3.52369 21.8536 3.32842L18.6716 0.146442C18.4763 -0.0488198 18.1597 -0.0488198 17.9645 0.146442C17.7692 0.341705 17.7692 0.658287 17.9645 0.853549L20.7929 3.68198L17.9645 6.5104C17.7692 6.70567 17.7692 7.02225 17.9645 7.21751C18.1597 7.41277 18.4763 7.41277 18.6716 7.21751L21.8536 4.03553ZM0.5 3.68198V4.18198H21.5V3.68198V3.18198H0.5V3.68198Z" fill="black"/>
+                    </svg>
+                  </div>
+
+                  <div class="buyback-guarantee__metric buyback-guarantee__metric--back">
+                    <div class="buyback-guarantee__label">{{ block.settings.label_back }}</div>
+                    <div class="buyback-guarantee__value" data-bb-back>{{ bb_back_money }}</div>
+                  </div>
+
+                  <div class="buyback-guarantee__arrow" aria-hidden="true">
+                    <svg width="22" height="8" viewBox="0 0 22 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0.5 3.18198C0.223858 3.18198 0 3.40583 0 3.68198C0 3.95812 0.223858 4.18198 0.5 4.18198V3.68198V3.18198ZM21.8536 4.03553C22.0488 3.84027 22.0488 3.52369 21.8536 3.32842L18.6716 0.146442C18.4763 -0.0488198 18.1597 -0.0488198 17.9645 0.146442C17.7692 0.341705 17.7692 0.658287 17.9645 0.853549L20.7929 3.68198L17.9645 6.5104C17.7692 6.70567 17.7692 7.02225 17.9645 7.21751C18.1597 7.41277 18.4763 7.41277 18.6716 7.21751L21.8536 4.03553ZM0.5 3.68198V4.18198H21.5V3.68198V3.18198H0.5V3.68198Z" fill="black"/>
+                    </svg>
+                  </div>
+
+                  <div class="buyback-guarantee__metric buyback-guarantee__metric--net">
+                    <div class="buyback-guarantee__label">{{ block.settings.label_net }}</div>
+                    <div class="buyback-guarantee__value" data-bb-net>{{ bb_net_money }}</div>
+                  </div>
+                </div>
+
+                {% if block.settings.subtitle_prefix != blank or block.settings.subtitle_suffix != blank %}
+                  <div class="buyback-guarantee__subtitle">
+                    {{ block.settings.subtitle_prefix }}
+                    {% if block.settings.percent != blank %}
+                      <span class="buyback-guarantee__subtitle-em">{{ block.settings.percent }}</span>
+                    {% endif %}
+                    {{ block.settings.subtitle_suffix }}
+                  </div>
+                {% endif %}
+
+                <div class="buyback-guarantee__panel" role="group" aria-label="{{ block.settings.steps_aria_label | escape }}">
+                  <div class="buyback-guarantee__step">
+                    <div class="buyback-guarantee__step-icon" aria-hidden="true">
+                      {% if block.settings.step_icon_1 != blank %}
+                        <img
+                          src="{{ block.settings.step_icon_1 | image_url: width: 96 }}"
+                          width="48"
+                          height="48"
+                          loading="lazy"
+                          alt=""
+                        >
+                      {% endif %}
+                    </div>
+                    <div class="buyback-guarantee__step-label">
+                      <span class="buyback-guarantee__step-label-strong">{{ block.settings.step_1_line_1 }}</span>
+                      <span class="buyback-guarantee__step-label-light">{{ block.settings.step_1_line_2 }}</span>
+                    </div>
+                  </div>
+
+                  <div class="buyback-guarantee__step-arrow" aria-hidden="true">
+                    <svg width="22" height="8" viewBox="0 0 22 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.5 3.18198C0.223858 3.18198 0 3.40583 0 3.68198C0 3.95812 0.223858 4.18198 0.5 4.18198V3.68198V3.18198ZM21.8536 4.03553C22.0488 3.84027 22.0488 3.52369 21.8536 3.32842L18.6716 0.146442C18.4763 -0.0488198 18.1597 -0.0488198 17.9645 0.146442C17.7692 0.341705 17.7692 0.658287 17.9645 0.853549L20.7929 3.68198L17.9645 6.5104C17.7692 6.70567 17.7692 7.02225 17.9645 7.21751C18.1597 7.41277 18.4763 7.41277 18.6716 7.21751L21.8536 4.03553ZM0.5 3.68198V4.18198H21.5V3.68198V3.18198H0.5V3.68198Z" fill="black"/>
+                    </svg>
+                  </div>
+
+                  <div class="buyback-guarantee__step">
+                    <div class="buyback-guarantee__step-icon" aria-hidden="true">
+                      {% if block.settings.step_icon_2 != blank %}
+                        <img
+                          src="{{ block.settings.step_icon_2 | image_url: width: 96 }}"
+                          width="48"
+                          height="48"
+                          loading="lazy"
+                          alt=""
+                        >
+                      {% endif %}
+                    </div>
+                    <div class="buyback-guarantee__step-label">
+                      <span class="buyback-guarantee__step-label-strong">{{ block.settings.step_2_line_1 }}</span>
+                      <span class="buyback-guarantee__step-label-light">{{ block.settings.step_2_line_2 }}</span>
+                    </div>
+                  </div>
+
+                    <div class="buyback-guarantee__step-arrow" aria-hidden="true">
+                      <svg width="22" height="8" viewBox="0 0 22 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.5 3.18198C0.223858 3.18198 0 3.40583 0 3.68198C0 3.95812 0.223858 4.18198 0.5 4.18198V3.68198V3.18198ZM21.8536 4.03553C22.0488 3.84027 22.0488 3.52369 21.8536 3.32842L18.6716 0.146442C18.4763 -0.0488198 18.1597 -0.0488198 17.9645 0.146442C17.7692 0.341705 17.7692 0.658287 17.9645 0.853549L20.7929 3.68198L17.9645 6.5104C17.7692 6.70567 17.7692 7.02225 17.9645 7.21751C18.1597 7.41277 18.4763 7.41277 18.6716 7.21751L21.8536 4.03553ZM0.5 3.68198V4.18198H21.5V3.68198V3.18198H0.5V3.68198Z" fill="black"/>
+                      </svg>
+                    </div>
+
+                  <div class="buyback-guarantee__step">
+                    <div class="buyback-guarantee__step-icon" aria-hidden="true">
+                      {% if block.settings.step_icon_3 != blank %}
+                        <img
+                          src="{{ block.settings.step_icon_3 | image_url: width: 96 }}"
+                          width="48"
+                          height="48"
+                          loading="lazy"
+                          alt=""
+                        >
+                      {% endif %}
+                    </div>
+                    <div class="buyback-guarantee__step-label">
+                      <span class="buyback-guarantee__step-label-strong">{{ block.settings.step_3_line_1 }}</span>
+                      <span class="buyback-guarantee__step-label-light">{{ block.settings.step_3_line_2 }}</span>
+                    </div>
+                  </div>
+
+                  <div class="buyback-guarantee__step-arrow buyback-guarantee__step-arrow--accent" aria-hidden="true">
+                    <svg width="22" height="8" viewBox="0 0 22 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.5 3.18198C0.223858 3.18198 0 3.40583 0 3.68198C0 3.95812 0.223858 4.18198 0.5 4.18198V3.68198V3.18198ZM21.8536 4.03553C22.0488 3.84027 22.0488 3.52369 21.8536 3.32842L18.6716 0.146442C18.4763 -0.0488198 18.1597 -0.0488198 17.9645 0.146442C17.7692 0.341705 17.7692 0.658287 17.9645 0.853549L20.7929 3.68198L17.9645 6.5104C17.7692 6.70567 17.7692 7.02225 17.9645 7.21751C18.1597 7.41277 18.4763 7.41277 18.6716 7.21751L21.8536 4.03553ZM0.5 3.68198V4.18198H21.5V3.68198V3.18198H0.5V3.68198Z" fill="black"/>
+                      </svg>
+                  </div>
+
+                  <div class="buyback-guarantee__step">
+                    <div class="buyback-guarantee__step-icon buyback-guarantee__step-icon--accent" aria-hidden="true">
+                      {% if block.settings.step_icon_4 != blank %}
+                        <img
+                          src="{{ block.settings.step_icon_4 | image_url: width: 96 }}"
+                          width="48"
+                          height="48"
+                          loading="lazy"
+                          alt=""
+                        >
+                      {% endif %}
+                    </div>
+                    <div class="buyback-guarantee__step-label">
+                      <span class="buyback-guarantee__step-label-strong">{{ block.settings.step_4_line_1 }}</span>
+                      <span class="buyback-guarantee__step-label-light">{{ block.settings.step_4_line_2 }}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="buyback-guarantee__footer">
+                  {% if block.settings.footer_note != blank %}
+                    <div class="buyback-guarantee__note">{{ block.settings.footer_note }}</div>
+                  {% endif %}
+
+                  {% if block.settings.how_it_works_link != blank and block.settings.how_it_works_label != blank %}
+                    <a class="buyback-guarantee__link" href="{{ block.settings.how_it_works_link }}">
+                      {{ block.settings.how_it_works_label }}
+                      {% if block.settings.how_it_works_icon != blank %}
+                        <img
+                          src="{{ block.settings.how_it_works_icon | image_url: width: 32 }}"
+                          width="16"
+                          height="16"
+                          loading="lazy"
+                          alt=""
+                        >
+                      {% endif %}
+                    </a>
                   {% endif %}
                 </div>
               </div>
+
+              <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                  var buybackEl = document.getElementById('BuybackGuarantee-{{ section.id }}');
+                  if (!buybackEl) return;
+
+                  function formatWithDelimiters(number, precision, thousands, decimal) {
+                    precision = precision == null ? 2 : precision;
+                    thousands = thousands == null ? ',' : thousands;
+                    decimal = decimal == null ? '.' : decimal;
+                    if (isNaN(number) || number == null) return 0;
+                    number = (number / 100.0).toFixed(precision);
+                    var parts = number.split('.');
+                    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands);
+                    return parts.join(decimal);
+                  }
+
+                  function formatMoney(cents, format) {
+                    if (typeof cents === 'string') cents = cents.replace('.', '');
+                    var value = '';
+                    var placeholderRegex = /\{\{\s*(\w+)\s*\}\}/;
+                    var formatString = format || '{{ shop.money_format | escape }}';
+                    var match = formatString.match(placeholderRegex);
+                    if (!match) return String(cents);
+
+                    switch (match[1]) {
+                      case 'amount':
+                        value = formatWithDelimiters(cents, 2);
+                        break;
+                      case 'amount_no_decimals':
+                        value = formatWithDelimiters(cents, 0);
+                        break;
+                      case 'amount_with_comma_separator':
+                        value = formatWithDelimiters(cents, 2, '.', ',');
+                        break;
+                      case 'amount_no_decimals_with_comma_separator':
+                        value = formatWithDelimiters(cents, 0, '.', ',');
+                        break;
+                      case 'amount_with_apostrophe_separator':
+                        value = formatWithDelimiters(cents, 2, "'", '.');
+                        break;
+                      default:
+                        value = formatWithDelimiters(cents, 2);
+                    }
+
+                    return formatString.replace(match[0], value);
+                  }
+
+                  function getMoneyFormat() {
+                    var useCurrency = buybackEl.dataset.currencyCodeEnabled === 'true';
+                    return useCurrency ? buybackEl.dataset.moneyFormatCurrency : buybackEl.dataset.moneyFormat;
+                  }
+
+                  function updateBuybackPrices(originalCents) {
+                    if (!Number.isFinite(originalCents)) return;
+                    var percent = parseInt(buybackEl.dataset.buybackPercent, 10);
+                    if (!Number.isFinite(percent)) percent = 0;
+                    var backCents = Math.floor((originalCents * percent) / 100);
+                    var netCents = originalCents - backCents;
+                    var fmt = getMoneyFormat();
+
+                    var originalNode = buybackEl.querySelector('[data-bb-original]');
+                    var backNode = buybackEl.querySelector('[data-bb-back]');
+                    var netNode = buybackEl.querySelector('[data-bb-net]');
+                    if (originalNode) originalNode.innerHTML = formatMoney(originalCents, fmt);
+                    if (backNode) backNode.innerHTML = formatMoney(backCents, fmt);
+                    if (netNode) netNode.innerHTML = formatMoney(netCents, fmt);
+                  }
+
+                  var initial = parseInt(buybackEl.dataset.initialPrice, 10);
+                  updateBuybackPrices(Number.isFinite(initial) ? initial : 0);
+
+                  if (typeof subscribe !== 'function' || typeof PUB_SUB_EVENTS === 'undefined') return;
+
+                  subscribe(PUB_SUB_EVENTS.variantChange, function (evt) {
+                    if (!evt || !evt.data) return;
+                    if (String(evt.data.sectionId) !== String(buybackEl.dataset.sectionId)) return;
+                    if (!evt.data.variant || typeof evt.data.variant.price === 'undefined') return;
+                    updateBuybackPrices(parseInt(evt.data.variant.price, 10));
+                  });
+                });
+              </script>
 
             {%- when 'price' -%}
               <div
@@ -2537,6 +2902,196 @@
               {% endif %}
             </div>
           {% endif %}
+        {%- when 'buyback_comparison' -%}
+          {{ 'component-buyback-comparison.css' | asset_url | stylesheet_tag }}
+          {%- liquid
+            assign bbc_variant      = product.selected_or_first_available_variant
+            assign bbc_orig_price   = bbc_variant.price | default: 0
+            assign bbc_pct          = block.settings.buyback_percent | default: 60
+            assign bbc_back_price   = bbc_orig_price | times: bbc_pct | divided_by: 100
+            assign bbc_net_price    = bbc_orig_price | minus: bbc_back_price
+
+            if settings.currency_code_enabled
+              assign bbc_orig_money = bbc_orig_price | money_with_currency
+              assign bbc_net_money  = bbc_net_price | money_with_currency
+            else
+              assign bbc_orig_money = bbc_orig_price | money
+              assign bbc_net_money  = bbc_net_price | money
+            endif
+          -%}
+
+          <div
+            id="selback-value"
+            class="buyback-comparison"
+            style="
+              --bbc-accent: {{ block.settings.accent_color }};
+              --bbc-heading-color: {{ block.settings.heading_color }};
+              --bbc-text: {{ block.settings.text_color }};
+              --bbc-muted: {{ block.settings.muted_color }};
+              --bbc-card-bg: {{ block.settings.left_card_bg }};
+              --bbc-right-card-bg: {{ block.settings.right_card_bg }};
+              --bbc-price-color: {{ block.settings.price_color }};
+              --bbc-badge-bg: {{ block.settings.badge_color }};
+              --bbc-badge-text: {{ block.settings.badge_text_color }};
+            "
+            data-section-id="{{ section.id }}"
+            data-buyback-percent="{{ bbc_pct }}"
+            data-initial-price="{{ bbc_orig_price }}"
+            data-money-format="{{ shop.money_format | escape }}"
+            data-money-format-currency="{{ shop.money_with_currency_format | escape }}"
+            data-currency-code-enabled="{% if settings.currency_code_enabled %}true{% else %}false{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            {%- if block.settings.heading != blank or block.settings.heading_highlight != blank -%}
+              <div class="buyback-comparison__heading-wrap">
+                <h2 class="buyback-comparison__title">
+                  {{ block.settings.heading | escape }}
+                  {%- if block.settings.heading_highlight != blank -%}
+                    <span class="buyback-comparison__title-highlight">{{ block.settings.heading_highlight | escape }}</span>
+                  {%- endif -%}
+                  {%- if block.settings.heading_line2 != blank -%}
+                    <br>{{ block.settings.heading_line2 | escape }}
+                  {%- endif -%}
+                </h2>
+                {%- if block.settings.subtitle != blank -%}
+                  <p class="buyback-comparison__subtitle">{{ block.settings.subtitle }}</p>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+            <div class="buyback-comparison__cards">
+              <div class="buyback-comparison__card buyback-comparison__card--left">
+                <h3 class="buyback-comparison__card-title">{{ block.settings.left_title | default: 'Buying Elsewhere' }}</h3>
+
+                <div class="buyback-comparison__price-wrap">
+                  <span class="buyback-comparison__price" data-bbc-orig>{{ bbc_orig_money }}</span>
+                </div>
+
+                {%- if block.settings.left_price_note != blank -%}
+                  <p class="buyback-comparison__price-note">{{ block.settings.left_price_note }}</p>
+                {%- endif -%}
+
+                <ul class="buyback-comparison__list">
+                  {%- for i in (1..6) -%}
+                    {%- assign item_key = 'left_item_' | append: i -%}
+                    {%- assign item_val = block.settings[item_key] -%}
+                    {%- if item_val != blank -%}
+                      <li>
+                        {%- if block.settings.left_icon != blank -%}
+                          <img src="{{ block.settings.left_icon | image_url: width: 48 }}" class="buyback-comparison__icon bbc-item-icon" loading="lazy" alt="" width="24" height="24">
+                        {%- else -%}
+                          <svg class="bbc-item-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="9" cy="9" r="8.5" stroke="currentColor"/><line x1="5.5" y1="5.5" x2="12.5" y2="12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="12.5" y1="5.5" x2="5.5" y2="12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        {%- endif -%}
+                        {{ item_val | escape }}
+                      </li>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </ul>
+              </div>
+
+              <div class="buyback-comparison__card buyback-comparison__card--right">
+                {%- if block.settings.badge_label != blank -%}
+                  <span class="buyback-comparison__badge">{{ block.settings.badge_label | escape }}</span>
+                {%- endif -%}
+
+                <h3 class="buyback-comparison__card-title">{{ block.settings.right_title | default: 'Buying with The Elefant' }}</h3>
+
+                <div class="buyback-comparison__price-wrap">
+                  <span class="buyback-comparison__price" data-bbc-net>{{ bbc_net_money }}</span>
+                  {%- if block.settings.right_price_label != blank -%}
+                    <span class="buyback-comparison__price-label">{{ block.settings.right_price_label | escape }}</span>
+                  {%- endif -%}
+                </div>
+
+                {%- if block.settings.right_price_note != blank -%}
+                  <p class="buyback-comparison__price-note">{{ block.settings.right_price_note | replace: '[PERCENT]', bbc_pct }}</p>
+                {%- endif -%}
+
+                <ul class="buyback-comparison__list">
+                  {%- for i in (1..6) -%}
+                    {%- assign item_key = 'right_item_' | append: i -%}
+                    {%- assign item_val = block.settings[item_key] -%}
+                    {%- if item_val != blank -%}
+                      <li>
+                        {%- if block.settings.right_icon != blank -%}
+                          <img src="{{ block.settings.right_icon | image_url: width: 48 }}" class="buyback-comparison__icon bbc-item-icon" loading="lazy" alt="" width="24" height="24">
+                        {%- else -%}
+                          <svg class="bbc-item-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="9" cy="9" r="8.5" stroke="currentColor"/><polyline points="5,9 8,12 13,6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        {%- endif -%}
+                        {{ item_val | escape }}
+                      </li>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <script>
+            document.addEventListener('DOMContentLoaded', function () {
+              var el = document.getElementById('selback-value');
+              if (!el) return;
+
+              function formatWithDelimiters(number, precision, thousands, decimal) {
+                precision = precision == null ? 2 : precision;
+                thousands = thousands == null ? ',' : thousands;
+                decimal = decimal == null ? '.' : decimal;
+                if (isNaN(number) || number == null) return 0;
+                number = (number / 100.0).toFixed(precision);
+                var parts = number.split('.');
+                parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands);
+                return parts.join(decimal);
+              }
+
+              function formatMoney(cents, format) {
+                if (typeof cents === 'string') cents = cents.replace('.', '');
+                var placeholderRegex = /\{\{\s*(\w+)\s*\}\}/;
+                var formatString = format || '{{ shop.money_format | escape }}';
+                var match = formatString.match(placeholderRegex);
+                if (!match) return String(cents);
+                var value;
+                switch (match[1]) {
+                  case 'amount': value = formatWithDelimiters(cents, 2); break;
+                  case 'amount_no_decimals': value = formatWithDelimiters(cents, 0); break;
+                  case 'amount_with_comma_separator': value = formatWithDelimiters(cents, 2, '.', ','); break;
+                  case 'amount_no_decimals_with_comma_separator': value = formatWithDelimiters(cents, 0, '.', ','); break;
+                  case 'amount_with_apostrophe_separator': value = formatWithDelimiters(cents, 2, "'", '.'); break;
+                  default: value = formatWithDelimiters(cents, 2);
+                }
+                return formatString.replace(match[0], value);
+              }
+
+              function getMoneyFormat() {
+                return el.dataset.currencyCodeEnabled === 'true'
+                  ? el.dataset.moneyFormatCurrency
+                  : el.dataset.moneyFormat;
+              }
+
+              function updatePrices(originalCents) {
+                if (!Number.isFinite(originalCents)) return;
+                var pct = parseInt(el.dataset.buybackPercent, 10) || 0;
+                var netCents = originalCents - Math.floor(originalCents * pct / 100);
+                var f = getMoneyFormat();
+                var origNode = el.querySelector('[data-bbc-orig]');
+                var netNode  = el.querySelector('[data-bbc-net]');
+                if (origNode) origNode.innerHTML = formatMoney(originalCents, f);
+                if (netNode)  netNode.innerHTML  = formatMoney(netCents, f);
+              }
+
+              var initial = parseInt(el.dataset.initialPrice, 10);
+              updatePrices(Number.isFinite(initial) ? initial : 0);
+
+              if (typeof subscribe !== 'function' || typeof PUB_SUB_EVENTS === 'undefined') return;
+
+              subscribe(PUB_SUB_EVENTS.variantChange, function (evt) {
+                if (!evt || !evt.data) return;
+                if (String(evt.data.sectionId) !== String(el.dataset.sectionId)) return;
+                if (!evt.data.variant || typeof evt.data.variant.price === 'undefined') return;
+                updatePrices(parseInt(evt.data.variant.price, 10));
+              });
+            });
+          </script>
+
       {%- endcase -%}
     {%- endfor -%}
   {% endif %}
@@ -2763,6 +3318,236 @@
       ]
     },
     {
+      "type": "buyback_comparison",
+      "name": "Buyback Comparison",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading (before highlight)",
+          "default": "Why "
+        },
+        {
+          "type": "text",
+          "id": "heading_highlight",
+          "label": "Heading highlighted text",
+          "default": "Buying With Buyback"
+        },
+        {
+          "type": "text",
+          "id": "heading_line2",
+          "label": "Heading second line",
+          "default": "Just Makes Sense"
+        },
+        {
+          "type": "textarea",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Toddlers outgrow toys fast. Your wallet and the planet shouldn't pay the price."
+        },
+        {
+          "type": "header",
+          "content": "Pricing"
+        },
+        {
+          "type": "range",
+          "id": "buyback_percent",
+          "min": 1,
+          "max": 99,
+          "step": 1,
+          "unit": "%",
+          "label": "Buyback percent",
+          "default": 60
+        },
+        {
+          "type": "header",
+          "content": "Left Card (Buying Elsewhere)"
+        },
+        {
+          "type": "text",
+          "id": "left_title",
+          "label": "Left card title",
+          "default": "Buying Elsewhere"
+        },
+        {
+          "type": "text",
+          "id": "left_price_note",
+          "label": "Left card price note",
+          "default": "Full price, no return value"
+        },
+        {
+          "type": "image_picker",
+          "id": "left_icon",
+          "label": "Left list item icon",
+          "info": "Icon shown next to each left list item. Leave blank to use default X icon."
+        },
+        {
+          "type": "text",
+          "id": "left_item_1",
+          "label": "Left list item 1",
+          "default": "No buyback guarantee"
+        },
+        {
+          "type": "text",
+          "id": "left_item_2",
+          "label": "Left list item 2",
+          "default": "Toy ends up in landfill"
+        },
+        {
+          "type": "text",
+          "id": "left_item_3",
+          "label": "Left list item 3",
+          "default": "Storage Clutter"
+        },
+        {
+          "type": "text",
+          "id": "left_item_4",
+          "label": "Left list item 4"
+        },
+        {
+          "type": "text",
+          "id": "left_item_5",
+          "label": "Left list item 5"
+        },
+        {
+          "type": "text",
+          "id": "left_item_6",
+          "label": "Left list item 6"
+        },
+        {
+          "type": "header",
+          "content": "Right Card (Buying with The Elefant)"
+        },
+        {
+          "type": "text",
+          "id": "right_title",
+          "label": "Right card title",
+          "default": "Buying with The Elefant"
+        },
+        {
+          "type": "text",
+          "id": "right_price_label",
+          "label": "Right card price label",
+          "default": "Net Cost"
+        },
+        {
+          "type": "text",
+          "id": "right_price_note",
+          "label": "Right card price note",
+          "info": "Use [PERCENT] to insert the buyback percent number.",
+          "default": "After [PERCENT]% buyback returned"
+        },
+        {
+          "type": "text",
+          "id": "badge_label",
+          "label": "Recommended badge text",
+          "default": "RECOMMENDED"
+        },
+        {
+          "type": "image_picker",
+          "id": "right_icon",
+          "label": "Right list item icon",
+          "info": "Icon shown next to each right list item. Leave blank to use default checkmark icon."
+        },
+        {
+          "type": "text",
+          "id": "right_item_1",
+          "label": "Right list item 1",
+          "default": "Upto 60% cashback guaranteed"
+        },
+        {
+          "type": "text",
+          "id": "right_item_2",
+          "label": "Right list item 2",
+          "default": "Free pickup, refurbished and reloved"
+        },
+        {
+          "type": "text",
+          "id": "right_item_3",
+          "label": "Right list item 3",
+          "default": "Swap toys as your child grows"
+        },
+        {
+          "type": "text",
+          "id": "right_item_4",
+          "label": "Right list item 4"
+        },
+        {
+          "type": "text",
+          "id": "right_item_5",
+          "label": "Right list item 5"
+        },
+        {
+          "type": "text",
+          "id": "right_item_6",
+          "label": "Right list item 6"
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "heading_color",
+          "label": "Heading color",
+          "default": "#1a1a1a"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent / highlight color",
+          "default": "#7c3aed"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Body text color",
+          "default": "#333333"
+        },
+        {
+          "type": "color",
+          "id": "muted_color",
+          "label": "Muted text color",
+          "default": "#666666"
+        },
+        {
+          "type": "color",
+          "id": "price_color",
+          "label": "Price text color",
+          "default": "#1a1a1a"
+        },
+        {
+          "type": "color",
+          "id": "left_card_bg",
+          "label": "Left card background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "right_card_bg",
+          "label": "Right card background",
+          "default": "#f4f0ff"
+        },
+        {
+          "type": "color",
+          "id": "badge_color",
+          "label": "Badge background color",
+          "default": "#ff6b35"
+        },
+        {
+          "type": "color",
+          "id": "badge_text_color",
+          "label": "Badge text color",
+          "default": "#ffffff"
+        }
+      ]
+    },
+    {
       "type": "buyback",
       "name": "Buyback Guarantee",
       "limit": 1,
@@ -2770,26 +3555,174 @@
         {
           "type": "text",
           "id": "percent",
-          "label": "Percent",
+          "label": "Percent (display)",
           "default": "60%"
         },
         {
           "type": "text",
-          "id": "title_main",
-          "label": "Title main",
-          "default": "Buyback"
+          "id": "heading",
+          "label": "Heading",
+          "default": "Real cost after buyback"
         },
         {
           "type": "text",
-          "id": "title_emphasis",
-          "label": "Title emphasis",
-          "default": "Guarantee"
+          "id": "label_original",
+          "label": "Label: Original price",
+          "default": "Original Price"
         },
         {
-          "type": "textarea",
-          "id": "description",
-          "label": "Description",
-          "default": "Eligible toys receive condition-based buyback: 60% cash refund or full membership use."
+          "type": "text",
+          "id": "label_back",
+          "label": "Label: You get back",
+          "default": "You get back upto"
+        },
+        {
+          "type": "text",
+          "id": "label_net",
+          "label": "Label: Net cost",
+          "default": "Net Cost"
+        },
+        {
+          "type": "text",
+          "id": "top_arrow_text",
+          "label": "Top row arrow",
+          "default": "→"
+        },
+        {
+          "type": "range",
+          "id": "buyback_percent",
+          "min": 1,
+          "max": 99,
+          "step": 1,
+          "unit": "%",
+          "label": "Buyback percent (calculation)",
+          "default": 60
+        },
+        {
+          "type": "text",
+          "id": "subtitle_prefix",
+          "label": "Subtitle prefix",
+          "default": "Get upto"
+        },
+        {
+          "type": "text",
+          "id": "subtitle_suffix",
+          "label": "Subtitle suffix",
+          "default": "back when you return the toy"
+        },
+        {
+          "type": "text",
+          "id": "aria_label",
+          "label": "Top row aria label",
+          "default": "Buyback prices"
+        },
+        {
+          "type": "text",
+          "id": "steps_aria_label",
+          "label": "Steps aria label",
+          "default": "How buyback works"
+        },
+        {
+          "type": "header",
+          "content": "Steps"
+        },
+        {
+          "type": "image_picker",
+          "id": "step_icon_1",
+          "label": "Step 1 icon"
+        },
+        {
+          "type": "text",
+          "id": "step_1_line_1",
+          "label": "Step 1 (line 1)",
+          "default": "Pay"
+        },
+        {
+          "type": "text",
+          "id": "step_1_line_2",
+          "label": "Step 1 (line 2)",
+          "default": "upfront"
+        },
+        {
+          "type": "image_picker",
+          "id": "step_icon_2",
+          "label": "Step 2 icon"
+        },
+        {
+          "type": "text",
+          "id": "step_2_line_1",
+          "label": "Step 2 (line 1)",
+          "default": "Use"
+        },
+        {
+          "type": "text",
+          "id": "step_2_line_2",
+          "label": "Step 2 (line 2)",
+          "default": "the toy"
+        },
+        {
+          "type": "image_picker",
+          "id": "step_icon_3",
+          "label": "Step 3 icon"
+        },
+        {
+          "type": "text",
+          "id": "step_3_line_1",
+          "label": "Step 3 (line 1)",
+          "default": "Return"
+        },
+        {
+          "type": "text",
+          "id": "step_3_line_2",
+          "label": "Step 3 (line 2)",
+          "default": "when done"
+        },
+        {
+          "type": "image_picker",
+          "id": "step_icon_4",
+          "label": "Step 4 icon"
+        },
+        {
+          "type": "text",
+          "id": "step_4_line_1",
+          "label": "Step 4 (line 1)",
+          "default": "Get money"
+        },
+        {
+          "type": "text",
+          "id": "step_4_line_2",
+          "label": "Step 4 (line 2)",
+          "default": "back"
+        },
+        {
+          "type": "header",
+          "content": "Footer"
+        },
+        {
+          "type": "text",
+          "id": "footer_note",
+          "label": "Footer note",
+          "default": "Returns depend on the condition of the toy"
+        },
+        {
+          "type": "text",
+          "id": "how_it_works_label",
+          "label": "How it works label",
+          "default": "See how it works"
+        },
+        {
+          "type": "url",
+          "id": "how_it_works_link",
+          "label": "How it works link"
+        },
+        {
+          "type": "image_picker",
+          "id": "how_it_works_icon",
+          "label": "How it works icon"
+        },
+        {
+          "type": "header",
+          "content": "Colors"
         },
         {
           "type": "color",
@@ -2799,21 +3732,75 @@
         },
         {
           "type": "color",
-          "id": "title_color",
-          "label": "Title color",
+          "id": "background_color",
+          "label": "Background color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Border color",
+          "default": "#FFE4DA"
+        },
+        {
+          "type": "color",
+          "id": "heading_color",
+          "label": "Heading color",
+          "default": "#111111"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#111111"
+        },
+        {
+          "type": "color",
+          "id": "muted_text_color",
+          "label": "Muted text color",
+          "default": "#6C6C6C"
+        },
+        {
+          "type": "color",
+          "id": "panel_background_color",
+          "label": "Steps panel background",
+          "default": "#FFF7E9"
+        },
+        {
+          "type": "color",
+          "id": "panel_border_color",
+          "label": "Steps panel border",
+          "default": "#E7E7E7"
+        },
+        {
+          "type": "color",
+          "id": "step_icon_background_color",
+          "label": "Step icon background",
+          "default": "#FFF0DE"
+        },
+        {
+          "type": "color",
+          "id": "step_icon_border_color",
+          "label": "Step icon border (last step)",
           "default": "#ff6a00"
         },
         {
           "type": "color",
-          "id": "emphasis_color",
-          "label": "Emphasis color",
-          "default": "#000000"
+          "id": "arrow_color",
+          "label": "Arrow color",
+          "default": "#6C6C6C"
         },
         {
           "type": "color",
-          "id": "background_color",
-          "label": "Background color",
-          "default": "#ffffff"
+          "id": "arrow_accent_color",
+          "label": "Arrow accent color (last arrow)",
+          "default": "#ff6a00"
+        },
+        {
+          "type": "color",
+          "id": "link_color",
+          "label": "Link color",
+          "default": "#1A73E8"
         },
         {
           "type": "select",

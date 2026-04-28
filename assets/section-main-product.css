@@ -58,7 +58,8 @@
   .product-effective-price__caption {
     font-size: 14px;
   }
-  .product-effective-price__button{
+
+  .product-effective-price__button {
     padding: 10px 20px;
     font-size: 14px;
   }
@@ -109,7 +110,7 @@
     display: none;
   }
 
-  .product__info-wrapper{
+  .product__info-wrapper {
     padding: 10px !important;
     border: 3px solid white;
     box-shadow: 0 4px 6px -1px #0000001a, 0 2px 4px -2px #0000001a;
@@ -200,7 +201,7 @@
   }
 
   .product--large:not(.product--no-media) .product__info-wrapper {
-    max-width: 40%;
+    max-width: 100%;
     width: calc(40% - var(--column-gap) / 2);
     height: 100%;
     padding: 23px;
@@ -397,7 +398,7 @@ variant-selects {
 
 .product-form__input .form__label {
   padding-left: 0;
-  font-size: 16px;
+  font-size: 22px;
 }
 
 fieldset.product-form__input .form__label {
@@ -433,6 +434,10 @@ fieldset.product-form__input.color-swatches .form__label {
 }
 
 @media screen and (max-width: 949px) {
+  .product-form__input .form__label {
+    padding-left: 0;
+    font-size: 16px;
+  }
 
   .gift-card-product .thumbnail-aside slider-component+slider-component,
   slider-component+slider-component {
@@ -616,16 +621,16 @@ fieldset.product-form__input.color-swatches .form__label {
 }
 
 .product-form__buttons .product-form__submit {
-    margin-bottom: 0;
-    border: 2px solid #EDC8FE;
-    border-radius: 88px;
-    background-color: #6E4B7E;
-    color: white;
-    transition: all .3s ease;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    font-size: 32px;
-    width: 100%;
+  margin-bottom: 0;
+  border: 2px solid #EDC8FE;
+  border-radius: 88px;
+  background-color: #6E4B7E;
+  color: white;
+  transition: all .3s ease;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: 32px;
+  width: 100%;
 }
 
 @media screen and (max-width: 749px) {
@@ -643,7 +648,7 @@ fieldset.product-form__input.color-swatches .form__label {
     font-size: 18px;
   }
 
-  button.shopify-payment-button__button--unbranded{
+  button.shopify-payment-button__button--unbranded {
     font-size: 18px !important;
     padding-top: 2rem !important;
     padding-bottom: 2rem !important;
@@ -657,7 +662,7 @@ fieldset.product-form__input.color-swatches .form__label {
   }
 
   .product-form__buttons .product-form__submit {
-    width: calc(50% - 1rem);
+    width: 100%;
   }
 
   .product--large .info-background-secondary .product-form__input.product-form__quantity,
@@ -702,8 +707,8 @@ fieldset.product-form__input.color-swatches .form__label {
   }
 
   .quick-add-modal .product-form__buttons .product-form__submit {
-    width: calc(50% - 1rem);
-    flex: 0 0 calc(50% - 1rem);
+    flex: 80%;
+    white-space: nowrap;
   }
 
   .quick-add-modal .product__media-wrapper .shopify-payment-button {
@@ -1009,9 +1014,9 @@ a.product__text {
   font-weight: 600;
 }
 
-.product__description{
-  color: #606060;
-  font-size: 18px;
+.product__description {
+  color: #767676;
+  font-size: 16px;
 }
 
 .product--no-media .product__media-wrapper,
@@ -2332,7 +2337,7 @@ variant-selects .product-popup-modal__opener {
     align-self: stretch;
   }
 
-  .icon-with-text--horizontal{
+  .icon-with-text--horizontal {
     column-gap: 2rem;
   }
 
@@ -2345,8 +2350,8 @@ variant-selects .product-popup-modal__opener {
     white-space: nowrap;
   }
 
-  .icon-with-text__description{
-   font-size: 8px !important; 
+  .icon-with-text__description {
+    font-size: 8px !important;
   }
 
 
@@ -2743,7 +2748,7 @@ variant-selects .product-popup-modal__opener {
 
 
 .section-main-product .page-width {
-  max-width:none;
+  max-width: none;
 }
 
 .section-main-product .section-image-overlay {
@@ -2766,6 +2771,8 @@ variant-selects .product-popup-modal__opener {
 
 .quick-add-modal__content .product-wrapp .product {
   margin-top: 0;
+  padding: 10px;
+  gap: 10px;
 }
 
 @media screen and (min-width: 750px) {
@@ -2812,7 +2819,7 @@ variant-selects .product-popup-modal__opener {
 
 @media screen and (min-width: 750px) {
   .info-background-secondary {
-    padding: 0rem;
+    padding: 2rem;
     display: block;
     border-radius: 2rem;
   }
@@ -3123,9 +3130,10 @@ variant-selects .product-popup-modal__opener {
     font-size: 11px;
   }
 
-  .product__description{
-    color: #606060;
-    font-size: 16px !important;
+  .product__description {
+    color: #767676;
+    font-size: 14px !important;
+    margin: 0 !important;
   }
 }
 
@@ -3142,11 +3150,11 @@ variant-selects .product-popup-modal__opener {
 
 @media screen and (min-width: 750px) {
   .product__info-container {
-    max-width: 60rem;
+    max-width: none;
   }
 
   .product__info-container>*:first-child {
     margin-top: 0;
-    padding: 10px;
+    padding-top: 10px;
   }
 }
