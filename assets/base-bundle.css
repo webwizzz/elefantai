@@ -1963,6 +1963,13 @@ button.shopify-payment-button__button--unbranded:hover,
 		border-color: rgb(var(--color-base-text));
 		color: rgba(var(--button-color-text), 1);
 	}
+
+  quick-add-modal .product-form__buttons .product-form__submit{
+    font-size: 28px !important;
+  }
+  quick-add-modal button.shopify-payment-button__button--unbranded{
+    font-size: 28px !important;
+  }
 }
 
 @media screen and (max-width: 1024px) {

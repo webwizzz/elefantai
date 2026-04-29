@@ -400,7 +400,7 @@ media-gallery {
   /* change direction  */
   .thumbnail-aside media-gallery {
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
   }
 
   .thumbnail-aside.thumbnail--left media-gallery {
@@ -452,6 +452,6 @@ media-gallery {
 
 @media screen and (min-width: 950px) {
   .thumbnail-aside media-gallery {
-    gap: 3rem;
+    gap: 1rem;
   }
 }

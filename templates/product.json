@@ -93,7 +93,7 @@
             "step_4_line_2": "back",
             "footer_note": "Returns depend on the condition of the toy",
             "how_it_works_label": "See how it works",
-            "how_it_works_link": "#how-it-works",
+            "how_it_works_link": "#selback-value",
             "how_it_works_icon": "shopify://shop_images/Frame_2018778771.svg",
             "accent_color": "#fd6a0a",
             "background_color": "#fef7ec",
@@ -376,7 +376,7 @@
       "type": "sticky-add-to-cart",
       "settings": {
         "style": "right-side",
-        "behavior": "hide-after-add",
+        "behavior": "hide",
         "image_ratio": "landscape",
         "show_vendor": false
       }

@@ -1068,6 +1068,16 @@ function getFocusableElements(container) {
 		  const select = this.stickyAddToCartBtn.parentElement.querySelector('.select__select')
 		  if (!select) return;
 		  select.value = id;
+
+		  const stickyBar = this.stickyAddToCartBtn.closest('.sticky-atc-bar');
+		  const variantTitle = stickyBar ? stickyBar.querySelector('[data-sticky-variant-title]') : null;
+		  if (variantTitle) {
+			  const selectedOption = select.options[select.selectedIndex];
+			  if (selectedOption) {
+				  const title = selectedOption.dataset.variantTitle || selectedOption.textContent.trim();
+				  variantTitle.textContent = title;
+			  }
+		  }
   
 		  const colorVariants = this.stickyAddToCartBtn.parentElement.querySelector('.card-variants')
 		  if (!colorVariants) return;

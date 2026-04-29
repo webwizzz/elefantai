@@ -33,6 +33,7 @@
   gap: 1.4rem;
   justify-content: space-between;
   flex-wrap: wrap;
+  padding: 2px;
 }
 
 .buyback-guarantee__metric {
@@ -80,6 +81,7 @@
   font-weight: 700;
   font-size: 1.7rem;
   line-height: 1.35;
+  padding: 0 2px;
 }
 
 .buyback-guarantee__panel {
@@ -127,7 +129,7 @@
 
 .buyback-guarantee__step-label {
   color: var(--bb-text);
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.15;
 }
 
@@ -167,6 +169,7 @@
   color: var(--bb-muted);
   font-weight: 400;
   font-size: 16px;
+  padding: 2px;
 }
 
 .buyback-guarantee__link {
@@ -203,7 +206,7 @@
   display: block;
 }
 
-@media (max-width: 749px) {
+@media (max-width: 1024px) {
   .buyback-guarantee__title {
     font-size: 20px;
   }
@@ -213,11 +216,11 @@
   }
 
   .buyback-guarantee__label {
-    font-size: 12px;
+    font-size: 10px;
   }
 
   .buyback-guarantee__value {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .buyback-guarantee__metric--net .buyback-guarantee__label {
@@ -225,7 +228,7 @@
   }
 
   .buyback-guarantee__metric--net .buyback-guarantee__value {
-    font-size: 22px;
+    font-size: 16px;
   }
 
   .buyback-guarantee {
@@ -242,16 +245,28 @@
     min-width: 0;
   }
 
+  .buyback-guarantee__arrow svg{
+    width: 16px;
+  }
+
   .buyback-guarantee__panel {
     flex-wrap: nowrap;
     justify-content: center;
     gap: 0.4rem;
   }
+  .buyback-guarantee__step{
+    min-width: 0;
+  }
 
   .buyback-guarantee__step-icon {
-    width: 5.2rem;
-    height: 5.2rem;
+    width: 3.5rem;
+    height: 3.5rem;
     flex-shrink: 0;
+  }
+
+  .buyback-guarantee__step-icon img{
+    width: 2rem;
+    height: 2rem;
   }
 
   .buyback-guarantee__step {
@@ -261,4 +276,104 @@
   .buyback-guarantee__step-arrow {
     display: none;
   }
+
+  .quick-add-modal__content .buyback-guarantee__metric--net .buyback-guarantee__value{
+    font-size: 17px;
+  }
+  .quick-add-modal__content .buyback-guarantee__metric--net .buyback-guarantee__label, .quick-add-modal__content .buyback-guarantee__metric--net .buyback-guarantee__value {
+    font-size: 12px;
+  }
+  .quick-add-modal__content .buyback-guarantee__value {
+      font-size: 14px;
+  }
+  .quick-add-modal__content .buyback-guarantee__label {
+      font-size: 10px;
+  }
+  .quick-add-modal__content .buyback-guarantee__label {
+      font-size: 7px;
+  }
+}
+
+.quick-add-modal__content .buyback-guarantee__step-icon{
+    width: 4.2rem;
+    height: 4.2rem;
+  }
+  .quick-add-modal__content .buyback-guarantee__step-label{
+    font-size: 11px;
+  }
+  .quick-add-modal__content .buyback-guarantee__step-icon img{
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+
+  .quick-add-modal__content .buyback-guarantee__step{
+    min-width: 0;
+  }
+
+@media (max-width: 380px) {
+  .buyback-guarantee__metric--net .buyback-guarantee__label {
+        font-size: 10px;
+    }
+    .buyback-guarantee__arrow svg{
+    width: 12px;
+  }
+  .buyback-guarantee__subtitle{
+    font-size: 14px;
+  }
+  .buyback-guarantee__note{
+    font-size: 14px;
+  }
+   .buyback-guarantee__link{
+    font-size: 14px;
+  }
+  .buyback-guarantee__step-icon{
+    width: 4.2rem;
+    height: 4.2rem;
+  }
+  .buyback-guarantee__step-label{
+    font-size: 11px;
+  }
+  .buyback-guarantee__step-icon img{
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+  .buyback-guarantee__panel{
+    padding: 10px 3px;
+  }
+  .buyback-guarantee__step{
+    min-width: 0;
+  }
+      .buyback-guarantee__panel {
+        flex-wrap: nowrap;
+        justify-content: center;
+        gap: .4rem;
+    }
+    .buyback-guarantee__label{
+      font-size: 8px;
+      word-wrap: break-word;
+    }
+    .buyback-guarantee__value{
+      font-size: 10px;
+    }
+    .buyback-guarantee__metric--net .buyback-guarantee__value{
+      font-size: 12px;;
+    }
+}
+
+@media (max-width: 380px){
+  .quick-add-modal__content .buyback-guarantee__metric--net .buyback-guarantee__value{
+          font-size: 12px;
+    }
+    .quick-add-modal__content .buyback-guarantee__metric--net .buyback-guarantee__label, .quick-add-modal__content .buyback-guarantee__metric--net .buyback-guarantee__value {
+    font-size: 10px;
+}
+.quick-add-modal__content .buyback-guarantee__value {
+    font-size: 11px;
+}
+.quick-add-modal__content .buyback-guarantee__label {
+    font-size: 7px;
+}
+.quick-add-modal__content .buyback-guarantee__label {
+    font-size: 7px;
+}
 }

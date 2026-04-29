@@ -3179,6 +3179,10 @@ variant-selects .product-popup-modal__opener {
   transition: all 0.2s ease;
 }
 
+.quick-add-modal__content .color-swatches.product-form__input .custom-condition-card{
+  min-width: 200px !important;
+}
+
 .color-swatches.product-form__input .custom-condition-card::after,
 .color-swatches.product-form__input .custom-condition-card::before {
   display: none !important;
@@ -3217,6 +3221,7 @@ variant-selects .product-popup-modal__opener {
 
 .color-swatches.product-form__input .custom-condition-card.custom-card--brand-new .custom-condition-card__title {
   color: #663399;
+  white-space: nowrap;
 }
 
 .color-swatches.product-form__input .custom-condition-card__price {
@@ -3244,16 +3249,29 @@ variant-selects .product-popup-modal__opener {
   display: none;
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 1024px) {
   .color-swatches.product-form__input {
     gap: 10px;
   }
-  
+
+  .quick-add-modal__content .color-swatches.product-form__input .custom-condition-card{
+    min-width: 0 !important;
+  }
+  .quick-add-modal__content .color-swatches.product-form__input .custom-condition-card{
+    padding: 6px !important;
+  }
+
+  .quick-add-modal__content .color-swatches.product-form__input .custom-condition-card__desc{
+    font-size: 9px;
+  }
+  .quick-add-modal__content .color-swatches.product-form__input .custom-condition-card__title{
+    font-size: 10px;
+  }
   .color-swatches.product-form__input .custom-condition-card {
     min-width: 0 !important;
     flex: 1;
     padding: 10px !important;
-    gap: 8px !important;
+    gap: 6px !important;
   }
   
   .color-swatches.product-form__input .custom-condition-card__icon {
@@ -3271,7 +3289,7 @@ variant-selects .product-popup-modal__opener {
   }
   
   .color-swatches.product-form__input .custom-condition-card__price {
-    font-size: 15px;
+    font-size: 14px;
   }
   
   .color-swatches.product-form__input .custom-condition-card__desc {

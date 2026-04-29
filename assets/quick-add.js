@@ -5,6 +5,8 @@ if (!customElements.get('quick-add-modal')) {
       constructor() {
         super();
         this.modalContent = this.querySelector('[id^="QuickAddInfo-"]');
+        this.onModalLinkClick = this.onModalLinkClick.bind(this);
+        this.hasModalLinkListener = false;
       }
 
       hide(preventFocus = false) {
@@ -30,6 +32,7 @@ if (!customElements.get('quick-add-modal')) {
             this.preventDuplicatedIDs();
             this.removeDOMElements();
             this.setInnerHTML(this.modalContent, this.productElement.innerHTML);
+            this.bindModalLinkScroll();
 
             if (window.Shopify && Shopify.PaymentButton) {
               Shopify.PaymentButton.init();
@@ -47,6 +50,49 @@ if (!customElements.get('quick-add-modal')) {
             opener.classList.remove('loading');
             opener.querySelector('.loading-overlay__spinner').classList.add('hidden');
           });
+      }
+
+      bindModalLinkScroll() {
+        if (this.hasModalLinkListener || !this.modalContent) return;
+        this.modalContent.addEventListener('click', this.onModalLinkClick);
+        this.hasModalLinkListener = true;
+      }
+
+      onModalLinkClick(event) {
+        if (!this.modalContent) return;
+        const link = event.target.closest('a[href]');
+        if (!link || !this.modalContent.contains(link)) return;
+
+        const hash = link.hash;
+        if (!hash || hash === '#') return;
+
+        const target = this.modalContent.querySelector(hash);
+        if (!target) return;
+
+        event.preventDefault();
+        this.revealQuickAddHidden(target);
+        this.scrollToTarget(target);
+      }
+
+      revealQuickAddHidden(target) {
+        let current = target;
+        while (current && current !== this.modalContent) {
+          if (current.classList && current.classList.contains('quick-add-hidden')) {
+            current.classList.remove('quick-add-hidden');
+          }
+          current = current.parentElement;
+        }
+      }
+
+      scrollToTarget(target) {
+        if (!this.modalContent) return;
+        const containerRect = this.modalContent.getBoundingClientRect();
+        const targetRect = target.getBoundingClientRect();
+        const offsetTop = targetRect.top - containerRect.top + this.modalContent.scrollTop;
+        this.modalContent.scrollTo({
+          top: Math.max(offsetTop - 16, 0),
+          behavior: 'smooth',
+        });
       }
 
       setInnerHTML(element, html) {

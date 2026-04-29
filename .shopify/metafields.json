@@ -150,16 +150,6 @@
       }
     },
     {
-      "key": "tags",
-      "namespace": "custom",
-      "name": "tags",
-      "description": "",
-      "type": {
-        "name": "list.single_line_text_field",
-        "category": "TEXT"
-      }
-    },
-    {
       "key": "portability",
       "namespace": "shopify",
       "name": "Portability",
@@ -264,6 +254,306 @@
       "namespace": "shopify",
       "name": "Reading toy type",
       "description": "Specifies the type of educational reading toy, e.g. spelling game, reading tablet",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "product_tags",
+      "namespace": "custom",
+      "name": "product_tags",
+      "description": "",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "game-features",
+      "namespace": "shopify",
+      "name": "Game features",
+      "description": "Highlights special characteristics of a game, for example, travel friendly or customizable",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "dexterity-skills",
+      "namespace": "shopify",
+      "name": "Dexterity skills",
+      "description": "Identifies the specific dexterity skills required for a game, like balancing or precision",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "construction-set-theme",
+      "namespace": "shopify",
+      "name": "Construction set theme",
+      "description": "Identifies the theme of a construction set, such as pirates or animals",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "difficulty-level",
+      "namespace": "shopify",
+      "name": "Difficulty level",
+      "description": "Indicates the complexity or challenge level of a puzzle or game, such as easy or expert",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "puzzle-theme",
+      "namespace": "shopify",
+      "name": "Puzzle theme",
+      "description": "Describes the main subject or motif of a puzzle, such as animals or space",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "theme",
+      "namespace": "shopify",
+      "name": "Theme",
+      "description": "Describes the product's primary theme or motif, such as sport, space, or holidays",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "condition",
+      "namespace": "shopify",
+      "name": "Condition",
+      "description": "Describes the state or quality of a product, e.g. mint (M), poor (P)",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "puzzle-type",
+      "namespace": "shopify",
+      "name": "Puzzle type",
+      "description": "Identifies the specific type of puzzle, such as 3D or brain teaser",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "lumber-wood-type",
+      "namespace": "shopify",
+      "name": "Lumber/Wood type",
+      "description": "Identifies the specific type of wood or lumber used in a product, like oak or pine",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "shape",
+      "namespace": "shopify",
+      "name": "Shape",
+      "description": "Describes the geometric form or shape of a product, such as round or heart",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "finish",
+      "namespace": "shopify",
+      "name": "Finish",
+      "description": "Describes the surface quality of a product, like satin or matte",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "placement-supported",
+      "namespace": "shopify",
+      "name": "Placement supported",
+      "description": "Identifies where a product can be installed or used, e.g. wall, floor",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "decoration-material",
+      "namespace": "shopify",
+      "name": "Decoration material",
+      "description": "Identifies the material used for decoration, such as sequins or feathers",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "floor-protection-transparency-level",
+      "namespace": "shopify",
+      "name": "Floor protection transparency level",
+      "description": "Indicates how see-through the film or runner is, ranging from clear to opaque.",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "genre",
+      "namespace": "shopify",
+      "name": "Genre",
+      "description": "Classifies the category or style of media, such as horror or fantasy",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "language-version",
+      "namespace": "shopify",
+      "name": "Language version",
+      "description": "Specifies the language version of a media product, such as ENG-US or ARA- Arabic",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "target-audience",
+      "namespace": "shopify",
+      "name": "Target audience",
+      "description": "Specifies who a product is suitable for, such as kids or all ages",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "book-cover-type",
+      "namespace": "shopify",
+      "name": "Book cover type",
+      "description": "Identifies the type of cover on a book, such as hardcover or paperback",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "language",
+      "namespace": "shopify",
+      "name": "Language",
+      "description": "Specifies the language used or compatible language, e.g. English, multilingual",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "material",
+      "namespace": "shopify",
+      "name": "Material",
+      "description": "Defines a product's primary material, such as cotton or wool",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "play-vehicle-propulsion",
+      "namespace": "shopify",
+      "name": "Play vehicle propulsion",
+      "description": "Identifies how a play vehicle is powered, such as by friction or remote control",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "flash-card-theme",
+      "namespace": "shopify",
+      "name": "Flash card theme",
+      "description": "Specifies the learning theme of flash cards, such as alphabet or numbers",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "wood-finish",
+      "namespace": "shopify",
+      "name": "Wood finish",
+      "description": "Describes the finishing treatment or construction method applied to wood products (e.g., solid wood, veneered, engineered, oiled, lacquered, painted)",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "battery-size",
+      "namespace": "shopify",
+      "name": "Battery size",
+      "description": "Indicates the battery compatibility for the product, such as AAA or 9V",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "toy-tool-type",
+      "namespace": "shopify",
+      "name": "Toy tool type",
+      "description": "Identifies the type of toy tool in a pretend play set, like a drill or hammer",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "power-source",
+      "namespace": "shopify",
+      "name": "Power source",
+      "description": "Specifies the power source a product uses to operate, such as solar or batteries",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "battery-type",
+      "namespace": "shopify",
+      "name": "Battery type",
+      "description": "Distinguishes between types of batteries, such as disposable or rechargeable ",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "product-certifications-standards",
+      "namespace": "shopify",
+      "name": "Product certifications & standards",
+      "description": "Indicates the certifications or standards a product meets, such as organic or cruelty free",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "motion",
+      "namespace": "shopify",
+      "name": "Motion",
+      "description": "Defines the movement type of baby equipment, such as vibrating or bouncing",
       "type": {
         "name": "list.metaobject_reference",
         "category": "REFERENCE"

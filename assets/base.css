@@ -313,6 +313,13 @@ body:has(.section-header .drawer-menu) .announcement-bar-section slideshow-compo
     max-width: 47.5rem;
   }
 
+  quick-add-modal .product-form__buttons .product-form__submit{
+    font-size: 28px !important;
+  }
+  quick-add-modal button.shopify-payment-button__button--unbranded{
+    font-size: 28px !important;
+  }
+  
   .page-width--desktop-full {
     max-width: 100%;
     padding-left: 0;

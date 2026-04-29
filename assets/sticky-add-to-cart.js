@@ -8,8 +8,9 @@
         super();
 				this.setStickyBarHeight.bind(this)			
 				this.parent = this.closest('.sticky-atc-bar');
-				this.select = this.querySelector('.atc-product-form .select')
+				this.select = this.querySelector('.atc-product-form .select__select')
 				this.formBtn = this.querySelector('.button-add-card')
+				this.variantTitle = this.querySelector('[data-sticky-variant-title]');
       }
 
       connectedCallback() {
@@ -17,6 +18,7 @@
         this.onAddToCart();
 				this.attachResizeHandler(); 
 				this.setStickyBarHeight(); // Need for correctly positioning scroll to top btn
+				this.updateVariantTitle();
       }
 
       disconnectedCallback() {
@@ -27,6 +29,7 @@
 				if (!this.select) return;
 				this.select.addEventListener('change', (e) => {
 					this.updateMasterId(e);
+					this.updateVariantTitle();
 					this.renderProductInfo();
 				})
       };
@@ -86,6 +89,14 @@
 				this.currentVariant = e.target.value;
 			}
 
+			updateVariantTitle() {
+				if (!this.variantTitle || !this.select) return;
+				const selectedOption = this.select.options[this.select.selectedIndex];
+				if (!selectedOption) return;
+				const title = selectedOption.dataset.variantTitle || selectedOption.textContent.trim();
+				this.variantTitle.textContent = title;
+			}
+
 			renderProductInfo() {
 				const requestedVariantId = this.currentVariant;
 				fetch(`${this.dataset.url}?variant=${requestedVariantId}`)
@@ -95,7 +106,7 @@
 						const addButtonUpdated = html.querySelector('.main-product .product-form__submit');
 						this.toggleAddButton(addButtonUpdated.hasAttribute('disabled'), window.variantStrings.soldOut);
 
-						const priceContainer = html.querySelector('.product .price__container');
+						const priceContainer = html.querySelector('.main-product .price__container');
 						this.updatePrice(priceContainer);
 					  });
 			}

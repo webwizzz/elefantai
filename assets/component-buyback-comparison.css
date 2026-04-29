@@ -104,6 +104,7 @@
   align-items: baseline;
   gap: 0.8rem;
   line-height: 1;
+  white-space: nowrap;
 }
 
 .buyback-comparison__price {
@@ -172,44 +173,85 @@
   font-weight: 500;
 }
 
+.quick-add-modal__content .buyback-guarantee__label{
+  font-size: 14px;
+}
+
+.quick-add-modal__content .buyback-guarantee__value{
+  font-size: 18px;
+}
+
+.quick-add-modal__content .buyback-guarantee__summary{
+  justify-content: start;
+}
+.quick-add-modal__content .buyback-guarantee__metric--net .buyback-guarantee__label, .quick-add-modal__content .buyback-guarantee__metric--net .buyback-guarantee__value{
+  font-size: 18px;
+}
+.quick-add-modal__content .buyback-guarantee__metric--net .buyback-guarantee__value{
+  font-size: 26px;
+}
+
+.buyback-guarantee__panel{
+  padding: 1.5rem 0.5rem;
+}
 /* ---- Responsive ---- */
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 1024px) {
   .buyback-comparison__cards {
     grid-template-columns: 1fr;
-    gap: 3.2rem;
-    padding: 0 1.6rem;
+    gap: 4.2rem;
+    padding: 0;
     max-width: none;
+    margin-top: 2rem;
   }
+
+  .quick-add-modal__content .buyback-guarantee__label{
+    font-size: 10px;
+  }
+
+  quick-add-modal .buyback-comparison{
+    padding: 2rem 1rem;
+   }
+
+   .quick-add-modal__content .buyback-guarantee__value{
+    font-size: 14px;
+   }
 
   .buyback-comparison__title {
-    font-size: 42px;
+    font-size: 38px;
   }
 
+  .quick-add-modal__content .buyback-guarantee__metric--net .buyback-guarantee__value{
+    font-size: 17px;
+  }
   .buyback-comparison__subtitle {
     font-size: 18px;
   }
 
   .buyback-comparison__price {
-    font-size: 52px;
+    font-size: 44px;
   }
 
   .buyback-comparison__price-note {
     font-size: 18px;
   }
-
-  .buyback-comparison__list li {
-    font-size: 16px;
-  }
-
-  .buyback-comparison__badge {
+  .buyback-comparison__price-label{
     font-size: 14px;
   }
 
+  .buyback-comparison__list li {
+    font-size: 14px;
+  }
+
+  .buyback-comparison__badge {
+    font-size: 12px;
+  }
+
   .buyback-comparison__card {
-    padding: 2.4rem 2rem;
+    padding: 2.4rem 1rem;
   }
 
   .buyback-comparison {
     padding: 3rem 0;
   }
 }
+
